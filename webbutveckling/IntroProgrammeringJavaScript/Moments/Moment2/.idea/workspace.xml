@@ -19,8 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc689d1c-9398-4433-a601-013095dd7da6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="50baa5a1-077d-4eae-acea-5224fffee9b6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Moment1/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uppgift1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uppgift2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../webbutveckling1/Moments/Moment1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../webbutveckling1/Moments/Moment1/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
   </component>
-  <component name="ProjectId" id="1gu7aFFCk2mj4LjZiljVMsEhTGX" />
+  <component name="ProjectId" id="1gvDxDUKK46rFYyE6zDH2LeD5Su" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -39,18 +42,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cc689d1c-9398-4433-a601-013095dd7da6" name="Default Changelist" comment="" />
-      <created>1598952684761</created>
+      <changelist id="50baa5a1-077d-4eae-acea-5224fffee9b6" name="Default Changelist" comment="" />
+      <created>1598986416247</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1598952684761</updated>
-      <workItem from="1598952685878" duration="1617000" />
-      <workItem from="1598980636941" duration="5000" />
+      <updated>1598986416247</updated>
+      <workItem from="1598986417373" duration="795000" />
     </task>
     <servers />
   </component>
@@ -67,16 +70,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="555" y="214" width="800" height="684" key="#Deployment" timestamp="1598953472645">
-      <screen x="0" y="27" width="1920" height="1053" />
-    </state>
-    <state x="555" y="214" width="800" height="684" key="#Deployment/0.27.1920.1053@0.27.1920.1053" timestamp="1598953472645" />
-    <state x="534" y="204" width="832" height="711" key="#SSH_Configurations" timestamp="1598953462566">
-      <screen x="0" y="27" width="1920" height="1053" />
-    </state>
-    <state x="534" y="204" width="832" height="711" key="#SSH_Configurations/0.27.1920.1053@0.27.1920.1053" timestamp="1598953462566" />
   </component>
 </project>
