@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="minafiler.miun.se" id="9c5fb8af-99db-4bcb-8c29-1afdea333418" port="22" nameFormat="DESCRIPTIVE" username="eler206" />
+    </configs>
+  </component>
+</project>
