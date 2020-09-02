@@ -1,0 +1,81 @@
+tags vi gått igenom:
+	<html></html>
+	<head></head>
+	<title></title>
+	<boty></body>
+	<h1-6></h1-6>
+	<p></p>
+	<meta>
+		attribut:
+			charset=encoding
+	<img />
+		attr:
+			src=link
+			alt=text
+			wudth=
+			height=
+			align=
+	<br />
+	<b></b> (bold)
+	<i></i> (italic)
+	<strong></strong> (viktigt>
+	<em></em> (betoning)
+	
+	<ul></ul> (unordered list)
+	<ol></ol> (ordered list)
+	<li></li> (list element for ul/ol)
+	
+	<dl></dl> (definition list)
+	<dt></dt> (define term)
+	<dd></dd> (describe tem in definition list)
+	
+	<a></a>
+		attr:
+			href=link
+			target="_blank" (new tab)
+			title=text (text for mouse over)
+	
+	<table></table> 
+		attr: 
+			border=
+	<tr></tr> (table row)
+	<td></td> (table data)
+	
+	<form></form>
+	<input>
+		attr:
+			id=name
+			type=(ex submit / checkbox / radio / textarea / select)
+			value=text
+	<label></label>
+		attr:
+			for=input id
+	
+	<nav></nav> (usualyl used with ul, for navigation, collection of links)
+	<article></article> (a section of a page meaningful on its own ex blog post or article)
+	<section></section> (a general section of a web page ex news or sport)
+	<aside></aside> (sektion with relateble content ex sidebar)
+	<header></header> 
+	<footer></footer>
+	
+	<div></div> (a block of elements, used for block level styling)
+	<span></span> (used for inline styling)
+	
+	
+	
+exempel sektionering:
+	<header>
+		<p>side header</p>
+	</header>
+	<section>
+		<h1>News</h1>
+		<p>the news...</p>
+	</section>
+	<footer>
+		<p>side foot</p>
+	</footer>
+
+	
+validator:
+	http://validator.w3.org/#validate_by_uri
+
