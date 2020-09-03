@@ -20,10 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="50baa5a1-077d-4eae-acea-5224fffee9b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Moment1/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uppgift1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uppgift2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../webbutveckling1/Moments/Moment1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../webbutveckling1/Moments/Moment1/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uppgift3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uppgift4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uppgift5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uppgift6.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uppgift7.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uppgift8.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uppgift9.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uppgift1.js" beforeDir="false" afterPath="$PROJECT_DIR$/uppgift1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uppgift2.js" beforeDir="false" afterPath="$PROJECT_DIR$/uppgift2.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +48,40 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Node.js.uppgift9.js">
+    <configuration name="uppgift1.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/uppgift1.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="uppgift3.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/uppgift3.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="uppgift7.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/uppgift7.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="uppgift8.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/uppgift8.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="uppgift9.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/uppgift9.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.uppgift9.js" />
+        <item itemvalue="Node.js.uppgift8.js" />
+        <item itemvalue="Node.js.uppgift7.js" />
+        <item itemvalue="Node.js.uppgift1.js" />
+        <item itemvalue="Node.js.uppgift3.js" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -54,6 +92,7 @@
       <option name="presentableId" value="Default" />
       <updated>1598986416247</updated>
       <workItem from="1598986417373" duration="1079000" />
+      <workItem from="1599144761415" duration="7527000" />
     </task>
     <servers />
   </component>
@@ -70,11 +109,44 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1244" y="469" width="392" height="175" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1598987253176">
+    <state x="836" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599144844648">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="1244" y="469" width="392" height="175" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1053@0.27.1920.1053" timestamp="1598987253176" />
+    <state x="836" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1599144844647" />
+    <state x="1170" y="357" width="519" height="400" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599148998391">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="1170" y="357" width="519" height="400" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1599148998391" />
+    <state width="929" height="636" key="GridCell.Tab.0.bottom" timestamp="1599152235513">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="929" height="636" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1599152235513" />
+    <state width="929" height="636" key="GridCell.Tab.0.center" timestamp="1599152235512">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="929" height="636" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1599152235512" />
+    <state width="929" height="636" key="GridCell.Tab.0.left" timestamp="1599152235511">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="929" height="636" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1599152235511" />
+    <state width="929" height="636" key="GridCell.Tab.0.right" timestamp="1599152235512">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="929" height="636" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1599152235512" />
+    <state x="928" y="188" width="992" height="737" key="SettingsEditor" timestamp="1599146710024">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="928" y="188" width="992" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1599146710024" />
+    <state x="1244" y="469" width="392" height="175" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599149143130">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="1244" y="469" width="392" height="175" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1053@0.27.1920.1053" timestamp="1599149143130" />
+    <state x="1098" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1599147776435">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="1098" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1599147776435" />
   </component>
 </project>
