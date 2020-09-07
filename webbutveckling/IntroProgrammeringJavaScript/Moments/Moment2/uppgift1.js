@@ -3,4 +3,8 @@ let firstname = "Elias";
 let lastname = "Eriksson";
 let mail = "eler2006@miun.student.se";
 
-console.log(`${firstname} ${lastname}, ${mail}`);
+// formatting a string
+let formattedString = `${firstname} ${lastname}, ${mail}`;
+
+// logging the string
+console.log(formattedString);

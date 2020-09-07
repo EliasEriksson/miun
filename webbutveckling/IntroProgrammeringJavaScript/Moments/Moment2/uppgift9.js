@@ -10,11 +10,12 @@ function stars(number) {
 
 function pyramid(width) {
     /**
-     * builds a pyramid with width `width`
+     * builds a pyramid with width `width` (technically height but its sideways...)
      *
-     * this is done by starting to loop from a negative number
-     * and passing 0 in combination with abs() in combination with subtracting that from the width
-     * to create a raising -> falling number sequence that is then passed into `stars()`
+     * this is done by starting to loop from a negative number and passing 0 to a positive number.
+     * using Math.abs() turns the raising value of the loop variable to get a high -> low -> high
+     * pattern instead. subtracting this high -> low -> high sequence from the parameter width gives a
+     * low -> high -> low sequence instead. this sequence is passed into `stars()` to log a pyramid in console.
      */
     if (width > 0) {
         for (let i = -width + 1; i < width; i++) {
