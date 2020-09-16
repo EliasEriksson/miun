@@ -1,0 +1,31 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-height: 100vh;
+
+    /* footerns höjd + lite */
+    padding-bottom: 75px;
+
+    position:relative;
+    
+    background-color: green;
+}
+.content{
+    display:flex;
+    margin:auto;
+    max-width: 1024px;
+    width:90%;
+    background-color:purple;
+}
+.footer {
+    position: absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:50px;
+    background-color:blue;
+}
