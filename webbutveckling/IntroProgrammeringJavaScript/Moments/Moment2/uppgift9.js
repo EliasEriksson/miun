@@ -27,3 +27,8 @@ function pyramid(width) {
 }
 
 pyramid(5);
+
+console.log();
+// 2 lines =)
+for (let i=-4; i < 5; i++)
+    console.log("* ".repeat(5 - Math.abs(i)).trim());
