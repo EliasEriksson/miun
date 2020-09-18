@@ -17,7 +17,7 @@
     --shadow: #444;
 }
 
-p, label, legend, form{
+p, label, legend, form, td {
     color: var(--text-color);
 }
 
