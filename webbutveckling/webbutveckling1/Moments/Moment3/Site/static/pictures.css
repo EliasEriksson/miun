@@ -1,0 +1,20 @@
+nav.sub {
+    border-right: 2px solid var(--foreground-color);
+}
+
+nav.sub > ul > li {
+    padding: 2em;
+}
+
+section.images > div > img{
+    display: block;
+    margin: 1em auto;
+}
+
+section.images {
+    flex-grow: 1;
+}
+
+.columns {
+    display: flex;
+}

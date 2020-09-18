@@ -1,0 +1,95 @@
+:root {
+    --placeholder-color: #939393;
+    --field-color: #fff;
+}
+
+.wrapper {
+    display: flex;
+    margin-top: 122px;
+}
+
+.content {
+    margin: 0 auto;
+    width: 85%;
+}
+
+.content > p {
+    text-align: center;
+    padding-top: 1.5em;
+}
+
+form.contact {
+    padding-top: 1em;
+    background-color: var(--foreground-color);
+    margin: 1em;
+    border: none;
+}
+
+form > * {
+    padding: 0.5em;
+}
+
+form.contact > fieldset > legend {
+    padding-left: 2em;
+}
+
+.name, .e-mail, .profession, .hired, .news-letter {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-bottom: 2px solid var(--background-color);
+}
+
+.hired > div > label{
+    margin: 1em;
+}
+
+.message {
+    margin-top: 1em;
+
+}
+
+.message > label > textarea {
+    margin-top: 1em;
+    padding: 0.5em;
+    width: 100%;
+}
+
+input, select, select:after{
+    border-radius: 1em;
+    background-color: var(--field-color);
+    padding: 0.5em 2em;
+
+}
+
+input[type=text], input[type=email] {
+    margin: 0.5em;
+    text-align: center;
+    width: 33%;
+    padding: 0.5em 1em;
+}
+
+input[type=checkbox] {
+    margin-right: 1em;
+    transform: scale(1.3);
+}
+
+input[type=submit], input[type=reset]{
+    font-size: 0.9em;
+    margin: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.submit {
+    display: flow;
+    float: right;
+}
+
+input::placeholder {
+    margin: 0 auto;
+    text-align: center;
+    color: var(--placeholder-color);
+}
+

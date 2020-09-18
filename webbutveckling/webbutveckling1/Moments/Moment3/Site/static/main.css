@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+:root {
+    --background-color: #1a1c20;
+    --foreground-color: #2b2d33;
+    --link-color: #f2a365;
+    --link-color-hover: #f2c098;
+    --link-color-visited: #947b00;
+    --link-color-active: #aa7347;
+    --text-color: #ececec;
+    --heading-color: #bbbcc0;
+    --shadow: #444;
+}
+
+p, label, legend, form{
+    color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    padding: 0.5em;
+    text-align: center;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+header {
+    position: fixed;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    background: var(--foreground-color);
+    top: 0;
+    width: 100%;
+    height: 122px;
+    border-bottom: 2px solid var(--foreground-color);
+}
+
+a {
+    color: var(--link-color)
+}
+
+a:visited {
+    color: var(--link-color-visited);
+}
+
+a:hover {
+    color: var(--link-color-hover);
+}
+
+a:active {
+    color: var(--link-color-active);
+}
+
+nav.main {
+    float: right;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+nav > ul {
+    list-style-type: none;
+}
+
+nav.main > ul > li {
+    float: left;
+    bottom: 0;
+    margin-right: 2em;
+    font-size: 1.2em;
+}
+
+.content {
+    margin-top: 122px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--background-color);
+    padding: 1em;
+    border-top: 2px solid var(--foreground-color);
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+
+.thumbnail {
+    width: 200px;
+    height: 120px;
+}

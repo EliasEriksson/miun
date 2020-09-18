@@ -1,0 +1,24 @@
+section.news {
+    background: var(--background-color);
+    padding: 1em;
+}
+
+section.news > * {
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+article {
+    border-radius: 1em;
+    background-color: var(--foreground-color);
+    box-shadow: 2px 2px var(--shadow);
+
+}
+
+article > * {
+    padding: 0.5em;
+}
+
+section.news > div {
+    margin-bottom: 2em;
+}
