@@ -15,6 +15,10 @@
     --text-color: #ececec;
     --heading-color: #bbbcc0;
     --shadow: #444;
+    --logo-size: 100px;
+    --logo-margin: 10px;
+    --header-border-size: 2px;
+    --header-heigth: calc(var(--logo-size) + var(--logo-margin) * 2 + var(--header-border-size))
 }
 
 p, label, legend, form, td {
@@ -77,7 +81,8 @@ nav.main > ul > li {
 }
 
 .content {
-    margin-top: 122px;
+    margin-top: calc(var(--header-heigth));
+    /*margin-top: 122px;*/
 }
 
 footer {
@@ -89,9 +94,9 @@ footer {
 }
 
 .logo {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
+    width: var(--logo-size);
+    height: var(--logo-size);
+    margin: var(--logo-margin);
 }
 
 .thumbnail {

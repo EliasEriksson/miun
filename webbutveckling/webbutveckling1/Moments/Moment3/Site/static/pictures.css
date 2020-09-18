@@ -1,10 +1,14 @@
-
 nav.sub {
+    position: fixed;
     border-right: 2px solid var(--foreground-color);
+    height: 100%;
+    z-index: 100;
+    background-color: var(--background-color);
 }
 
 nav.sub > ul > li {
     padding: 2em;
+    width: calc(var(--header-heigth) - 2px);
 }
 
 section.images > div > img {
@@ -14,6 +18,7 @@ section.images > div > img {
 
 section.images {
     flex-grow: 1;
+    margin-left: calc(var(--header-heigth));
 }
 
 .columns {
