@@ -1,3 +1,4 @@
+/* backgrundsbild och lägger bilden bakom allt annat */
 body {
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Uppsala_Cathedral_in_February.jpg/1920px-Uppsala_Cathedral_in_February.jpg");
     background-position: center;
@@ -6,6 +7,7 @@ body {
     z-index: -1;
 }
 
+/* centrerar all main content */
 .content {
     margin: 0;
     display: flex;
@@ -13,12 +15,13 @@ body {
     height: 100vh;
 }
 
-
+/* centrerar allt i kortet */
 section {
     margin: 0 auto;
     text-align: center;
 }
 
+/* styling för about "kortet" */
 div.content > section > div {
     margin: auto;
     background-color: var(--foreground-color);

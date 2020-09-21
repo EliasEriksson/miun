@@ -22,3 +22,8 @@ article > * {
 section.news > div {
     margin-bottom: 2em;
 }
+
+.thumbnail {
+    width: 200px;
+    height: 120px;
+}

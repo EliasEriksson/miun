@@ -17,6 +17,7 @@ table {
 tbody > tr:nth-child(odd) {
     background-color: var(--table-odd-color);
 }
+
 tbody > tr:nth-child(even) {
     background-color: var(--table-even-color);
 }
@@ -24,6 +25,7 @@ tbody > tr:nth-child(even) {
 thead > tr {
     background-color: var(--table-meta-color);
 }
+
 tfoot > tr {
     background-color: var(--table-meta-color);
 }

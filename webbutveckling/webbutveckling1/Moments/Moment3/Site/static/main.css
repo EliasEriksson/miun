@@ -1,3 +1,6 @@
+/* main css som är gemensamt för alla sidor på webbplatsen */
+
+/* tar bort all styling*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,6 +8,8 @@
     border: none;
 }
 
+/* variabler som används på stor del av webbsidan */
+/* för bland annat färg och höjden på header / footer */
 :root {
     --background-color: #1a1c20;
     --foreground-color: #2b2d33;
@@ -25,34 +30,25 @@
     --header-heigth: calc(var(--logo-size) + var(--logo-margin) * 2 + var(--header-border-size));
 }
 
+/* text styling */
 p, label, legend, form, td {
     color: var(--text-color);
     font-family: "serif";
 }
 
+/* heading stylingen */
 h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
     padding: 0.5em;
     text-align: center;
 }
 
+/* grund style för body */
 body {
     background-color: var(--background-color);
-    margin-bottom: 100px;
 }
 
-header {
-    position: fixed;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    background: var(--foreground-color);
-    top: 0;
-    width: 100%;
-    height: 122px;
-    border-bottom: 2px solid var(--foreground-color);
-}
-
+/* länk styling */
 a {
     color: var(--link-color)
 }
@@ -67,6 +63,20 @@ a:hover {
 
 a:active {
     color: var(--link-color-active);
+}
+
+/* styling för huvudnavigering */
+header {
+    position: fixed;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    background: var(--foreground-color);
+    top: 0;
+    width: 100%;
+    height: var(--header-heigth);
+    border-bottom: 2px solid var(--shadow);
+    z-index: 100;
 }
 
 nav.main {
@@ -86,10 +96,13 @@ nav.main > ul > li {
     font-size: 1.2em;
 }
 
+/* ser till att all huvud content blir placerad mellan header och footer*/
 .content {
     margin-top: calc(var(--header-heigth));
+    margin-bottom: 100px;
 }
 
+/* stylingen för alla footers*/
 footer {
     position: fixed;
     bottom: 0;
@@ -98,16 +111,15 @@ footer {
     justify-content: space-evenly;
     background-color: var(--background-color);
     padding: 1em;
-    border-top: 2px solid var(--foreground-color);
+    border-top: 2px solid var(--shadow);
 }
 
+/* storlek för logga */
 .logo {
     width: var(--logo-size);
     height: var(--logo-size);
     margin: var(--logo-margin);
+    display: flex;
 }
 
-.thumbnail {
-    width: 200px;
-    height: 120px;
-}
+

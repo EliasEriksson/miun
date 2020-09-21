@@ -1,3 +1,4 @@
+/* style för menyn mellan bildsidorna */
 nav.sub {
     position: fixed;
     border-right: 2px solid var(--foreground-color);
@@ -6,11 +7,13 @@ nav.sub {
     background-color: var(--background-color);
 }
 
+/* style för meny länkarna */
 nav.sub > ul > li {
     padding: 2em;
     width: calc(var(--header-heigth) - 2px);
 }
 
+/* centrerar bilderna */
 section.images > div > img {
     display: block;
     margin: 1em auto;
