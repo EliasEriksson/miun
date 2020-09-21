@@ -1,0 +1,29 @@
+body {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Uppsala_Cathedral_in_February.jpg/1920px-Uppsala_Cathedral_in_February.jpg");
+    background-position: center;
+    overflow: hidden;
+    background-attachment: fixed;
+    z-index: -1;
+}
+
+.content {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+
+section {
+    margin: 0 auto;
+    text-align: center;
+}
+
+div.content > section > div {
+    margin: auto;
+    background-color: var(--foreground-color);
+    width: 50%;
+    padding: 1em;
+    border-radius: 1em;
+    box-shadow: 0.25em 0.25em var(--shadow);
+}

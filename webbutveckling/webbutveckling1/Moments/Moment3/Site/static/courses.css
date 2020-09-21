@@ -1,0 +1,45 @@
+.content {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+table {
+    width: 100%;
+    margin-top: 2em;
+    padding: 2em;
+    background-color: var(--foreground-color);
+    border-radius: 1em;
+}
+
+tbody > tr:nth-child(odd) {
+    background-color: var(--table-odd-color);
+}
+tbody > tr:nth-child(even) {
+    background-color: var(--table-even-color);
+}
+
+thead > tr {
+    background-color: var(--table-meta-color);
+}
+tfoot > tr {
+    background-color: var(--table-meta-color);
+}
+
+table td {
+    padding: 0.5em;
+    border-color: deeppink;
+}
+
+.plan {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 1em;
+    margin: 2em;
+    background-color: var(--foreground-color);
+    border-radius: 1em;
+}
+

@@ -39,6 +39,7 @@ form.contact > fieldset > legend {
     padding-top: 1em;
     padding-bottom: 1em;
     border-bottom: 2px solid var(--background-color);
+    align-items: center;
 }
 
 .hired > div > label{
@@ -54,6 +55,7 @@ form.contact > fieldset > legend {
     margin-top: 1em;
     padding: 0.5em;
     width: 100%;
+    resize: none;
 }
 
 input, select, select:after{
@@ -93,3 +95,6 @@ input::placeholder {
     color: var(--placeholder-color);
 }
 
+.name {
+    border-top: 2px solid var(--background-color);
+}

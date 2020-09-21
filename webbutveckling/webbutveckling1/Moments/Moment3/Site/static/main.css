@@ -18,11 +18,16 @@
     --logo-size: 100px;
     --logo-margin: 10px;
     --header-border-size: 2px;
-    --header-heigth: calc(var(--logo-size) + var(--logo-margin) * 2 + var(--header-border-size))
+    --table-meta-color: #aa7347;
+    --table-odd-color: #666;
+    --table-even-color: #444;
+
+    --header-heigth: calc(var(--logo-size) + var(--logo-margin) * 2 + var(--header-border-size));
 }
 
 p, label, legend, form, td {
     color: var(--text-color);
+    font-family: "serif";
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -33,6 +38,7 @@ h1, h2, h3, h4, h5, h6 {
 
 body {
     background-color: var(--background-color);
+    margin-bottom: 100px;
 }
 
 header {
@@ -82,10 +88,12 @@ nav.main > ul > li {
 
 .content {
     margin-top: calc(var(--header-heigth));
-    /*margin-top: 122px;*/
 }
 
 footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     background-color: var(--background-color);
