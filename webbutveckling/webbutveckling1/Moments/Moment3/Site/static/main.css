@@ -11,59 +11,40 @@
 
 /* variabler som används på stor del av webbsidan */
 /* för bland annat färg och höjden på header / footer */
-:root {
-    --background-color: #1a1c20;
-    --foreground-color: #2b2d33;
-    --link-color: #f2a365;
-    --link-color-hover: #f2c098;
-    --link-color-visited: #947b00;
-    --link-color-active: #aa7347;
-    --text-color: #ececec;
-    --heading-color: #bbbcc0;
-    --shadow: #444;
-    --logo-size: 100px;
-    --logo-margin: 10px;
-    --header-border-size: 2px;
-    --table-meta-color: #aa7347;
-    --table-odd-color: #666;
-    --table-even-color: #444;
-
-    --header-heigth: calc(var(--logo-size) + var(--logo-margin) * 2 + var(--header-border-size));
-}
 
 /* text styling */
 p, label, legend, form, td {
-    color: var(--text-color);
+    color: #ececec;
     font-family: "serif";
 }
 
 /* heading stylingen */
 h1, h2, h3, h4, h5, h6 {
-    color: var(--heading-color);
+    color: #bbbcc0;
     padding: 0.5em;
     text-align: center;
 }
 
 /* grund style för body */
 body {
-    background-color: var(--background-color);
+    background-color: #1a1c20;
 }
 
 /* länk styling */
 a {
-    color: var(--link-color)
+    color: #f2a365;
 }
 
 a:visited {
-    color: var(--link-color-visited);
+    color: #947b00;
 }
 
 a:hover {
-    color: var(--link-color-hover);
+    color: #f2c098;
 }
 
 a:active {
-    color: var(--link-color-active);
+    color: #aa7347;
 }
 
 /* styling för huvudnavigering */
@@ -72,11 +53,11 @@ header {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    background: var(--foreground-color);
+    background: #2b2d33;
     top: 0;
     width: 100%;
-    height: var(--header-heigth);
-    border-bottom: 2px solid var(--shadow);
+    height: 122px;
+    border-bottom: 2px solid #444;
     z-index: 100;
 }
 
@@ -99,7 +80,7 @@ nav.main > ul > li {
 
 /* ser till att all huvud content blir placerad mellan header och footer*/
 .content {
-    margin-top: calc(var(--header-heigth));
+    margin-top: 122px;
     margin-bottom: 100px;
 }
 
@@ -110,16 +91,16 @@ footer {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    background-color: var(--background-color);
+    background-color: #1a1c20;
     padding: 1em;
-    border-top: 2px solid var(--shadow);
+    border-top: 2px solid #444;
 }
 
 /* storlek för logga */
 .logo {
-    width: var(--logo-size);
-    height: var(--logo-size);
-    margin: var(--logo-margin);
+    width: 100px;
+    height: 100px;
+    margin: 10px;
     display: flex;
 }
 

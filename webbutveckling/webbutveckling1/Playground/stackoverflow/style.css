@@ -29,13 +29,8 @@ header {
     display              : grid;
     grid-template-columns: 150px auto;
     position             : relative;
-
-
 }
 
-ul{
-    list-style-position: inside;
-}
 .side {
     background: green;
     height    : 600px;
@@ -52,4 +47,8 @@ ul{
     padding          : 15px;
     width            : 100%;
     grid-column-start: 2;
+}
+
+ul{
+    list-style-position: inside;
 }

@@ -1,5 +1,5 @@
 section.news {
-    background: var(--background-color);
+    background: #1a1c20;
     padding: 1em;
 }
 
@@ -10,8 +10,8 @@ section.news > * {
 
 article {
     border-radius: 1em;
-    background-color: var(--foreground-color);
-    box-shadow: 0.25em 0.25em var(--shadow);
+    background-color: #2b2d33;
+    box-shadow: 0.25em 0.25em #444;
 
 }
 

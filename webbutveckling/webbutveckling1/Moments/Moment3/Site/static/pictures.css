@@ -1,16 +1,16 @@
 /* style för menyn mellan bildsidorna */
 nav.sub {
     position: fixed;
-    border-right: 2px solid var(--foreground-color);
+    border-right: 2px solid #2b2d33;
     height: 100%;
     z-index: 100;
-    background-color: var(--background-color);
+    background-color: #1a1c20;
 }
 
 /* style för meny länkarna */
 nav.sub > ul > li {
     padding: 2em;
-    width: calc(var(--header-heigth) - 2px);
+    width: 120px;
 }
 
 /* centrerar bilderna */
@@ -21,7 +21,7 @@ section.images > div > img {
 
 section.images {
     flex-grow: 1;
-    margin-left: calc(var(--header-heigth));
+    margin-left: 122px;
 }
 
 .columns {
