@@ -93,6 +93,8 @@ function handleStudentWebsites(websites) {
 let request = new XMLHttpRequest();
 request.addEventListener("readystatechange", function () {
     if (this.readyState !== 4) return;
+    if (this.status !== 200) return;
+
     let json = JSON.parse(this.response);
     if (json.hasOwnProperty("student")) {
         let student = json.student;
