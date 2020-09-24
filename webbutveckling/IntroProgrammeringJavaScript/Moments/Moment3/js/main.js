@@ -7,46 +7,64 @@ let clearButton = document.getElementById("clearbutton");
 let toDoList = document.getElementById("todolist");
 let errorMessage = document.getElementById("message");
 
-// loads all stored to-dos in memory
-let storedToDos = JSON.parse(localStorage.getItem("articles"));
-if (!storedToDos) {
-    storedToDos = [];
-}
+// cache (so local storage only have to be read and parsed once)
+let cache = [];
 
-function storeToDo(text) {
+
+function addToStorage(article) {
     /**
-     * adds a to-do to the memory and save the memory to localstorage.
+     * adds a to-do article object to the cache and updates the local storage.
      */
-    storedToDos.push(text);
-    localStorage.setItem("articles", JSON.stringify(storedToDos));
+    cache.push(article);
+    updateStorage(cache);
 }
 
-function clearToDos() {
+function removeFromStorage(article) {
     /**
-     * removes all todos from memory, the website and stores null to the localstorage.
+     * removes a single article from the cache and updates the local storage.
+     */
+    cache.splice(cache.indexOf(article), 1);
+    updateStorage();
+}
+
+function updateStorage() {
+    /**
+     * overwrites the local storage with the current cache.
+     */
+    localStorage.setItem("articles", JSON.stringify(
+        cache.map(element => element.innerHTML)
+    ))
+}
+
+function clearArticles() {
+    /**
+     * removes all articles from the DOM, cache and local storage.
      */
     toDoList.innerHTML = "";
+    cache = [];
     localStorage.setItem("articles", null);
-    storedToDos = [];
 }
 
-function addToDo(text) {
+function addArticleFromText(text) {
     /**
-     * adds a to-do to the website
+     * adds an article element with given text to the DOM.
      *
-     * the to-do item also gets an anonymous function for its onclick event
-     * that removes the item from the website, memory and localstorage if clicked.
+     * if the article is clicked it is removed from DOM, cache and local storage.
+     *
+     * the article is returned for further processing if needed.
      */
-    let articleNode = document.createElement("article");
-    articleNode.addEventListener("click", () => {
-        storedToDos.splice(storedToDos.indexOf(text), 1);
-        localStorage.setItem("articles", JSON.stringify(storedToDos));
-        articleNode.remove();
+
+    let article = document.createElement("article");
+    let textNode = document.createTextNode(text);
+    article.appendChild(textNode);
+
+    article.addEventListener("click", function () {
+        removeFromStorage(article);
+        article.remove();
     })
 
-    let textNode = document.createTextNode(text);
-    articleNode.appendChild(textNode);
-    toDoList.appendChild(articleNode);
+    toDoList.appendChild(article);
+    return article;
 }
 
 function inputIsValid(text) {
@@ -63,48 +81,48 @@ function inputIsValid(text) {
     return false;
 }
 
-newToDo.addEventListener("input", () => {
+newToDo.addEventListener("input", function () {
     /**
-     * listener for changes in teh input field
+     * listener for changes in the input field
      *
      * if fired check if input is valid.
      */
     inputIsValid(newToDo.value);
 })
 
-newToDoButton.addEventListener("click", () => {
+newToDoButton.addEventListener("click", function() {
     /**
      * listener for click events on the "lägg till" button
      *
-     * when fired adds the input fields text to website,
-     * memory and local storage if input validates.
+     * when fired adds the input fields text to DOM,
+     * cache and local storage if input validates truthy.
      */
+
     let text = newToDo.value;
     if (inputIsValid(text)) {
-        addToDo(text);
-        storeToDo(text);
+        let article = addArticleFromText(text);
+        addToStorage(article);
         newToDo.value = "";
     }
 });
 
-clearButton.addEventListener("click", () => {
-    /**
-     * listener for click events on the "rensa" button
-     *
-     * when fired all the to-dos are cleared from the website,
-     * memory and localstorage.
-     */
-    clearToDos();
-})
+clearButton.addEventListener("click", clearArticles);
 
-window.addEventListener("load", () => {
+window.addEventListener("load", function () {
     /**
      * listener for when the page is finished loading.
      *
-     * adds all the stored to-dos in localstorage to the site.
+     * adds all the stored to-dos in local storage to the DOM.
      */
-    for (let i = 0; i < storedToDos.length; i++) {
-        addToDo(storedToDos[i]);
+    let storage = JSON.parse(localStorage.getItem("articles"));
+    if (storage) {
+        let article;
+        for (let i = 0; i < storage.length; i++) {
+            article = addArticleFromText(storage[i]);
+            cache.push(article);
+        }
     }
+
 })
+
 
