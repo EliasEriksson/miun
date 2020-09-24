@@ -42,7 +42,7 @@ function clearArticles() {
      */
     toDoList.innerHTML = "";
     cache = [];
-    localStorage.setItem("articles", null);
+    localStorage.clear();
 }
 
 function addArticleFromText(text) {
