@@ -13,14 +13,14 @@
         "description": "My github page."
       },
       {
-        "sitename": "moodle",
-        "siteurl": "https://elearn20.miun.se/moodle/user/profile.php?id=3454098",
-        "description": "My moodle profile."
+        "sitename": "stackoverflow",
+        "siteurl": "https://stackoverflow.com/",
+        "description": "Help when you need it the most."
       },
       {
-        "sitename": "miun",
-        "siteurl": "https://www.miun.se/",
-        "description": "Miuns home page."
+        "sitename": "MDN",
+        "siteurl": "https://developer.mozilla.org/",
+        "description": "Mozilla developer network."
       },
       {
         "sitename": "python",
