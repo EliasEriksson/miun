@@ -31,7 +31,6 @@ select {
 }
 
 .form {
-    background-color: #844243;
     padding: 0.5em;
     display: grid;
     grid-template-columns: 3fr 2fr;

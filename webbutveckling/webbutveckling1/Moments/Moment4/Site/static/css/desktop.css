@@ -40,9 +40,9 @@ input {
 
 .form {
     /* over writes .from from main.css*/
+    background-color: #fff;
     display: flex;
     position: relative;
-    background-color: white;
     margin: 1px;
     padding: 0;
     top: auto;
