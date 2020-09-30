@@ -1,0 +1,43 @@
+/*
+ * Tablet specific styles.
+*/
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav li {
+    margin-right: 1.5em;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}
+
+header nav {
+    display: initial;
+}
+
+select {
+    display: none;
+    position: absolute;
+}
+
+.container {
+    padding-top: 2em;
+}
+
+.grid {
+    grid-template-columns: auto;
+}
+
+.form {
+    background-color: #844243;
+    padding: 0.5em;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-column-gap: 1.5em;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+}

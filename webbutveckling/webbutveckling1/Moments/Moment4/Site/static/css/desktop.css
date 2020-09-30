@@ -1,0 +1,61 @@
+/*
+ * Desktop specific styles
+*/
+
+/* general header styles */
+header {
+    border-bottom: 2px solid #844243;
+}
+header > div {
+    position: relative;
+}
+header form {
+    display: flex;
+    flex-direction: row-reverse;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* navigation menu styles */
+header nav {
+    display: initial;
+}
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+nav li {
+    margin-right: 1.5em;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}
+select {
+    display: none;
+    position: absolute;
+}
+input {
+    max-width: 135px;
+}
+
+.form {
+    /* over writes .from from main.css*/
+    display: flex;
+    position: relative;
+    background-color: white;
+    margin: 1px;
+    padding: 0;
+    top: auto;
+    right: auto;
+    left: auto;
+}
+
+.grid {
+    /* overwrites grid-template-columns from main.css*/
+    grid-template-columns: auto auto;
+}
+
+.container {
+    /* overwrites .container from main.css*/
+    padding-top: 2em;
+}
