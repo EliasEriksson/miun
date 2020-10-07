@@ -9,6 +9,62 @@ let info = document.getElementById("info");
 
 let api = "https://api.sr.se/api/v2/";
 
+class Settings {
+    constructor() {
+        /**
+         * constructs a Settings object by attempting to load from localstorage.
+         * if there is no settings in localstorage the defaults are loaded and saved.
+         */
+        let settings = JSON.parse(localStorage.getItem("settings"));
+        if (settings) {
+            this.settings = settings;
+        } else {
+            this.settings = this.defaultSettings();
+            this.saveUserSettings();
+        }
+    }
+
+    defaultSettings(){
+        /**
+         * returns default settings.
+         */
+        return {
+            "volume": 0.5,
+            "numRows": 10
+        };
+    }
+
+    getSetting(setting) {
+        /**
+         * method to get a value from a setting.
+         */
+        return this.settings[setting];
+    }
+
+    setSetting(setting, value) {
+        /**
+         * method to set a setting to a value.
+         *
+         * the settings are expediently saved to localstorage.
+         */
+        this.settings[setting] = value;
+        this.saveUserSettings();
+    }
+
+    saveUserSettings() {
+        /**
+         * saves the current settings to localstorage.
+         */
+        localStorage.setItem("settings", JSON.stringify(this.settings));
+    }
+}
+
+let settings = new Settings();
+
+let timeFormat = new Intl.DateTimeFormat("sv", {
+    hour: "numeric", minute: "numeric"
+});
+
 function streamAPI(id){
     /**
      * api URL for live stream of channel with id
@@ -32,11 +88,6 @@ function channelsAPI(size){
      */
     return `${api}channels?format=json&size=${size}`;
 }
-
-// preferred time format
-let timeFormat = new Intl.DateTimeFormat("sv", {
-    hour: "numeric", minute: "numeric"
-});
 
 
 function formatTime(start, end) {
@@ -83,6 +134,7 @@ function createChannelLi(channel) {
     a.setAttribute("id", channel.id);
     a.addEventListener("click", requestChannelProgram);
     a.innerHTML = channel.name;
+    a.title = channel.tagline;
 
     li.appendChild(a);
     mainNavList.appendChild(li);
@@ -120,7 +172,10 @@ function createProgram(program) {
 function playSelected() {
     /**
      * adds and plays the currently selected audio stream.
+     *
+     * attempts to use last used volume from settings otherwise half volume is used
      */
+
     let option = playChannel[playChannel.selectedIndex]
 
     radioPlayer.innerHTML = "";
@@ -130,11 +185,16 @@ function playSelected() {
     audio.setAttribute("controls", "");
     audio.setAttribute("autoplay", "true");
     audio.setAttribute("preload", "auto")
+    audio.volume = settings.getSetting("volume");
+
     source.setAttribute("src", streamAPI(option.id));
+
     source.setAttribute("type", "audio/mpeg");
+    audio.addEventListener("volumechange", function (event){
+        settings.setSetting("volume", event.target.volume);
+    });
 
     audio.appendChild(source);
-
     radioPlayer.appendChild(audio);
 }
 
@@ -160,7 +220,7 @@ function requestChannelProgram(event){
 }
 
 
-function requestChannels(size=10) {
+function requestChannels(size) {
     /**
      * requests 10 or given amount of channels to list in select#playchannel
      * and ul#mainnavlist
@@ -182,19 +242,21 @@ function requestChannels(size=10) {
     request.send();
 }
 
-
 playButton.addEventListener("click", playSelected);
 
 numRows.addEventListener("change", function (){
     /**
-     * wrapper to prevent event from being passed down as size
+     *
      */
+    settings.setSetting("numRows", numRows.value);
     requestChannels(numRows.value);
 })
 
 window.addEventListener("load", function (){
     /**
-     * wrapper to prevent event from being passed down as size
+     *
      */
-    requestChannels();
+
+    requestChannels(settings.getSetting("numRows"));
+    numRows.value = settings.getSetting("numRows")
 });
