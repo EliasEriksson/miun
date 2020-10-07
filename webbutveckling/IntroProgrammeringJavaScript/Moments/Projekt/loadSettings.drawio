@@ -1,1 +1,40 @@
-<mxfile host="app.diagrams.net" modified="2020-10-07T14:34:40.624Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" version="13.7.7" etag="Vy3VBj1kdPTmA00OC1aN" type="github"><diagram id="XMIEE_LAV8CQqydqMJKr">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2020-10-07T14:35:29.725Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" etag="CJhSt8PUHgsiZpj3-5wH" version="13.7.7" type="github">
+  <diagram id="XMIEE_LAV8CQqydqMJKr" name="Page-1">
+    <mxGraphModel dx="1422" dy="833" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="2000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="U5gOPsGG3nb7DWXtwMOS-1" value="load settings to settings object" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="10" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U5gOPsGG3nb7DWXtwMOS-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="U5gOPsGG3nb7DWXtwMOS-4" target="U5gOPsGG3nb7DWXtwMOS-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U5gOPsGG3nb7DWXtwMOS-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="U5gOPsGG3nb7DWXtwMOS-4" target="U5gOPsGG3nb7DWXtwMOS-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U5gOPsGG3nb7DWXtwMOS-4" value="settings in localstorage?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="20" y="100" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="U5gOPsGG3nb7DWXtwMOS-5" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="U5gOPsGG3nb7DWXtwMOS-1" target="U5gOPsGG3nb7DWXtwMOS-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="270" as="sourcePoint" />
+            <mxPoint x="310" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="U5gOPsGG3nb7DWXtwMOS-6" value="load default settings and save settings to local storage" style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="150" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U5gOPsGG3nb7DWXtwMOS-7" value="JSON parse settings string and store settings in this.settings" style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="10" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U5gOPsGG3nb7DWXtwMOS-8" value="yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="200" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="U5gOPsGG3nb7DWXtwMOS-9" value="no" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="110" y="130" width="40" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
