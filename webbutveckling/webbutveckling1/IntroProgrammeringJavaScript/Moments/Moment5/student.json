@@ -1,0 +1,37 @@
+{
+  "student": {
+    "information": {
+      "name": "Elias Eriksson",
+      "email": "eler2006@student.miun.se",
+      "city": "uppsala",
+      "website": "https://github.com/EliasEriksson"
+    },
+    "websites": [
+      {
+        "sitename": "github",
+        "siteurl": "https://github.com/EliasEriksson",
+        "description": "My github page."
+      },
+      {
+        "sitename": "stackoverflow",
+        "siteurl": "https://stackoverflow.com/",
+        "description": "Help when you need it the most."
+      },
+      {
+        "sitename": "MDN",
+        "siteurl": "https://developer.mozilla.org/",
+        "description": "Mozilla developer network."
+      },
+      {
+        "sitename": "python",
+        "siteurl": "https://www.python.org/",
+        "description": "The home page of the superior scripting language."
+      },
+      {
+        "sitename": "pypy",
+        "siteurl": "https://www.pypy.org/",
+        "description": "Python implemented in python with JIT."
+      }
+    ]
+  }
+}

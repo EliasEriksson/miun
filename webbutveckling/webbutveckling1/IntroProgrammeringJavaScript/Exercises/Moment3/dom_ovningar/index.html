@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="se">
+<head>
+    <title>DT084G - DOM och Events</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+</head>
+<body>
+    <header id="mainheader">
+        <div class="contain">
+            <h1 id="logo">DT084G - DOM och events</h1>
+        </div><!-- /.contain -->
+    </header>
+
+    <div class="container">
+        <h2>Laboration - DOM och event handlers (händelsehantering)</h2>
+       
+        <div class="part">
+            <h3>Del 1</h3>
+            <p>Dagens datum/klockslag är:&nbsp;<span id="part1"></span></p>
+        </div>   
+
+        <div class="part">
+            <h3>Del 2</h3>
+            <label for="part2">Namn:</label> <input type="text" id="part2">&nbsp;
+            <button id="part2button" class="btn">Skicka</button>
+        </div>
+
+        <div class="part">
+            <h3>Del 3</h3>
+            <label for="part3">Användarnamn (min 5 tecken): </label>&nbsp;<input type="text" id="part3">&nbsp;&nbsp;<span id="part3message"></span>
+            <br><button id="part3button" class="btn">Logga in</button>
+        </div>
+
+        <div class="part">
+            <h3>Del 4</h3>
+            <textarea id="part4"></textarea>
+            <br>
+            <button id="part4button" class="btn">Skriv meddelande</button>
+
+            <section id="part4messages">
+                <h2>Meddelanden</h2>
+            </section>
+        </div>
+
+        <div class="part last">
+            <h3>Del 5</h3>
+            <button class="btn" id="part5store">Lagra meddelanden</button>&nbsp;&nbsp;
+            <button class="btn" id="part5load">Läs in lagrade meddelanden</button>
+        </div>
+    </div><!-- /.container -->
+
+    <script src="js/main.js"></script>
+</body>
+</html>
