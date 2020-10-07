@@ -257,6 +257,6 @@ window.addEventListener("load", function (){
      *
      */
 
-    requestChannels(settings.getSetting("numRows"));
     numRows.value = settings.getSetting("numRows")
+    requestChannels(settings.getSetting("numRows"));
 });
