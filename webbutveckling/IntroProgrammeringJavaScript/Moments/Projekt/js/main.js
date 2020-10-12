@@ -205,6 +205,7 @@ function requestChannelProgram(event){
      * and fills div#info with program data thru createProgram()
      *
      */
+    event.preventDefault();
     info.innerHTML = "";
     let request = new XMLHttpRequest();
     request.addEventListener("load", function (){
