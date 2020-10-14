@@ -1,0 +1,29 @@
+python
+pypy
+django
+pillow
+numpy
+scipy
+aiohttp
+discord
+google
+javascript
+ecmascript
+css
+html
+apache
+nginx
+docker
+go
+sockets
+pycon
+java
+pypi
+bash
+jetbrains
+db browser lite
+sqlalchemy
+tortoise
+raspberry pi
+pop os
+linux

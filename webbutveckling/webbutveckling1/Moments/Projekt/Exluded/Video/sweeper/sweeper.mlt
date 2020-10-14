@@ -1,0 +1,1299 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mlt LC_NUMERIC="C" version="6.23.0" title="Shotcut version 20.09.27" producer="main_bin">
+  <profile description="automatic" width="1284" height="1072" progressive="1" sample_aspect_num="1" sample_aspect_den="1" display_aspect_num="1284" display_aspect_den="1072" frame_rate_num="60000" frame_rate_den="1000" colorspace="601"/>
+  <playlist id="main_bin">
+    <property name="xml_retain">1</property>
+  </playlist>
+  <producer id="black" in="00:00:00.000" out="00:00:57.117">
+    <property name="length">00:00:57.133</property>
+    <property name="eof">pause</property>
+    <property name="resource">0</property>
+    <property name="aspect_ratio">0.672396</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgb24a</property>
+    <property name="set.test_audio">0</property>
+  </producer>
+  <playlist id="background">
+    <entry producer="black" in="00:00:00.000" out="00:00:57.117"/>
+  </playlist>
+  <producer id="producer0" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter0" in="00:00:05.000" out="00:00:06.283">
+      <property name="background">color:#c17d11</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">-2 -4 1924 1082.25 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer1" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter1" in="00:00:09.267" out="00:00:10.633">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">-2 -2 1924 1082 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer2" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter2" in="00:00:11.783" out="00:00:13.250">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">-2 -2 1924 1082 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer3" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter3" in="00:00:15.583" out="00:00:16.850">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">-2 -2 1924 1082 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer4" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter4" in="00:00:18.617" out="00:00:20.083">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer5" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter5" in="00:00:21.533" out="00:00:23.117">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer6" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter6" in="00:00:23.133" out="00:00:24.550">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer7" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter7" in="00:00:24.567" out="00:00:26.067">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer8" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter8" in="00:00:26.550" out="00:00:28.050">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer9" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter9" in="00:00:28.567" out="00:00:29.883">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer10" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter10" in="00:00:30.600" out="00:00:31.900">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer11" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter11" in="00:00:31.917" out="00:00:33.217">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer12" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter12" in="00:00:33.533" out="00:00:34.867">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer13" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter13" in="00:00:37.733" out="00:00:39.117">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer14" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter14" in="00:00:39.600" out="00:00:41.000">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer15" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter15" in="00:00:41.867" out="00:00:43.300">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer16" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter16" in="00:00:44.533" out="00:00:45.967">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer17" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter17" in="00:00:47.783" out="00:00:48.817">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer18" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter18" in="00:00:49.217" out="00:00:50.550">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer19" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter19" in="00:00:50.567" out="00:00:51.933">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer20" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter20" in="00:00:53.633" out="00:00:54.900">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer21" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter21" in="00:00:54.917" out="00:00:56.233">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer22" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter22" in="00:00:56.633" out="00:00:57.950">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer23" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter23" in="00:00:58.733" out="00:01:00.100">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer24" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter24" in="00:01:01.250" out="00:01:02.017">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer25" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter25" in="00:01:02.617" out="00:01:03.617">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer26" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter26" in="00:01:04.200" out="00:01:05.367">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer27" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter27" in="00:01:06.367" out="00:01:07.700">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer28" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter28" in="00:01:07.717" out="00:01:08.900">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer29" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter29" in="00:01:09.333" out="00:01:10.550">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer30" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter30" in="00:01:11.083" out="00:01:12.417">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer31" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter31" in="00:01:15.483" out="00:01:16.867">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer32" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter32" in="00:01:17.883" out="00:01:19.050">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer33" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter33" in="00:01:19.567" out="00:01:20.817">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer34" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter34" in="00:01:20.833" out="00:01:22.317">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer35" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter35" in="00:01:22.333" out="00:01:23.633">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer36" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter36" in="00:01:23.650" out="00:01:26.450">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <producer id="producer37" in="00:00:00.000" out="00:01:35.767">
+    <property name="length">00:01:35.783</property>
+    <property name="eof">pause</property>
+    <property name="resource">/home/elias-eriksson/Videos/OBS/2020-10-12_13-19-04.mkv</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="creation_time">2020-10-12T11:20:40</property>
+    <property name="shotcut:hash">f33c2ec66a3423f0fa53fa98960b47e9</property>
+    <property name="ignore_points">0</property>
+    <property name="shotcut:caption">2020-10-12_13-19-04.mkv</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter37" in="00:01:26.467" out="00:01:32.833">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">0 0 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+      <property name="transition.fix_rotate_x">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist0">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V1</property>
+    <entry producer="producer0" in="00:00:05.000" out="00:00:06.283"/>
+    <entry producer="producer1" in="00:00:09.267" out="00:00:10.633"/>
+    <entry producer="producer2" in="00:00:11.783" out="00:00:13.250"/>
+    <entry producer="producer3" in="00:00:15.583" out="00:00:16.850"/>
+    <entry producer="producer4" in="00:00:18.617" out="00:00:20.083"/>
+    <entry producer="producer5" in="00:00:21.533" out="00:00:23.117"/>
+    <entry producer="producer6" in="00:00:23.133" out="00:00:24.550"/>
+    <entry producer="producer7" in="00:00:24.567" out="00:00:26.067"/>
+    <entry producer="producer8" in="00:00:26.550" out="00:00:28.050"/>
+    <entry producer="producer9" in="00:00:28.567" out="00:00:29.883"/>
+    <entry producer="producer10" in="00:00:30.600" out="00:00:31.900"/>
+    <entry producer="producer11" in="00:00:31.917" out="00:00:33.217"/>
+    <entry producer="producer12" in="00:00:33.533" out="00:00:34.867"/>
+    <entry producer="producer13" in="00:00:37.733" out="00:00:39.117"/>
+    <entry producer="producer14" in="00:00:39.600" out="00:00:41.000"/>
+    <entry producer="producer15" in="00:00:41.867" out="00:00:43.300"/>
+    <entry producer="producer16" in="00:00:44.533" out="00:00:45.967"/>
+    <entry producer="producer17" in="00:00:47.783" out="00:00:48.817"/>
+    <entry producer="producer18" in="00:00:49.217" out="00:00:50.550"/>
+    <entry producer="producer19" in="00:00:50.567" out="00:00:51.933"/>
+    <entry producer="producer20" in="00:00:53.633" out="00:00:54.900"/>
+    <entry producer="producer21" in="00:00:54.917" out="00:00:56.233"/>
+    <entry producer="producer22" in="00:00:56.633" out="00:00:57.950"/>
+    <entry producer="producer23" in="00:00:58.733" out="00:01:00.100"/>
+    <entry producer="producer24" in="00:01:01.250" out="00:01:02.017"/>
+    <entry producer="producer25" in="00:01:02.617" out="00:01:03.617"/>
+    <entry producer="producer26" in="00:01:04.200" out="00:01:05.367"/>
+    <entry producer="producer27" in="00:01:06.367" out="00:01:07.700"/>
+    <entry producer="producer28" in="00:01:07.717" out="00:01:08.900"/>
+    <entry producer="producer29" in="00:01:09.333" out="00:01:10.550"/>
+    <entry producer="producer30" in="00:01:11.083" out="00:01:12.417"/>
+    <entry producer="producer31" in="00:01:15.483" out="00:01:16.867"/>
+    <entry producer="producer32" in="00:01:17.883" out="00:01:19.050"/>
+    <entry producer="producer33" in="00:01:19.567" out="00:01:20.817"/>
+    <entry producer="producer34" in="00:01:20.833" out="00:01:22.317"/>
+    <entry producer="producer35" in="00:01:22.333" out="00:01:23.633"/>
+    <entry producer="producer36" in="00:01:23.650" out="00:01:26.450"/>
+    <entry producer="producer37" in="00:01:26.467" out="00:01:32.833"/>
+  </playlist>
+  <tractor id="tractor0" title="Shotcut version 20.09.27" global_feed="1" in="00:00:00.000" out="00:00:57.117">
+    <property name="shotcut">1</property>
+    <property name="shotcut:projectAudioChannels">2</property>
+    <property name="shotcut:projectFolder">1</property>
+    <property name="shotcut:scaleFactor">1.01</property>
+    <track producer="background"/>
+    <track producer="playlist0" hide="audio"/>
+    <transition id="transition0">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition1">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="version">0.9</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="disable">1</property>
+    </transition>
+  </tractor>
+</mlt>

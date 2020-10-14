@@ -1,0 +1,22 @@
+.project > article {
+    display: grid;
+}
+
+.project-text {
+    display: flex;
+    align-items: center;
+    padding: 1em;
+     grid-row: 1;
+}
+
+.project-showcase {
+    grid-row: 2;
+}
+
+header > nav > ul {
+    flex-direction: column;
+}
+
+header > nav > ul > li {
+    width: 40%;
+}

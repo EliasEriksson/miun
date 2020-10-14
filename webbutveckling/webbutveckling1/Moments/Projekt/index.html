@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elias Eriksson</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="static/css/mobile.css" media="screen and (max-width: 800px)">
+    <link rel="stylesheet" type="text/css" href="static/css/desktop.css" media="screen and (min-width: 801px)">
+    <link rel="icon" href="media/favicon.png">
+</head>
+<body>
+<header>
+    <h1>Elias Eriksson</h1>
+    <nav>
+            <ul class="navigation">
+            <li class="button navigator">
+                <a href="#">About</a>
+            </li>
+            <li class="button navigator">
+                <a href="#">Projects</a>
+            </li>
+            <li class="button navigator">
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="content">
+        <section></section>
+        <section>
+            <div class="project">
+                <article>
+                    <div class="project-text">
+                        <div>
+                            <h3 class="project-heading">Minesweeper AI</h3>
+                            <p class="project-info">
+                                Minesweeper AI is an AI built to solve
+                                <a href="https://www.google.com/search?q=minesweeper&oq=minesweeper&aqs=chrome..69i57j69i60l4.3922j0j7&sourceid=chrome&ie=UTF-8">
+                                    googles minesweeper
+                                </a>game. When first started the AI looks for a minesweeper board on screenshots of the
+                                screen using a simple image processing algorithm. The AI then takes control over the
+                                mouse
+                                to start sovereign the board. Between each state of the board a new screenshot is taken
+                                and to update the internal representation of the board. Each of these screenshots is
+                                scanned square by square using
+                                <a href="https://opensource.google/projects/tesseract">
+                                    googles tesseract
+                                </a>OCR engine to read the numbers from the board. The showcase here is sped up footage
+                                the average clear time on a large game board is around 110 seconds. Video of real time
+                                execution can be found in the
+                                <a href="https://github.com/EliasEriksson/MinesweeperAI">
+                                    repository
+                                </a>.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="project-showcase">
+                        <a href="https://github.com/EliasEriksson/MinesweeperAI">
+                            <video autoplay="autoplay" muted loop>
+                                <source src="media/sweeper.webm" type="video/webm">
+                            </video>
+                        </a>
+                    </div>
+                </article>
+                <article>
+                    <div class="project-showcase">
+                        <a href="https://github.com/EliasEriksson/Codescord">
+                            <img src="media/codescord_crop.png"
+                                 alt="Js code to create a pyramid in console executed by codescord.">
+                        </a>
+                    </div>
+                    <div class="project-text">
+                        <div>
+                            <h3 class="project-heading">Codescord</h3>
+                            <p class="project-info">
+                                Codescord is a discord bot that compiles/runs code within a code block in a discord
+                                server.
+                                The codescord client is built upon another client that is starting up docker containers
+                                and
+                                sends text data to the server that lives inside of the container. The server
+                                inside of the container then compiles / runs the source code of any
+                                <a href="https://github.com/EliasEriksson/Codescord/#currently-supported-languages">
+                                    supported language.
+                                </a> the stdout/stderr will be sent back to the client and discord client to be printed
+                                in
+                                the chat channel where the code block initially was posted. If the container takes too
+                                long to respond (could be that it ran malicious code, infinite loop etc) the container
+                                is
+                                killed off.
+                                The client and server internally used by codescord could be reused for other
+                                front ends where remote code execution is desired.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+                <article>
+                    <div class="project-text">
+                        <div>
+                            <h3 class="project-heading">PCT</h3>
+                            <p class="project-info">
+                                PCT (Python Compile Tool) is something i developed to compile cPython from source
+                                and is today my go-to method of doing so. Its a CLI program that takes version of python
+                                to compile and a python executable. The given version number of python is downloaded
+                                from
+                                <a href="https://python.org">python.org</a>. The python executable is optional but will
+                                default to <span class="code-line">python3</span>. The program will open a python shell
+                                of the given executable and get all the compile flags the given executable was
+                                compiled with and will use those flags +
+                                <span class="code-line">--enable-optimizations --with-lto</span>
+                                - <span class="code-line">--without-ensurepip</span> to compile the downloaded
+                                version. This is optional and will not be done if
+                                <span class="code-line">None</span> is given instead of an executable.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="project-showcase">
+                        <a href="https://github.com/EliasEriksson/PythonCompileTool">
+                            <img src="media/pct.png"
+                                 alt="showcases the usage of pct and example command for compilation.">
+                        </a>
+                    </div>
+                </article>
+                <article>
+                    <div class="project-showcase">
+                        <a href="https://github.com/EliasEriksson/IpBlacklister">
+                            <img src="media/IpBlacklister.png"
+                                 alt="apache log of ip addresses where 5/7 got caught in filter">
+                        </a>
+                    </div>
+                    <div class="project-text">
+                        <div>
+                            <h3 class="project-heading">IpBlacklister</h3>
+                            <p class="project-info">
+                                IpBlacklister is s small background process that scans through the latest
+                                <span class="code-line">apache.log</span> file for connections made from ip addresses
+                                thought to be malicious. It uses the
+                                <a href="https://www.abuseipdb.com/">
+                                    AbuseIPDB
+                                </a> api and if AbuseIPDBs confidence is high enough to be considered abusive the ip is
+                                blocked access through the firewall (UFW). In the image there are a few entries in the
+                                <span class="code-line">apache.log</span> and five out of the seven non local addresses
+                                got caught by IpBlacklister.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+</main>
+<footer>
+
+</footer>
+</body>
+</html>
