@@ -1,37 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <title>Elias Eriksson</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="static/css/main.css">
-    <link rel="stylesheet" type="text/css" href="static/css/mobile.css" media="screen and (max-width: 800px)">
-    <link rel="stylesheet" type="text/css" href="static/css/desktop.css" media="screen and (min-width: 801px)">
     <link rel="icon" href="media/favicon.png">
 </head>
 <body>
 <header>
     <h1>Elias Eriksson</h1>
-    <nav>
-            <ul class="navigation">
-            <li class="button navigator">
-                <a href="#">About</a>
+    <nav class="site-nav">
+        <ul class="navigation">
+            <li class="navigator">
+                <a href="#about">About</a>
             </li>
-            <li class="button navigator">
-                <a href="#">Projects</a>
+            <li class="navigator">
+                <a href="#projects">Projects</a>
             </li>
-            <li class="button navigator">
-                <a href="#">Contact</a>
+            <li class="navigator">
+                <a href="#contact">Contact</a>
+            </li>
+            <li class="navigator">
+                <a href="#university">University</a>
             </li>
         </ul>
     </nav>
 </header>
 <main>
     <div class="content">
-        <section></section>
-        <section>
-            <div class="project">
-                <article>
+        <section id="about">
+            <div class="content-section-heading"><h2>About</h2></div>
+            <div class="content-section-content">
+                <p>
+                    Vae, ferox accentor! Pol, tabes! Albus lumen foris prensionems lixa est. Coordinataes mori, tanquam
+                    albus era. Heuretes, coordinatae, et plasmator. Sunt turpises desiderium audax, brevis sectames.
+                    Axonas
+                    assimilant, tanquam varius cobaltum. Ortum aliquando ducunt ad azureus aonides. Ubi est domesticus
+                    consilium? Est dexter demissio, cesaris. Ecce, fuga! Pol, a bene eleates, audax abactus! Est
+                    superbus
+                    agripeta, cesaris. Rusticus deuss ducunt ad adelphis. Nunquam contactus quadra.Gratis assimilatios
+                    ducunt ad equiso.Nunquam aperto clabulare. Cum ignigena accelerare, omnes fermiumes vitare neuter,
+                    festus equisoes. Cum nomen persuadere, omnes fraticinidaes imitari flavum, salvus poetaes. Nunquam
+                    amor
+                    hydra.Ubi est barbatus hibrida? 2 Exemplars experimentum! 2 Cum pes nocere, omnes resistentiaes
+                    imperium
+                    clemens, camerarius caesiumes.2 Palus, luna, et lixa. Cum lumen peregrinationes, omnes imberes
+                    imperium
+                    rusticus, germanus lacteaes. Cur lumen peregrinatione?
+                </p>
+            </div>
+        </section>
+        <section id="projects">
+            <div class="content-section-heading"><h2>Projects</h2></div>
+            <div class="project-content">
+                <article id="minesweeper">
                     <div class="project-text">
                         <div>
                             <h3 class="project-heading">Minesweeper AI</h3>
@@ -42,7 +65,7 @@
                                 </a>game. When first started the AI looks for a minesweeper board on screenshots of the
                                 screen using a simple image processing algorithm. The AI then takes control over the
                                 mouse
-                                to start sovereign the board. Between each state of the board a new screenshot is taken
+                                to start solving the board. Between each state of the board a new screenshot is taken
                                 and to update the internal representation of the board. Each of these screenshots is
                                 scanned square by square using
                                 <a href="https://opensource.google/projects/tesseract">
@@ -58,13 +81,13 @@
                     </div>
                     <div class="project-showcase">
                         <a href="https://github.com/EliasEriksson/MinesweeperAI">
-                            <video autoplay="autoplay" muted loop>
+                            <video class="" autoplay="autoplay" muted loop>
                                 <source src="media/sweeper.webm" type="video/webm">
                             </video>
                         </a>
                     </div>
                 </article>
-                <article>
+                <article id="codescord">
                     <div class="project-showcase">
                         <a href="https://github.com/EliasEriksson/Codescord">
                             <img src="media/codescord_crop.png"
@@ -95,7 +118,7 @@
                         </div>
                     </div>
                 </article>
-                <article>
+                <article id="pct">
                     <div class="project-text">
                         <div>
                             <h3 class="project-heading">PCT</h3>
@@ -122,7 +145,7 @@
                         </a>
                     </div>
                 </article>
-                <article>
+                <article id="ipblacklister">
                     <div class="project-showcase">
                         <a href="https://github.com/EliasEriksson/IpBlacklister">
                             <img src="media/IpBlacklister.png"
@@ -148,10 +171,124 @@
                 </article>
             </div>
         </section>
+        <section id="contact">
+            <div class="content-section-heading"><h2>Contact</h2></div>
+            <div class="content-section-content">
+                <p>
+                    If you wish to get in contact with me regarding anything related to my projects or maybe hire me ;)
+                    then you can reach me most easily via my e-mail but I am available via any of the other methods
+                    bellow as well!
+                </p>
+                <ul class="contact-method-list">
+                    <li>
+                        <div class="contact-method">
+                            <img src="media/discord.png" alt="discord logo">
+                            Saar#6969
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-method">
+                            <img src="media/linkedin.png" alt="linekdin logo">
+                            <a href="https://www.linkedin.com/in/elias-eriksson-82a926190/">
+                                Elias Eriksson
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-method">
+                            <img src="media/gmail.png" alt="gmail logo">
+                            <a href="mailto:mail@EliasEriksson.eu">
+                                mail@EliasEriksson.eu
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section id="university">
+            <div class="content-section-heading"><h2>University Courses</h2></div>
+            <article>
+                <h3>Mid Sweden University</h3>
+                <ul class="course-list">
+                    <li>Webbutveckling I, 7.5 hp (current)</li>
+                    <li>Introduktion till programmering med JavaScript, 7.5 hp (current)</li>
+                </ul>
+            </article>
+            <article>
+                <h3>Uppsala University</h3>
+                <ul class="course-list">
+                    <li>Programmeringsteknik I, 5.0 hp</li>
+                    <li>Programmeringsteknik II, 5.0 hp</li>
+                    <li>Människa-datorinteraktion, 5.0 hp</li>
+                    <li>Linjär algebra och geometri I, 5.0 hp</li>
+                    <li>Baskurs i matematik, 5.0 hp</li>
+                    <li>Matematik och statistik för biologer, 10.0 hp</li>
+                    <li>Kemins grunder och principer, 15.0 hp</li>
+                    <li>Organisk kemi I, 10.0 hp</li>
+                    <li>Biokemi I, 5.0 hp</li>
+                    <li>Kvantitativ biologi, 5.0 hp</li>
+                    <li>Cellbiologi, 15.0 hp</li>
+                    <li>Molekylärbiologi och genetik, 10.0 hp</li>
+                    <li>Fysiologi, 15.0 hp</li>
+                    <li>Ekologi och populationsgenetik, 15.0 hp</li>
+                    <li>Mikrobiologi med infektionsbiologi, 5.0 hp</li>
+                    <li>Organismernas evolution och mångfald, 10.0 hp</li>
+                    <li>Biologens kompetenser och det vetenskapliga arbetssättet, 5.0 hp</li>
+                </ul>
+            </article>
+        </section>
     </div>
 </main>
 <footer>
+    <div class="wrapper">
+        <nav class="footer-nav">
+            <ul>
+                <li id="footer-image-tag">
+                    <img src="media/footer.png" alt="Bild på Elias Eriksson">
+                    <ul class="footer-topics">
+                        <li>
 
+                            <h3>Social Media / Contact</h3>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/elias-eriksson-82a926190/">LinkedIn</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/EliasEriksson">Github</a>
+                        </li>
+                        <li>
+                            E-mail: <a href="mailto:mail@eliaseriksson.eu">mail@eliaseriksson.eu</a>
+                        </li>
+                        <li>
+                            Discord: Saar#6969
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="footer-topics">
+                        <li>
+                            <h3>Projects on github</h3>
+                        </li>
+                        <li>
+                            <a href="https://github.com/EliasEriksson/MinesweeperAI">Minesweeper AI</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/EliasEriksson/Codescord">Codescord</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/EliasEriksson/PythonCompileTool">PCT</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/EliasEriksson/IpBlacklister">IpBlacklister</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/EliasEriksson?tab=repositories">More...</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </footer>
 </body>
 </html>
