@@ -33,6 +33,7 @@ header {
     justify-content: space-between;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     height: 600px;
+    z-index: 200;
 }
 
 header > h1 {
@@ -90,6 +91,18 @@ header > h1 {
     font-weight: bold;
     font-size: 2em;
     scroll-behavior: smooth;
+}
+
+#backup {
+    position: fixed;
+    bottom: 0.25em;
+    right: 0.5em;
+    z-index: 100;
+}
+#backup img {
+    width: 40px;
+    height: 40px;
+    display: block;
 }
 
 /* main */
@@ -165,7 +178,7 @@ main {
 
 .contact-method-list img {
     width: 100%;
-    max-width: 20%;
+    max-width: 15%;
     margin-right: 0.5em;
 }
 
@@ -200,58 +213,48 @@ main {
 /* footer */
 footer {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     background-color: #1e405d;
     font-size: 0.75em;
     box-shadow: 0 -4px 8px 8px rgba(0, 0, 0, 0.2);
-
 }
 
-footer > .wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+footer .wrapper {
     background: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.50) 100%);
-    height: fit-content;
-    padding: 3em 0;
 }
 
 .footer-nav {
-    position: relative;
-    width: 100%;
-}
-
-.footer-nav > ul {
-    display: flex;
-    justify-content: space-evenly;
-    list-style: none;
-}
-
-#footer-image-tag {
-    display: flex;
-}
-
-footer img {
-    width: 64px;
-    height: 64px;
-    border-radius: 2em;
-    margin-right: 1em;
+    display: grid;
+    grid-template-columns:  auto auto auto;
+    min-height: fit-content;
+    padding-top: 2em;
+    padding-bottom: 3em;
 }
 
 .footer-topics {
+    display: flex;
+    justify-content: space-between;
+
     list-style-type: none;
 }
 
-.footer-topics > li {
-    position: relative;
+.footer-topic {
+    list-style-type: none;
 }
 
 .footer-image-wrapper {
-    height: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
+
+footer img {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin-right: 1em;
+
+    border-radius: 2em;
+}
+
 
 /* phone */
 @media screen and (max-width: 499px) {
@@ -262,11 +265,6 @@ footer img {
 
     .project-showcase {
         grid-row: 2;
-    }
-
-    .footer-nav > ul {
-        flex-direction: column;
-        justify-content: center;
     }
 }
 
@@ -306,14 +304,25 @@ footer img {
     }
 }
 
-/* limit for horizontal menu */
+
 @media screen and (max-width: 750px) {
+    /* limit for horizontal menu */
     .navigation {
         flex-direction: column;
     }
 
     .navigator {
         width: 25%;
+    }
+
+    /* footer */
+    .footer-nav {
+        grid-template-columns: auto auto;
+        grid-row-gap: 1em;
+    }
+
+    .footer-topic {
+        grid-column: 2;
     }
 }
 
