@@ -203,7 +203,6 @@ function requestChannelProgram(event){
     /**
      * requests the all the current programs from the clicked channel on the main navigation
      * and fills div#info with program data thru createProgram()
-     *
      */
     event.preventDefault();
     info.innerHTML = "";
@@ -223,8 +222,10 @@ function requestChannelProgram(event){
 
 function requestChannels(size) {
     /**
-     * requests 10 or given amount of channels to list in select#playchannel
-     * and ul#mainnavlist
+     * requests all channels from SR
+     *
+     * all channels in the response data are added as options for the player
+     * but only the 'size' first channels are added to the list on the side
      */
     playChannel.innerHTML = ""
     mainNavList.innerHTML = ""
@@ -249,17 +250,20 @@ playButton.addEventListener("click", playSelected);
 
 numRows.addEventListener("change", function (){
     /**
+     * when numRows is changed the new value is saved to the settings and channels are requested to fit the new
      *
      */
     settings.setSetting("numRows", numRows.value);
     requestChannels(numRows.value);
-})
+});
 
 window.addEventListener("load", function (){
     /**
+     * when page is initially loaded the the numRows value is set from the settings
      *
+     * the channels are then requested to fill the player options and list on the side.
      */
 
-    numRows.value = settings.getSetting("numRows")
+    numRows.value = settings.getSetting("numRows");
     requestChannels(settings.getSetting("numRows"));
 });
