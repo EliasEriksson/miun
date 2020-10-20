@@ -82,11 +82,11 @@ function scheduleAPI(id){
     return `${api}scheduledepisodes?channelid=${id}&size=100&format=json`
 }
 
-function channelsAPI(size){
+function channelsAPI(){
     /**
      * api URL for a list of all channels.
      */
-    return `${api}channels?format=json&size=${size}`;
+    return `${api}channels?format=json&pagination=false`;
 }
 
 
@@ -234,12 +234,14 @@ function requestChannels(size) {
             let response = JSON.parse(this.response);
             for (let i = 0; i < response.channels.length; i++) {
                 createChannelOption(response.channels[i]);
-                createChannelLi(response.channels[i]);
+                if (i < size) {
+                    createChannelLi(response.channels[i]);
+                }
             }
         }
     });
 
-    request.open("get", channelsAPI(size), true);
+    request.open("get", channelsAPI(), true);
     request.send();
 }
 
