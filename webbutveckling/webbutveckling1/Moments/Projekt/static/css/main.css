@@ -276,7 +276,7 @@ footer img {
 /* tablet */
 @media screen and (max-width: 999px) {
     .content {
-        max-width: 500px;
+        max-width: 600px;
     }
 
     .project-content > article {
