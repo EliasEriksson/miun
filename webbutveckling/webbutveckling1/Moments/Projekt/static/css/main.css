@@ -110,6 +110,10 @@ main {
     background-color: #13283b;
 }
 
+.spacer {
+    height: 1em;
+}
+
 .content-section-heading {
     border-bottom: 2px solid #112232;
     padding: 1em 2em;
@@ -186,14 +190,14 @@ main {
     padding-bottom: 2em;
 }
 
-#university {
+#education {
     display: grid;
     grid-template-columns: auto;
     grid-row-gap: 2em;
     padding-bottom: 3em;
 }
 
-#university article {
+#education article {
     text-align: center;
 }
 
