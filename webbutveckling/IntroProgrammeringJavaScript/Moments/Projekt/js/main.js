@@ -79,7 +79,7 @@ function scheduleAPI(id){
      * size set to static 100 to get all the shows for today.
      * there should never be more than 100 shows.
      */
-    return `${api}scheduledepisodes?channelid=${id}&size=100&format=json`
+    return `${api}scheduledepisodes?channelid=${id}&format=json&pagination=false`
 }
 
 function channelsAPI(){
