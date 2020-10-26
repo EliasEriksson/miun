@@ -260,17 +260,17 @@ footer img {
 }
 
 
-/*!* phone *!*/
-/*@media screen and (max-width: 499px) {*/
-/*    .project-text {*/
-/*        padding: 1em 2em;*/
-/*        grid-row: 1;*/
-/*    }*/
+/* phone */
+@media screen and (max-width: 499px) {
+    .project-text {
+        padding: 1em 2em;
+        grid-row: 1;
+    }
 
-/*    .project-showcase {*/
-/*        grid-row: 2;*/
-/*    }*/
-/*}*/
+    .project-showcase {
+        grid-row: 2;
+    }
+}
 
 
 /* tablet */
@@ -291,7 +291,7 @@ footer img {
 
     .project-showcase {
         grid-row: 2;
-        /*background-color: #13283b;*/
+        background-color: #13283b;
     }
 
     .contact-method-list {
