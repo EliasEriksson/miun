@@ -76,7 +76,7 @@ function scheduleAPI(id){
     /**
      * api URL for today's shows for some channel
      *
-     * size set to static 100 to get all the shows for today.
+     * pagination set to false to get all the programs
      * there should never be more than 100 shows.
      */
     return `${api}scheduledepisodes?channelid=${id}&format=json&pagination=false`
@@ -85,6 +85,8 @@ function scheduleAPI(id){
 function channelsAPI(){
     /**
      * api URL for a list of all channels.
+     *
+     * pagination set to false to get all the
      */
     return `${api}channels?format=json&pagination=false`;
 }
