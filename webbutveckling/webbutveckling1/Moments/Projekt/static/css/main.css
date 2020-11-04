@@ -19,6 +19,7 @@ a {
     height: 100%;
 }
 
+/* style for inline code */
 .code-line {
     background-color: #2b3d46;
     font-family: monospace;
@@ -26,7 +27,7 @@ a {
     padding-right: 0.4em;
 }
 
-/* header*/
+/* header styling bellow*/
 header {
     position: relative;
     background: #1e405d url("../../media/header.png") center;
@@ -54,6 +55,7 @@ header > h1 {
     padding-top: 75px;
 }
 
+/* class for navigation list */
 .navigation {
     display: flex;
     justify-content: space-evenly;
@@ -63,7 +65,7 @@ header > h1 {
     width: 100%;
     height: 100%;
 }
-
+/* class for navigation list element */
 .navigator {
     min-width: fit-content;
     width: 15%;
@@ -78,6 +80,7 @@ header > h1 {
     transition: background-color 0.3s;
 }
 
+/* navigation link style */
 .navigator > a {
     display: flex;
     justify-content: center;
@@ -91,27 +94,30 @@ header > h1 {
     scroll-behavior: smooth;
 }
 
+/* the arrow bringing the user back up */
 #backup {
     position: fixed;
     bottom: 0.25em;
     right: 0.5em;
     z-index: 100;
 }
+
 #backup img {
     width: 40px;
     height: 40px;
     display: block;
 }
 
-/* main */
+/* styling for main content bellow*/
 main {
     background-color: #13283b;
 }
 
+/* class to space paragraphs */
 .spacer {
     height: 1em;
 }
-
+/* styles for the project page */
 .content-section-heading {
     border-bottom: 2px solid #112232;
     padding: 1em 2em;
@@ -134,20 +140,11 @@ main {
     display: block;
 }
 
-.height-limit {
-    height: auto;
-}
-
-.width-limit {
-    width: 100%;
-}
-
 .content {
     display: grid;
     grid-template-columns: auto;
     grid-row-gap: 2em;
 
-    /*box-shadow: 4px 4px 8px 8px rgba(0, 0, 0, 0.2);*/
     margin: auto;
     max-width: 1000px;
 }
@@ -165,12 +162,6 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     list-style-type: none;
-}
-
-.contact-method-list > li {
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
 }
 
 .contact-method {
@@ -212,7 +203,7 @@ main {
     font-size: 0.95em;
 }
 
-/* footer */
+/* footer styles bellow */
 footer {
     position: relative;
     background-color: #1e405d;
@@ -257,21 +248,7 @@ footer img {
     border-radius: 2em;
 }
 
-
-/*!* phone *!*/
-/*@media screen and (max-width: 499px) {*/
-/*    .project-text {*/
-/*        padding: 1em 2em;*/
-/*        grid-row: 1;*/
-/*    }*/
-
-/*    .project-showcase {*/
-/*        grid-row: 2;*/
-/*    }*/
-/*}*/
-
-
-/* tablet */
+/* tablet / mobile */
 @media screen and (max-width: 999px) {
     .content {
         max-width: 600px;
@@ -289,7 +266,6 @@ footer img {
 
     .project-showcase {
         grid-row: 2;
-        /*background-color: #13283b;*/
     }
 
     .contact-method-list {
