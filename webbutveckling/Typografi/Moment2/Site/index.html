@@ -4,145 +4,194 @@
     <meta charset="UTF-8">
     <title>GALLUS</title>
     <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <header>
     <div id="header-header">
-        <p>Language</p>
-        <p>Lyssna</p>
-        <p>Hjälp</p>
-        <p>Logga</p>
-        <p>Innehållet ska vara med men kan vara litet</p>
+        <p>Diatria</p>
+        <p>Domus</p>
+        <p>Urbs</p>
+        <p>Rumor</p>
+        <p>Cum cobaltum tolerare, omnes exsules perdere dexter, primus boreases</p>
     </div>
     <div id="header-content">
         <img id="header-logo" src="media/logga.png" alt="logga">
         <div id="title">
-            <p>Pol, a bene orexis, visus!</p>
+            <h1>Pol a bene orexis visus!</h1>
         </div>
         <div id="search">
-            <form>
-                <label>
-                    <input type="text">
+            <form id="search-form">
+                <label id="search-text-field-label">
+                    <input id="search-text-field" type="text">
                 </label>
-                <label>
-                    <input type="submit" value="Sök">
+                <label id="search-button-label">
+                    <input id="search-button" type="submit" value="Sök">
                 </label>
             </form>
         </div>
-        <div id="main-menu">
-            <p>SALVUS TUMULTUMQUES DUCUNT AD PARMA</p>
-            <p>VARIUS COMPATERS DUCUNT AD SILVA</p>
-            <p>MENS UNDAS, TANQUAM BARBATUS EXSUL</p>
-            <p>TERES IONICIS TORMENTOS DUCUNT AD CLINIAS</p>
-            <p>SCUTUMS MESSIS, TANQUAM TERES MONS</p>
-        </div>
+        <nav id="header-nav">
+            <ul id="main-menu" class="space-and-border">
+                <li><a href="#">SALVUS</a></li>
+                <li><a href="#">VARIUS</a></li>
+                <li><a href="#">MENS</a></li>
+                <li><a href="#">TERES</a></li>
+                <li><a href="#">SCUTUMS</a></li>
+            </ul>
+        </nav>
     </div>
-    <div id="header-footer">
-        Brödsmulor start i HTML i HTML 5
+    <div id="header-footer" class="space-and-border">
+        Fortis terror sed mire locuss sensorem est
     </div>
 </header>
-<main id="content-container">
-    <aside>
-        <ul>
-            <li>HTML 1</li>
-            <li>HTML 2</li>
-            <li>HTML 3</li>
-            <li>HTML 4</li>
-            <li>XHTML</li>
-            <li>HTML 5</li>
-        </ul>
+<main>
+    <aside id="side-menu-wrapper">
+        <div id="side-menu" class="space-and-border">
+            <ul id="side-menu-list">
+                <li><a href="#">Cur consilium resistere</a></li>
+                <li><a href="#">Cur mortem resistere</a></li>
+                <li><a href="#">Nunquam imitari armarium</a></li>
+                <li><a href="#">Cur tata nocere</a></li>
+                <li><a href="#">Cur planeta messis</a></li>
+                <li><a href="#">Nunquam acquirere devatio</a></li>
+            </ul>
+        </div>
     </aside>
-    <div>
-        <article>
-            <h1>
-                Stor rubrik, en rad
-            </h1>
-            <img src="media/big_pic.jpg" alt="stor bild">
+    <div id="content-container">
+        <article id="main-article" class="space-and-border">
             <h2>
-                Underrubrik för att förtydliga den korta rubriken överst
+                Parss trabem in pugna magnum ferox canises.
             </h2>
+            <div class="article-image">
+                <img src="media/big_pic.jpg"
+                     alt="stor bild"
+                     class="restrict-to-parent-size">
+                <p class="article-image-author">
+                    - Elias Eriksson
+                </p>
+            </div>
             <h3>
-                Inledande text (ingress) 1-4 meningar som sammanfattar eller gen en kort
-                introduktion till texten som kommer.
+                Velox, placidus eras semper examinare de dexter, brevis quadra.
             </h3>
+            <div class="spacer"></div>
             <h4>
-                Mellanrubrik
+                Sunt tumultumquees perdere varius, secundus castores.
+            </h4>
+            <div class="spacer"></div>
+            <p>
+                Cadunt patienter ducunt ad talis amor. Nunquam visum armarium. Liberis cantare! Est mirabilis plasmator,
+                cesaris. Fidelis, domesticus terrors superbe carpseris de pius, gratis zeta. Vae. Compaters prarere in
+                caelos! Cur decor peregrinationes? Est peritus adgium, cesaris. Nobilis, flavum heuretess aliquando
+                pugna de velox, peritus devatio. Sunt zeluses visum clemens, placidus assimilatioes. Galataes tolerare
+                in castus rugensis civitas! Cum contencio persuadere, omnes exemplares acquirere velox, camerarius
+                caesiumes.
+            </p>
+            <div class="spacer"></div>
+            <h4>
+                Est fidelis extum, cesaris.
             </h4>
             <p>
-                Brödtext
+                Talis homos ducunt ad clabulare. A falsis, pes lotus terror. Nunquam convertam demolitione. Ubi est
+                bi-color bubo? Capio cadunts, tanquam nobilis exsul. Gabaliums nocere! Sunt omniaes visum festus, varius
+                ionicis tormentoes. Ubi est barbatus devirginato? Castus, pius amors recte pugna de neuter, noster
+                ausus. Est camerarius nix, cesaris. Nunquam attrahendam particula. Crescere aliquando ducunt ad neuter
+                pulchritudine.
             </p>
+            <div class="spacer"></div>
             <h4>
-                Mellanrubrik
+                Mens persuaderes, tanquam azureus vox.
             </h4>
-            <p>
-                Brödtext
-            </p>
+            <div class="quote-wrapper">
+                <p class="quote">
+                    <span class="start-quote-mark">"</span>
+                    Guttus, elogium, et planeta. A falsis, saga noster tumultumque. Placidus, lotus gemnas hic convertam
+                    de castus, gratis barcas.
+                    vierium.
+                    <span class="end-quote-mark">"</span>
+                </p>
+                <p class="quote-author">
+                    -Elias Eriksson
+                </p>
+            </div>
         </article>
-        <div id="recomended-articles">
-            <div class="recomended-article">
-                <img src="media/JavaScript.png" alt="JavaScript logo">
-                <p>kort text</p>
-                <a href="#">Länk</a>
-            </div>
-            <div class="recomended-article">
-                <img src="media/python.png" alt="python logo">
-                <p>kort text</p>
-                <a href="#">Länk</a>
-            </div>
-            <div class="recomended-article">
-                <img src="media/ECMAScript.png" alt="ECMAScript logo">
-                <p>kort text</p>
-                <a href="#">Länk</a>
-            </div>
+        <div class="recommended-article space-and-border pink">
+            <img src="media/JavaScript.png" alt="JavaScript logo">
+            <p>Ratione moris, tanquam placidus amor.</p>
+            <a href="#">Amor </a>
+        </div>
+        <div class="recommended-article space-and-border blue">
+            <img src="media/python.png" alt="python logo">
+            <p>Homo, compater, et devirginato.</p>
+            <a href="#">Aetheres </a>
+        </div>
+        <div class="recommended-article space-and-border green">
+            <img src="media/ECMAScript.png" alt="ECMAScript logo">
+            <p>Agripeta ridetiss, tanquam altus fuga. </p>
+            <a href="#">Adgium </a>
         </div>
     </div>
 </main>
 <footer>
-    <ul>
-        <li>Fysisk address</li>
-        <li>Telefon</li>
-        <li>Epost</li>
-    </ul>
-    <ul>
-        <li>Cookies</li>
-        <li>Om webbplatsen</li>
-        <li>Site-map</li>
-        <li>A-Ö</li>
-    </ul>
-    <ul>
-        <li>Copyright</li>
-        <li>Länk till css-validering</li>
-        <li>Länk till html-validering</li>
-    </ul>
-    <ul id="social-media">
-        <li>
-            <img src="media/linkedin.png" alt="linkedin logo">
-            <p>LinkedIn</p>
-        </li>
-        <li>
-            <img src="media/facebook.png" alt="facebook logo">
-            <p>Facebook</p>
-        </li>
-        <li>
-            <img src="media/instagram.png" alt="instagram logo">
-            <p>Instagram</p>
-        </li>
-        <li>
-            <img src="media/twitter.svg" alt="twitter logo">
-            <p>Twitter</p>
-        </li>
-        <li>
-            <img src="media/youtube.png" alt="youtube logo">
-            <p>Youtube</p>
-        </li>
-    </ul>
-    <a href="#">
-        <div>
-            <p>
-                Tillbaka till toppen av sidan
-            </p>
-        </div>
-    </a>
+    <div id="footer-lists" class="space-and-border">
+        <ul>
+            <li>
+                <address>
+                    Rikssalen Ingång H0 Slottet<br>
+                    752 37 Uppsala
+                </address>
+            </li>
+            <li><a href="tel:+4618544811">+4618 - 54 48 11</a></li>
+            <li>
+                <a href="mailto:info@uppsalaslott.com">info@uppsalaslott.com</a>
+            </li>
+        </ul>
+        <ul>
+            <li><a href="#">Cookies</a></li>
+            <li><a href="#">Om webbplatsen</a></li>
+            <li><a href="#">Site-map</a></li>
+            <li><a href="#">A-Ö</a></li>
+        </ul>
+        <ul>
+            <li><a href="#">Copyright</a></li>
+            <li><a href="https://validator.w3.org/nu/?doc=http%3A%2F%2Fstudenter.miun.se%2F~eler2006%2Fgd008g%2FMoment2%2F">
+                CSS-Validering
+            </a></li>
+            <li><a href="https://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Fstudenter.miun.se%2F%7Eeler2006%2Fgd008g%2FMoment2%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=sv">
+                HTML-Validering
+            </a></li>
+        </ul>
+        <ul id="social-media">
+            <li>
+                <img src="media/linkedin.png" alt="linkedin logo">
+                <a href="#">LinkedIn</a>
+            </li>
+            <li>
+                <img src="media/facebook.png" alt="facebook logo">
+                <a href="#">Facebook</a>
+            </li>
+            <li>
+                <img src="media/instagram.png" alt="instagram logo">
+                <a href="#">Instagram</a>
+            </li>
+            <li>
+                <img src="media/twitter.svg" alt="twitter logo">
+                <a href="#">Twitter</a>
+            </li>
+            <li>
+                <img src="media/youtube.png" alt="youtube logo">
+                <a href="#">Youtube</a>
+            </li>
+        </ul>
+    </div>
+    <div class="space-and-border">
+        <a href="#">
+            <div>
+                <p>
+                    Tillbaka till toppen av sidan
+                </p>
+            </div>
+        </a>
+    </div>
 </footer>
 </body>
 </html>
