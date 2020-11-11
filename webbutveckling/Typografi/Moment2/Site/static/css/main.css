@@ -168,6 +168,7 @@ main {
 }
 
 .quote {
+    position: relative;
     padding: 1em 1em 2em;
 }
 
@@ -177,17 +178,21 @@ main {
     left: 0;
     z-index: -1;
 
-    font-size: 4em;
+    font-size: 5em;
     color: lightgray;
+}
+
+.end-quote-mark-wrapper {
+    position: relative;
 }
 
 .end-quote-mark {
     position: absolute;
-    bottom: -0.5em;
-    right: 0;
+    bottom: -0.75em;
+    right: -0.2em;
     z-index: -1;
 
-    font-size: 4em;
+    font-size: 5em;
     color: lightgray;
 }
 
