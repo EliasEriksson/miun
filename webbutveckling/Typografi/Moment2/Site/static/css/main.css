@@ -3,23 +3,44 @@
     margin: 0;
     padding: 0;
     font-family: Georgia, serif;
+    line-height: 1.5em;
 }
 
+/* overwrites the default serif font to sans-serif for headings*/
 h1, h2, h3, h4 {
     font-family: Helvetica, sans-serif;
 }
 
+/* removing dots from all lists */
 li {
     list-style-type: none;
 }
 
-.space-and-border {
-    border: 1px solid black;
+/* link color */
+a {
+    color: #2E4057;
+}
+/* standard padding for alot of elements */
+.space {
     padding: 0.25em 0.5em;
 }
 
+/* shadow for the difrent sections */
+.shadow {
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)
+}
+
+/* spacer to separate paragraphs*/
 .spacer {
     height: 0.5em;
+}
+/* color for non background elements */
+.color {
+    background-color: #f6e1c4;
+}
+/* color for background */
+.background {
+    background-color: #2E4057;
 }
 
 body {
@@ -28,21 +49,18 @@ body {
 
     margin: auto;
     max-width: 960px;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
     padding: 0.5em;
 }
-
+/* styling for header content bellow */
 header {
     display: grid;
     grid-row-gap: 0.5em;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)
 }
 
 #header-header {
     display: flex;
     justify-content: space-between;
-    border: 1px solid black;
-    padding: 0.25em 0.5em;
 }
 
 #header-content {
@@ -55,11 +73,11 @@ header {
     width: 100%;
 }
 
+/* stylign for search bar*/
 #search-form {
     display: flex;
     flex-flow: column;
     align-items: flex-end;
-    /*flex-direction: column;*/
     flex-wrap: wrap;
 
     width: 100%;
@@ -79,16 +97,14 @@ header {
 }
 
 #search-button {
-    padding: 0.25em 0.5em;
-}
-
-#header-footer {
+    padding: 0.25em 1em;
 }
 
 #header-logo {
     max-width: 100%;
     grid-row: 1 / 3;
     border-radius: 50%;
+    padding: 0.5em;
 }
 
 #header-nav {
@@ -119,18 +135,7 @@ header {
     flex-flow: row-reverse;
 }
 
-main {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-column-gap: 0.5em;
-}
-
-#content-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 0.5em 0.5em;
-}
-
+/* styling for side menu */
 #side-menu {
     min-height: 50%;
     padding: 1em;
@@ -140,7 +145,21 @@ main {
     display: grid;
     grid-row-gap: 0.75em;
 }
+/* styling for main content bellow */
+main {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-column-gap: 0.5em;
+    grid-row-gap: 0.5em;
+}
 
+#content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 0.5em 0.5em;
+}
+
+/* styling for main article */
 #main-article {
     grid-column: 1 / 4;
 }
@@ -161,15 +180,21 @@ main {
     color: white;
 }
 
+/* styling for styling the quote  in the main article */
 .quote-wrapper {
     position: relative;
     display: grid;
-
 }
 
 .quote {
     position: relative;
     padding: 1em 1em 2em;
+    z-index: 100;
+}
+
+.quote span {
+    font-family: 'Space Grotesk', sans-serif;
+    color: #9caabb;
 }
 
 .start-quote-mark {
@@ -204,6 +229,7 @@ main {
     padding: 0.25em 0.5em;
 }
 
+/* styling for recommended articles */
 #recommended-articles {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -217,37 +243,30 @@ main {
     max-width: 100%;
 }
 
-.pink {
-    background-color: lightpink;
-}
-
-.blue {
-    background-color: lightblue;
-}
-
-.green {
-    background-color: lightgreen;
-}
-
 .restrict-to-parent-size {
     max-width: 100%;
     max-height: 100%;
 }
 
+
+/* styling for footer content bellow */
 footer {
     display: grid;
     grid-row-gap: 0.5em;
+
 }
 
 #footer-lists {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-row-gap: 1em;
 }
 
 #footer-lists > ul {
     display: grid;
     height: fit-content;
     grid-row-gap: 0.75em;
+    padding: 0.5em;
 }
 
 #social-media img {
@@ -259,8 +278,107 @@ footer {
     align-items: center;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 800px){
+    /* moves header menus around to fit smaller screen */
+    /* makes the footer to 3 columns instead of 4*/
+    #footer-lists {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #header-content {
+        position: relative;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto 1fr;
+    }
+
+    #title {
+        grid-column: 1 / 3;
+        grid-row: 1;
+    }
+
+    #header-logo {
+        position: absolute;
+        padding: 0.25em;
+        grid-row: 1;
+        grid-column: 1;
+        height: 2.5em;
+
+    }
+
+    #search {
+        grid-row: 2;
+        grid-column: 1 / 3;
+
+
+    }
+    #header-nav {
+        grid-row: 3;
+        grid-column: 1 / 3;
+    }
+
+    #search-form {
+        flex-direction: row;
+        flex-wrap: initial;
+        flex-flow: row;
+    }
+
+    #search-button-label {
+        margin: auto 0.25em;
+    }
+    #search-button {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    /* moves the side menu and above main article to fit smaller screen */
+    main {
+        grid-template-columns: auto;
+    }
+
+    #side-menu-list {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #side-menu-list > li {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    /* moves the logo to beside the searchbar in the header */
+    /* recommended articles 2 columns instead of 3 */
+    /* footer 2 columns instead of 3 */
+    /* reducing some font sizes to fit smaller screen */
+    #content-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    #main-article {
+        grid-column: 1 / 3;
+    }
     #footer-lists {
         grid-template-columns: 1fr 1fr;
+    }
+
+    #header-logo {
+        position: initial;
+        grid-row: 2;
+    }
+
+    #search {
+        grid-column: 2;
+    }
+
+    #search-form {
+        max-width: initial;
+    }
+
+    #main-menu {
+        font-size: 0.7em;
+    }
+    #header-header {
+        font-size: 0.7em;
     }
 }
