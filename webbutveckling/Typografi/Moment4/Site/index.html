@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="miun.se" />
+  <title>All About CSS</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<!--
+	The aim of this assignment is to style this page and make it more visually appealing... WITHOUT touching the HTML.
+
+	USING ONLY the provided blank CSS document (style.css) you must create your own code to manipulate the available markup. 
+    
+    You are free to use graphics but these may only be added to the style sheet.
+    
+	There are more classes and tags in the XHTML than in a real-world situation but these are to offer you more flexibility as a designer amd give you more creative freedom to modify the page.
+
+Good Luck!
+
+-->
+
+<body id="myBody">
+  <div id="container">
+    <div id="intro">
+      <header id="pageHeader">
+        <h1>
+          <span>All About CSS</span>
+        </h1>
+        <nav id="mainNav">
+          <ul>
+            <li><a href="index.html">Home</a>
+            <li><a href="#quickSummary">Quick summary</a></li>
+            <li><a href="#preamble">Preamble</a></li>
+            <li><a href="#explanation">Explanation</a></li>
+            <li><a href="#participation">Participation</a></li>
+            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#linkList">Links</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <section id="quickSummary">
+        <h2>Quick summary</h2>
+        <p class="p1">
+          <strong>Cascading Style Sheets</strong> (
+          <strong>CSS</strong>) is a style sheet language used to describe the presentation semantics (the look and formatting) of
+          a document written in a markup language. Its most common application is to style web pages written in
+          <strong>HTML</strong> and
+          <strong>XHTML</strong>, but the language can also be applied to any kind of
+          <strong>XML</strong> document, including
+          <strong>SVG</strong> and
+          <strong>XUL</strong>.</p>
+      </section>
+
+      <section id="preamble">
+        <h2>Preamble</h2>
+        <p class="p1">CSS is designed primarily to enable the separation of document content (written in HTML or a similar markup language)
+          from document presentation, including elements such as the
+          <a href="http://en.wikipedia.org/wiki/Page_layout" title="Page layout">layout</a>,
+          <a href="http://en.wikipedia.org/wiki/Color" title="Color">colors</a>, and
+          <a href="http://en.wikipedia.org/wiki/Typeface" title="Typeface">fonts</a>. This separation can improve content
+          <a href="http://en.wikipedia.org/wiki/Accessibility" title="Accessibility">accessibility</a>, provide more flexibility and control in the specification of presentation characteristics, enable
+          multiple pages to share formatting, and reduce complexity and repetition in the structural content (such as by
+          allowing for
+          <a href="http://en.wikipedia.org/wiki/Tableless_web_design" title="Tableless web design">tableless web design</a>). CSS can also allow the same markup page to be presented in different styles for different
+          rendering methods, such as on-screen, in print, by voice (when read out by a speech-based browser or
+          <a href="http://en.wikipedia.org/wiki/Screen_reader" title="Screen reader">screen reader</a>) and on
+          <a href="http://en.wikipedia.org/wiki/Braille" title="Braille">Braille</a>-based,
+          <a href="http://en.wikipedia.org/wiki/Tactile" title="Tactile">tactile</a> devices. While the author of a document typically links that document to a CSS style sheet, readers
+          can use a different style sheet, perhaps one on their own computer, to override the one the author has specified.</p>
+        <p class="p2">
+          <span>CSS specifies a priority scheme to determine which style rules apply if more than one rule matches against a particular
+            element. In this so-called cascade, priorities or weights are calculated and assigned to rules, so that the results
+            are predictable.</span>
+        </p>
+        <p class="p3">
+          <span>The CSS specifications are maintained by the
+            <a href="http://en.wikipedia.org/wiki/World_Wide_Web_Consortium" title="World Wide Web Consortium">World Wide Web Consortium</a> (W3C). Internet media type (
+            <a href="http://en.wikipedia.org/wiki/MIME#Content-Type" title="MIME">MIME type</a>) text/css is registered for use with CSS by
+            <a href="http://tools.ietf.org/html/rfc2318">RFC 2318</a> (March 1998).</span>
+        </p>
+      </section>
+      <!-- /#preamble -->
+
+    </div>
+    <main id="supportingText">
+
+      <section id="explanation">
+        <h2>Explanation</h2>
+
+        <h3>
+          <span>Syntax</span>
+        </h3>
+        <p class="p1">
+          <span>CSS has a simple
+            <a href="http://en.wikipedia.org/wiki/Syntax" title="Syntax">syntax</a> and uses a number of English keywords to specify the names of various style properties.</span>
+        </p>
+        <p class="p2">
+          <span>A style sheet consists of a list of
+            <em>rules</em>. Each rule or rule-set consists of one or more
+            <em>selectors</em> and a
+            <em>declaration block</em>. A declaration-block consists of a list of
+            <em>declarations</em> in braces. Each declaration itself consists of a
+            <em>property</em>, a colon (:), a
+            <em>value</em>, then a semi-colon (;).</span>
+        </p>
+
+        <p class="p3">
+          <span>In CSS, selectors are used to declare which of the markup elements a style applies to, a kind of match expression.
+            Selectors may apply to all elements of a specific type, or only those elements that match a certain attribute;
+            elements may be matched depending on how they are placed relative to each other in the markup code, or on how
+            they are nested within the document object model.</span>
+        </p>
+
+        <p class="p4">
+          <span>
+            <em>Pseudo-classes</em> are another form of specification used in CSS to identify markup elements, and in some cases,
+            specific user actions to which a particular declaration block applies. An often-used example is the :hover pseudo-class
+            that applies a style only when the user 'points to' the visible element, usually by holding the mouse cursor
+            over it. It is appended to a selector as in a:hover or #elementid:hover. Other pseudo-classes and
+            <em>pseudo-elements</em> are, for example, :first-line, :visited or :before. A special pseudo-class is :lang(c),
+            &quot;c&quot;.
+          </span>
+        </p>
+        <p class="p5">
+          <span>A
+            <em>pseudo-class</em> selects entire elements, such as :link or :visited, whereas a
+            <em>pseudo-element</em> makes a selection that may consist of partial elements, such as :first-line or :first-letter.</span>
+        </p>
+        <p class="p6">
+          <span>Selectors may be combined in other ways too, especially in CSS 2.1, to achieve greater specificity and flexibility.</span>
+        </p>
+      </section>
+      <!-- /#explanation -->
+
+      <section id="participation">
+        <h2>Participation</h2>
+        <h3>
+          <span>Use</span>
+        </h3>
+
+        <p class="p1">
+          <span>Prior to CSS, nearly all of the presentational attributes of HTML documents were contained within the HTML markup;
+            all font colors, background styles, element alignments, borders and sizes had to be explicitly described, often
+            repeatedly, within the HTML. CSS allows authors to move much of that information to a separate style sheet resulting
+            in considerably simpler HTML markup.</span>
+        </p>
+
+        <p class="p2">
+          <span>Headings (h1 elements), sub-headings (h2), sub-sub-headings (h3), etc., are defined structurally using HTML. In
+            print and on the screen, choice of
+            <a href="http://en.wikipedia.org/wiki/Typeface" title="Typeface">font</a>,
+            <a href="http://en.wikipedia.org/wiki/Point_%28typography%29" title="Point (typography)">size</a>,
+            <a href="http://en.wikipedia.org/wiki/Color" title="Color">color</a> and
+            <a href="http://en.wikipedia.org/wiki/Emphasis_%28typography%29" title="Emphasis (typography)">emphasis</a> for these elements is
+            <em>presentational</em>.</span>
+        </p>
+        <p class="p3">
+          <span>Prior to CSS, document authors who wanted to assign such
+            <a href="http://en.wikipedia.org/wiki/Typography" title="Typography">typographic</a> characteristics to, say, all h2 headings had to use the HTML font and other presentational elements
+            for each occurrence of that heading type. The additional presentational markup in the HTML made documents more
+            complex, and generally more difficult to maintain. In CSS, presentation is separated from structure. In print,
+            CSS can define color, font, text alignment, size, borders, spacing, layout and many other typographic characteristics.
+            It can do so independently for on-screen and printed views. CSS also defines non-visual styles such as the speed
+            and emphasis with which text is read out by aural text readers. The
+            <a href="http://en.wikipedia.org/wiki/W3C" title="W3C">W3C</a> now considers the advantages of CSS for defining all aspects of the presentation of HTML pages to be
+            superior to other methods. It has therefore
+            <a href="http://en.wikipedia.org/wiki/Deprecation" title="Deprecation">deprecated</a> the use of all the original presentational HTML markup.</span>
+        </p>
+      </section>
+  <!-- /#participation -->
+
+  <section id="benefits">
+    <h2>Benefits</h2>
+    <h3>
+      <span>Sources</span>
+    </h3>
+    <p class="p1">
+      <span>CSS information can be provided by various sources. CSS style information can be either attached as a separate document
+        or embedded in the HTML document. Multiple style sheets can be imported. Different styles can be applied depending
+        on the output device being used; for example, the screen version can be quite different from the printed version,
+        so that authors can tailor the presentation appropriately for each medium.</span>
+    </p>
+    <p class="p2">Priority scheme for CSS sources (from highest to lowest priority):</p>
+
+    <ul>
+      <li>Author styles (provided by the web page author), in the form of:
+        <ul>
+          <li>Inline styles, inside the HTML document, style information on a single element, specified using the &quot;style&quot;
+            attribute
+          </li>
+          <li>Embedded style, blocks of CSS information inside the HTML itself</li>
+          <li>External style sheets, i.e., a separate CSS-file referenced from the document</li>
+        </ul>
+      </li>
+      <li>User style:
+        <ul>
+          <li>A local CSS-file the user specifies with a browser option, which acts as an override applied to all documents</li>
+        </ul>
+      </li>
+      <li>
+        <a href="http://en.wikipedia.org/wiki/User_agent" title="User agent">User agent</a> style
+        <ul>
+          <li>Default styles applied by the user agent, i.e., the browser's default settings for element presentation</li>
+        </ul>
+      </li>
+    </ul>
+    <p class="p3">
+      <span>The style sheet with the highest priority controls the content display. Declarations not set in the highest priority
+        source are passed on by a source of lower priority such as the user agent style. This process is called
+        <em>cascading</em>.</span>
+    </p>
+
+    <p class="p4">
+      <span>One of the goals of CSS is also to allow
+        <em>users</em> greater control over presentation. Someone who finds red italic headings difficult to read may apply a
+        different style sheet. Depending on their browser and the web site, a user may choose from various style sheets provided
+        by the designers, may remove all added style and view the site using the browser's default styling, or may override
+        just the red italic heading style without altering other attributes.</span>
+    </p>
+  </section>
+  <!-- /#benefits -->
+
+  <footer id="mainfooter">
+    <a href="http://validator.w3.org/check/referer" title="Check the validity of this site&#8217;s HTML">html</a> &nbsp;
+    <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Check the validity of this site&#8217;s CSS">css</a>&nbsp;- Sources:
+    <a href="http://en.wikipedia.org/wiki/Css" title="Wikipedia">Wikipedia</a> &amp;
+    <a href="http://en.wikipedia.org/wiki/CSS_Zen_Garden" title="CSS Zen Garden">CSS Zen Garden</a>
+  </footer>
+  </main>
+  <!-- /#supportingText -->
+
+  <section id="linkList">
+    <h2>Link list</h2>
+    <div id="linkList1">
+      <div id="lcsslinks">
+        <h3 class="csslinks">
+          <span>Cascading Style Sheets</span>:</h3>
+        <ul>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/CSS_Animations" title="CSS Animations">CSS Animations</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/Dynamic_Cascading_Style_Sheets" title="Dynamic Cascading Style Sheets">Dynamic CSS</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/Comparison_of_layout_engines_%28Cascading_Style_Sheets%29" title="Comparison of layout engines (Cascading Style Sheets)">Comparison of layout engines</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/Comparison_of_stylesheet_languages" title="Comparison of stylesheet languages">Comparison of stylesheet languages</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/Internet_Explorer_box_model_bug" title="Internet Explorer box model bug">Internet Explorer box model bug</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/CSS_Zen_Garden" title="CSS Zen Garden">CSS Zen Garden</a>
+            <ul>
+              <li>
+                <a href="http://en.wikipedia.org/wiki/The_Zen_of_CSS_Design" title="The Zen of CSS Design">The Zen of CSS Design</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/CSSTidy" title="CSSTidy">CSSTidy</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/Style_sheet_%28web_development%29" title="Style sheet (web development)">Style sheet</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/Tableless_web_design" title="Tableless web design">Tableless web design</a>
+          </li>
+          <li>
+            <a href="http://en.wikibooks.org/wiki/Cascading_Style_Sheets" title="b:Cascading Style Sheets">WikiBooks: Cascading Style Sheets</a>
+          </li>
+        </ul>
+      </div>
+      <div id="lseealso">
+        <h3 class="seealso">
+          <span>See Also:</span>
+        </h3>
+        <ul>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/Acid3" title="Acid3">Acid3</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/Comparison_of_layout_engines_(CSS)" title="Comparison of layout engines (CSS)" class="mw-redirect">Comparison of layout engines (CSS)</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/Comparison_of_stylesheet_languages" title="Comparison of stylesheet languages">Comparison of stylesheet languages</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/CSS_Zen_Garden" title="CSS Zen Garden">CSS Zen Garden</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/CSSTidy" title="CSSTidy">CSSTidy</a>
+          </li>
+
+          <li>
+            <a href="http://en.wikipedia.org/wiki/Dynamic_Cascading_Style_Sheets" title="Dynamic Cascading Style Sheets">Dynamic Cascading Style Sheets</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/List_of_stylesheet_languages" title="List of stylesheet languages">List of stylesheet languages</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/Minification_(programming)" title="Minification (programming)">Minification</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/Validator" title="Validator">Validator</a>
+          </li>
+          <li>
+            <a href="http://en.wikipedia.org/wiki/X_resources" title="X resources">X resources</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+  <!-- /#linklist -->
+  </div>
+
+  <!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+  <div id="extraDiv1">
+    <span></span>
+  </div>
+  <div id="extraDiv2">
+    <span></span>
+  </div>
+  <div id="extraDiv3">
+    <span></span>
+  </div>
+  <div id="extraDiv4">
+    <span></span>
+  </div>
+  <div id="extraDiv5">
+    <span></span>
+  </div>
+  <div id="extraDiv6">
+    <span></span>
+  </div>
+
+
+</body>
+
+</html>
