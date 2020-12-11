@@ -16,96 +16,86 @@
     padding: 0;
 }
 
-
 /* heading styling */
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Open Sans", sans-serif;
+h1, h2, h3 {
+    font-family: "Tinos", sans-serif;
     letter-spacing: 0.015em;
     margin: 0;
-}
-
-h1 {
-    padding: 10px 2.5rem;
-}
-
-section {
-    margin-top: 30px;
-}
-
-section, h3 {
-    /*margin-top: 20px;*/
-    margin-bottom: 10px;
-}
-
-h3 {
-    margin-top: 10px;
+    line-height: 1.5625em;
 }
 
 /* text body styling */
 p, ul, li {
-    font-family: "Tinos", serif;
+    font-family: "Open Sans", serif;
     max-width: 70ch;
     font-size: 1.25rem;
     letter-spacing: 0.015em;
-    line-height: 1.5625rem;
+    line-height: 1.5625em;
+}
+
+/* font size for headings and margins for text */
+h1 {
+    font-size: 2.5rem;
+    padding: 10px 2.5rem;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin-top: 15px;
 }
 
 p {
-    margin-bottom: 10px;
     margin-top: 10px;
 }
 
+section, footer {
+    margin-top: 50px;
+}
+
+/* link styling */
 a {
     color: black;
 }
 
 a:hover {
-    color: #cc9c3d;
+    color: #b38324;
 }
 
+
+/* page color and layout */
 body {
     background-color: #fffdf8;
 }
 
 #container {
     display: grid;
-    grid-template-columns: 3fr 5fr 8fr;
-
+    grid-template-columns: 3fr minmax(500px, 5fr) 8fr;
 }
 
-#intro {
-    grid-column: 1 / 4;
-    display: grid;
-    grid-template-columns: 3fr 5fr 8fr;
-}
-
-#quickSummary, #preamble, #supportingText {
-    grid-column: 2 / 4;
-}
-
+/* header styling */
 #pageHeader {
     grid-column: 1 / 4;
 
     display: grid;
-    grid-template-columns: 3fr 5fr 8fr;
+    grid-template-columns: 3fr minmax(500px, 5fr) 8fr;
     grid-template-rows: 1fr auto auto 1fr;
     height: 100vh;
     box-sizing: initial;
     border-bottom: #cc9c3d solid 5px;
     background-image: url("https://artsweek.ca/wp-content/uploads/2018/02/web-design.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
-#pageHeader > h1, #mainNav {
+#pageHeader h1, #mainNav {
     background-color: #fff3d5;
     box-sizing: border-box;
     grid-column: 2;
-    min-width: 500px;
-
-    /*padding: 0 10px 10px 10px;*/
-}
-
-#pageHeader h1, #mainNav > ul li {
-    padding-left: 2.5rem;
 }
 
 #pageHeader h1 {
@@ -113,16 +103,21 @@ body {
     grid-row: 2;
     height: 100%;
     border-top: #e3b253 solid 5px;
+    padding-left: calc(2.5rem + 20px);
 }
 
-#pageHeader nav {
-    grid-column: 2;
+#mainNav ul {
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+#mainNav li {
+    margin-top: 8px;
+    padding-left: 2.5rem;
+}
+
+#pageHeader #mainNav {
     grid-row: 3;
-}
-
-#quickSummary, #preamble, #supportingText {
-    background-color: #fffdf8;
-    width: 960px;
 }
 
 /* icons for the main menu */
@@ -130,78 +125,219 @@ body {
     background: url("media/home.svg") no-repeat left;
     background-size: 1.2em;
 }
+
 #mainNav > ul > li:nth-child(2) {
     background: url("media/lightning.svg") no-repeat left;
     background-size: 1.2em;
 }
+
 #mainNav > ul > li:nth-child(3) {
     background: url("media/preamble.svg") no-repeat left;
     background-size: 1.2em;
 }
+
 #mainNav > ul > li:nth-child(4) {
     background: url("media/explanation.svg") no-repeat left;
     background-size: 1.2em;
 }
+
 #mainNav > ul > li:nth-child(5) {
     background: url("media/participation.svg") no-repeat left;
     background-size: 1.2em;
 }
+
 #mainNav > ul > li:nth-child(6) {
     background: url("media/benefit.svg") no-repeat left;
     background-size: 1.2em;
 }
+
 #mainNav > ul > li:nth-child(7) {
     background: url("media/link.svg") no-repeat left;
     background-size: 1.2em;
 }
+
 #mainNav > ul > li {
     list-style-type: none;
+}
+
+#intro {
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: 3fr minmax(500px, 5fr) 8fr;;
+}
+
+/* summary and main content layout */
+#quickSummary, #preamble, #supportingText {
+    grid-column: 2 / 4;
+}
+
+#quickSummary, #preamble, #supportingText {
+    background-color: #fffdf8;
 }
 
 #benefits .p2 {
     background-color: #fff3d5;
     border-top: #e3b253 solid 5px;
-    padding: 10px 10px 0 10px;
+    padding: 20px 20px 0 calc(1.5em + 20px);
     margin-bottom: 0;
     font-weight: bold;
-}
-
-#benefits > ul {
-    background-color: #fff3d5;
-    padding: 0 10px 10px 10px;
+    margin-top: 50px;
 }
 
 #benefits ul {
     padding-left: 1.5em;
 }
 
-/*#benefits > ul > li > ul {*/
-/*    padding-left: 1.5em;*/
-/*}*/
+#benefits > ul > li {
+    padding-top: 8px;
+}
 
+#benefits > ul {
+    margin-bottom: 50px;
+    background-color: #fff3d5;
+    padding: 0 20px 20px calc(1.5em + 20px);
+}
+
+#explanation .p3 {
+    padding-bottom: 225px;
+    background-image: url("media/css_rule.png");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+}
+
+/* list styling for the bottom of the page */
 #linkList {
     grid-column: 1 / 4;
-    margin-top: 20px;
-    padding-bottom: 20px;
+    margin-top: 50px;
+    padding-bottom: 50px;
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-
+    grid-template-columns: 3fr minmax(500px, 5fr) 8fr;
 
     background-color: #fff3d5;
     border-top: #e3b253 solid 5px;
+}
+
+#linkList h2 {
+    margin-top: 50px;
 }
 
 #linkList ul {
     padding-left: 1.5em;
 }
 
+#linkList li {
+    margin-top: 8px;
+}
+
 #linkList > h2 {
     grid-column: 2;
 }
 
+
 #linkList1 {
-    grid-column: 2;
+    grid-column: 1 / 4;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 20px;
+    grid-template-columns: 3fr minmax(500px, 5fr) 8fr;
+}
+
+#lcsslinks {
+    grid-column: 2;
+}
+
+#lseealso {
+    grid-column: 3;
+}
+
+
+
+
+/* media queries for mobile adaptation stacking content in same row the more narrow the screen gets*/
+@media screen and (max-width: 1150px) {
+    #linkList1 {
+        row-gap: 25px;
+    }
+    #lcsslinks, #lseealso {
+        grid-column: 2 / 4;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    #linkList, #supportingText, #preamble, #quickSummary {
+        padding-right: 50px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #linkList1, #linkList, #container, #intro, #supportingText, #pageHeader {
+        grid-template-columns: 1fr;
+    }
+
+    #linkList > h2, #linkList1, #lcsslinks, #lseealso, #pageHeader, #quickSummary, #preamble, #supportingText, #intro, #mainNav, #pageHeader > h1 {
+        grid-column: 1;
+    }
+
+    #linkList, #supportingText, #preamble, #quickSummary {
+        padding: 0 50px;
+    }
+
+    #pageHeader > * {
+        margin: 0 50px;
+    }
+
+    #explanation .p3 {
+        background-size: contain;
+        padding-bottom: 240px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #explanation .p3 {
+        padding-bottom: 200px;
+    }
+
+    #linkList, #supportingText, #preamble, #quickSummary {
+        padding: 0 25px;
+    }
+
+    #pageHeader > * {
+        margin: 0 25px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+    p, ul, li {
+        font-size: 1rem;
+    }
+}
+
+/* adjusts the margin between the paragraph and the iamge in benefits*/
+@media screen and (max-width: 500px) {
+    #explanation .p3 {
+        padding-bottom: 160px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #explanation .p3 {
+        padding-bottom: 125px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    #explanation .p3 {
+        padding-bottom: 100px;
+    }
+}
+
+#linkList {
+    padding-bottom: 50px;
 }
