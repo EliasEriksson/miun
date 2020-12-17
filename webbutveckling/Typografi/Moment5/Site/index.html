@@ -2,66 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TeaScript</title>
+    <title>TeaScript - Home</title>
     <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<header>
-    <div id="logo">
-        <img src="media/tea_logo.svg" alt="temp logo">
-        <h1>TeaScript Software Foundation</h1>
-    </div>
-    <div id="menu">
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li>|</li>
-                <li><a href="#">Blog</a></li>
-                <li>|</li>
-                <li><a href="#">Info</a></li>
-            </ul>
-        </nav>
-    </div>
-
-</header>
-<main>
-    <!--  https://pixabay.com/photos/code-javascript-programming-3337044/  -->
-    <img src="media/banner.jpg" alt="display of TeaScript code">
-    <div id="pitch">
-        <p>The next generation script language for the web.</p>
-    </div>
-    <div id="featured">
-        <img src="media/notjavascript.png" alt="javascript logo with a red cross over it.">
-        <div>
+<div id="header">
+    <header>
+        <div id="logo">
+            <a href=".">
+                <img src="media/tea_logo.svg" alt="temp logo">
+            </a>
+            <h1>TeaScript Software Foundation</h1>
+        </div>
+        <div id="menu">
+            <nav>
+                <ul>
+                    <li class="menu-item"><a href=".">Home</a></li>
+                    <li>|</li>
+                    <li class="menu-item"><a href="blog/">Blog</a></li>
+                    <li>|</li>
+                    <li class="menu-item"><a href="info/">Info</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+</div>
+<div id="main">
+    <main class="home-main">
+        <!--  https://pixabay.com/photos/code-javascript-programming-3337044/  -->
+        <div id="banner" class="fade"></div>
+        <div id="pitch">
+            <p>The next generation script language for the web.</p>
+        </div>
+        <div id="featured">
             <h2>Why TeaScript?</h2>
-            <p>
-                Altus, gratis brabeutas sed mire contactus de bi-color, fidelis fuga. Nuclear vexatum iaceres sunt deuss
-                de lotus mortem. Diatrias tolerare in rusticus rugensis civitas! Germanus boreas hic magicaes solem est.
-                Ire vix ducunt ad raptus idoleum. Amors favere! Cum messor cantare, omnes bursaes prensionem domesticus,
-                velox lapsuses. Velox rationes ducunt ad lura.
-            </p>
-            <a href="#">Link</a>
+            <img src="media/notjavascript.png" alt="javascript logo with a red cross over it.">
+            <div>
+                <p>
+                    We here at TeaScript are nostalgic about the webs eco system back in the early 2000.
+                    Where no standards existed and browsers were competing about the better scripting language.
+                    TeaScript goal is to go back to that era by introducing new standards for the web.
+                    Follow our progress here and promote our message.
+                </p>
+                <p><a href="#">Blog post</a></p>
+            </div>
         </div>
-    </div>
-    <div id="widgets">
-        <div>
-            <a class="twitter-timeline" href="https://twitter.com/TeaScriptSF?ref_src=twsrc%5Etfw">Tweets by
-                TeaScriptSF</a>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <div id="widgets">
+            <div id="google-calendar">
+                <div class="widget-sizer">
+                    <iframe id="calendar-widget" class="widget"
+                            src="https://calendar.google.com/calendar/embed?wkst=1&amp;ctz=Europe%2FStockholm&amp;src=cGswYjN2NWM0dmgzaHZqdnIwM2lzZ3Vha2dAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;mode=AGENDA">
+                    </iframe>
+                </div>
+            </div>
+            <div id="twitter">
+                <div class="widget-sizer">
+                    <a class="twitter-timeline widget" href="https://twitter.com/TeaScriptSF?ref_src=twsrc%5Etfw">Tweets by
+                        TeaScriptSF</a>
+                    <script async src="https://platform.twitter.com/widgets.js"></script>
+                </div>
+            </div>
+            <div id="google-map">
+                <div class="widget-sizer">
+                    <iframe id="map-canvas" class="widget"
+                            src="https://maps.google.com/maps?q=Forumkvarteret%20uppsala&t=&z=13&ie=UTF8&iwloc=&output=embed">
+                    </iframe>
+                </div>
+            </div>
         </div>
-        <div>
-            <iframe id="calendar-widget" src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FStockholm&amp;src=cGswYjN2NWM0dmgzaHZqdnIwM2lzZ3Vha2dAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23AD1457&amp;mode=AGENDA">
-            </iframe>
-        </div>
-        <div>
-            widget 3
-        </div>
-    </div>
-</main>
-<footer>
-    <p>Copyright 2020 TeaScript Software Foundation</p>
-    <a href="mailto:TeaScriptSoftwareFoundation@gmail.com">TeaScriptSoftwareFoundation@gmail.com</a>
-    <a href="tel:+4683 27 27 478">+4683 27 27 478</a>
-</footer>
+    </main>
+</div>
+<div id="footer">
+    <footer>
+        <p>Copyright 2020 TeaScript Software Foundation</p>
+        <a href="mailto:TeaScriptSoftwareFoundation@gmail.com">TeaScriptSoftwareFoundation@gmail.com</a>
+        <a href="tel:+46832727478">+4683 27 27 478</a>
+    </footer>
+</div>
 </body>
 </html>
