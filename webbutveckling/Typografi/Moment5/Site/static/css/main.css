@@ -192,7 +192,7 @@ main {
 }
 
 #featured, #widgets {
-    border-top: #e3e9ff solid 1px;
+    border-top: 5px solid #e3b253;
 }
 
 #banner {
@@ -209,6 +209,11 @@ main {
 
 .post {
     margin-top: 40px;
+    border-top: 5px solid #e3b253;
+}
+
+.post > h3 {
+
 }
 
 .post ul, .post ol {
@@ -485,7 +490,7 @@ ol li {
     display: flex;
     align-items: center;
     padding: 20px;
-    border-top: #e3e9ff solid 1px;
+    border-top: 5px solid #e3b253;
 }
 
 footer {
