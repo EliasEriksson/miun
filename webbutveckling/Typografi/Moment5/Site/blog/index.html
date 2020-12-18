@@ -11,7 +11,8 @@
     <header>
         <div id="logo">
             <a href="..">
-                <img src="../media/tea_logo.svg" alt="temp logo">
+                <img src="../media/tea_logo.svg"
+                     alt="logotype of teascript software foundation">
             </a>
             <h1>TeaScript Software Foundation</h1>
         </div>
@@ -30,17 +31,23 @@
 </div>
 <div id="main">
     <main>
-        <section class="posts">
+        <section class="blog-posts">
             <h2>Blog</h2>
-            <article class="post">
+            <article class="blog-post">
                 <h3>Webbtypografi</h3>
-                <div id="blog-img-1" class="fade">
+                <div class="image-container image-full-width">
+                    <div class="blog-image">
+                        
+                        <img src="../media/blog1.jpg"
+                             alt="image of the book Daring space by Daniel Koepke">
+
+                    </div>
                     <span class="image-creator">
-                        Daniell Koepke
+                        <a href="https://www.flickr.com/photos/bookcatalog/">Book Catalog</a>
                     </span>
                 </div>
-                <blockquote>
-                    <p class="quote">
+                <blockquote class="quote">
+                    <p>
                         <span class="quote-start">&ldquo;</span>
                         <span class="quote-content">
                         Den som vid sidan av arbetet med datorn utvecklar sitt seende och
@@ -50,13 +57,13 @@
                         Forsbergs fotspår. Jag skulle läsa allt jag kom över om typografi, jag skulle skaffa mig
                         kalligrafiska redskap och hänge mig åt hantverket trots, eller just därför, att det är med datorer
                         jag skall arbeta.
-                    </span>
-                        <span class="quote-end">&rdquo;</span><br>
-                        <span class="quote-author">HC Ericson, professor grafisk design Mittuniversitetet</span>
+                    </span><br>
+                    <span class="quote-author">- HC Ericson, professor grafisk design Mittuniversitetet</span>
+                    <span class="quote-end">&rdquo;</span>
                     </p>
                 </blockquote>
                 <div class="article-footer">
-                    <div class="tags">
+                    <div class="article-tags">
                         <a href="https://sv.wikipedia.org/wiki/Webbdesign"
                            class="tag">
                             <span class="button">Web design</span>
@@ -75,7 +82,7 @@
                     </div>
                 </div>
             </article>
-            <article class="post">
+            <article class="blog-post">
                 <h3>Välja typsnitt är ibland första steget</h3>
                 <h4 class="lead-text">
                     Att välja ett bra typsnitt är bara en liten del av god typografi. Ännu viktigare är vad du gör med
@@ -143,7 +150,6 @@
                     <li>Trebuchet MS</li>
                     <li>Verdana</li>
                 </ul>
-                <!--   kanske bara p tagg     -->
                 <p>
                     För en lista med typsnitt så surfa hit:
                     <br><a href="http://mkv.itm.miun.se/personal/mikael.becker/typografi/lista.html">
@@ -170,9 +176,16 @@
                     kan
                     behöva justeras.
                 </p>
-                <!--  @ Infoga en stående bild, bredd ungefär en fjärdedel av radlängden.
-                Lägg till fotograf/illustratör och en kort synlig bildtext  -->
-                <img>
+                <div class="image-container image-quarter-width">
+                    <div class="blog-image">
+                        <img src="../media/blog2.jpg"
+                             alt="black and white picture of a pile of books">
+                    </div>
+                    <span class="image-creator">
+                        <a href="https://www.flickr.com/photos/pimthida/">Pimthida</a>
+                    </span>
+                </div>
+
                 <h4>Respektera texten och läsaren</h4>
                 <h5 class="lead-text">
                     Kursiv och understruken text är mer svårläst på skärm. Så markera kortare citat med fet text, eller
@@ -192,38 +205,43 @@
                 <p>
                     De flesta webbläsarna är för snåla med radavstånd, öka på 1-2 pixlar eller 10-20 %.
                 </p>
-                <!--   quote     -->
-                <p>
-                    "Även det bästa typsnitt kan fördärvas av en slarvigt genomförd typografi."
-                    <span>Carl Fredrik Hultenheim</span>
-                </p>
+                <blockquote class="quote">
+                    <p>
+                        <span class="quote-start">&ldquo;</span>
+                        <span>
+                            Även det bästa typsnitt kan fördärvas av en slarvigt genomförd typografi.
+                        </span>
+                        <span class="quote-end">&rdquo;</span>
+                        <span class="quote-author">- Carl Fredrik Hultenheim</span>
+                    </p>
+                </blockquote>
                 <div class="article-footer">
-                    <div class="tags">
-                    <a href="https://sv.wikipedia.org/wiki/Typsnitt"
-                       class="tag">
-                        <span class="button">Typsnitt</span>
-                    </a>
-                    <a href="https://sv.wikipedia.org/wiki/Typografi"
-                       class="tag">
-                        <span class="button">typografi</span>
-                    </a>
-                    <a href="https://sv.wikipedia.org/wiki/Typografi#L%C3%A4sbarhet"
-                       class="tag">
-                        <span class="button">läsbarhet</span>
-                    </a>
-                    <a href="https://sv.wikipedia.org/wiki/L%C3%A4sbarhetsindex"
-                       class="tag">
-                        <span class="button">läslighet</span>
-                    </a>
-                    <a href="https://sv.wikipedia.org/wiki/World_Wide_Web"
-                       class="tag">
-                        <span class="button">webb</span>
-                    </a>
-                    <a href="https://sv.wikipedia.org/wiki/Bildsk%C3%A4rm"
-                       class="tag">
-                        <span class="button">skärm</span>
-                    </a>
-                </div>
+                    <div class="article-tags">
+                        <a href="https://sv.wikipedia.org/wiki/Typsnitt"
+                           class="tag">
+                            <span class="button">Typsnitt</span>
+                        </a>
+                        <a href="https://sv.wikipedia.org/wiki/Typografi"
+                           class="tag">
+                            <span class="button">typografi</span>
+                        </a>
+                        <a href="https://sv.wikipedia.org/wiki/Typografi#L%C3%A4sbarhet"
+                           class="tag">
+                            <span class="button">läsbarhet</span>
+                        </a>
+                        <a href="https://sv.wikipedia.org/wiki/L%C3%A4sbarhetsindex"
+                           class="tag">
+                            <span class="button">läslighet</span>
+                        </a>
+                        <a href="https://sv.wikipedia.org/wiki/World_Wide_Web"
+                           class="tag">
+                            <span class="button">webb</span>
+                        </a>
+                        <a href="https://sv.wikipedia.org/wiki/Bildsk%C3%A4rm"
+                           class="tag">
+                            <span class="button">skärm</span>
+                        </a>
+                    </div>
                     <div class="publication">
                         <span class="article-author">Skriven av Mikael Becker</span>
                         <span class="article-date">Publicerad 2012-11-01</span>
@@ -232,7 +250,7 @@
 
 
             </article>
-            <article class="post">
+            <article class="blog-post">
                 <h3>Kontrast, för lite, för mycket …</h3>
                 <p>
                     Längre tillbaka i tiden, då de flesta klassiska typsnitten gjordes, var problemet att vi hade svårt
@@ -262,7 +280,15 @@
                 <p>
                     Kom ihåg att kontrollera färgerna på dina länkar också.
                 </p>
-                <img>
+                <div class="image-container image-quarter-width">
+                    <div class="blog-image">
+                        <img src="../media/blog3.jpg" alt="an open book">
+                    </div>
+                    <span class="image-creator">
+                        <a href="https://www.flickr.com/photos/47568016@N03/">Alissa Ann Smith</a>
+                    </span>
+                </div>
+
                 <h4>
                     Kom ihåg de typografiska detaljerna
                 </h4>
@@ -285,9 +311,14 @@
                     använda men
                     en skärm är oftast för grov för att man ska kunna se skillnad på äkta och falska kapitäler.
                 </p>
-                <img>
+                <div class="image-container image-quarter-width">
+                    <div class="blog-image">
+                        <img src="../media/blog4.jpg" alt="">
+                    </div>
+                    <span class="image-creator"><a href="https://www.flickr.com/photos/peterscherub/">judy dean</a></span>
+                </div>
                 <div class="article-footer">
-                    <div class="tags">
+                    <div class="article-tags">
                         <a href="https://sv.wikipedia.org/wiki/Design"
                            class="tag">
                             <span class="button">Design</span>
@@ -315,8 +346,13 @@
                     </div>
                 </div>
             </article>
-            <article class="post">
-                <img>
+            <article class="blog-post">
+                <div class="image-container image-full-width">
+                    <div class="blog-image">
+                        <img src="../media/blog5.jpg" alt="an old book">
+                    </div>
+                    <span class="image-creator"><a href="https://www.flickr.com/photos/spbpda/">Saint-Petersburg Theological Academy</a></span>
+                </div>
                 <h3>Frames och tables ska inte användas för layout</h3>
                 <p>
                     Använd inte frames, använd server-side includes istället (eller php, asp …). Använd inte tabeller
@@ -436,7 +472,7 @@
                     </li>
                 </ol>
                 <div class="article-footer">
-                    <div class="tags">
+                    <div class="article-tags">
                         <a href="https://sv.wikipedia.org/wiki/Design"
                            class="tag">
                             <span class="button">Design</span>
@@ -474,8 +510,8 @@
 <div id="footer">
     <footer>
         <p>Copyright 2020 TeaScript Software Foundation</p>
-        <a href="mailto:TeaScriptSoftwareFoundation@gmail.com">TeaScriptSoftwareFoundation@gmail.com</a>
-        <a href="tel:+46832727478">+4683 27 27 478</a>
+        <p><a href="mailto:TeaScriptSoftwareFoundation@gmail.com">TeaScriptSoftwareFoundation@gmail.com</a></p>
+        <p><a href="tel:+46832727478">+4683 27 27 478</a></p>
     </footer>
 </div>
 </body>
