@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <div class="top-header">
+        <img class="logo" src="../../media/logo.png" alt="logo">
+        <div class="cart">
+            <div id="cartButton" class="button">
+                <a href="#">
+                    <img src="../../media/cart.png" alt="shopping cart">
+                    <p>Kundvagn</p>
+                </a>
+            </div>
+            <div id="cartContent" class="cartContent">
+                <ul id="basket"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-header">
+        <div id="main-menu-button" class="menu-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <form class="search">
+            <input class="search-field" aria-label="sök" type="text">
+            <input class="search-button" type="submit" value="Sök">
+        </form>
+    </div>
+</header>
+<div id="main">
+    <nav id="main-navigation">
+        <a href="../../Category/Vinglas/"><p>Vinglas</p></a>
+        <a href="../../Category/Dricksglas/"><p>Dricksglas</p></a>
+        <a href="../../Category/Champagneglas/"><p>Champagneglas</p></a>
+    </nav>
+    <main>
+        <article class="product-page">
+            <div class="full-product-preview">
+                <picture>
+                    <source srcset="../../media/glass.avif" type="image/avif">
+                    <source srcset="../../media/glass.webp" type="image/webp">
+                    <img src="../../media/glass.jpg" alt="Rakt Champagneglas">
+                </picture>
+            </div>
+            <div class="full-product-info">
+                <h1>Rakt Champagneglas</h1>
+                <p> Ett Rakt Champagneglas som passar perfekt till alla fina middagar och festligheter.</p>
+            </div>
+            <div class="storage-status-card">
+                <h2>Lagerstatus</h2>
+                <table>
+                    <tr>
+                        <td>Glasblåsargatan Göteborg</td>
+                        <td>67</td>
+                    </tr>
+                    <tr>
+                        <td>Glaskrossargatan Stockholm</td>
+                        <td>49</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="purchase-card">
+                <p>129:-</p>
+                <button>Köp</button>
+            </div>
+        </article>
+    </main>
+</div>
+<footer>
+    <div class="contact-us">
+        <h2>Kontakta Oss</h2>
+        <ul>
+            <li>
+                <address>Telefon: <a href="tel:+464527582236"> +46 452 758 22 36</a></address>
+            </li>
+            <li>
+                <address>Mail: <a href="mailto:support@glasjatten.se">support@glasjatten.se</a></address>
+            </li>
+        </ul>
+    </div>
+    <div class="open-hours">
+        <h2>Våra Öppettider</h2>
+        <ul>
+            <li>Mondag - Fredag 07:00 - 19:00</li>
+            <li>Lördag 10:00 - 17:00</li>
+            <li>Söndag Stängt</li>
+        </ul>
+    </div>
+    <div class="stores">
+        <h2>Våra Butiker</h2>
+        <ul>
+            <li>
+                <address>Glasblåsargatan 1 Göteborg</address>
+            </li>
+            <li>
+                <address>Glaskrossargatan 2 Stockholm</address>
+            </li>
+        </ul>
+    </div>
+</footer>
+<script src="../../static/js/main.js"></script>
+<script src="../../static/js/webshop.js"></script>
+</body>
+</html>
