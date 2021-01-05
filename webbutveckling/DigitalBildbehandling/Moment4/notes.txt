@@ -1,0 +1,24 @@
+Glas Jätten
+att ha med:
+	- Kontakt information (mail, tele, address)
+	- retur policy
+	- se snygg ut
+	- kända payment känster
+	- responsiv
+	- lätt navigation
+	Undersidor: 
+		- about us
+		- best sellers
+		- shop
+		- contact us
+		- big cart
+		- verify
+		- small cart
+		- form for personal information for checkout
+		- confirmation page
+		
+	- inget clutter
+	- bra spacing
+	- full page cart och small cart
+	- undvik att ha för många fält i personuppgift formulär vid checkout
+	- verify page
