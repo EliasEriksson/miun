@@ -7,6 +7,11 @@ let mainNavigationElement = document.getElementById("main-navigation");
 let searchButtonElement = document.getElementById("search-button")
 let lastScroll = 0;
 
+async function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+
 // to hide the search bar
 window.addEventListener("scroll", function (){
     if (window.pageYOffset > lastScroll) {
@@ -28,7 +33,8 @@ cartButtonElement.addEventListener("click", function () {
 });
 
 // hide the card when it loses focus
-cartButtonElement.addEventListener("focusout", function () {
+cartButtonElement.addEventListener("focusout", async function () {
+    await sleep(10);
     cartContentElement.style.display = "none";
 });
 
@@ -37,6 +43,7 @@ mainMenuButtonElement.addEventListener("click", function () {
     if (mainNavigationElement.style.display === "none" || mainNavigationElement.style.display === "") {
         mainNavigationElement.style.display = "flex";
     } else {
+
         mainNavigationElement.style.display = "none";
     }
 });

@@ -17,7 +17,7 @@
                     <p>Kundvagn</p>
                 </a>
             </div>
-            <div id="cartContent" class="cartContent">
+            <div id="cartContent" class="cart-content">
                 <ul id="basket"></ul>
             </div>
         </div>
@@ -42,33 +42,39 @@
     </nav>
     <main>
         <article class="product-page">
-            <div class="full-product-preview">
-                <picture>
-                    <source srcset="../../media/glass.avif" type="image/avif">
-                    <source srcset="../../media/glass.webp" type="image/webp">
-                    <img src="../../media/glass.jpg" alt="Rakt Champagneglas">
-                </picture>
+            <div class="full-product">
+                <div class="full-product-preview">
+                    <picture>
+                        <source srcset="../../media/glass.avif" type="image/avif">
+                        <source srcset="../../media/glass.webp" type="image/webp">
+                        <img src="../../media/glass.jpg" alt="Rakt Champagneglas">
+                    </picture>
+                </div>
+                <div class="full-product-info">
+                    <h1>Rakt Champagneglas</h1>
+                    <p> Ett Rakt Champagneglas som passar perfekt till alla fina middagar och festligheter.</p>
+                </div>
             </div>
-            <div class="full-product-info">
-                <h1>Rakt Champagneglas</h1>
-                <p> Ett Rakt Champagneglas som passar perfekt till alla fina middagar och festligheter.</p>
-            </div>
-            <div class="storage-status-card">
-                <h2>Lagerstatus</h2>
-                <table>
-                    <tr>
-                        <td>Glasblåsargatan Göteborg</td>
-                        <td>67</td>
-                    </tr>
-                    <tr>
-                        <td>Glaskrossargatan Stockholm</td>
-                        <td>49</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="purchase-card">
-                <p>129:-</p>
-                <button>Köp</button>
+            <div class="purchase-info">
+                <div class="storage-status-card">
+                    <h2>Lagerstatus</h2>
+                    <div class="storage-status">
+                        <p>Glasblåsargatan Göteborg</p>
+                        <p class="storage-amount">67 st</p>
+                    </div>
+                    <div class="storage-status">
+                        <p>Glaskrossargatan Stockholm</p>
+                        <p class="storage-amount">49 st</p>
+                    </div>
+                </div>
+                <div class="purchase-card">
+                    <p class="product-page-price">129 :-</p>
+                    <button class="add-to-cart-button"
+                            onclick="addToBasket(
+                                this, 'c0b5c33c', 'Rakt Champagneglas',
+                                129, '../media/glass.jpg')"
+                    >Köp</button>
+                </div>
             </div>
         </article>
     </main>

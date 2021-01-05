@@ -11,17 +11,43 @@ body {
     font-size: 1.25rem;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
 
 main h1 {
     text-align: center;
 }
+
 img {
     display: block;
     max-width: 100%;
     max-height: 100%;
 }
 
-.button > a {
+.block-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    padding: 2px 2px;
+}
+
+.grouped-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-button {
+    padding: 0 10px;
+    height: 100%;
+}
+
+.cart-button {
     display: flex;
     gap: 5px;
     align-items: center;
@@ -34,13 +60,39 @@ img {
     align-items: center;
 }
 
-.cartContent {
+.cart-content {
     position: absolute;
     display: none;
     top: 32px;
     right: 0;
     background-color: orange;
-    padding: 5px 20px;
+}
+
+.basket {
+    padding: 10px 20px;
+}
+
+.internal-cart-buttons {
+    display: flex;
+    white-space: nowrap;
+}
+
+.internal-cart-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    min-width: fit-content;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.to-checkout-button {
+    background-color: lightgreen;
+}
+
+.empty-basket-button {
+    background-color: salmon;
 }
 
 #basket {
@@ -62,7 +114,6 @@ body {
     justify-content: space-between;
     height: 32px;
     background-color: lightgreen;
-    padding: 4px 20px;
 }
 
 .bottom-header {
@@ -171,23 +222,37 @@ main {
 
 .product-page {
     display: grid;
+    gap: 10px;
+    padding: 10px;
     grid-template-columns: 1fr auto;
     background-color: lightcoral;
+}
+
+.full-product {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .full-product-preview {
     display: flex;
     justify-content: center;
+    background-color: skyblue;
 }
 
 .full-product-info {
-    grid-column: 1;
+    padding: 10px;
     background-color: darkseagreen;
 }
 
+.purchase-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .storage-status-card {
-    grid-row: 1;
-    grid-column: 2;
+    padding: 20px;
     background-color: lavenderblush;
 }
 
@@ -195,6 +260,69 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
+    padding: 20px;
+    background-color: mediumspringgreen;
+}
+
+.product-page-price {
+
+}
+
+.storage-status {
+    display: flex;
+    justify-content: space-between;
+}
+
+.storage-amount {
+    margin-left: 2ch;
+    white-space: nowrap;
+}
+
+.add-to-cart-button {
+    padding: 5px;
+    min-width: fit-content;
+    width: 80%;
+}
+
+.checkout {
+    padding: 10px;
+    width: 100%;
+}
+
+.checkout-product-heading {
+    text-align: left;
+}
+
+.user-credentials, .user-living-credentials, .user-payment-credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.side-by-side {
+    display: flex;
+    gap: 10px;
+}
+
+.side-by-side label {
+    width: 100%;
+}
+
+.user-credentials {
+    padding: 10px;
+    gap: 20px;
+}
+
+.user-credentials input {
+    display: block;
+    width: 100%;
+    padding: 3px;
+    outline: none;
+}
+
+.cancel-purchase-button {
+    width: 100%;
 }
 
 footer {
@@ -220,6 +348,10 @@ footer li {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .product-page {
+        grid-template-columns: 1fr;
     }
 }
 

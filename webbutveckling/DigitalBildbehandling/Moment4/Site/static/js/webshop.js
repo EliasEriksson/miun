@@ -261,6 +261,8 @@ function showSmallBasket() {
 }
 
 /* Visa kassan */
+// MODIFIERAD AV ELIAS ERIKSSON
+// funktionen skriver inte längre ut varans ID nummer i kassa tabellen
 function showCheckout() {
     if (document.getElementById("checkout")) {
         let basketItems = JSON.parse(localStorage.getItem("basket"));
@@ -297,9 +299,9 @@ function showCheckout() {
                 var artImage = basketItems[i].artImage;
 
                 // Skapa nytt element
+
                 checkoutEl.innerHTML += "<tr>" +
                     "<td><img src='" + artImage + "' alt='Produktbild för " + artName + "' />" +
-                    "<td>" + artId + "</td>" +
                     "<td>" + artName + "</td>" +
                     "<td>" + numItems + " st.</td>" +
                     "<td>" + itemSumCost + ":-</td>" +
