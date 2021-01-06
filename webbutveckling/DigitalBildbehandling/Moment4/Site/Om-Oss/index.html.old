@@ -9,56 +9,47 @@
 <body>
 <div class="page">
     <header>
-        <div class="header-wrapper top-header-color">
-            <div class="top-header">
-                 <a href="../" class="block-link fit">
-                    <picture class="logo-picture">
-                        <source srcset="../media/logo.avif" type="image/avif">
-                        <source srcset="../media/logo.webp" type="image/webp">
-                        <img class="logo" src="../media/logo.png" alt="logo">
-                    </picture>
-                    <p class="logo-text"><span class="logo-letter">J</span>ätten</p>
+        <div class="top-header">
+            <a href="./" class="block-link fit">
+                <img class="logo" src="../media/logo.png" alt="logo">
+            </a>
+            <div class="grouped-menu">
+                <a href="../Om-Oss/" class="block-link header-button">
+                    <p>Om Oss</p>
                 </a>
-                <div class="grouped-menu">
-                    <a href="../Om-Oss/" class="block-link header-button">
-                        <p>Om Oss</p>
-                    </a>
-                    <div class="cart header-button">
-                        <a href="" id="cartButton" class="cart-button">
-                            <img src="../media/cart.png" alt="shopping cart">
-                            <p>Kundvagn</p>
-                        </a>
-                        <div id="cartContent" class="cart-content">
-                            <ul id="basket" class="basket"></ul>
-                            <div class="internal-cart-buttons">
-                                <a href="../Checkout/" class="internal-cart-button to-checkout-button">
-                                    <p>Till kassan</p>
-                                </a>
-                                <a href="" id="emptyBasketButton" class="internal-cart-button empty-basket-button">
-                                    <p>Töm kundvagnen</p>
-                                </a>
+                <div class="cart header-button">
+                    <div id="cartButton" class="cart-button">
+                        <img src="../media/cart.png" alt="shopping cart">
+                        <p>Kundvagn</p>
+                    </div>
+                    <div id="cartContent" class="cart-content">
+                        <ul id="basket" class="basket"></ul>
+                        <div class="internal-cart-buttons">
+                            <a class="internal-cart-button to-checkout-button" href="../Checkout/">
+                                <p>Till kassan</p>
+                            </a>
+                            <div class="internal-cart-button empty-basket-button">
+                                <p>Töm kundvagnen</p>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
             </div>
         </div>
-        <div class="header-wrapper bottom-header-color">
-            <div class="bottom-header">
-                <div id="main-menu-button" class="menu-icon">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <form class="search" action="../Search/">
-                    <input id="search-field" class="search-field" aria-label="sök" type="text">
-                    <input id="search-button"
-                           class="search-button"
-                           type="submit"
-                           value="Sök">
-                </form>
+        <div class="bottom-header">
+            <div id="main-menu-button" class="menu-icon">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
+            <form class="search" action="../Search/">
+                <input id="search-field" class="search-field" aria-label="sök" type="text">
+                <input id="search-button"
+                       class="search-button"
+                       type="submit"
+                       value="Sök">
+            </form>
         </div>
     </header>
     <div id="main">

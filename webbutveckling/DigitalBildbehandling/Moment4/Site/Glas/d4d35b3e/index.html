@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="page">
+    <header>
+        <div class="header-wrapper top-header-color">
+            <div class="top-header">
+                 <a href="../../" class="block-link fit">
+                    <picture class="logo-picture">
+                        <source srcset="../../media/logo.avif" type="image/avif">
+                        <source srcset="../../media/logo.webp" type="image/webp">
+                        <img class="logo" src="../../media/logo.png" alt="logo">
+                    </picture>
+                    <p class="logo-text"><span class="logo-letter">J</span>ätten</p>
+                </a>
+                <div class="grouped-menu">
+                    <a href="../../Om-Oss/" class="block-link header-button">
+                        <p>Om Oss</p>
+                    </a>
+                    <div class="cart header-button">
+                        <a href="" id="cartButton" class="cart-button">
+                            <img src="../../media/cart.png" alt="shopping cart">
+                            <p>Kundvagn</p>
+                        </a>
+                        <div id="cartContent" class="cart-content">
+                            <ul id="basket" class="basket"></ul>
+                            <div class="internal-cart-buttons">
+                                <a href="../../Checkout/" class="internal-cart-button to-checkout-button">
+                                    <p>Till kassan</p>
+                                </a>
+                                <a href="" id="emptyBasketButton" class="internal-cart-button empty-basket-button">
+                                    <p>Töm kundvagnen</p>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-wrapper bottom-header-color">
+            <div class="bottom-header">
+                <div id="main-menu-button" class="menu-icon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <form class="search" action="../../Search/">
+                    <input id="search-field" class="search-field" aria-label="sök" type="text">
+                    <input id="search-button"
+                           class="search-button"
+                           type="submit"
+                           value="Sök">
+                </form>
+            </div>
+        </div>
+    </header>
+    <div id="main">
+        <nav id="main-navigation">
+            <a href="../../Category/Vinglas"><p>Vinglas</p></a>
+            <a href="../../Category/Dricksglas"><p>Dricksglas</p></a>
+            <a href="../../Category/Champagneglas"><p>Champagneglas</p></a>
+        </nav>
+        <main>
+            <article class="product-page">
+                <div class="full-product">
+                    <div class="full-product-preview">
+                        <picture>
+                            <source srcset="../../media/glass.avif" type="image/avif">
+                            <source srcset="../../media/glass.webp" type="image/webp">
+                            <img src="../../media/glass.jpg" alt="Rakt Champagneglas">
+                        </picture>
+                    </div>
+                    <div class="full-product-info">
+                        <h1>Litet kupat Dricksglas</h1>
+                        <p> Ett mindre dricksglas för de mindre små. Passar bra till barnkalas!</p>
+                    </div>
+                </div>
+                <div class="purchase-info">
+                    <div class="storage-status-card">
+                        <h2>Lagerstatus</h2>
+                        <div class="storage-status">
+                            <p>Glasblåsargatan Göteborg</p>
+                            <p class="storage-amount">17 st</p>
+                        </div>
+                        <div class="storage-status">
+                            <p>Glaskrossargatan Stockholm</p>
+                            <p class="storage-amount">16 st</p>
+                        </div>
+                    </div>
+                    <div class="purchase-card">
+                        <p class="product-page-price">29 :-</p>
+                        <button class="add-to-cart-button"
+                                onclick="addToBasket(
+                                this, 'c0b5c33c', 'Litet kupat Dricksglas',
+                                29, '../media/glass.jpg')"
+                        >Köp
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </main>
+    </div>
+</div>
+<footer>
+    <div class="contact-us">
+        <h2>Kontakta Oss</h2>
+        <ul>
+            <li>
+                <address>Telefon: <a href="tel:+464527582236"> +46 452 758 22 36</a></address>
+            </li>
+            <li>
+                <address>Mail: <a href="mailto:support@glasjatten.se">support@glasjatten.se</a></address>
+            </li>
+        </ul>
+    </div>
+    <div class="open-hours">
+        <h2>Våra Öppettider</h2>
+        <ul>
+            <li>Mondag - Fredag 07:00 - 19:00</li>
+            <li>Lördag 10:00 - 17:00</li>
+            <li>Söndag Stängt</li>
+        </ul>
+    </div>
+    <div class="stores">
+        <h2>Våra Butiker</h2>
+        <ul>
+            <li>
+                <address>Glasblåsargatan 1 Göteborg</address>
+            </li>
+            <li>
+                <address>Glaskrossargatan 2 Stockholm</address>
+            </li>
+        </ul>
+    </div>
+</footer>
+<script src="../../static/js/main.js"></script>
+<script src="../../static/js/webshop.js"></script>
+</body>
+</html>

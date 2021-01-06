@@ -37,6 +37,9 @@ img {
     max-height: 100%;
 }
 
+picture {
+}
+
 .spacer {
     height: 0.75em;
 }
@@ -51,6 +54,19 @@ img {
     align-items: center;
 }
 
+.logo-text {
+    font-weight: 800;
+}
+
+.logo-letter {
+    color: var(--blue);
+}
+
+.logo-picture {
+    height: 100%;
+    width: 100%;
+}
+
 .logo {
     padding: 2px 2px;
 }
@@ -59,14 +75,15 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
 .header-button {
-    padding: 0 10px;
     height: 100%;
 }
 
 .cart-button {
+    padding: 0 10px;
     display: flex;
     gap: 5px;
     align-items: center;
@@ -228,6 +245,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding-bottom: 20px;
+    border: 1px solid var(--shade3);
 }
 
 .card-product-info, .card-product-price {
@@ -275,9 +293,12 @@ main {
 .product-page {
     display: grid;
     gap: 10px;
-    padding: 10px;
     grid-template-columns: 1fr auto;
-    background-color: lightcoral;
+    background-color: var(--shade3);
+}
+
+.product-page > * > * {
+    background-color: var(--shade4);
 }
 
 .full-product {
@@ -289,12 +310,10 @@ main {
 .full-product-preview {
     display: flex;
     justify-content: center;
-    background-color: skyblue;
 }
 
 .full-product-info {
     padding: 10px;
-    background-color: darkseagreen;
 }
 
 .purchase-info {
@@ -305,7 +324,10 @@ main {
 
 .storage-status-card {
     padding: 20px;
-    background-color: lavenderblush;
+}
+
+.storage-status-card > h2 {
+    margin-bottom: 10px;
 }
 
 .purchase-card {
@@ -314,11 +336,6 @@ main {
     align-items: center;
     gap: 10px;
     padding: 20px;
-    background-color: mediumspringgreen;
-}
-
-.product-page-price {
-
 }
 
 .storage-status {
@@ -335,11 +352,17 @@ main {
     padding: 5px;
     min-width: fit-content;
     width: 80%;
+    background-color: var(--green);
+    border: none;
 }
 
 .checkout {
     padding: 10px;
     width: 100%;
+}
+
+.checkout-sum {
+    text-align: right;
 }
 
 .checkout-product-heading {
@@ -375,10 +398,17 @@ main {
 
 .cancel-purchase-button {
     width: 100%;
+    background-color: var(--red);
+    border: none;
 }
 
 .about {
     padding: 20px;
+}
+
+.buy-button {
+    background-color: var(--green);
+    border: none;
 }
 
 footer {

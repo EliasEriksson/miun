@@ -10,12 +10,12 @@ class Product {
 }
 
 let products = {
-    "Rakt Champagneglas": new Product("c0b5c33c", 100, "../media/glass.jpg"),
-    "Litet kupat Dricksglas": new Product("d4d35b3e", 100, "../media/glass.jpg"),
-    "Kupat Dricksglas": new Product("d7000c2e", 100, "../media/glass.jpg"),
-    "Rakt Dricksglas": new Product("dd4bd193", 100, "../media/glass.jpg"),
-    "Kupat Vinglas": new Product("v74f32ec", 100, "../media/glass.jpg"),
-    "Vinglas": new Product("vf380160", 100, "../media/glass.jpg")
+    "Rakt Champagneglas": new Product("c0b5c33c", 129, "../media/glass.jpg"),
+    "Litet kupat Dricksglas": new Product("d4d35b3e", 29, "../media/glass.jpg"),
+    "Kupat Dricksglas": new Product("d7000c2e", 39, "../media/glass.jpg"),
+    "Rakt Dricksglas": new Product("dd4bd193", 39, "../media/glass.jpg"),
+    "Kupat Vinglas": new Product("v74f32ec", 89, "../media/glass.jpg"),
+    "Vinglas": new Product("vf380160", 79, "../media/glass.jpg")
 }
 
 function removeFileExtension(path) {
@@ -55,7 +55,7 @@ function generateProductInfo(productName) {
 
 function generatePrice(product) {
     let pElement = document.createElement("p");
-    pElement.innerHTML = product.price;
+    pElement.innerHTML = product.price + " :-";
     pElement.classList.add("card-product-price");
     return pElement;
 }

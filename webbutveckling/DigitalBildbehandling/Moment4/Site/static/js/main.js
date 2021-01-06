@@ -1,5 +1,6 @@
 let cartButtonElement = document.getElementById("cartButton");
 let cartContentElement = document.getElementById("cartContent");
+let emptyBasketButton = document.getElementById("emptyBasketButton");
 
 let mainMenuButtonElement = document.getElementById("main-menu-button");
 let mainNavigationElement = document.getElementById("main-navigation");
@@ -7,10 +8,9 @@ let mainNavigationElement = document.getElementById("main-navigation");
 let searchButtonElement = document.getElementById("search-button")
 let lastScroll = 0;
 
-async function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
-
 
 // to hide the search bar
 window.addEventListener("scroll", function (){
@@ -24,7 +24,8 @@ window.addEventListener("scroll", function (){
 })
 
 // show the cart when clicking
-cartButtonElement.addEventListener("click", function () {
+cartButtonElement.addEventListener("click",     function (e) {
+    e.preventDefault();
     if (cartContentElement.style.display === "none" || cartContentElement.style.display === "") {
         cartContentElement.style.display = "block";
     } else {
@@ -33,10 +34,15 @@ cartButtonElement.addEventListener("click", function () {
 });
 
 // hide the card when it loses focus
-cartButtonElement.addEventListener("focusout", async function () {
-    await sleep(10);
+cartButtonElement.addEventListener("blur", async function () {
+   await sleep(200);
     cartContentElement.style.display = "none";
 });
+
+emptyBasketButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    emptyBasket();
+})
 
 // toggle main menu
 mainMenuButtonElement.addEventListener("click", function () {

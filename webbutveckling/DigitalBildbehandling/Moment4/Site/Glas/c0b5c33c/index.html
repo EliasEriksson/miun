@@ -7,77 +7,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<header>
-    <div class="top-header">
-        <img class="logo" src="../../media/logo.png" alt="logo">
-        <div class="cart">
-            <div id="cartButton" class="button">
-                <a href="#">
-                    <img src="../../media/cart.png" alt="shopping cart">
-                    <p>Kundvagn</p>
-                </a>
-            </div>
-            <div id="cartContent" class="cart-content">
-                <ul id="basket"></ul>
-            </div>
-        </div>
-    </div>
-    <div class="bottom-header">
-        <div id="main-menu-button" class="menu-icon">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <form class="search">
-            <input class="search-field" aria-label="sök" type="text">
-            <input class="search-button" type="submit" value="Sök">
-        </form>
-    </div>
-</header>
-<div id="main">
-    <nav id="main-navigation">
-        <a href="../../Category/Vinglas/"><p>Vinglas</p></a>
-        <a href="../../Category/Dricksglas/"><p>Dricksglas</p></a>
-        <a href="../../Category/Champagneglas/"><p>Champagneglas</p></a>
-    </nav>
-    <main>
-        <article class="product-page">
-            <div class="full-product">
-                <div class="full-product-preview">
-                    <picture>
-                        <source srcset="../../media/glass.avif" type="image/avif">
-                        <source srcset="../../media/glass.webp" type="image/webp">
-                        <img src="../../media/glass.jpg" alt="Rakt Champagneglas">
+<div class="page">
+    <header>
+        <div class="header-wrapper top-header-color">
+            <div class="top-header">
+                 <a href="../../" class="block-link fit">
+                    <picture class="logo-picture">
+                        <source srcset="../../media/logo.avif" type="image/avif">
+                        <source srcset="../../media/logo.webp" type="image/webp">
+                        <img class="logo" src="../../media/logo.png" alt="logo">
                     </picture>
-                </div>
-                <div class="full-product-info">
-                    <h1>Rakt Champagneglas</h1>
-                    <p> Ett Rakt Champagneglas som passar perfekt till alla fina middagar och festligheter.</p>
+                    <p class="logo-text"><span class="logo-letter">J</span>ätten</p>
+                </a>
+                <div class="grouped-menu">
+                    <a href="../../Om-Oss/" class="block-link header-button">
+                        <p>Om Oss</p>
+                    </a>
+                    <div class="cart header-button">
+                        <a href="" id="cartButton" class="cart-button">
+                            <img src="../../media/cart.png" alt="shopping cart">
+                            <p>Kundvagn</p>
+                        </a>
+                        <div id="cartContent" class="cart-content">
+                            <ul id="basket" class="basket"></ul>
+                            <div class="internal-cart-buttons">
+                                <a href="../../Checkout/" class="internal-cart-button to-checkout-button">
+                                    <p>Till kassan</p>
+                                </a>
+                                <a href="" id="emptyBasketButton" class="internal-cart-button empty-basket-button">
+                                    <p>Töm kundvagnen</p>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-            <div class="purchase-info">
-                <div class="storage-status-card">
-                    <h2>Lagerstatus</h2>
-                    <div class="storage-status">
-                        <p>Glasblåsargatan Göteborg</p>
-                        <p class="storage-amount">67 st</p>
+        </div>
+        <div class="header-wrapper bottom-header-color">
+            <div class="bottom-header">
+                <div id="main-menu-button" class="menu-icon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <form class="search" action="../../Search/">
+                    <input id="search-field" class="search-field" aria-label="sök" type="text">
+                    <input id="search-button"
+                           class="search-button"
+                           type="submit"
+                           value="Sök">
+                </form>
+            </div>
+        </div>
+    </header>
+    <div id="main">
+        <nav id="main-navigation">
+            <a href="../../Category/Vinglas"><p>Vinglas</p></a>
+            <a href="../../Category/Dricksglas"><p>Dricksglas</p></a>
+            <a href="../../Category/Champagneglas"><p>Champagneglas</p></a>
+        </nav>
+        <main>
+            <article class="product-page">
+                <div class="full-product">
+                    <div class="full-product-preview">
+                        <picture>
+                            <source srcset="../../media/glass.avif" type="image/avif">
+                            <source srcset="../../media/glass.webp" type="image/webp">
+                            <img src="../../media/glass.jpg" alt="Rakt Champagneglas">
+                        </picture>
                     </div>
-                    <div class="storage-status">
-                        <p>Glaskrossargatan Stockholm</p>
-                        <p class="storage-amount">49 st</p>
+                    <div class="full-product-info">
+                        <h1>Rakt Champagneglas</h1>
+                        <p> Ett Rakt Champagneglas som passar perfekt till alla fina middagar och festligheter.</p>
                     </div>
                 </div>
-                <div class="purchase-card">
-                    <p class="product-page-price">129 :-</p>
-                    <button class="add-to-cart-button"
-                            onclick="addToBasket(
+                <div class="purchase-info">
+                    <div class="storage-status-card">
+                        <h2>Lagerstatus</h2>
+                        <div class="storage-status">
+                            <p>Glasblåsargatan Göteborg</p>
+                            <p class="storage-amount">67 st</p>
+                        </div>
+                        <div class="storage-status">
+                            <p>Glaskrossargatan Stockholm</p>
+                            <p class="storage-amount">49 st</p>
+                        </div>
+                    </div>
+                    <div class="purchase-card">
+                        <p class="product-page-price">129 :-</p>
+                        <button class="add-to-cart-button"
+                                onclick="addToBasket(
                                 this, 'c0b5c33c', 'Rakt Champagneglas',
                                 129, '../media/glass.jpg')"
-                    >Köp</button>
+                        >Köp
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </article>
-    </main>
+            </article>
+        </main>
+    </div>
 </div>
 <footer>
     <div class="contact-us">

@@ -1,14 +1,14 @@
 Glas Jätten
 att ha med:
-	- Kontakt information (mail, tele, address)
-	- retur policy
+	- Kontakt information (mail, tele, address) (footern)
+	- retur policy (skip)
 	- se snygg ut
 	- kända payment känster
 	- responsiv
 	- lätt navigation
 	Undersidor: 
 		- about us
-		- best sellers
+		- best sellers (startsidan)
 		- shop
 		- contact us
 		- big cart

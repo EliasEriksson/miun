@@ -7,45 +7,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<header>
-    <div class="top-header">
-        <img class="logo" src="../media/logo.png" alt="logo">
-        <div class="cart">
-            <div id="cartButton" class="button">
-                <a href="#">
-                    <img src="../media/cart.png" alt="shopping cart">
-                    <p>Kundvagn</p>
+<div class="page">
+    <header>
+        <div class="header-wrapper top-header-color">
+            <div class="top-header">
+                 <a href="../" class="block-link fit">
+                    <picture class="logo-picture">
+                        <source srcset="../media/logo.avif" type="image/avif">
+                        <source srcset="../media/logo.webp" type="image/webp">
+                        <img class="logo" src="../media/logo.png" alt="logo">
+                    </picture>
+                    <p class="logo-text"><span class="logo-letter">J</span>ätten</p>
                 </a>
-            </div>
-            <div id="cartContent" class="cart-content">
-                <ul id="basket"></ul>
-            </div>
-        </div>
-    </div>
-    <div class="bottom-header">
-        <div id="main-menu-button" class="menu-icon">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <form class="search" action="./">
-            <input id="search-field" class="search-field" aria-label="sök" type="text">
-            <input id="search-button" class="search-button" type="submit" value="Sök">
-        </form>
-    </div>
-</header>
-<div id="main">
-    <nav id="main-navigation">
-        <a href="../Category/Vinglas/"><p>Vinglas</p></a>
-        <a href="../Category/Dricksglas/"><p>Dricksglas</p></a>
-        <a href="../Category/Champagneglas/"><p>Champagneglas</p></a>
-    </nav>
-    <main>
-        <h1>Resultat</h1>
-        <div id="search-result" class="products">
+                <div class="grouped-menu">
+                    <a href="../Om-Oss/" class="block-link header-button">
+                        <p>Om Oss</p>
+                    </a>
+                    <div class="cart header-button">
+                        <a href="" id="cartButton" class="cart-button">
+                            <img src="../media/cart.png" alt="shopping cart">
+                            <p>Kundvagn</p>
+                        </a>
+                        <div id="cartContent" class="cart-content">
+                            <ul id="basket" class="basket"></ul>
+                            <div class="internal-cart-buttons">
+                                <a href="../Checkout/" class="internal-cart-button to-checkout-button">
+                                    <p>Till kassan</p>
+                                </a>
+                                <a href="" id="emptyBasketButton" class="internal-cart-button empty-basket-button">
+                                    <p>Töm kundvagnen</p>
+                                </a>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+        <div class="header-wrapper bottom-header-color">
+            <div class="bottom-header">
+                <div id="main-menu-button" class="menu-icon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <form class="search" action="../Search/">
+                    <input id="search-field" class="search-field" aria-label="sök" type="text">
+                    <input id="search-button"
+                           class="search-button"
+                           type="submit"
+                           value="Sök">
+                </form>
+            </div>
+        </div>
+    </header>
+    <div id="main">
+        <nav id="main-navigation">
+            <a href="../Category/Vinglas/"><p>Vinglas</p></a>
+            <a href="../Category/Dricksglas/"><p>Dricksglas</p></a>
+            <a href="../Category/Champagneglas/"><p>Champagneglas</p></a>
+        </nav>
+        <main>
+            <h1>Resultat</h1>
+            <div id="search-result" class="products">
+
+            </div>
+        </main>
+    </div>
 </div>
 <footer>
     <div class="contact-us">

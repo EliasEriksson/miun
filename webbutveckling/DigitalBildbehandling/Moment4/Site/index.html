@@ -12,26 +12,31 @@
         <div class="header-wrapper top-header-color">
             <div class="top-header">
                 <a href="./" class="block-link fit">
-                    <img class="logo" src="media/logo.png" alt="logo">
+                    <picture class="logo-picture">
+                        <source srcset="media/logo.avif" type="image/avif">
+                        <source srcset="media/logo.webp" type="image/webp">
+                        <img class="logo" src="media/logo.png" alt="logo">
+                    </picture>
+                    <p class="logo-text"><span class="logo-letter">J</span>ätten</p>
                 </a>
                 <div class="grouped-menu">
                     <a href="Om-Oss/" class="block-link header-button">
                         <p>Om Oss</p>
                     </a>
                     <div class="cart header-button">
-                        <div id="cartButton" class="cart-button">
+                        <a href="" id="cartButton" class="cart-button">
                             <img src="media/cart.png" alt="shopping cart">
                             <p>Kundvagn</p>
-                        </div>
+                        </a>
                         <div id="cartContent" class="cart-content">
                             <ul id="basket" class="basket"></ul>
                             <div class="internal-cart-buttons">
-                                <a class="internal-cart-button to-checkout-button" href="Checkout/">
+                                <a href="Checkout/" class="internal-cart-button to-checkout-button">
                                     <p>Till kassan</p>
                                 </a>
-                                <div class="internal-cart-button empty-basket-button">
+                                <a href="" id="emptyBasketButton" class="internal-cart-button empty-basket-button">
                                     <p>Töm kundvagnen</p>
-                                </div>
+                                </a>
                             </div>
                         </div>
 
