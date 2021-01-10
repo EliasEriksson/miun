@@ -10,12 +10,12 @@ class Product {
 }
 
 let products = {
-    "Rakt Champagneglas": new Product("c0b5c33c", 129, "../media/glass.jpg"),
-    "Litet kupat Dricksglas": new Product("d4d35b3e", 29, "../media/glass.jpg"),
-    "Kupat Dricksglas": new Product("d7000c2e", 39, "../media/glass.jpg"),
-    "Rakt Dricksglas": new Product("dd4bd193", 39, "../media/glass.jpg"),
-    "Kupat Vinglas": new Product("v74f32ec", 89, "../media/glass.jpg"),
-    "Vinglas": new Product("vf380160", 79, "../media/glass.jpg")
+    "Rakt Champagneglas": new Product("c0b5c33c", 129, "../media/c0b5c33c.200.png"),
+    "Litet kupat Dricksglas": new Product("d4d35b3e", 29, "../media/d4d35b3e.200.png"),
+    "Kupat Dricksglas": new Product("d7000c2e", 39, "../media/d7000c2e.200.png"),
+    "Rakt Dricksglas": new Product("dd4bd193", 39, "../media/dd4bd193.200.png"),
+    "Kupat Vinglas": new Product("v74f32ec", 89, "../media/v74f32ec.200.png"),
+    "Vinglas": new Product("vf380160", 79, "../media/vf380160.200.png")
 }
 
 function removeFileExtension(path) {
@@ -79,9 +79,12 @@ function addSearchResult(productName, product, searchResultElement) {
 window.addEventListener("load", function () {
     let searchResultElement = document.getElementById("search-result");
     let search = decodeURIComponent(window.location.href.split("?")[1]);
-    for (let [name, product] of Object.entries(products)) {
-        if (name.toLowerCase().includes(search)) {
-            addSearchResult(name, product, searchResultElement);
+    if (search) {
+        for (let [name, product] of Object.entries(products)) {
+            if (name.toLowerCase().includes(search)) {
+                addSearchResult(name, product, searchResultElement);
+            }
         }
     }
+
 });

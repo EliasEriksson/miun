@@ -22,3 +22,6 @@ att ha med:
 	- full page cart och small cart
 	- undvik att ha för många fält i personuppgift formulär vid checkout
 	- verify page
+
+bildredigering:
+	b0aca9 e6e0dc

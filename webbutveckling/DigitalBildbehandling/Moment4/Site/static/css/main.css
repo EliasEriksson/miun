@@ -11,7 +11,6 @@
     --green: #65bf30;
     --blue: #40b7e7;
     --red: #cc1f1f;
-
 }
 
 * {
@@ -244,8 +243,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 20px;
+    justify-content: space-between;
+    padding: 20px;
+    /*padding-bottom: 20px;*/
     border: 1px solid var(--shade3);
+    height: 100%;
 }
 
 .card-product-info, .card-product-price {
@@ -310,10 +312,11 @@ main {
 .full-product-preview {
     display: flex;
     justify-content: center;
+    padding: 20px;
 }
 
 .full-product-info {
-    padding: 10px;
+    padding: 20px;
 }
 
 .purchase-info {
@@ -361,8 +364,36 @@ main {
     width: 100%;
 }
 
+.checkout th {
+    text-align: left;
+}
+
+.checkout tr {
+}
+
+#checkout {
+    font-size: 1rem;
+}
+
+.checkout th {
+    padding-bottom: 20px;
+}
+
+.checkout tr td:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+    padding-right: 10px;
+}
+
+.checkout tr:last-child td {
+    display: table-cell;
+}
+
 .checkout-sum {
     text-align: right;
+    font-size: 1.2rem;
 }
 
 .checkout-product-heading {
@@ -436,6 +467,10 @@ footer li {
         justify-content: center;
     }
 
+    .product-wrapper {
+        width: 100%;
+    }
+
     .product-page {
         grid-template-columns: 1fr;
     }
@@ -462,4 +497,25 @@ footer li {
         position: absolute;
         left: 0;
     }
+}
+
+#popular-glasses-slideshow {
+    height: 420px;
+}
+
+
+.slideshow {
+    position: relative;
+}
+
+.slideshow > a {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
