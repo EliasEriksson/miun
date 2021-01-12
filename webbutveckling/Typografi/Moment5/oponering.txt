@@ -1,0 +1,23 @@
+home:
+	- standard lorem text.
+	- "read more" länkar till #
+	- statiska mått på all text (mätt i pt)
+	- standard lineheight
+	- mobile:
+		- featured contents text dcentrerad?
+		- footerns innehåll wrappar till nästa rad i 2 / 3 spalter
+blog:
+	- alla paragrafer statiska mått på text i pt
+	- vissa h element statiska h element i pt
+	- standard lineheight
+	- 87 i radlängd
+	- små margins mellan text
+
+info:
+	
+
+det bra:
+	- sidan i allmänhet ser riktigt bra ut
+	- snygt minimalistiskt form
+	- föjler närhetsregler bra
+	- font storleken i inputs är i em

@@ -1,0 +1,33 @@
+home:
+	- förstorad font till 20px som standard anget i rem. i fall användare vill förstora.
+	- radhöjden är 4pt större än fonten för att lufta upp texten + lättläslig.
+	
+	- färgval: naturfärger.
+	- hög kontrast men inte svart på vitt.
+	- bara grön i början men fick respons om att det va för grönt.
+
+	- fonterna tinos (serif) och open sans (sans-serif) tycker dom är snygga.
+	
+	- delar upp sektioner på sidan med dragna linjer för atthålla innehåll tilsammans.
+	
+	- blog post länkar inte till blog/ missade det.
+
+blog:
+	- bildernas photograf / illustratör i hörnet, snygt?
+	- tonplattor för citat med citat tecken i hörnen för att markera 
+	  att det är ett citat. 
+	- ingresser har mindre marginaler med hjälp av en klass, hoppar inte över h-element.
+
+	- taggarna länkar till wikipedia men ska egentligen länka till liknande articklar.
+
+	- c typsnitten som tabell istället för lista i en lista.
+	- tonplattor för listorna för att göra dom lite roligare.
+
+	- länkarna gjorda till hyperlänkar för att få dom responsiva
+	
+	- ordnad lista som en graf % relativ till den bästa
+
+info:
+	- TSF i grönt då T S och F är i grönt i headern.
+	- texten formaterad på samma sätt som i blog/
+	- glömt att ändra storleken i formet
