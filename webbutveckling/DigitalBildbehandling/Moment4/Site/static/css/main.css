@@ -123,7 +123,8 @@ img {
 }
 
 .internal-cart-buttons {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto;
     white-space: nowrap;
 }
 
@@ -131,8 +132,6 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    min-width: fit-content;
     padding: 10px;
     text-decoration: none;
 }
