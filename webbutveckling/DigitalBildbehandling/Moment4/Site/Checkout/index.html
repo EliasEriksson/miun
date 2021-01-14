@@ -26,7 +26,11 @@
                     </a>
                     <div class="cart header-button">
                         <a href="" id="cartButton" class="cart-button">
-                            <img src="../media/cart.png" alt="shopping cart">
+                            <picture>
+                                <source srcset="../media/cart.avif" type="image/avif">
+                                <source srcset="../media/cart.webp" type="image/webp">
+                                <img src="../media/cart.png" alt="shopping cart">
+                            </picture>
                             <p>Kundvagn</p>
                         </a>
                         <div id="cartContent" class="cart-content">
@@ -79,7 +83,14 @@
                     <th>Pris</th>
                 </tr>
                 </thead>
-                <tbody id="checkout"></tbody>
+                <tbody id="checkout">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
             </table>
             <form class="user-credentials" action="../">
                 <div class="user-living-credentials">

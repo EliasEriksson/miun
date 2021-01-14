@@ -9,13 +9,13 @@
           href="../../media/favicon.ico">
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css">
-    <link type="image/png"
+    <link type="image/png" rel="lightbox"
           href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/images/close.png">
-    <link type="image/gif"
+    <link type="image/gif" rel="lightbox"
           href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/images/loading.gif">
-    <link type="image/png"
+    <link type="image/png" rel="lightbox"
           href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/images/next.png">
-    <link type="image/png"
+    <link type="image/png" rel="lightbox"
           href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/images/prev.png">
 </head>
 <body>
@@ -37,7 +37,11 @@
                     </a>
                     <div class="cart header-button">
                         <a href="" id="cartButton" class="cart-button">
-                            <img src="../../media/cart.png" alt="shopping cart">
+                            <picture>
+                                <source srcset="../../media/cart.avif" type="image/avif">
+                                <source srcset="../../media/cart.webp" type="image/webp">
+                                <img src="../../media/cart.png" alt="shopping cart">
+                            </picture>
                             <p>Kundvagn</p>
                         </a>
                         <div id="cartContent" class="cart-content">

@@ -76,6 +76,7 @@ function addSearchResult(productName, product, searchResultElement) {
     searchResultElement.appendChild(productWrapperElement);
 }
 
+// search for products when user lands on the page
 window.addEventListener("load", function () {
     let searchResultElement = document.getElementById("search-result");
     let search = decodeURIComponent(window.location.href.split("?")[1]);
@@ -86,5 +87,4 @@ window.addEventListener("load", function () {
             }
         }
     }
-
 });

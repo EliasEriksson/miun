@@ -6,22 +6,10 @@ let mainMenuButtonElement = document.getElementById("main-menu-button");
 let mainNavigationElement = document.getElementById("main-navigation");
 
 let searchButtonElement = document.getElementById("search-button")
-let lastScroll = 0;
 
 async function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-// to hide the search bar
-window.addEventListener("scroll", function (){
-    if (window.pageYOffset > lastScroll) {
-        // scroll up
-        console.log("scroll down")
-    } else {
-        console.log("scroll up")
-        // scroll down
-    }
-})
 
 // show the cart when clicking
 cartButtonElement.addEventListener("click",     function (e) {
@@ -58,7 +46,7 @@ mainMenuButtonElement.addEventListener("click", function () {
 searchButtonElement.addEventListener("click", function (e) {
     e.preventDefault();
     let searchFieldElement = document.getElementById("search-field");
-    let searchPhrase = searchFieldElement.value;
+    let searchPhrase = searchFieldElement.value.toLowerCase();
     let newURL = window.location.href.split("?")[0]
                + searchFieldElement.parentElement.getAttribute("action")
                + `?${searchPhrase}`;

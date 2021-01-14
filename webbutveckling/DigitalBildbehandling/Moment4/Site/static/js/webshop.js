@@ -6,7 +6,7 @@
 * Har du gjort ändringar i denna fil ska detta beskrivas här i sidhuvudet.
 * 
 * Ändringar gjorda: 
-*
+* showCheckout() se def för komentarer
 */
 
 const basketEl = document.getElementById("basket"); // Varukorgen i DOM
@@ -263,6 +263,7 @@ function showSmallBasket() {
 /* Visa kassan */
 // MODIFIERAD AV ELIAS ERIKSSON
 // funktionen skriver inte längre ut varans ID nummer i kassa tabellen
+// och colspan ändrad till 4
 function showCheckout() {
     if (document.getElementById("checkout")) {
         let basketItems = JSON.parse(localStorage.getItem("basket"));
@@ -310,11 +311,11 @@ function showCheckout() {
 
             // Lägg till summan sist
             checkoutEl.innerHTML += "<tr>" +
-                "<td colspan='5' class='checkout-sum'>Summa: " + sum + ":-</td>";
+                "<td colspan='4' class='checkout-sum'>Summa: " + sum + ":-</td>";
 
         } else {
             // Tomt i listan
-            checkoutEl.innerHTML = "<tr><td colspan='5'>Varukorgen är tom</td></tr>";
+            checkoutEl.innerHTML = "<tr><td colspan='4'>Varukorgen är tom</td></tr>";
         }
     }
 }
