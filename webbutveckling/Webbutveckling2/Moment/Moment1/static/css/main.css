@@ -1,0 +1,123 @@
+:root {
+    --background-color: #13283b;
+    --panel-color: #365b6d;
+    --contrast-color: #f1faee;
+
+    --button-color: #f6bb14;
+    --button-color-hover: #fcc852;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: var(--contrast-color);
+    font-family: "Open Sans", sans-serif;
+}
+
+.code {
+    background-color: lightgrey;
+    border-radius: 0.25em;
+    padding: 2px 5px;
+    overflow: fragments;
+    font-family: monospace;
+    color: black;
+
+}
+
+p {
+    max-width: 65ch;
+}
+
+main {
+    margin-left: 20%;
+}
+
+header {
+    display: flex;
+    align-items: center;
+}
+
+.menu-horizontal {
+    margin-left: 20%;
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.menu-horizontal > a {
+    display: block;
+    padding: 15px;
+    background-color: var(--button-color);
+    text-decoration: none;
+    color: black;
+}
+
+.menu-horizontal > a:hover {
+    background-color: var(--button-color-hover);
+    transition: 1s;
+}
+
+.qna li {
+    margin-top: 30px;
+}
+
+.qna li p:nth-child(2) {
+    margin-top: 5px;
+}
+
+
+body {
+     background-color: var(--background-color);
+}
+
+main {
+    background-color: var(--panel-color);
+    display: flex;
+    width: fit-content;
+    padding: 20px 50px;
+}
+
+.button {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    background-color: var(--button-color);
+    color: #000;
+}
+
+.stack-column {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+input {
+    background-color: var(--button-color);
+    color: #000;
+    padding: 5px;
+    border: none;
+    outline: none;
+}
+
+@media screen and (max-width: 1300px) {
+    .menu-horizontal {
+        margin-left: 5%;
+    }
+
+    main {
+        margin-left: 5%;
+    }
+}
+
+@media screen  and (max-width: 760px){
+    .menu-horizontal {
+        margin: 0 0 5px;
+        width: 100%;
+    }
+
+    main {
+        margin: 0;
+        width: 100%;
+    }
+}

@@ -10,6 +10,5 @@ setInterval(function() {
     ).fadeIn(
         1500
     ).end(
-
     ).appendTo("#popular-glasses-slideshow");
 }, 4000);

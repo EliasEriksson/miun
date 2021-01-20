@@ -12,7 +12,7 @@ async function sleep(ms) {
 }
 
 // show the cart when clicking
-cartButtonElement.addEventListener("click",     function (e) {
+cartButtonElement.addEventListener("click",function (e) {
     e.preventDefault();
     if (cartContentElement.style.display === "none" || cartContentElement.style.display === "") {
         cartContentElement.style.display = "block";
@@ -27,6 +27,7 @@ cartButtonElement.addEventListener("blur", async function () {
     cartContentElement.style.display = "none";
 });
 
+// empty the basket
 emptyBasketButton.addEventListener("click", function (e) {
     e.preventDefault();
     emptyBasket();
@@ -37,7 +38,6 @@ mainMenuButtonElement.addEventListener("click", function () {
     if (mainNavigationElement.style.display === "none" || mainNavigationElement.style.display === "") {
         mainNavigationElement.style.display = "flex";
     } else {
-
         mainNavigationElement.style.display = "none";
     }
 });
