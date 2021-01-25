@@ -1,14 +1,10 @@
-<?php
-$rootURL = "../";
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
     <?php
     include "../templates/head.php";
     ?>
-    <title>Document</title>
+    <title>Moment 1 - Beräkna</title>
 </head>
 <body>
 
@@ -27,7 +23,6 @@ include "../templates/header.php";
         ?>
         <a class="button" href="../Formulär/">Tillbaka till formulären</a>
     </div>
-
 </main>
 
 <?php

@@ -1,5 +1,4 @@
 <?php
-$rootURL = "../";
 $myName = "Elias Eriksson";
 $myEmail = "mail@eliaseriksson.eu";
 $myAge = 25;

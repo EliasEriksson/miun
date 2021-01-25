@@ -1,0 +1,8 @@
+Webbutveckling I
+Introduktion till programmering med JavaScript
+Digital bildbehandling för webb
+Typografi och form för webb
+Webbutveckling II
+Databaser
+Webbanvändbarhet
+Webbdesign för CMS

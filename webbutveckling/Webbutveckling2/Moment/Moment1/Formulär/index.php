@@ -1,14 +1,10 @@
-<?php
-$rootURL = "../";
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
     <?php
     include "../templates/head.php";
     ?>
-    <title>Document</title>
+    <title>Moment 1 - Formulär</title>
 </head>
 <body>
 <?php
@@ -17,7 +13,7 @@ include "../templates/header.php";
 
 <main>
     <div class="stack-column">
-        <form class="form" method="get" action="./">
+        <form class="form stack-column" method="get" action="./">
             <label>
                 Förnamn: <input name="name" type="text">
             </label>
@@ -36,7 +32,7 @@ include "../templates/header.php";
             }
             ?>
         </div>
-        <form class="form" method="post" action="../Calculate/">
+        <form class="form stack-column" method="post" action="../Calculate/">
             <label>
                 x: <input type="number" name="x">
             </label>
