@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.spacer {
+    height: 50px;
+}
+
+body {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    padding: 10px;
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 960px;
+    background-color: cornflowerblue;
+    padding: 40px;
+}
+
+.container {
+    width: fit-content;
+}
+
+.new-todo-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.todo-title-label,
+.todo-description-label,
+.todo-time-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-title-input,
+.todo-description-input {
+    padding: 5px;
+    overflow: hidden;
+    resize: none;
+}
+
+.todo-description-input {
+    width: 50vw;
+}
+
+.time-input {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+}
+
+.time-input > input {
+    -moz-appearance: textfield;
+    text-align: center;
+    padding: 5px 0;
+
+}
+
+.todo-input {
+    border: none;
+}
+
+.todo-input:focus {
+    outline: none;
+}
+
+.time-input > input::-webkit-outer-spin-button,
+.time-input > input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.year-input {
+    width: 4em;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.month-input,
+.day-input,
+.hour-input,
+.minute-input {
+    width: 2.5em;
+}
+.minute-input {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.todo-submit {
+    padding: 5px;
+}
+
+.todo {
+    background-color: white;
+    max-width: 65ch;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.todo-title-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
