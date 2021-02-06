@@ -16,9 +16,12 @@ class ToDoList {
     }
 
     public function toHTML(){
-        foreach ($this->toDos as $toDo) {
-
+        $html = '<form method="post" class="todos" enctype="application/x-www-form-urlencoded">';
+        foreach ($this->toDos as $index => $toDo) {
+            $html .= $toDo->toHTML($index);
         }
+        $html .= '<input type="submit" value="Remove selected"></form>';
+        return $html;
     }
 
     public function updateFile() {
@@ -30,13 +33,12 @@ class ToDoList {
         $manager->write(json_encode($data));
     }
 
-    public function addToDo(string $title, string $toDo, $deadline){
+    public function addToDo(string $title, string $toDo, int $deadline){
         array_push($this->toDos, new ToDo($title, $toDo, $deadline));
         $this->updateFile();
     }
     public function removeToDo(int $index) {
         if (isset($this->toDos[$index])) {
-            echo "was here";
             unset($this->toDos[$index]);
             $this->updateFile();
         }

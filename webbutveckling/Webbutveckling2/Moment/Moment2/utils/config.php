@@ -13,11 +13,23 @@ if (isset($_SERVER["CONTEXT_DOCUMENT_ROOT"]) && isset($_SERVER["CONTEXT_PREFIX"]
     // used for miuns server
     // the context + this file trimmed with context root + 1 directory up since this file is one deep
     $rootURL = $_SERVER["CONTEXT_PREFIX"] . "/" . dirname(trim(__FILE__, $_SERVER["CONTEXT_DOCUMENT_ROOT"])) . "/..";
+    $rootURL = $_SERVER["CONTEXT_DOCUMENT_ROOT"];
+    if (strcmp(substr(__FILE__, 0, strlen($rootURL)), $rootURL) === 0) {
+        $rootURL = dirname(substr(__FILE__, strlen($rootURL))) . "/..";
+    } else {
+        $rootURL =  dirname($_SERVER["CONTEXT_PREFIX"]);
+    }
 } else {
     // use the regular root otherwise
     // used for localhost
     //  / + this files directory trimmed with (document root - last directory) + 1 directory up since this file is one deep
-    $rootURL = "/" . dirname(trim(__FILE__, implode("/", array_slice(explode("/", $_SERVER["DOCUMENT_ROOT"]), 0, -1)))) . "/..";
+    $rootURL = implode("/", array_slice(explode("/", $_SERVER["DOCUMENT_ROOT"]), 0, -1));
+
+    if (strcmp(substr(__FILE__, 0, strlen($rootURL)), $rootURL) === 0) {
+        $rootURL = dirname(substr(__FILE__, strlen($rootURL))) . "/..";
+    } else {
+        $rootURL = "";
+    }
 }
 
 if (isset($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
@@ -25,3 +37,11 @@ if (isset($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
 } else {
     $writeDirectory = $_SERVER["DOCUMENT_ROOT"] . "/writeable";
 }
+
+
+//echo "<br>";
+//var_dump($_SERVER);
+//echo "<br>";
+//var_dump(__FILE__);
+//echo "<br>";
+//echo $rootURL;

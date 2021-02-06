@@ -1,6 +1,24 @@
 <?php
-//include "utils/config.php";
+
 include "utils/ToDoList.php";
+include "utils/functions.php";
+$toDoList = new ToDoList("todos.json");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $time = getDateFromPost();
+    if ($time && isset($_POST["title"]) && isset($_POST["description"])) {
+        $toDoList->addToDo(
+            $_POST["title"], $_POST["description"], $time->getTimestamp()
+        );
+        var_dump($time->getTimestamp());
+    }
+
+    foreach (array_reverse($_POST, true) as $index => $_) {
+        $toDoList->removeToDo($index);
+    }
+}
+
+
 ?>
 
 <!doctype html>
@@ -16,11 +34,6 @@ include "utils/ToDoList.php";
 include "templates/header.php";
 ?>
 
-<?php
-$toDoList = new ToDoList("todos.json");
-$toDoList->removeToDo(2);
-?>
-
 <main>
     <div class="container">
         <h2>Min att göra lista</h2>
@@ -29,49 +42,41 @@ $toDoList->removeToDo(2);
               method="post"
               enctype="application/x-www-form-urlencoded">
             <label class="todo-title-label">
-                Titel: <input class="todo-title-input todo-input" type="text">
+                Titel: <input name="title" class="todo-title-input todo-input" type="text">
             </label>
             <label class="todo-description-label">
-                Att göra: <textarea rows="5" class="todo-description-input todo-input"></textarea>
+                Att göra: <textarea name="description" rows="5" class="todo-description-input todo-input"></textarea>
             </label>
             <label class="todo-time-label">
                 Deadline:
                 <span class="time-input">
                 <!--            year -->
-                <input value="2021" class="year-input todo-input" type="number" pattern="\d{1,2}" placeholder="yyyy">
+                <input name="year" value="2021" class="year-input todo-input" type="number" pattern="\d{1,2}"
+                       placeholder="yyyy">
                     <!--            month-->
-                <input value="02" class="month-input todo-input" type="number" pattern="\d{1,2}" placeholder="mm"
+                <input name="month" value="02" class="month-input todo-input" type="number" pattern="\d{1,2}"
+                       placeholder="mm"
                        max="12">
                     <!--            day-->
-                <input value="05" class="day-input todo-input" type="number" pattern="\d{1,2}" placeholder="dd"
+                <input name="day" value="05" class="day-input todo-input" type="number" pattern="\d{1,2}"
+                       placeholder="dd"
                        max="31">
                     <!--            hour-->
-                <input class="hour-input todo-input" type="number" pattern="\d{1,2}" placeholder="mm" max="60">
+                <input name="hour" class="hour-input todo-input" type="number" pattern="\d{1,2}" placeholder="hh"
+                       max="60">
                     <!--            minute-->
-                <input class="minute-input todo-input" type="text" pattern="\d{1,2}" placeholder="hh" max="24">
+                <input name="minute" class="minute-input todo-input" type="text" pattern="\d{1,2}" placeholder="mm"
+                       max="24">
             </span>
             </label>
             <input class="todo-submit" type="submit" value="Lägg Till">
         </form>
         <div class="spacer"></div>
-        <form method="post" class="todos" enctype="application/x-www-form-urlencoded">
-            <div class="todo">
-                <div class="todo-title-checkbox">
-                    <label><input name="0" class="title-checkbox" type="checkbox"></label><h4>Title</h4>
-                </div>
-                <p>description</p>
-                <time>time</time>
-            </div>
-            <div class="todo">
-                <div class="todo-title-checkbox">
-                    <label><input name="1" class="title-checkbox" type="checkbox"></label><h4>Another Title</h4>
-                </div>
-                <p>more description</p>
-                <time>other Time</time>
-            </div>
+        <?php
 
-            <input type="submit" value="Remove selected">
-        </form>
+        $toDoList = new ToDoList("todos.json");
+        echo $toDoList->toHTML();
+        ?>
     </div>
 </main>
 
