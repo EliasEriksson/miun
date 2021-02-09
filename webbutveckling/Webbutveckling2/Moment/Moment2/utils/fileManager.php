@@ -1,11 +1,13 @@
 <?php
+
+
 class FileManager {
     private $file;
 
     public function __construct(string $filename, string $mode) {
         include "config.php";
         $path = "$writeDirectory/$filename";
-        if (!file_exists($path) && $mode != "w") {
+        if (!file_exists($path)){
             $file = fopen($path, "w");
             fwrite($file, "[]");
             fclose($file);

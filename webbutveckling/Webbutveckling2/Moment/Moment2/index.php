@@ -1,25 +1,44 @@
 <?php
-
+include "utils/config.php";
 include "utils/ToDoList.php";
 include "utils/functions.php";
-$toDoList = new ToDoList("todos.json");
+$toDoList = new ToDoList("todolist.json");
+$now = new DateTime();
+$errorMessage = "";
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $time = getDateFromPost();
-    if ($time && isset($_POST["title"]) && isset($_POST["description"])) {
-        $toDoList->addToDo(
-            $_POST["title"], $_POST["description"], $time->getTimestamp()
-        );
-        var_dump($time->getTimestamp());
+    if (isset($_POST["add-todo"])) {
+        if (isset($_POST["description"]) && strlen($_POST["description"]) > 4) {
+            if (isset($_POST["title"]) && !$_POST["title"] == "") {
+                $time = getDateFromPost();
+                if ($time) {
+                    $toDoList->addToDo(
+                        $_POST["title"], $_POST["description"], $time->getTimestamp()
+                    );
+                header("location: ./");
+                } else {
+                    $errorMessage = "Tiden måste vara angiven på formatet YYYY | MM | DD | hh | mm";
+                }
+            } else {
+                $errorMessage = "Att göra måste ha en titel";
+            }
+        } else {
+            $errorMessage = "Att göra måste vara minst fem tecken!";
+        }
+    } elseif (isset($_POST["remove-selected"])){
+        foreach (array_reverse($_POST, true) as $key => $_) {
+            if (is_numeric($key)) {
+                $toDoList->removeToDo($key);
+            }
+        }
+        header("location: ./");
+    } elseif (isset($_POST["remove-all"])) {
+        $toDoList->removeAll();
+        header("location: ./");
     }
 
-    foreach (array_reverse($_POST, true) as $index => $_) {
-        $toDoList->removeToDo($index);
-    }
-}
-
-
-?>
+} ?>
 
 <!doctype html>
 <html lang="en">
@@ -41,40 +60,59 @@ include "templates/header.php";
         <form class="new-todo-form"
               method="post"
               enctype="application/x-www-form-urlencoded">
-            <label class="todo-title-label">
-                Titel: <input name="title" class="todo-title-input todo-input" type="text">
-            </label>
-            <label class="todo-description-label">
-                Att göra: <textarea name="description" rows="5" class="todo-description-input todo-input"></textarea>
-            </label>
-            <label class="todo-time-label">
-                Deadline:
-                <span class="time-input">
-                <!--            year -->
-                <input name="year" value="2021" class="year-input todo-input" type="number" pattern="\d{1,2}"
-                       placeholder="yyyy">
-                    <!--            month-->
-                <input name="month" value="02" class="month-input todo-input" type="number" pattern="\d{1,2}"
-                       placeholder="mm"
-                       max="12">
-                    <!--            day-->
-                <input name="day" value="05" class="day-input todo-input" type="number" pattern="\d{1,2}"
-                       placeholder="dd"
-                       max="31">
-                    <!--            hour-->
-                <input name="hour" class="hour-input todo-input" type="number" pattern="\d{1,2}" placeholder="hh"
-                       max="60">
-                    <!--            minute-->
-                <input name="minute" class="minute-input todo-input" type="text" pattern="\d{1,2}" placeholder="mm"
-                       max="24">
-            </span>
-            </label>
-            <input class="todo-submit" type="submit" value="Lägg Till">
-        </form>
-        <div class="spacer"></div>
-        <?php
 
-        $toDoList = new ToDoList("todos.json");
+            <label class="todo-title-label">
+                Titel: <input name="title"
+                              placeholder="Handla"
+                              class="todo-title-input todo-input"
+                              type="text">
+            </label>
+            <label for="description" class="todo-description-label">
+                Att göra: <textarea id="description"
+                                    placeholder="Mjöl & kakao"
+                                    name="description"
+                                    rows="1"
+                                    class="todo-description-input todo-input"></textarea>
+            </label>
+                <div class="time-input">
+                    <label><input name="year"
+                           id="year"
+                           value="<?= $now->format('Y') ?>"
+                           class="year-input todo-input"
+                           type="text"
+                                  placeholder="Y"></label>
+                    <span class="date-separator">-</span>
+                    <label><input name="month"
+                           id="month"
+                           value="<?= $now->format('m') ?>"
+                           class="month-input todo-input"
+                           type="text"
+                           placeholder="M"></label>
+                    <span class="date-separator">-</span>
+                    <label><input name="day"
+                           id="day"
+                           value="<?= $now->format('d') ?>"
+                           class="day-input todo-input"
+                           type="text"
+                           placeholder="D"></label>
+                    <span></span>
+                    <label><input name="hour"
+                           id="hour"
+                           class="hour-input todo-input"
+                           type="text"
+                           placeholder="h"></label>
+                    <span class="date-separator">:</span>
+                    <label><input name="minute"
+                           id="minute"
+                           class="minute-input todo-input"
+                           type="text"
+                           placeholder="m"></label>
+            </div>
+            <input name="add-todo" class="todo-submit" type="submit" value="Lägg Till">
+        </form>
+        <p class="error-message"><?= $errorMessage ?></p>
+        <a href="<?=$writeDirectoryLink?>/writeable/todolist.json">json data fil</a>
+        <?php
         echo $toDoList->toHTML();
         ?>
     </div>
@@ -82,7 +120,7 @@ include "templates/header.php";
 
 <?php
 include "templates/footer.php";
-var_dump($_POST);
 ?>
+<script src="<?= $rootURL ?>/static/js/main.js"></script>
 </body>
 </html>

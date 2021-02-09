@@ -1,5 +1,5 @@
 <?php
-include "../utils/config.php";
+include __DIR__."/../utils/config.php";
 ?>
 
 <header>
