@@ -16,7 +16,7 @@ class ToDo {
 
     public function toHTML(int $index): string {
         return '<div class="todo">
-                    <h4><h4 class="todo-title">'.$this->title.'</h4></h4>
+                    <h4 class="todo-title">'.$this->title.'</h4>
                     <label class="todo-checkbox-label"><input name="'.$index.'" class="todo-checkbox" type="checkbox"></label>
                     <p class="todo-description">'.$this->description.'</p>
                     <time class="todo-deadline">'.$this->deadline->setTimezone(new DateTimeZone("cet"))->format($this->dateTimeFormat).'</time>

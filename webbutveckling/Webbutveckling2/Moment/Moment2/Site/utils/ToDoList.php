@@ -35,7 +35,7 @@ class ToDoList {
             array_push($data, $toDo->asAssociativeArray());
         }
         $manager = new FileManager($this->filename, "w");
-        $manager->write(json_encode($data));
+        $manager->write(json_encode($data, JSON_UNESCAPED_UNICODE));
     }
 
     public function addToDo(string $title, string $description, int $deadline){

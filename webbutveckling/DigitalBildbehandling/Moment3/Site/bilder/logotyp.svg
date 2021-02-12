@@ -7,13 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="300mm"
-   height="40mm"
-   viewBox="0 0 300 40"
+   width="300"
+   height="40"
+   viewBox="0 0 79.374999 10.583333"
    version="1.1"
    id="svg8"
    inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logotyp.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="561.37491"
-     inkscape:cy="153.96284"
+     inkscape:zoom="3.959798"
+     inkscape:cx="160.53244"
+     inkscape:cy="57.141143"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -34,7 +34,8 @@
      inkscape:window-height="1016"
      inkscape:window-x="1920"
      inkscape:window-y="27"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     units="px" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -54,7 +55,8 @@
     <g
        aria-label="Elias Eriksson"
        id="text85"
-       style="font-style:normal;font-weight:normal;font-size:21.1781px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.529452">
+       style="font-style:normal;font-weight:normal;font-size:21.1781px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.529452"
+       transform="matrix(0.27370668,0,0,0.29592991,-1.3685334,-0.73982451)">
       <path
          d="M 5.0000001,36.451247 9.2687242,35.781156 V 6.446087 L 5.0000001,5.8008148 V 4.4854521 H 29.967072 V 12.452083 H 28.329074 L 27.534892,7.0665411 Q 24.755258,6.7190868 19.493807,6.7190868 H 14.05863 V 19.723804 h 8.984175 l 0.769363,-3.970906 H 25.40053 V 25.977982 H 23.812168 L 23.042805,21.957439 H 14.05863 v 13.575535 h 6.551995 q 6.403086,0 8.388539,-0.39709 l 1.414635,-6.154905 h 1.637999 l -0.471545,8.78563 H 5.0000001 Z"
          style="fill:#008080"
