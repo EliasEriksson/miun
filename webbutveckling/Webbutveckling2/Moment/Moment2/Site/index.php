@@ -8,6 +8,8 @@ $errorMessage = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // process POST data if its a POST request
+    // if post data is processed successfully redirect user to same page to clear POST data
     if (isset($_POST["add-todo"])) {
         if (isset($_POST["description"]) && strlen($_POST["description"]) > 4) {
             if (isset($_POST["title"]) && !$_POST["title"] == "") {

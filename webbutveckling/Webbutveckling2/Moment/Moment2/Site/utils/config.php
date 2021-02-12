@@ -33,10 +33,14 @@ if (isset($_SERVER["CONTEXT_DOCUMENT_ROOT"]) && isset($_SERVER["CONTEXT_PREFIX"]
 }
 
 if (isset($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
+    // path for writing to a file public host
     $writeDirectory = $_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/writeable";
+    // url to a file public host
     $writeDirectoryLink = $_SERVER["CONTEXT_PREFIX"];
 } else {
+    // path for writing to a file localhost
     $writeDirectory = $_SERVER["DOCUMENT_ROOT"] . "/writeable";
+    // url to a file localhost
     $writeDirectoryLink = $rootURL;
 }
 
