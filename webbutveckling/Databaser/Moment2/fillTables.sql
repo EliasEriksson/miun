@@ -76,5 +76,6 @@ insert into preformedTreatments values (default, 6, 5);
 insert into preformedTreatments values (default, 7, 5);
 insert into preformedTreatments values (default, 8, 2);
 insert into preformedTreatments values (default, 8, 4);
+insert into preformedTreatments values (default, 8, 3);
 insert into preformedTreatments values (default, 9, 1);
 insert into preformedTreatments values (default, 10, 1);
