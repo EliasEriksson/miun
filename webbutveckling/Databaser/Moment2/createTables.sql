@@ -1,11 +1,12 @@
 -- kommer ej slösa en >= 1 byte på att ha varchar som ID
+drop database if exists veterinary;
 create database veterinary;
 use veterinary;
 
 
 create table addresses
 (
-    id           integer not null,
+    id           integer,
     state        varchar(15),
     zip          integer,
     city         varchar(64),
@@ -16,7 +17,7 @@ create table addresses
 
 create table customers
 (
-    id             integer not null,
+    id             integer,
     addressID      integer,
     customerTypeID integer,
     -- https://stackoverflow.com/questions/30485/what-is-a-reasonable-length-limit-on-person-name-fields#comment48518238_30509
@@ -29,7 +30,7 @@ create table customers
 
 create table customerTypes
 (
-    id   integer not null,
+    id   integer,
     -- private or company
     type varchar(7)
 );
@@ -38,7 +39,7 @@ create table customerTypes
 
 create table employees
 (
-    id                integer not null,
+    id                integer,
     addressID         integer,
     -- https://stackoverflow.com/questions/30485/what-is-a-reasonable-length-limit-on-person-name-fields#comment48518238_30509
     firstName         varchar(54),
@@ -52,7 +53,7 @@ create table employees
 
 create table pets
 (
-    id          integer not null,
+    id          integer,
     ownerID     integer,
     breedID     integer,
     -- https://stackoverflow.com/questions/30485/what-is-a-reasonable-length-limit-on-person-name-fields#comment48518238_30509
@@ -64,7 +65,7 @@ create table pets
 
 create table breeds
 (
-    id        integer not null,
+    id        integer,
     petTypeID integer,
     -- guessing 64 is enough
     breed     varchar(64)
@@ -73,14 +74,14 @@ create table breeds
 
 create table petTypes
 (
-    id   integer not null,
+    id   integer,
     -- guessing 64 is enough
     type varchar(64)
 );
 
 create table treatments
 (
-    id    integer not null,
+    id    integer,
     -- not really sure what could go in here as im not a veterinary myself
     name  varchar(256),
     price integer
@@ -88,7 +89,7 @@ create table treatments
 
 create table visits
 (
-    id          integer not null,
+    id          integer,
     petID       integer,
     employeeID  integer,
     dateOfVisit date
@@ -96,7 +97,7 @@ create table visits
 
 create table preformedTreatments
 (
-    id          integer not null,
+    id          integer,
     visitID     integer,
     treatmentID integer
 );
