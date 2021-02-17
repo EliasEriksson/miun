@@ -1,0 +1,10 @@
+diagrams/ innehåller ER diagram + diagram över relationer.
+
+sql/ innehåller all sql kod för att generera tabeller. 
+Kör först createTables.sql sedan fillTables.sql innan frågorna i queries.sql körs
+
+inloggning till public databas med select permissions:
+host: eliaseriksson.eu
+port: 3306
+username: nayeb
+inget lösenord krävs.
