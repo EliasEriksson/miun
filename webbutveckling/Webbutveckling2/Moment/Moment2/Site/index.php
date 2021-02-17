@@ -79,21 +79,21 @@ include "templates/header.php";
                 <div class="time-input">
                     <label><input name="year"
                            id="year"
-                           value="<?= $now->format('Y') ?>"
+<!--                           value="--><?//= $now->format('Y') ?><!--"-->
                            class="year-input todo-input"
                            type="text"
                                   placeholder="Y"></label>
                     <span class="date-separator">-</span>
                     <label><input name="month"
                            id="month"
-                           value="<?= $now->format('m') ?>"
+<!--                           value="--><?//= $now->format('m') ?><!--"-->
                            class="month-input todo-input"
                            type="text"
                            placeholder="M"></label>
                     <span class="date-separator">-</span>
                     <label><input name="day"
                            id="day"
-                           value="<?= $now->format('d') ?>"
+<!--                           value="--><?//= $now->format('d') ?><!--"-->
                            class="day-input todo-input"
                            type="text"
                            placeholder="D"></label>
@@ -112,10 +112,10 @@ include "templates/header.php";
             </div>
             <input name="add-todo" class="todo-submit" type="submit" value="Lägg Till">
         </form>
-        <p class="error-message"><?= $errorMessage ?></p>
-        <a href="<?=$writeDirectoryLink?>/writeable/todolist.json">json data fil</a>
+<!--        <p class="error-message">--><?//= $errorMessage ?><!--</p>-->
+<!--        <a href="--><?//=$writeDirectoryLink?><!--/writeable/todolist.json">json data fil</a>-->
         <?php
-        echo $toDoList->toHTML();
+//        echo $toDoList->toHTML();
         ?>
     </div>
 </main>
@@ -123,6 +123,6 @@ include "templates/header.php";
 <?php
 include "templates/footer.php";
 ?>
-<script src="<?= $rootURL ?>/static/js/main.js"></script>
+<!--<script src="--><?//= $rootURL ?><!--/static/js/main.js"></script>-->
 </body>
 </html>

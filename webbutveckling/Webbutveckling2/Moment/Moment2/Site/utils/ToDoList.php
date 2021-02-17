@@ -26,6 +26,7 @@ class ToDoList {
         $manager = new FileManager($filename, "r");
         $todos = json_decode($manager->read());
         foreach ($todos as $todo) {
+            var_dump($todo);
             array_push($this->toDos, new ToDo(...$todo));
         }
     }
