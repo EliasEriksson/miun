@@ -30,16 +30,18 @@ class News
         return null;
     }
 
-    private function formatArticleHeading(): string
+    private function formatArticleHeading(int $headingGrade): string
     {
-        return "<h2 class='article-heading'>$this->title</h2>";
+        return "<h$headingGrade class='article-heading'>$this->title</h$headingGrade>";
     }
 
-    private function formatArticlePreamble(): string {
+    private function formatArticlePreamble(): string
+    {
         return "<p>$this->preamble</p>";
     }
 
-    private function formatArticleContent(): string {
+    private function formatArticleContent(): string
+    {
         return "<p>$this->content</p>";
     }
 
@@ -51,28 +53,26 @@ class News
     private function formatLastEdited(): string
     {
         if ($this->lastEdited) {
-            return "<span class='article-time-label'>Redigerat<time class='article-time'>.$this->lastEdited.</time></span>";
+            $lastEdited = $this->lastEdited->getTimestamp();
+            return "<span class='article-time-label'>Redigerat: <time class='article-time'>$lastEdited</time></span>";
         }
         return "";
     }
 
-    private function formatButtons(): string
+    private function formatButtons(bool $readMore): string
     {
         $newsURL = $GLOBALS["rootURL"] . "/nyheter/nyhet/?$this->id";
         $html = "<div class='edit-buttons'>";
-        $html .= "<a class='button' href='$newsURL'>Läs mera...</a>";
+        if ($readMore) {
+            $html .= "<a class='button' href='$newsURL'>Läs mera...</a>";
+        }
         if (isset($_SESSION["admin"])) {
-
-            $editURL = $GLOBALS["rootURL"] . "/admin/redigera/";
-
-            $html .= "<form action='$editURL' method='post' enctype='application/x-www-form-urlencoded'>
-                        <input name='id' type='hidden'>
-                        <input class='button' name='edit' type='submit' value='Redigera'>
-                     </form>
-                        <form method='post' enctype='application/x-www-form-urlencoded'>
-                        <input name='id' value='$this->id' type='hidden'>
-                        <input class='button' name='delete' type='submit' value='radera'>
-                     </form>";
+            $editURL = $GLOBALS["rootURL"] . "/admin/redigera/?$this->id";
+            $html .= "<a class='button' href='$editURL'>Redigera</a>
+                      <form method='post' enctype='application/x-www-form-urlencoded'>
+                          <input name='id' value='$this->id' type='hidden'>
+                          <input class='button' name='delete' type='submit' value='radera'>
+                      </form>";
         }
         $html .= "</div>";
         return $html;
@@ -81,65 +81,55 @@ class News
     public function toShortHTML(): string
     {
         $html = "<article class='news-article'>";
-        $html .= $this->formatArticleHeading();
+        $html .= $this->formatArticleHeading(2);
         $html .= $this->formatPostTime();
         $html .= $this->formatLastEdited();
         $html .= $this->formatArticlePreamble();
         $html .= "</article>";
-        $html .= $this->formatButtons();
+        $html .= $this->formatButtons(true);
         return $html;
     }
 
     public function toLongHTML(): string
     {
         $html = "<article class='news-article'>";
-        $html .= $this->formatArticleHeading();
+        $html .= $this->formatArticleHeading(1);
         $html .= $this->formatPostTime();
         $html .= $this->formatLastEdited();
         $html .= $this->formatArticlePreamble();
         $html .= $this->formatArticleContent();
         $html .= "</article>";
-        $html .= $this->formatButtons();
+        $html .= $this->formatButtons(false);
         return $html;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @return string
-     */
     public function getContent(): string
     {
         return $this->content;
     }
 
-    /**
-     * @return DateTime
-     */
     public function getPostDate(): DateTime
     {
         return $this->postDate;
     }
 
-    /**
-     * @return DateTime
-     */
     public function getLastEdited(): DateTime
     {
         return $this->lastEdited;
+    }
+
+    public function getPreamble()
+    {
+        return $this->preamble;
     }
 }

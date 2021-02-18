@@ -31,6 +31,9 @@ include "templates/header.php";
         ?>
     </section>
 </main>
+<?php
+include "templates/footer.php";
+?>
 <script src="<?=$rootURL?>/static/js/main.js"></script>
 </body>
 </html>

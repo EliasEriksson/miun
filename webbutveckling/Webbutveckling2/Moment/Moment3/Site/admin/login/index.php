@@ -46,6 +46,8 @@ include "../../templates/header.php";
         </form>
     </div>
 </main>
-
+<?php
+include "../../templates/footer.php";
+?>
 </body>
 </html>

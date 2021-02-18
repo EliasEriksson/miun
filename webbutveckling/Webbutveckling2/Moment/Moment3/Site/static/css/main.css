@@ -69,10 +69,13 @@ main {
     border: none;
     border-radius: 3px;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .error-message {
-    color: darkred;
+    padding-top: 15px;
+    color: orange;
+    font-weight: bold;
 }
 
 .form {
@@ -117,6 +120,16 @@ main {
 .news-article {
     display: flex;
     flex-direction: column;
+    gap: 15px;
+}
+
+.article-time-label {
+    font-size: 0.8em;
+}
+
+.article-time {
+
+    font-style: italic;
 }
 
 .page-navigation {
@@ -133,7 +146,7 @@ main {
 
 }
 
-.new-article {
+.article-form {
     background-color: var(--button-color);
     display: flex;
     flex-direction: column;
@@ -141,7 +154,7 @@ main {
     padding-bottom: 15px;
 }
 
-.new-article > label {
+.article-form > label {
     padding: 15px;
     /*gap: 15px;*/
     display: flex;
@@ -150,11 +163,11 @@ main {
     width: 100%;
 }
 
-.new-article .label-text {
+.article-form .label-text {
     padding-bottom: 10px;
 }
 
-.new-article .input {
+.article-form .input {
     outline: none;
     border: none;
     width: 90%;
@@ -182,3 +195,6 @@ main {
     color: black;
 }
 
+footer {
+    height: 20vh;
+}

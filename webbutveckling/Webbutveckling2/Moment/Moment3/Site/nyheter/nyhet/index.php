@@ -30,6 +30,9 @@ include "../../templates/header.php";
         ?>
     </div>
 </main>
-
+<?php
+include "../../templates/footer.php";
+?>
+<script src="<?=$rootURL?>/static/js/main.js"></script>
 </body>
 </html>

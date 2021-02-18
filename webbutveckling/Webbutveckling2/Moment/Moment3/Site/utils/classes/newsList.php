@@ -21,12 +21,11 @@ class NewsList {
         } else {
             $this->page = $page;
         }
-
         $this->news = $manager->getNewsN($limit, $limit*$page);
     }
 
     public function getAmountOfPages(): int {
-        return ceil($this->amountOfNews / $this->limit);
+        return floor($this->amountOfNews / $this->limit);
     }
 
     public function toHTML(): string {

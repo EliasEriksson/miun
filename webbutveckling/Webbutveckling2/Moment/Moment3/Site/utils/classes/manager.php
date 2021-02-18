@@ -23,7 +23,7 @@ class Manager
         $sql = "drop table if exists admins;";
         $sql .= "drop table if exists news;";
         $sql .= "create table admins (username varchar(32) not null , passwordHash char(64), salt char(13));";
-        $sql .= "create table news (id char(13), title varchar(256), preamble text, content text, postDate timestamp, lastEdited timestamp);";
+        $sql .= "create table news (id char(13), title varchar(256), preamble text, content text, postDate timestamp default current_timestamp, lastEdited timestamp);";
 
         $sql .= "alter table admins add constraint adminsPK primary key (username);";
         $sql .= "alter table news add constraint newsPK primary key (id);";
@@ -60,7 +60,6 @@ class Manager
         $id = uniqid();
         $sql = "insert into news values ('$id', '$title','$preamble', '$content', now(), null);";
         $result = $this->connection->query($sql);
-        echo $this->connection->errno;
         if ($result) {
             return $this->getNews($id);
         } elseif ($this->connection->errno === 1062) {
@@ -69,9 +68,9 @@ class Manager
         return null;
     }
 
-    public function updateNews(string $id, string $title, string $content): bool
+    public function updateNews(string $id, string $title, string $preamble, string $content): bool
     {
-        $sql = "update news set title='$title', content='$content', lastEdited=now() where id='$id';";
+        $sql = "update news set title='$title', content='$content', preamble='$preamble', lastEdited=now() where id='$id';";
         $result = $this->connection->query($sql);
         if ($result) {
             return true;
@@ -91,8 +90,7 @@ class Manager
 
     public function getNewsN(int $limit, int $offset=0): array
     {
-        $descLimit = $limit + $offset;
-        $sql = "select * from (select * from news order by postDate desc limit $descLimit) latest order by latest.postDate desc limit $limit";
+        $sql = "select * from news order by postDate desc limit $limit offset $offset";
         $result = $this->connection->query($sql);
         $news = [];
         if ($result) {
@@ -131,7 +129,7 @@ class Manager
 }
 
 //echo "<br><br>";
-$manager = new Manager();
+//$manager = new Manager();
 //echo $manager->installDatabase();
 
 //$manager->addAdmin("elias-eriksson", "student");
