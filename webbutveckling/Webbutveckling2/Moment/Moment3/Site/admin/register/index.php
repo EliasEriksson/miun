@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["register"])) {
     <?php
     include "../../templates/head.php";
     ?>
-    <title>Document</title>
+    <title>Registrering</title>
 </head>
 <body>
 <?php

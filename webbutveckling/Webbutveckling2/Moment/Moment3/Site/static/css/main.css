@@ -66,6 +66,13 @@ main {
     background-color: var(--button-color);
     color: white;
     padding: 15px;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.error-message {
+    color: darkred;
 }
 
 .form {
@@ -76,7 +83,6 @@ main {
     width: fit-content;
     gap: 15px;
     padding: 15px;
-
 }
 
 .form label {
@@ -98,4 +104,81 @@ main {
 .form input {
     outline: none;
     padding: 5px;
+    border: none;
 }
+
+.news-articles {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.news-article {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-navigation {
+    grid-column: 2;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.edit-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+
+}
+
+.new-article {
+    background-color: var(--button-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 15px;
+}
+
+.new-article > label {
+    padding: 15px;
+    /*gap: 15px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.new-article .label-text {
+    padding-bottom: 10px;
+}
+
+.new-article .input {
+    outline: none;
+    border: none;
+    width: 90%;
+    padding: 5px;
+}
+
+.textarea {
+    resize: none;
+    width: 90%;
+    height: 100vh;
+    /*min-height: 20vh;*/
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+
+.submit-wrapper {
+    width: 90%;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit-wrapper .button {
+    background-color: white;
+    color: black;
+}
+

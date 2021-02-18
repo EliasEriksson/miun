@@ -41,6 +41,10 @@ if (isset($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
     // url to a file localhost
     $writeDirectoryLink = $rootURL;
 }
+
+$GLOBALS["rootURL"] = $rootURL;
+$GLOBALS["writeDirectory"] = $writeDirectory;
+$GLOBALS["writeDirectoryLink"] = $writeDirectoryLink;
 //var_dump($_SERVER);
 //echo "<br><br>";
 //echo "uri: ".$_SERVER["REQUEST_URI"]."<br>";
