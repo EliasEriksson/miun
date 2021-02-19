@@ -5,7 +5,7 @@ include_once "../utils/classes/newsList.php";
 include_once "../utils/classes/manager.php";
 
 $currentPage = getCurrentPage();
-$newsList = new NewsList(10, $currentPage);
+$newsList = new NewsList(5, $currentPage);
 
 if (isset($_SESSION["admin"])) {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete"]) && isset($_POST["id"])) {

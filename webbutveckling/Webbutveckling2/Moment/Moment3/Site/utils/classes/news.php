@@ -62,7 +62,7 @@ class News
     private function formatButtons(bool $readMore): string
     {
         $newsURL = $GLOBALS["rootURL"] . "/nyheter/nyhet/?$this->id";
-        $html = "<div class='edit-buttons'>";
+        $html = "<div class='article-buttons'>";
         if ($readMore) {
             $html .= "<a class='button' href='$newsURL'>Läs mera...</a>";
         }
@@ -80,13 +80,14 @@ class News
 
     public function toShortHTML(): string
     {
-        $html = "<article class='news-article'>";
+        $html = "<div class='article'><article class='news-article'>";
         $html .= $this->formatArticleHeading(2);
         $html .= $this->formatPostTime();
         $html .= $this->formatLastEdited();
         $html .= $this->formatArticlePreamble();
         $html .= "</article>";
         $html .= $this->formatButtons(true);
+        $html .= "</div>";
         return $html;
     }
 
