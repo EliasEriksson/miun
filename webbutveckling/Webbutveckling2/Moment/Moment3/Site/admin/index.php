@@ -12,6 +12,9 @@ if (!isset($_SESSION["admin"])) {
 
 $errorMessage = "";
 
+/**
+ * posts a new news article if proper psot data is given
+ */
 if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST["submit"]) {
     $errorMessage = validateArticleForm();
     if (!$errorMessage) {
