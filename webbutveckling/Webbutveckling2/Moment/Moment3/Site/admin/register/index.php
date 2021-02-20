@@ -1,7 +1,9 @@
 <?php
 include_once "../../utils/classes/manager.php";
 
-
+/**
+ * creates a new admin user if the proper post data is present
+ */
 $message = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["register"])) {
     if (isset($_POST["username"])) {

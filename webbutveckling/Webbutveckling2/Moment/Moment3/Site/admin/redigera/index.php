@@ -3,6 +3,9 @@ include_once "../../utils/config.php";
 include_once "../../utils/classes/manager.php";
 include_once "../../utils/functions.php";
 
+/**
+ * if user is not an admin redirect to login
+ */
 if (!isset($_SESSION["admin"])) {
     header("location: ../login/");
 }
@@ -18,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
         header("location: ../../nyheter/nyhet/?$newsID");
     }
 }
+// sets a few variables for articleForm.php
 $news = $manager->getNews($newsID);
 $title = $news->getTitle();
 $preamble = $news->getPreamble();

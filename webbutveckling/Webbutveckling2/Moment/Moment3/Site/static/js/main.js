@@ -1,4 +1,8 @@
-// javascript to convert stored UTC time to the users timezone
+/**
+ * applies the timezone client side with javascript so the user always gets the correct time
+ * this allows the user to get the correct time shown even if they are connecting thru a VPN
+ * that is located in another timezone but forces swedish date format.
+ */
 
 let articleTimeElements = document.getElementsByClassName("article-time");
 let timeFormat = new Intl.DateTimeFormat("sv", {

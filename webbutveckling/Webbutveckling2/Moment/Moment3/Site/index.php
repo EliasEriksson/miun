@@ -3,8 +3,8 @@ include_once "utils/config.php";
 include_once "utils/functions.php";
 include_once "utils/classes/newsList.php";
 
-$currentPage = getCurrentPage();
-$newsList = new NewsList(2, $currentPage);
+// 0 given as page as the start page should not be paged
+$newsList = new NewsList(2, 0);
 ?>
 
 <!doctype html>

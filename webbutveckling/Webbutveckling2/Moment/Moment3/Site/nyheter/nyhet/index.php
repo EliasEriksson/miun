@@ -5,6 +5,16 @@ include_once __DIR__."/../../utils/functions.php";
 
 $newsID = getNewsID();
 $manager = new Manager();
+
+/**
+ * if an admin post requested with proper data a post will be deleted
+ */
+if (isset($_SESSION["admin"])) {
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete"]) && isset($_POST["id"])) {
+        $manager->removeNews($_POST["id"]);
+        header("location: ../");
+    }
+}
 $news = $manager->getNews($newsID);
 ?>
 

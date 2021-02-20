@@ -3,7 +3,9 @@ include_once "../utils/config.php";
 include_once "../utils/classes/manager.php";
 include_once "../utils/functions.php";
 
-
+/**
+ * if not logged in as admin redirect to login
+ */
 if (!isset($_SESSION["admin"])) {
     header("location: login/");
 }

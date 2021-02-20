@@ -1,4 +1,7 @@
 <?php
+/**
+ * makes sure the variables are always defined even if included from a file where they are not set
+ */
 if (!isset($title)) {
     $title = "";
 }
@@ -7,6 +10,9 @@ if (!isset($preamble)) {
 }
 if (!isset($content)) {
     $content = "";
+}
+if (!isset($errorMessage)) {
+    $errorMessage = "";
 }
 ?>
 

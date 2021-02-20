@@ -1,7 +1,9 @@
 <?php
 include_once "../../utils/classes/manager.php";
 
-
+/**
+ * if proper data is posted and authentication of the user is successful the session is set
+ */
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
     if (isset($_POST["username"])) {
         if (isset($_POST["password"])) {
