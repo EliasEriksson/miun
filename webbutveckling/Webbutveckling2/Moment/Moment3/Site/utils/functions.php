@@ -46,7 +46,7 @@ function getNewsID()
 {
     if (count($_GET) > 0) {
         foreach ($_GET as $get => $_) break;
-        if (isset($get) && is_numeric($get)) {
+        if (isset($get)) {
             return $get;
         }
     }

@@ -30,7 +30,7 @@ class Manager
     {
         $sql = "drop table if exists admins;";
         $sql .= "drop table if exists news;";
-        $sql .= "create table admins (username varchar(32) not null , passwordHash char(64), salt char(13));";
+        $sql .= "create table admins (username varchar(32) not null , passwordHash varchar(256));";
         $sql .= "create table news (id char(13), title varchar(256), preamble text, content text, postDate timestamp default current_timestamp, lastEdited timestamp);";
 
         $sql .= "alter table admins add constraint adminsPK primary key (username);";
@@ -49,12 +49,11 @@ class Manager
          * if successful an Admin is created with the data used to insert to the database else null
          */
     {
-        $salt = uniqid(); // 13 char long pseudo random string
-        $passwordHash = hash("sha256", $password . $salt);
-        $sql = "insert into admins values ('$username', '$passwordHash', '$salt');";
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "insert into admins values ('$username', '$passwordHash');";
         $result = $this->connection->query($sql);
         if ($result) {
-            return new Admin($username, $passwordHash, $salt);
+            return new Admin($username, $passwordHash);
         }
         return null;
     }

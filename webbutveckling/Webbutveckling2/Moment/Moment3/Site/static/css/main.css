@@ -1,5 +1,6 @@
 :root {
     --button-color: #2E4052;
+    --button-color-active: #456380;
 }
 
 * {
@@ -210,6 +211,12 @@ main {
 
 footer {
     height: 20vh;
+}
+
+.navigation-menu-button {}
+
+.current-navigation-menu {
+    background-color: var(--button-color-active);
 }
 
 @media screen and (max-width: 790px) {

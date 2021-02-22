@@ -175,7 +175,7 @@ class News
         return $this->lastEdited;
     }
 
-    public function getPreamble()
+    public function getPreamble(): string
     {
         return $this->preamble;
     }

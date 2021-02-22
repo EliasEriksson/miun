@@ -66,5 +66,8 @@ include "../../templates/header.php";
     </div>
     <p class="error-message"><?=$message?></p>
 </main>
+<?php
+include "../../templates/footer.php";
+?>
 </body>
 </html>

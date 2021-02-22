@@ -51,7 +51,7 @@ $GLOBALS["writeDirectoryLink"] = $writeDirectoryLink;
 /**
  * code for testing
  */
-var_dump($_SERVER);
+//var_dump($_SERVER);
 //echo "<br><br>";
 //echo "uri: ".$_SERVER["REQUEST_URI"]."<br>";
 //echo "trimmed root:".$_SERVER["REQUEST_URI"];

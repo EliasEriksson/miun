@@ -7,16 +7,14 @@ class Admin
 {
     private $username;
     private $passwordHash;
-    private $salt;
 
-    public function __construct(string $username, string $passwordHash, string $salt)
+    public function __construct(string $username, string $passwordHash)
         /**
          * constructs and admin from given username hash and salt
          */
     {
         $this->username = $username;
         $this->passwordHash = $passwordHash;
-        $this->salt = $salt;
     }
 
     public static function fromAssociativeArray(array $adminData): Admin
@@ -24,7 +22,7 @@ class Admin
      * alternative constructor for easier use when associative arrays are given from queries
      */
     {
-        return new Admin($adminData["username"], $adminData["passwordHash"], $adminData["salt"]);
+        return new Admin($adminData["username"], $adminData["passwordHash"]);
     }
 
     public function authenticate($password): bool
@@ -33,7 +31,7 @@ class Admin
          * and the user can be considered to be an admin
          */
     {
-        if ($this->getPasswordHash() === hash("sha256", $password . $this->getSalt())) {
+        if (password_verify($password, $this->passwordHash)) {
             return true;
         }
         return false;
@@ -50,10 +48,5 @@ class Admin
     public function getPasswordHash(): string
     {
         return $this->passwordHash;
-    }
-
-    public function getSalt(): string
-    {
-        return $this->salt;
     }
 }
