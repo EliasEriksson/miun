@@ -59,7 +59,7 @@ abstract class Form
      * @param array $fields array[string=>[string, string]] name, type and optional value of an input
      * @param bool $overwriteExisting overwrites an already set value
      */
-    protected function addValues(array $fields, bool $overwriteExisting = false)
+    protected function addValues(array $fields, bool $overwriteExisting = false): void
     {
         foreach ($fields as $field => $value) {
             if ($overwriteExisting && $this->fields[$field][1]) {
@@ -154,7 +154,7 @@ abstract class Form
      * @param string $error the error message
      * @param bool $userError if the user should see it
      */
-    protected function setError(string $error, $userError = true)
+    protected function setError(string $error, $userError = true): void
     {
         $this->error = $error;
         $this->userError = $userError;
