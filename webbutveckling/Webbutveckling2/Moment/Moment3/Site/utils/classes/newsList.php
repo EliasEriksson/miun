@@ -43,7 +43,7 @@ class NewsList
          * the limit and total amount of news in teh database.
          */
     {
-        return floor($this->amountOfNews / $this->limit);
+        return ceil($this->amountOfNews / $this->limit) - 1;
     }
 
     public function toHTML(): string
