@@ -2,10 +2,18 @@
 
 include_once __DIR__ . "/../config.php";
 
+/**
+ * Class News
+ * class for representing a news article
+ *
+ * @property string $id the news articles id
+ * @property string $title the news articles title
+ * @property string $preamble the news articles preamble
+ * @property string $content the news articles main body content
+ * @property DateTime $postDate the date the news article was posted
+ * @property ?DateTime $lastEdited the last time the news article was posted, null if it was never edited
+ */
 class News
-    /**
-     * class for representing a news article
-     */
 {
     private $id;
     private $title;
@@ -14,13 +22,12 @@ class News
     private $postDate;
     private $lastEdited;
 
+    /**
+     * News constructor.
+     *
+     * @param array $newsData array[id, title, preamble, content, postDate, lastEdited]
+     */
     public function __construct(array $newsData)
-        /**
-         * constructs from an associative array with keys:
-         * id, title, preamble, content, postDate and lastEdited
-         *
-         * lastEdited will be null unless the article have been edited
-         */
     {
         $this->id = $newsData["id"];
         $this->title = $newsData["title"];
@@ -31,11 +38,14 @@ class News
 
     }
 
+    /**
+     * constructs a timestamp object form the given time with timezone UTC
+     * UTC is the timezone since that is the mariaDB default
+     *
+     * @param string|null $datetimeString date string with format %Y-%m-%d %H:%i:%s
+     * @return DateTime|null if the given date was not null a DateTime will be returned
+     */
     private function timeToDatetime(?string $datetimeString): ?DateTime
-        /**
-         * constructs a timestamp object from the given time with timezone
-         * UTC since that's what mariaDB uses by default
-         */
     {
         if ($datetimeString) {
             return DateTime::createFromFormat("Y-m-d H:i:s", $datetimeString, new DateTimeZone("UTC"));
@@ -43,45 +53,52 @@ class News
         return null;
     }
 
+    /**
+     * helper method that gives an HTML block for the title
+     *
+     * @param int $headingGrade h element grade (1-6)
+     * @return string the heading element
+     */
     private function formatArticleHeading(int $headingGrade): string
-        /**
-         * helper method that gives an HTML block for the title with specified heading grade (h1-h6)
-         *
-         * headingGrade should be an integer >= 1 and <= 6
-         */
     {
         return "<h$headingGrade class='article-heading'>$this->title</h$headingGrade>";
     }
 
+    /**
+     * helper method that vies the HTML block for the preamble
+     *
+     * @return string the preamble paragraph element
+     */
     private function formatArticlePreamble(): string
-        /**
-         * helper method that gives an HTML block for the preamble
-         */
-
     {
         return "<p>$this->preamble</p>";
     }
 
+    /**
+     * helper method that gives an HTML block for the content
+     *
+     * @return string the content paragraph element
+     */
     private function formatArticleContent(): string
-        /**
-         * helper method that gives an HTML block for the content
-         */
     {
         return "<p>$this->content</p>";
     }
 
+    /**
+     * helper method that gives an HTML block for the postTime
+     *
+     * @return string the time element
+     */
     private function formatPostTime(): string
-        /**
-         * helper method that gives an HTML block for the postTime
-         */
     {
         return "<span class='article-time-label'>Postat: <span class='article-time'>" . $this->postDate->getTimestamp() . "</span></span>";
     }
 
+    /**
+     * helper method that gives an HTML block for the lastEdited time if applicable
+     * @return string the time element
+     */
     private function formatLastEdited(): string
-        /**
-         * helper method that gives an HTML block for the lastEdited time if applicable
-         */
     {
         if ($this->lastEdited) {
             $lastEdited = $this->lastEdited->getTimestamp();
@@ -90,13 +107,16 @@ class News
         return "";
     }
 
+    /**
+     * helper method that gives an HTML block for the navigation buttons associated with the article
+     *
+     * will only generate the read more button if readMore is true
+     * will only add an edit and remove option if the user is an admin.
+     *
+     * @param bool $readMore if readMore button should be generated
+     * @return string the button elements
+     */
     private function formatButtons(bool $readMore): string
-        /**
-         * helper method that gives an HTML block for the navigation buttons associated with the article
-         *
-         * will only generate the read more button if readMore is true
-         * will only add an edit and remove option if the user is an admin.
-         */
     {
         $newsURL = $GLOBALS["rootURL"] . "/nyheter/nyhet/?$this->id";
         $html = "<div class='article-buttons'>";
@@ -115,10 +135,12 @@ class News
         return $html;
     }
 
+    /**
+     * method that generates the HTML used for news lists
+     *
+     * @return string list article HTML
+     */
     public function toShortHTML(): string
-        /**
-         * method that generates the HTML used for news lists
-         */
     {
         $html = "<div class='article'><article class='news-article'>";
         $html .= $this->formatArticleHeading(2);
@@ -131,10 +153,12 @@ class News
         return $html;
     }
 
+    /**
+     * method that generates teh HTML for a full article
+     *
+     * @return string full article HTML
+     */
     public function toLongHTML(): string
-        /**
-         * method that generates teh HTML for a full article
-         */
     {
         $html = "<article class='news-article'>";
         $html .= $this->formatArticleHeading(1);
@@ -147,34 +171,51 @@ class News
         return $html;
     }
 
+    // getters
+
     /**
-     * getters
+     * @return string the news articles id
      */
     public function getId(): string
     {
         return $this->id;
     }
 
+    /**
+     * @return string the news articles title
+     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
+    /**
+     * @return string the nes articles main body content
+     */
     public function getContent(): string
     {
         return $this->content;
     }
 
+    /**
+     * @return DateTime the date the news article was psoted
+     */
     public function getPostDate(): DateTime
     {
         return $this->postDate;
     }
 
+    /**
+     * @return DateTime the date the news article was last edited, null if it was never edited
+     */
     public function getLastEdited(): DateTime
     {
         return $this->lastEdited;
     }
 
+    /**
+     * @return string the news articles preamble
+     */
     public function getPreamble(): string
     {
         return $this->preamble;
