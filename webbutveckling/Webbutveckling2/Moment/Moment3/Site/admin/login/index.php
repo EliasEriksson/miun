@@ -1,24 +1,18 @@
 <?php
+include_once "../../utils/config.php";
 include_once "../../utils/classes/manager.php";
+include_once "../../utils/classes/adminLoginForm.php";
 
 /**
  * if proper data is posted and authentication of the user is successful the session is set
  */
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
-    if (isset($_POST["username"])) {
-        if (isset($_POST["password"])) {
-            $manager = new Manager();
-            $admin = $manager->getAdmin($_POST["username"]);
-            if ($admin) {
-                if ($admin->authenticate($_POST["password"])) {
-                    $_SESSION["admin"] = $admin;
-                    header("location: ../");
-                }
-            }
-        }
+$adminLoginForm = new AdminLoginForm("Login");
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if ($admin = $adminLoginForm->validate()) {
+        $_SESSION["admin"] = $admin;
+        header("location: ../");
     }
-}
-?>
+}?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -36,16 +30,9 @@ include "../../templates/header.php";
     include "../../templates/sideMenu.php";
     ?>
     <div>
-        <form class="form" method="post" enctype="application/x-www-form-urlencoded">
-            <label>
-                <span class="label-text">Användarnamn:</span><input name="username" type="text">
-            </label>
-            <label>
-                <span class="label-text">Lösenord:</span><input name="password" type="password">
-            </label>
-            <input name="login" type="submit" value="Logga In">
-
-        </form>
+        <?php
+        echo $adminLoginForm->toHTML();
+        ?>
     </div>
 </main>
 <?php

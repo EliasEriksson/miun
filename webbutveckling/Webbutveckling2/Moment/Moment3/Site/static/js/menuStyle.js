@@ -9,7 +9,6 @@ function styleCurrentMenu() {
 
     for (let menuButtonElement of menuButtonElements) {
         url = cleanURL(menuButtonElement.href);
-        console.log(location, url)
         if (location === url || location === url + "index.php") {
             menuButtonElement.classList.add("current-navigation-menu");
         }

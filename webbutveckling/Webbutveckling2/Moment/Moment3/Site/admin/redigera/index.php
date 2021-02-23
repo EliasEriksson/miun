@@ -1,7 +1,7 @@
 <?php
 include_once "../../utils/config.php";
-include_once "../../utils/classes/manager.php";
 include_once "../../utils/functions.php";
+include_once "../../utils/classes/editNewsForm.php";
 
 /**
  * if user is not an admin redirect to login
@@ -11,23 +11,12 @@ if (!isset($_SESSION["admin"])) {
 }
 
 $newsID = getNewsID();
-$manager = new Manager();
-
-$errorMessage = "";
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
-    $errorMessage = validateArticleForm();
-    if (!$errorMessage) {
-        $manager->updateNews($newsID, $_POST["title"], $_POST["preamble"], $_POST["article"]);
+$editNewsForm = EditNewsForm::fromId($newsID, "Uppdatera", "article");
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if ($news = $editNewsForm->validate()) {
         header("location: ../../nyheter/nyhet/?$newsID");
     }
-}
-// sets a few variables for articleForm.php
-$news = $manager->getNews($newsID);
-$title = $news->getTitle();
-$preamble = $news->getPreamble();
-$content = $news->getContent();
-?>
-
+}?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -43,7 +32,7 @@ include "../../templates/header.php";
 <main class="site-container">
     <?php
     include "../../templates/sideMenu.php";
-    include "../../templates/articleForm.php";
+    echo $editNewsForm->toHTML();
     ?>
 </main>
 <?php

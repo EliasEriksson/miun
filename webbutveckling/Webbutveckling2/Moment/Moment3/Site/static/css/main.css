@@ -69,8 +69,10 @@ main {
     gap: 15px;
 }
 
-.button {
+.button, .submit {
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--button-color);
     color: white;
     padding: 15px;
@@ -81,8 +83,7 @@ main {
     width: fit-content;
 }
 
-.error-message {
-    padding-top: 15px;
+.user-error {
     color: orange;
     font-weight: bold;
 }
@@ -187,6 +188,7 @@ main {
 
 .textarea {
     resize: none;
+    padding: 5px;
     width: 90%;
     height: 30vh;
     overflow-y: scroll;
@@ -199,7 +201,7 @@ main {
     justify-content: flex-end;
 }
 
-.submit-wrapper .button {
+.submit {
     background-color: white;
     color: black;
 }
@@ -247,7 +249,7 @@ footer {
         gap: 10px;
     }
 
-    .button {
+    .button, .submit {
         padding: 7px;
     }
 }

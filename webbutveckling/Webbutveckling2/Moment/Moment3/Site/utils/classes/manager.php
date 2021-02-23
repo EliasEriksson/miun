@@ -52,6 +52,7 @@ class Manager
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $sql = "insert into admins values ('$username', '$passwordHash');";
         $result = $this->connection->query($sql);
+        echo var_dump($result)."<br>";
         if ($result) {
             return new Admin($username, $passwordHash);
         }
