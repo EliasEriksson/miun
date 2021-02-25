@@ -3,7 +3,7 @@ include_once "../../utils/classes/adminRegisterForm.php";
 /**
  * creates a new admin user if the proper post data is present
  */
-$adminRegisterForm = new AdminRegisterForm("Register");
+$adminRegisterForm = new AdminRegisterForm();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($admin = $adminRegisterForm->validate()) {
         $_SESSION["admin"] = $admin;

@@ -2,6 +2,7 @@
 include_once __DIR__ . "/form.php";
 include_once __DIR__ . "/admin.php";
 include_once __DIR__ . "/manager.php";
+include_once __DIR__ . "/field.php";
 
 
 /**
@@ -12,16 +13,16 @@ class AdminRegisterForm extends Form
 {
     /**
      * AdminRegisterForm constructor.
-     * @param string $submit value of the submit button
      * @param string $classPrefix prefix for all the forms components css classes
      */
-    public function __construct(string $submit = "submit", string $classPrefix = "")
+    public function __construct(string $classPrefix = "")
     {
         parent::__construct([
-            "användarnamn" => "text",
-            "lösenord" => "password",
-            "återupprepa" => "password"
-        ], $submit, $classPrefix, ["lösenord", "återupprepa"]);
+            new Field("username", "text", "", $classPrefix, "Användarnamn: "),
+            new Field("password1", "password", "", $classPrefix, "Lösenord: ", false),
+            new Field("password2", "password", "", $classPrefix, "Återupprepa lösenord: ", false),
+            new Field("register", "submit", "Registrera dig", $classPrefix)
+        ], $classPrefix);
     }
 
     /**
@@ -34,13 +35,13 @@ class AdminRegisterForm extends Form
             return null;
         }
 
-        if ($_POST["lösenord"] !== $_POST["återupprepa"]) {
+        if ($_POST["password1"] !== $_POST["password2"]) {
             $this->setError("Lösenorden matchar inte.");
             return null;
         }
 
         $manager = new Manager();
-        $admin = $manager->addAdmin($_POST["användarnamn"], $_POST["återupprepa"]);
+        $admin = $manager->addAdmin($_POST["username"], $_POST["password1"]);
         if ($admin) {
             return $admin;
         }

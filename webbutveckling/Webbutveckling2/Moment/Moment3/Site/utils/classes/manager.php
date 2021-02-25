@@ -42,7 +42,7 @@ class Manager
 
         $sql .= "alter table admins add constraint adminsPK primary key (username);";
         $sql .= "alter table news add constraint newsPK primary key (id);";
-        $sql .= "alter table news modify  lastEdited timestamp null;";
+        $sql .= "alter table news modify lastEdited timestamp null;";
         $result = $this->connection->multi_query($sql);
         $this->connection->commit();
         return $result;

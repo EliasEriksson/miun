@@ -6,7 +6,7 @@ include_once "../../utils/classes/adminLoginForm.php";
 /**
  * if proper data is posted and authentication of the user is successful the session is set
  */
-$adminLoginForm = new AdminLoginForm("Login");
+$adminLoginForm = new AdminLoginForm();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($admin = $adminLoginForm->validate()) {
         $_SESSION["admin"] = $admin;

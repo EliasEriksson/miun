@@ -105,7 +105,7 @@ main {
     gap: 5px;
 }
 
-.label-text {
+.label-text, .article-label-text {
     display: flex;
     color: white;
 }

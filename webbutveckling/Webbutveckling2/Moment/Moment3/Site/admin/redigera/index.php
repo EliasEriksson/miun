@@ -11,7 +11,7 @@ if (!isset($_SESSION["admin"])) {
 }
 
 $newsID = getNewsID();
-$editNewsForm = EditNewsForm::fromId($newsID, "Uppdatera", "article");
+$editNewsForm = EditNewsForm::fromId($newsID, "article");
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($news = $editNewsForm->validate()) {
         header("location: ../../nyheter/nyhet/?$newsID");

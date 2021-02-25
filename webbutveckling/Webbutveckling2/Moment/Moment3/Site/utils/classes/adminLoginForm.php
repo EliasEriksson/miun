@@ -2,24 +2,26 @@
 include_once __DIR__ . "/form.php";
 include_once __DIR__ . "/admin.php";
 include_once __DIR__ . "/manager.php";
+include_once __DIR__ . "/field.php";
+include_once __DIR__ . "/form.php";
+
 
 /**
  * Class AdminLoginForm
  * all required functionality to login a user thru a post request form
  */
-class AdminLoginForm extends Form
-{
+class AdminLoginForm extends Form {
     /**
      * AdminLoginForm constructor.
-     * @param string $submit value of the submit button
      * @param string $classPrefix prefix for all the forms components css classes
      */
-    public function __construct(string $submit = "submit", $classPrefix = "")
+    public function __construct($classPrefix = "")
     {
         parent::__construct([
-            "användarnamn" => "text",
-            "lösenord" => "password"
-        ], $submit, $classPrefix, ["lösenord"]);
+            new Field("username", "text", "", $classPrefix, "Användarnamn: "),
+            new Field("password", "password", "", $classPrefix, "Lösenord: ", false),
+            new Field("login", "submit", "Logga in", $classPrefix)
+        ], $classPrefix);
     }
 
     /**
@@ -33,16 +35,16 @@ class AdminLoginForm extends Form
         }
 
         $manager = new Manager();
-        $admin = $manager->getAdmin($_POST["användarnamn"]);
+        $admin = $manager->getAdmin($_POST["username"]);
 
         if ($admin) {
-            if ($admin->authenticate($_POST["lösenord"])) {
+            if ($admin->authenticate($_POST["password"])) {
                 return $admin;
             } else {
                 $this->setError("Fel lösenord.");
             }
         } else {
-            $this->setError(($_POST["användarnamn"] . " är inte registrerad."));
+            $this->setError(($_POST["username"] . " är inte registrerad."));
         }
         return null;
     }

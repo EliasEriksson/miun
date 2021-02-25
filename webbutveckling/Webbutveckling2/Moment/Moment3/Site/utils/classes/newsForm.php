@@ -2,6 +2,7 @@
 include_once __DIR__ . "/form.php";
 include_once __DIR__ . "/news.php";
 include_once __DIR__ . "/manager.php";
+include_once __DIR__ . "/field.php";
 
 
 /**
@@ -12,16 +13,16 @@ class NewsForm extends Form
     /**
      * NewsForm constructor.
      *
-     * @param string $submit value of the submit button
      * @param string $classPrefix prefix for all the forms components css classes
      */
-    public function __construct(string $submit = "submit", string $classPrefix = "")
+    public function __construct(string $classPrefix = "")
     {
         parent::__construct([
-            "titel" => "text",
-            "ingress" => "textarea",
-            "artikel" => "textarea"
-        ], $submit, $classPrefix);
+            new Field("title", "text", "", $classPrefix, "Titel"),
+            new Field("preamble", "textarea", "", $classPrefix, "Ingress"),
+            new Field("article", "textarea", "", $classPrefix, "Artikel"),
+            new Field("publish", "submit", "Publicera", $classPrefix)
+        ], $classPrefix);
     }
 
     /**
@@ -35,7 +36,7 @@ class NewsForm extends Form
             return null;
         }
         $manager = new Manager();
-        $news = $manager->addNews($_POST["titel"], $_POST["ingress"], $_POST["artikel"]);
+        $news = $manager->addNews($_POST["title"], $_POST["preamble"], $_POST["article"]);
         if ($news) {
             return $news;
         }

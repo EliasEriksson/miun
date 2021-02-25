@@ -8,7 +8,7 @@ if (!isset($_SESSION["admin"])) {
     header("location: login/");
 }
 
-$newsForm = new NewsForm("Publicera", "article");
+$newsForm = new NewsForm("article");
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($news = $newsForm->validate()) {
         $id = $news->getId();
