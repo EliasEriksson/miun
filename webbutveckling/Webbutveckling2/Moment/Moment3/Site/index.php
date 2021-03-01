@@ -2,9 +2,21 @@
 include_once "utils/config.php";
 include_once "utils/functions.php";
 include_once "utils/classes/newsList.php";
+include_once "utils/classes/manager.php";
 
-$currentPage = getCurrentPage();
-$newsList = new NewsList(2, $currentPage);
+// 0 given as page as the start page should not be paged
+$newsList = new NewsList(2, 0);
+
+/**
+ * if an admin post requested with proper data a post will be removed
+ */
+if (isset($_SESSION["admin"])) {
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete"]) && isset($_POST["id"])) {
+        $manager = new Manager();
+        $manager->removeNews($_POST["id"]);
+        header("location: ./");
+    }
+}
 ?>
 
 <!doctype html>

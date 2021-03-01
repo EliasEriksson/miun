@@ -1,25 +1,20 @@
 <?php
-include_once "../utils/config.php";
-include_once "../utils/classes/manager.php";
-include_once "../utils/functions.php";
+include_once "../utils/classes/newsForm.php";
 
-
+/**
+ * if not logged in as admin redirect to login
+ */
 if (!isset($_SESSION["admin"])) {
     header("location: login/");
 }
 
-$errorMessage = "";
-
-if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST["submit"]) {
-    $errorMessage = validateArticleForm();
-    if (!$errorMessage) {
-        $manager = new Manager();
-        $news = $manager->addNews($_POST["title"], $_POST["preamble"], $_POST["article"]);
+$newsForm = new NewsForm("article");
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if ($news = $newsForm->validate()) {
         $id = $news->getId();
         header("location: ../nyheter/nyhet/?$id");
     }
-}
-?>
+}?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -35,7 +30,7 @@ include "../templates/header.php";
 <main class="site-container">
     <?php
     include "../templates/sideMenu.php";
-    include "../templates/articleForm.php";
+    echo $newsForm->toHTML();
     ?>
 </main>
 <?php

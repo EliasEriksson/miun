@@ -7,6 +7,9 @@ include_once "../utils/classes/manager.php";
 $currentPage = getCurrentPage();
 $newsList = new NewsList(5, $currentPage);
 
+/**
+ * if an admin post requested with proper data a post will be removed
+ */
 if (isset($_SESSION["admin"])) {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete"]) && isset($_POST["id"])) {
         $manager = new Manager();

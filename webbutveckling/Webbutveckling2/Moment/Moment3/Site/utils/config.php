@@ -4,6 +4,8 @@ include_once __DIR__."/functions.php";
 
 session_start();
 
+error_reporting(-1);
+ini_set("display_errors", 1);
 if (isset($_SERVER["CONTEXT_DOCUMENT_ROOT"]) && isset($_SERVER["CONTEXT_PREFIX"])) {
     //if hosted on a server that uses those contexts
     // used for miuns server
@@ -26,6 +28,7 @@ if (isset($_SERVER["CONTEXT_DOCUMENT_ROOT"]) && isset($_SERVER["CONTEXT_PREFIX"]
     } else {
         $rootURL = "";
     }
+    // enables logging on localhost
     error_reporting(-1);
     ini_set("display_errors", 1);
 }
@@ -42,9 +45,14 @@ if (isset($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
     $writeDirectoryLink = $rootURL;
 }
 
+// sets the variables in teh GLOBAL variable so classes also can have access to the values
 $GLOBALS["rootURL"] = $rootURL;
 $GLOBALS["writeDirectory"] = $writeDirectory;
 $GLOBALS["writeDirectoryLink"] = $writeDirectoryLink;
+
+/**
+ * code for testing
+ */
 //var_dump($_SERVER);
 //echo "<br><br>";
 //echo "uri: ".$_SERVER["REQUEST_URI"]."<br>";
