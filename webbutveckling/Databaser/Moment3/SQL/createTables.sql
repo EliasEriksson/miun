@@ -35,8 +35,9 @@ create table ownersRestaurants
 
 create table desertCategories
 (
-    id       int auto_increment not null,
-    category varchar(32),
+    id   int auto_increment not null,
+    desertID int,
+    name varchar(32),
 
     constraint desertCategoriesPK primary key (id)
 
@@ -65,7 +66,7 @@ create table toppings
 create table deserts
 (
     id          int auto_increment not null,
-    description int,
+    description text,
     toppingID   int,
     price       int,
 
@@ -100,8 +101,8 @@ create table tableBooths
 
 create table benchBooths
 (
-    boothID   int auto_increment not null,
-    code char(1),
+    boothID int auto_increment not null,
+    code    char(1),
 
     constraint benchBoothsPK primary key (boothID)
 );
@@ -152,6 +153,12 @@ alter table offers
 alter table offers
     add constraint offersRestaurantFK
         foreign key (restaurantID)
+            references restaurants (id)
+            on delete cascade;
+
+alter table desertCategories
+    add constraint desertCategoriesDesert
+        foreign key (desertID)
             references restaurants (id)
             on delete cascade;
 
