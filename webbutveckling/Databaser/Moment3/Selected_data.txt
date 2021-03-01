@@ -1,0 +1,65 @@
+mysql> select * from Restaurant;
+
++---------------+------------------------+------------------------+------------------------+------------------------+------------------------+-------------------------+
+| RESTAURANT_ID | RESTAURANT_OWNER1_NAME | RESTAURANT_OWNER2_NAME | RESTAURANT_OWNER3_NAME | RESTAURANT_REGION_CODE | RESTAURANT_REGION_NAME | RESTAURANT_MAX_CAPACITY |
++---------------+------------------------+------------------------+------------------------+------------------------+------------------------+-------------------------+
+| 123           | Bob Jones              | Paul Smith             | Mary Doe               | NE                     | Northeast              |                      50 |
+| 124           | Bill Barker            | James Pierce           | Bob Jones              | NE                     | Northeast              |                     200 |
+| 125           | Mary Doe               | NULL                   | NULL                   | SW                     | Southwest              |                     175 |
+| 126           | Mary Doe               | Mike Myers             | NULL                   | SW                     | Southwest              |                     100 |
+| 326           | Mary Doe               | Mike Myers             | NULL                   | SW                     | Southwest              |                     322 |
+| 454           | Mary Doe               | Mike Myers             | NULL                   | NE                     | Northeast              |                     145 |
+| 789           | Mary Doe               | Mike Myers             | NULL                   | NE                     | Northeast              |                     678 |
++---------------+------------------------+------------------------+------------------------+------------------------+------------------------+-------------------------+
+
+
+mysql> select * from Dessert;
+
++--------------+----------------------------+------------------+----------------------------------------+-------------------------+----------------------+---------------+----------------------+
+| DESSERT_CODE | DESSERT_OFFERED_DATE_RANGE | DESSERT_NAME     | DESSERT_DESCR                          | DESSERT_CATEGORY_CODE   | DRINK_NAME           | TOPPNING_NAME | DESSERT_PRICE_AMOUNT |
++--------------+----------------------------+------------------+-------- -----+----------------------- -+-------------------------+----------------------+---------------+----------------------+
+| AB           | 1999-10-1 - 1999-10-31     | Scary Sundae     | Lots of licorice, bats, and hot fudge  |Holiday, Cookie, Medium  | Spooky Hot Chocolate | Hot fudge     |    2.95              |
+|			   |							|				   |  over broomshaped cookies              |					      |						 |				 |						|
+| BC           | 1996-1-1 - 2002-12-31      | Banana Split     | Three large scoops of ice cream with   |Fruit, Frozen, Large	  | NULL                 | Hot fudge     |    4.95 				|
+|			   |							|				   | two fresh bananas and an unbelievable 	|						  |						 |				 |						|
+|			   |							|				   | number of toppings, including hot fudge|						  |						 |               |						|
+|			   |							|				   | and strawberry 						| 						  |						 |               |						|
+| EE           | 2001-6-1 - 2001-9-1        | Summer Refresher | Lots of different types of fruits,     |Fruit, Health, Seasonal, |	  NULL               | Cherries	     |    1.95              |
+|			   |							|				   | all put into a blender                 |Small                    |                      |               |                      |
++--------------+----------------------------+------------------+----------------------------------------+-------------------------+----------------------+---------------+----------------------+
+
+
+mysql> select * from Bill;
+
++---------+-----------+--------------+----------------------------+---------------+---------------------+-------------+-----------------+
+| BILL_ID | BOOTHCODE | DESSERT_CODE | DESSERT_OFFERED_DATE_RANGE | RESTAURANT_ID | BILL_DATE_AND_TIME  | BILL_AMOUNT | GRATUITY_AMOUNT |
++---------+-----------+--------------+----------------------------+---------------+---------------------+-------------+-----------------+
+| 20      | BOOTH_AB  | AB           | 1999-10-1 - 1999-10-31     | 454           | 1999-10-12 20:34:59 |         320 |              20 |
+| 27      | BOOTH_AE  | EE           | 2001-6-1 - 2001-9-1        | 789           | 2000-10-21 15:30:12 |       400.5 |             0.5 |
+| 29      | BOOTH_AB  | AB           | 1999-10-1 - 1999-10-31     | 454           | 1999-10-12 12:34:00 |         330 |              30 |
+| 77      | BOOTH_AD  | BC           | 1996-1-1 - 2002-12-31      | 789           | 2000-10-15 20:15:19 |     1500.99 |              80 |
+| 9       | BOOTH_BC  | AB           | 1999-10-1 - 1999-10-31     | 454           | 1999-10-10 22:25:09 |       310.5 |            10.5 |
++---------+-----------+--------------+----------------------------+---------------+---------------------+-------------+-----------------+
+
+mysql> select * from Offer;
++--------------+----------------------------+---------------+
+| DESSERT_CODE | DESSERT_OFFERED_DATE_RANGE | RESTAURANT_ID |
++--------------+----------------------------+---------------+
+| AB           | 1999-10-1 - 1999-10-31     | 454           |
+| BC           | 1996-1-1 - 2002-12-31      | 789           |
+| EE           | 2001-6-1 - 2001-9-1        | 789           |
++--------------+----------------------------+---------------+
+
+
+mysql> select * from Booth;
++-----------+---------------+-------------------------+----------------+---------------+---------------+
+| BOOTHCODE | RESTAURANT_ID | SMOKE_SECTION_INDICATOR | BOOTH_CAPACITY | BOOTHTYP_CODE | BOOTHTYP_TEXT |
++-----------+---------------+-------------------------+----------------+---------------+---------------+
+| BOOTH_AB  | 123           | Y                       |              4 | T             | Table         |
+| BOOTH_AD  | 125           | N                       |              2 | T             | Table         |
+| BOOTH_AE  | 124           | Y                       |              8 | T             | Table         |
+| BOOTH_BC  | 123           | Y                       |              6 | E             | Bench         |
++-----------+---------------+-------------------------+----------------+---------------+---------------+
+
+
+
