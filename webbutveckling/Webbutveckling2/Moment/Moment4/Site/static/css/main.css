@@ -1,0 +1,15 @@
+body {
+    line-height: 1.5;
+    font-size: 1.2rem;
+}
+
+.cluck {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 15px;
+}
+
+.cluck-content {
+    max-width: 65ch;
+}
+
