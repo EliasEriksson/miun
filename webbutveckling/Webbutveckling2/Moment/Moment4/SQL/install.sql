@@ -7,21 +7,20 @@ create table users
     id           int auto_increment  not null,
     email        varchar(255) unique not null,
     passwordHash varchar(255),
-
+    url          char(13) unique,
     constraint usersPK primary key (id)
 );
 
 create table userProfiles
 (
-    userID    int          not null,
-    firstName varchar(255),
-    lastName  varchar(255),
-    url       char(13),
-    avatar    varchar(255) null,
+    userID      int          not null,
+    firstName   varchar(255),
+    lastName    varchar(255),
+    avatar      varchar(255) null,
+    description text,
 
     -- weak check to at least make sure that these are part of the paths somewhere
-    constraint avatarPath check ( avatar like '%writeable/media/avatars%'),
-    constraint urlPath check ( url like '%profiles/profile/%'),
+    constraint avatarPath check ( avatar like '%writeable/web2mom4/media/avatars%'),
     constraint userProfilePK primary key (userID)
 );
 
@@ -30,6 +29,7 @@ create table clucks
     id         int auto_increment not null,
     userID     int                not null,
     content    varchar(250),
+    url        char(13) unique,
     postDate   timestamp default current_timestamp,
     lastEdited timestamp          null,
 

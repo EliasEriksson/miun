@@ -1,15 +1,204 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --button-color: #011943;
+    --button-text-color: #ffffff;
+    --border-color: #e0dccb;
+}
+
+h1, h2. h3. h4. h5. h6 {
+    font-family: Tinos, sans-serif;
+}
+
 body {
     line-height: 1.5;
     font-size: 1.2rem;
+    font-family: "Open Sans", serif;
 }
+
+.header-wrapper {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    max-width: 960px;
+    width: 100%;
+    align-items: center;
+    gap: 15px;
+}
+
+.main-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.account-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.button {
+    display: flex;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    font-weight: bold;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+/* inside main */
+
+.main-wrapper {
+    margin-top: 15px;
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.main-content {
+    width: 100%;
+    max-width: 960px;
+
+}
+
+.cluck-section h1 {
+    text-align: center;
+}
+
+#clucks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* cluck lists (main) */
 
 .cluck {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 15px;
+    width: 100%;
+    padding: 15px;
+
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+}
+
+.cluck-user-profile-image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cluck-heading-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cluck-heading-link {
+    text-decoration: none;
+    color: inherit;
+}
+.cluck-heading-link:hover {
+    text-decoration: underline;
+}
+
+.cluck-publish-details {
+    display: flex;
+    gap: 15px;
 }
 
 .cluck-content {
     max-width: 65ch;
+    overflow-wrap: break-word;
 }
 
+.cluck-menu {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding-right: 15px;
+}
+
+/* profile (main) */
+.profile {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 15px;
+}
+
+.profile h1 {
+    margin: 0;
+}
+
+.profile-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+}
+
+.profile-description {
+    grid-column: 2;
+}
+
+/* form shit down here */
+
+.cluck-link {
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+    width: fit-content;
+}
+
+.cluck-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    max-width: 60%;
+    width: 100%;
+}
+
+.cluck-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.cluck-label {
+    width: 100%;
+}
+
+.cluck-form textarea {
+    resize: none;
+    padding: 10px;
+    min-height: calc(4em * 1.5);
+    outline: none;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+}
+
+.cluck-cluck-submit {
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+}

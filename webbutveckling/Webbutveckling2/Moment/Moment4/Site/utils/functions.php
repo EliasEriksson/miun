@@ -1,56 +1,122 @@
 <?php
+include_once __DIR__ . "/config.php";
+include_once __DIR__ . "/classes/user.php";
+include_once __DIR__ . "/classes/userProfile.php";
+include_once __DIR__ . "/classes/manager.php";
+
+function redirect($uri)
+{
+    header("location: $uri");
+}
+
+/**
+ * takes a path and removes the last part of it
+ * i.e: /home/elias-eriksson/dev would become /home/elias-eriksson
+ * @param string $path
+ * @return string
+ */
 function parentDirectory(string $path): string
-    /**
-     * takes a path and removes the last part of it
-     * i.e: /home/elias-eriksson/dev would become /home/elias-eriksson
-     */
 {
     $parts = explode("/", $path);
     return implode("/", array_splice($parts, 0, -1));
 }
 
-function getCurrentPage(): int
-    /**
-     * used to get the the name of the first given get parameter on pages where this
-     * get parameter is assumed to be page number
-     * if this is not a number the user is redirected to the current page without any get parameters
-     *
-     * thank you miun server for not being on version 7.2 where array_key is not available...
-     * not even class attributes can be type hinted on this version but is present on version 7.4...
-     */
+function getCurrentPage(string $redirect = ""): string
 {
-    $page = 0;
     if (count($_GET) > 0) {
         // $currentPage = array_key_first($_GET);
         // since miun is at version 7.2 not 7.4.........
         foreach ($_GET as $currentPage => $_) break;
         if (isset($currentPage)) {
-            if (is_numeric($currentPage)) {
-                $page = $currentPage;
-            } else {
-                header("location: ./");
-            }
+            return $currentPage;
         }
-
     }
-    return $page;
+    if ($redirect) {
+        redirect($redirect);
+    }
+    return "";
 }
 
-function getNewsID()
-    /**
-     * used to get the name of the first given get parameter on pages where this get parameter
-     * is assumed to be the news articles id.
-     *
-     * if this get parameter is not numeric the user is redirected to the news (plural) page
-     */
+
+function popAssoc(array &$array, string $key)
 {
-    if (count($_GET) > 0) {
-        foreach ($_GET as $get => $_) break;
-        if (isset($get)) {
-            return $get;
+    $value = $array[$key];
+    unset($array[$key]);
+    return $value;
+}
+
+
+function requireUserLogin()
+{
+    $root = $GLOBALS["rootURL"];
+    if (!isset($_SESSION["user"])) {
+        redirect("$root/Login/");
+    }
+}
+
+function requireUserProfileLogin()
+{
+    requireUserLogin();
+    $root = $GLOBALS["rootURL"];
+    if (!isset($_SESSION["userProfile"])) {
+        if ($userProfile = $_SESSION["user"]->getProfile()) {
+            $_SESSION["userProfile"] = $userProfile;
+        } else {
+            redirect("$root/Profiles/Profile/");
         }
     }
-    header("location: ../");
-    // to stop IDE from complaining
-    return "";
+}
+
+function getSessionUser(): User
+{
+    requireUserLogin();
+    return $_SESSION["user"];
+}
+
+function getSessionUserProfile(): UserProfile
+{
+    requireUserProfileLogin();
+    return $_SESSION["userProfile"];
+}
+
+function userLoggedIn(): bool
+{
+    return isset($_SESSION["user"]);
+}
+
+function userProfileLoggedIn(): bool
+{
+    return userLoggedIn() && isset($_SESSION["userProfile"]);
+}
+
+function getExtensionFromMIME(string $mime): ?string
+{
+    $supportedFormats = [
+        "image/jpeg" => ".jpeg",
+        "image/png" => ".png",
+        "image/svg+xml" => ".svg"
+    ];
+    if (array_key_exists($mime, $supportedFormats)) {
+        return $supportedFormats[$mime];
+    }
+    echo "mime $mime was not in supported formats. ";
+    return null;
+}
+
+function mergeClucksWithUserProfile(array $clucks, Manager $manager = null): string
+{
+    if (!$manager) {
+        $manager = new Manager();
+    }
+    $data = [];
+    foreach ($clucks as $cluck) {
+        $cluckData = $cluck->getAssoc();
+        $userID = popAssoc($cluckData, "userID");
+        $userProfile = $manager->getUserProfile($userID);
+        $user = $manager->getUser($userID);
+        if ($userProfile) {
+            array_push($data, array_merge($userProfile->getAssoc(), $cluckData, ["userURL" => $user->getUrl()]));
+        }
+    }
+    return json_encode($data, JSON_UNESCAPED_UNICODE);
 }

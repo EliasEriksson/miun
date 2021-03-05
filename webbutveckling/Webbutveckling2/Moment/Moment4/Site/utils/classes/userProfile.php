@@ -8,8 +8,8 @@ class UserProfile
     private $userID;
     private $firstName;
     private $lastName;
-    private $url;
     private $avatar;
+    private $description;
 
     public static function fromAssoc(array $userProfileData): UserProfile
     {
@@ -17,8 +17,8 @@ class UserProfile
             $userProfileData["userID"],
             $userProfileData["firstName"],
             $userProfileData["lastName"],
-            $userProfileData["url"],
-            $userProfileData["avatar"]
+            $userProfileData["avatar"],
+            $userProfileData["description"]
         );
     }
 
@@ -26,19 +26,54 @@ class UserProfile
         int $userID,
         string $firstName,
         string $lastName,
-        string $url,
-        string $avatar)
+        string $avatar,
+        string $description)
     {
         $this->userID = $userID;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
-        $this->url = $url;
         $this->avatar = $avatar;
+        $this->description = $description;
     }
 
-    public function getUser(): UserProfile
+    public function getUser(): User
     {
         $manager = new Manager();
-        return $manager->getUserProfile($this->userID);
+        return $manager->getUser($this->userID);
+    }
+
+    public function getAssoc(): array
+    {
+        return get_object_vars($this);
+    }
+
+    public function getUserID(): int
+    {
+        return $this->userID;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function getFilePathAvatar(): string
+    {
+        return $GLOBALS["writeDirectory"] . $this->avatar;
+    }
+
+    public function getWebLinkAvatar(): string
+    {
+        return $GLOBALS["writeDirectoryLink"] . $this->avatar;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
     }
 }

@@ -21,6 +21,7 @@ class Field extends HTMLElement
     private $labelText;
     private $classPrefix;
     private $refillOnFailedPost;
+    private $mustVerify;
 
     public function __construct(
         string $name,
@@ -28,7 +29,8 @@ class Field extends HTMLElement
         string $value = "",
         string $classPrefix = "",
         ?string $labelText = null,
-        bool $refillOnFailedPost = true)
+        bool $refillOnFailedPost = true,
+        bool $mustVerify = true)
     {
         parent::__construct($classPrefix);
         $this->name = $name;
@@ -37,6 +39,7 @@ class Field extends HTMLElement
         $this->classPrefix = $classPrefix;
         $this->labelText = $labelText ?? $name;
         $this->refillOnFailedPost = $refillOnFailedPost;
+        $this->mustVerify = $mustVerify;
     }
 
 
@@ -79,9 +82,6 @@ class Field extends HTMLElement
     {
         return implode(" ", [
             $this->prefixClass("$this->name-$this->type"),
-            $this->prefixClass("$this->type"),
-            "$this->name",
-//            ...$extra // seriously? why does this not work on miun?
         ]);
     }
 
@@ -96,7 +96,7 @@ class Field extends HTMLElement
         $html = $this->wrapInSpan("$this->labelText");
 
         $classes = $this->getFieldClasses(["textarea", "input"]);
-        $classes .= " textarea input"; // since splat operator crashes on miun
+//        $classes .= " textarea input"; // since splat operator crashes on miun
 
         $html .= "<textarea class='$classes' name='$this->name'>$this->value</textarea>";
 
@@ -113,7 +113,7 @@ class Field extends HTMLElement
     private function formatUnlabeledInput(): string
     {
         $classes = $this->getFieldClasses(["submit"]);
-        $classes .= " submit"; // since splat operator crashes on miun
+//        $classes .= " submit"; // since splat operator crashes on miun
 
         return "<input class='$classes' name='$this->name' value='$this->value' type='$this->type'>";
     }
@@ -144,10 +144,14 @@ class Field extends HTMLElement
      */
     public function validateField(): ?string
     {
-        if ($this->type == "submit" && !isset($_POST[$this->name])) {
-            return "Det är va inte det formet som va submittat.";
-        } elseif (!(isset($_POST[$this->name]) && $_POST[$this->name])) {
-            return ucfirst("$this->name kan inte vara tom.");
+        if ($this->mustVerify) {
+            if ($this->type == "submit" && !isset($_POST[$this->name])) {
+                return "Det är va inte det formet som va submittat.";
+            } elseif ($this->type == "file" && !isset($_FILES[$this->name])) {
+                return ucfirst("$this->labelText kan inte vara tom.") . trim(":");
+            } elseif (!(isset($_POST[$this->name]) && $_POST[$this->name])) {
+                return ucfirst("$this->labelText kan inte vara tom.") . trim(":");
+            }
         }
         return null;
     }
@@ -172,35 +176,26 @@ class Field extends HTMLElement
 
     // getters
 
-    /**
-     * @return string value of the name attribute
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string value of the value attribute
-     */
     public function getValue(): string
     {
         return $this->value;
     }
 
-    /**
-     * @return bool
-     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
     public function getRefillOnFailedPost(): bool
     {
         return $this->refillOnFailedPost;
     }
 
-    /**
-     * set the contents of the input field
-     *
-     * @param string $value
-     */
     public function setValue(string $value): void
     {
         $this->value = $value;

@@ -4,8 +4,8 @@ include_once __DIR__."/functions.php";
 
 session_start();
 
-error_reporting(-1);
-ini_set("display_errors", 1);
+//error_reporting(-1);
+//ini_set("display_errors", 1);
 if (isset($_SERVER["CONTEXT_DOCUMENT_ROOT"]) && isset($_SERVER["CONTEXT_PREFIX"])) {
     //if hosted on a server that uses those contexts
     // used for miuns server
@@ -58,3 +58,7 @@ $GLOBALS["writeDirectoryLink"] = $writeDirectoryLink;
 //echo "uri: ".$_SERVER["REQUEST_URI"]."<br>";
 //echo "trimmed root:".$_SERVER["REQUEST_URI"];
 //var_dump($rootURL);
+//echo var_dump($_SERVER)."<br><br>";
+//echo var_dump($rootURL)." :root<br><br>";
+//echo var_dump($writeDirectory)." :write<br><br>";
+//echo var_dump($writeDirectoryLink)." :write link<br><br>";

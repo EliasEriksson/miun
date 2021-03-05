@@ -40,7 +40,14 @@ abstract class Form extends HTMLElement
     public function toHTML(): string
     {
         $class = $this->prefixClass("form");
-        $html = "<form class='$class' method='post' enctype='application/x-www-form-urlencoded'>";
+        $enctype = "application/x-www-form-urlencoded";
+        foreach ($this->fields as $field) {
+            if ($field->getType() === "file") {
+                $enctype = "multipart/form-data";
+                break;
+            }
+        }
+        $html = "<form class='$class' method='post' enctype='$enctype'>";
 
         if ($this->userError) {
             $html .= "<p class='user-error'>" . $this->getError() . "</p>";

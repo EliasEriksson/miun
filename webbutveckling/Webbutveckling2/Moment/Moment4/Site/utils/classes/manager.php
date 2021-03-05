@@ -28,9 +28,10 @@ class Manager
     public function createUser(string $email, string $password): ?User
     {
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "insert into users values (default, '$email', '$passwordHash');";
+        $url = uniqid();
+        $sql = "insert into users values (default, '$email', '$passwordHash', '$url');";
         if ($result = $this->connection->query($sql)) {
-            return new User($this->connection->insert_id, $email, $passwordHash);
+            return new User($this->connection->insert_id, $email, $passwordHash, $url);
         }
         return null;
     }
@@ -63,21 +64,37 @@ class Manager
         return null;
     }
 
-    public function createUserProfile(int $id, string $firstName, string $lastName): ?UserProfile
+    public function getUserFromEmail(string $email): ?User
     {
-        $url = "/profiles/profile/" . uniqid();
-        $avatar = $GLOBALS["writeDirectory"] . "/writeable/web2mom4/media/avatars/defaultAvatars/default.svg";
-        $sql = "insert into userProfiles values ($id, '$firstName', '$lastName', '$url', '$avatar');";
-        if ($result = $this->connection->query($sql)) {
-            return new UserProfile($id, $firstName, $lastName, $url, $avatar);
+        $sql = "select * from users where email='$email';";
+        if (($result = $this->connection->query($sql))->num_rows) {
+            return User::fromAssoc($result->fetch_assoc());
         }
         return null;
     }
 
-    public function updateUserProfile(int $id, string $firstName, string $lastName, ?string $avatar): ?UserProfile
+    public function getUserFromURL(string $url): ?User
+    {
+        $sql = "select * from users where url = '$url';";
+        if ($result = $this->connection->query($sql)) {
+            return User::fromAssoc($result->fetch_assoc());
+        }
+        return null;
+    }
+
+    public function createUserProfile(int $id, string $firstName, string $lastName, string $avatar, string $description): ?UserProfile
+    {
+        $sql = "insert into userProfiles values ($id, '$firstName', '$lastName', '$avatar', '$description');";
+        if ($result = $this->connection->query($sql)) {
+            return new UserProfile($id, $firstName, $lastName, $avatar, $description);
+        }
+        return null;
+    }
+
+    public function updateUserProfile(int $id, string $firstName, string $lastName, string $avatar, string $description): ?UserProfile
     {
         $sql = "
-        update userProfiles set firstName = '$firstName', lastName = '$lastName', avatar = '$avatar'
+        update userProfiles set firstName = '$firstName', lastName = '$lastName', avatar = '$avatar', description = '$description'
         where userID=$id;";
         if ($result = $this->connection->query($sql)) {
             return $this->getUserProfile($id);
@@ -88,7 +105,7 @@ class Manager
     public function getUserProfile(int $id): ?UserProfile
     {
         $sql = "select * from users join userProfiles on users.id = userProfiles.userID where id=$id;";
-        if ($result = $this->connection->query($sql)) {
+        if (($result = $this->connection->query($sql))->num_rows) { //TODO do this num_rows where its needed
             return UserProfile::fromAssoc($result->fetch_assoc());
         }
         return null;
@@ -105,7 +122,8 @@ class Manager
 
     public function createCluck(int $userID, string $content, int $replyID = 0): ?Cluck
     {
-        $sql = "insert into clucks values (default, $userID, '$content', now(), null);";
+        $url = uniqid();
+        $sql = "insert into clucks values (default, $userID, '$content', '$url', now(), null);";
         if ($result = $this->connection->query($sql)) {
             $id = $this->connection->insert_id;
             if ($replyID) {
@@ -130,7 +148,8 @@ class Manager
         return false;
     }
 
-    public function updateCluck(int $id, string $content) {
+    public function updateCluck(int $id, string $content)
+    {
         $sql = "update clucks set content = '$content' where id=$id;";
     }
 
@@ -146,6 +165,15 @@ class Manager
     public function getCluck(int $id): ?Cluck
     {
         $sql = "select * from clucks where id=$id;";
+        if ($result = $this->connection->query($sql)) {
+            return Cluck::fromAssoc($result->fetch_assoc());
+        }
+        return null;
+    }
+
+    public function getCluckFromURL(string $url): ?Cluck
+    {
+        $sql = "select * from clucks where url='$url';";
         if ($result = $this->connection->query($sql)) {
             return Cluck::fromAssoc($result->fetch_assoc());
         }
@@ -169,8 +197,9 @@ class Manager
         return null;
     }
 
-    public function getLatestClucks(int $offset = 0): array
+    public function getLatestClucks(int $page = 0): array
     {
+        $offset = $page * $this->pageLimit;
         $sql = "select * from clucks order by postDate desc limit $this->pageLimit offset $offset;";
         $clucks = [];
         if ($result = $this->connection->query($sql)) {
