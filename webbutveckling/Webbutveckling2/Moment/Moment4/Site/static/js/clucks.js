@@ -12,13 +12,29 @@ function isInViewport(element) {
     );
 }
 
+function makeClickable(element, link) {
+    element.addEventListener("click", (event) => {
+        event.preventDefault();
+        let parent = event.target.parentElement;
+        if (parent.href) {
+            window.location.href = parent.href;
+        } else {
+            window.location.href = `${root}/Cluck/?${link}`;
+        }
+    });
+}
+
 class CluckLoader {
-    constructor(getApi) {
+    constructor(getApi, id = null) {
         this.api = `${baseApi}/${getApi}/?page=`;
+        this.id = id;
         this.currentPage = -1;
         this.loadingPage = -1;
         this.fullyConsumed = false;
         this.cluckElements = document.getElementById("clucks");
+        if (!this.cluckElements) {
+            this.fullyConsumed = true;
+        }
     }
 
     createDiv(...classes) {
@@ -27,18 +43,6 @@ class CluckLoader {
             element.classList.add(classes[i]);
         }
         return element;
-    }
-
-    makeClickable(element, link) {
-        element.addEventListener("click", (event) => {
-            event.preventDefault();
-            let parent = event.target.parentElement;
-            console.log(parent);
-            if (parent.href) {
-                window.location.href = parent.href;
-            }
-            window.location.href = `${root}/Cluck/?${link}`;
-        });
     }
 
     createSpan(...classes) {
@@ -61,14 +65,28 @@ class CluckLoader {
         if (!json.hasOwnProperty("avatar")) {
             throw new ReferenceError("Undefined property avatar.")
         }
-        let wrapper = this.createDiv("cluck-user-Profile-image-wrapper");
 
         let img = document.createElement("img");
-        img.classList.add("cluck-user-Profile-image");
+        img.classList.add("cluck-avatar");
         img.alt = "Cluck user avatar";
         img.src = `${writeLink}${json.avatar}`;
-        wrapper.appendChild(img);
 
+        element.appendChild(img);
+    }
+
+    addReplyCount(element, json) {
+        if (!json.hasOwnProperty("replyCount")) {
+            throw new ReferenceError("Undefined property replyCount.");
+        }
+        if (!json.replyCount) {
+            return;
+        }
+        let wrapper = this.createDiv("cluck-reply-count-wrapper");
+
+        let replyCount = this.createSpan("cluck-reply-count");
+        replyCount.innerHTML = `${json.replyCount} svar`;
+
+        wrapper.appendChild(replyCount);
         element.appendChild(wrapper);
     }
 
@@ -94,30 +112,63 @@ class CluckLoader {
         element.appendChild(wrapper);
     }
 
-    addContentHeadings(element, json) {
-        if (!json.hasOwnProperty("firstName")) {
-            throw ReferenceError("Undefined property firstName.");
-        }
-        if (!json.hasOwnProperty("lastName")) {
-            throw ReferenceError("Undefined property lastName.");
-        }
-        if (!json.hasOwnProperty("url")) {
-            throw ReferenceError("Undefined property url.");
-        }
-        if (!json.hasOwnProperty("userURL")) {
-            throw ReferenceError("Undefined property userURL.")
-        }
+    addMetadata(element, json) {
+        let wrapper = this.createDiv("cluck-metadata");
+
+        this.addPublishDetails(wrapper, json);
+        this.addReplyCount(wrapper, json);
+
+        element.appendChild(wrapper);
+    }
+
+    addContentHeadings(element, json, headingGrade) {
         let wrapper = this.createDiv("cluck-heading-wrapper")
 
-        let link = this.createA("cluck-heading-link");
-        link.href = `${root}/Profiles/Profile/?${json.userURL}`;
+        this.addCluckAndReply(wrapper, json, headingGrade)
+        this.addMetadata(wrapper, json);
 
-        let heading = document.createElement("h2");
-        heading.innerHTML = `${json.firstName} ${json.lastName}`;
-        link.appendChild(heading);
+        element.appendChild(wrapper);
+    }
 
-        wrapper.appendChild(link);
-        this.addPublishDetails(wrapper, json);
+    addHeadingLink(element, heading, headingGrade, link, cssClass) {
+
+        let a = this.createA(cssClass);
+        a.href = link;
+
+        let h = document.createElement(`h${headingGrade}`);
+        h.innerHTML = heading;
+
+        a.appendChild(h);
+        element.appendChild(a);
+    }
+
+    addCluckAndReply(element, json, headingGrade) {
+        if (!(json.hasOwnProperty("userURL") &&
+            json.hasOwnProperty("firstName") &&
+            json.hasOwnProperty("lastName"))) {
+            throw new ReferenceError("missing data")
+        }
+
+        let wrapper = this.createDiv("cluck-and-reply");
+
+        let url = `${root}/Profiles/Profile/?${json.userURL}`;
+        let heading = `${json.firstName} ${json.lastName}`;
+        this.addHeadingLink(wrapper, heading, headingGrade, url, "cluck-heading-link")
+
+        if ((json.hasOwnProperty("repliedCluck") &&
+            json.repliedCluck &&
+            json.repliedCluck.hasOwnProperty("firstName") &&
+            json.repliedCluck.hasOwnProperty("lastName") &&
+            json.repliedCluck.hasOwnProperty("url")
+        )) {
+            let span = this.createSpan("cluck-and-reply-text");
+            span.innerHTML = "svarar";
+            wrapper.appendChild(span);
+
+            heading = `${json.repliedCluck.firstName} ${json.repliedCluck.lastName}`;
+            url = `${root}/Cluck/?${json.repliedCluck.url}`
+            this.addHeadingLink(wrapper, heading, headingGrade + 1, url, "cluck-heading-link");
+        }
 
         element.appendChild(wrapper);
     }
@@ -126,26 +177,15 @@ class CluckLoader {
         if (!json.hasOwnProperty("content")) {
             throw ReferenceError("Undefined property content.")
         }
-        let wrapper = this.createDiv("cluck-content-wrapper");
 
         let content = document.createElement("p");
         content.classList.add("cluck-content");
         content.innerHTML = json.content;
-        wrapper.appendChild(content);
 
-        element.appendChild(wrapper);
+        element.appendChild(content);
     }
 
-    addBody(element, json) {
-        let wrapper = this.createDiv("cluck-body-wrapper");
-
-        this.addContentHeadings(wrapper, json);
-        this.addContent(wrapper, json);
-
-        element.appendChild(wrapper);
-    }
-
-    addClucks(json) {
+    addClucks(json, headingGrade) {
         for (let i = 0; i < json.length; i++) {
             try {
                 if (!json[i].hasOwnProperty("url")) {
@@ -153,10 +193,11 @@ class CluckLoader {
                 }
                 let cluckElement = document.createElement("article");
                 cluckElement.classList.add("cluck");
-                this.makeClickable(cluckElement, json[i].url);
+                makeClickable(cluckElement, json[i].url);
 
                 this.addAvatar(cluckElement, json[i]);
-                this.addBody(cluckElement, json[i]);
+                this.addContentHeadings(cluckElement, json[i], headingGrade);
+                this.addContent(cluckElement, json[i]);
 
                 this.cluckElements.appendChild(cluckElement);
             } catch (e) {
@@ -165,15 +206,17 @@ class CluckLoader {
                 }
                 console.log(e);
             }
-
         }
     }
 
     nextPageURL() {
+        if (this.id) {
+            return `${this.api}${++this.loadingPage}&id=${this.id}`;
+        }
         return this.api + ++this.loadingPage;
     }
 
-    async fetchClucks() {
+    async fetchClucks(headingGrade) {
         let response = await fetch(this.nextPageURL());
         if (response.status !== 200) {
             return;
@@ -183,22 +226,21 @@ class CluckLoader {
         if (!json.length) {
             this.fullyConsumed = true;
         }
-
-        this.addClucks(json);
+        this.addClucks(json, headingGrade);
         this.currentPage++
     }
 
-    async loadClucks() {
+    async loadClucks(headingGrade = 2) {
         if (this.fullyConsumed || this.loadingPage !== this.currentPage) {
             return;
         }
 
         if (this.cluckElements.childElementCount === 0) {
-            await this.fetchClucks();
+            await this.fetchClucks(headingGrade);
         } else {
             for (let i = this.cluckElements.childElementCount - 5; i < this.cluckElements.childElementCount; i++) {
                 if (this.cluckElements.children.hasOwnProperty(i) && isInViewport(this.cluckElements.children[i])) {
-                    await this.fetchClucks();
+                    await this.fetchClucks(headingGrade);
                     return;
                 }
             }

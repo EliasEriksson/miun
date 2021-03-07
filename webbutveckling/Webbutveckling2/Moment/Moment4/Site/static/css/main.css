@@ -8,10 +8,25 @@
     --button-color: #011943;
     --button-text-color: #ffffff;
     --border-color: #e0dccb;
+    --time-edit-color: #626262;
+    --error-color: #b30000;
+    --current-menu-button-color: #264780;
 }
 
 h1, h2. h3. h4. h5. h6 {
     font-family: Tinos, sans-serif;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+h3 {
+    font-size: 1.15rem;
 }
 
 body {
@@ -21,9 +36,11 @@ body {
 }
 
 .header-wrapper {
-    margin-top: 15px;
+    padding: 15px;
     display: flex;
     justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 10px;
 }
 
 .header {
@@ -33,6 +50,7 @@ body {
     width: 100%;
     align-items: center;
     gap: 15px;
+    padding: 0 15px;
 }
 
 .main-navigation {
@@ -56,64 +74,97 @@ body {
     text-decoration: none;
     border-radius: 3px;
 }
+
+.current-navigation-button {
+    background-color: var(--current-menu-button-color);
+}
+
 /* inside main */
 
 .main-wrapper {
-    margin-top: 15px;
-    padding-top: 15px;
     display: flex;
     justify-content: center;
-    border-top: 1px solid var(--border-color);
+    margin-top: 5px;
 }
 
 .main-content {
     width: 100%;
     max-width: 960px;
-
+    padding: 0 15px;
 }
 
 .cluck-section h1 {
     text-align: center;
 }
 
-#clucks {
+.clucks {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
 }
 
-/* cluck lists (main) */
 
+
+/* clucks (main) */
 .cluck {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 64px 1fr;
     gap: 15px;
     width: 100%;
     padding: 15px;
-
     border: 1px solid var(--border-color);
     cursor: pointer;
 }
 
-.cluck-user-profile-image-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.cluck:hover {
+    box-shadow: 0 0 0 3px var(--button-color);
+    transition: 0.5s;
 }
 
-.cluck-heading-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.this-cluck {
+    border-left: 5px solid var(--button-color);
 }
 
 .cluck-heading-link {
     text-decoration: none;
     color: inherit;
 }
+
 .cluck-heading-link:hover {
     text-decoration: underline;
+}
+
+.cluck h2 {
+    margin: 0;
+}
+
+.cluck-heading-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.cluck-and-reply {
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+    flex-wrap: wrap;
+}
+
+.cluck-metadata {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.cluck-content {
+    max-width: 65ch;
+    overflow-wrap: break-word;
+    grid-column: 2;
+    word-break: break-word;
 }
 
 .cluck-publish-details {
@@ -121,16 +172,56 @@ body {
     gap: 15px;
 }
 
-.cluck-content {
-    max-width: 65ch;
-    overflow-wrap: break-word;
+.cluck-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
-.cluck-menu {
+.cluck-page-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.cluck-replies {
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    gap: 15px;
+}
+
+.cluck-reply-section {
+    width: 80%;
+}
+
+.replies-heading {
+    margin-left: 15px;
+}
+
+.replied {
+    width: 80%;
+}
+
+.removed-post {
+    cursor: inherit;
+}
+
+.cluck-buttons {
+    grid-column: 2;
     display: flex;
     justify-content: flex-end;
     gap: 15px;
-    padding-right: 15px;
+}
+
+.cluck-edit-timestamp {
+    color: var(--time-edit-color);
+}
+
+.cluck-reply-count-wrapper {
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* profile (main) */
@@ -138,6 +229,7 @@ body {
     display: grid;
     grid-template-columns: 64px 1fr;
     gap: 15px;
+    margin-bottom: 50px;
 }
 
 .profile h1 {
@@ -153,6 +245,7 @@ body {
 .profile-avatar {
     width: 100%;
     height: 100%;
+    object-fit: contain;
 }
 
 .profile-description {
@@ -161,6 +254,7 @@ body {
 
 /* form shit down here */
 
+
 .cluck-link {
     display: flex;
     text-decoration: none;
@@ -168,25 +262,57 @@ body {
     width: fit-content;
 }
 
-.cluck-form {
+.general-form-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.general-user-error {
+    font-weight: bold;
+    color: var(--error-color);
+}
+
+.general-form {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 10px;
-    max-width: 60%;
+    gap: 15px;
+    max-width: 500px;
     width: 100%;
+    padding: 15px;
 }
 
-.cluck-label {
+.general-form label {
     display: flex;
     flex-direction: column;
-}
-
-.cluck-label {
     width: 100%;
 }
 
-.cluck-form textarea {
+.general-label-text {
+    margin-left: 15px;
+}
+
+.general-form input {
+    outline: none;
+    padding: 0.25em;
+}
+
+.general-form input[type=submit] {
+    width: fit-content;
+    display: flex;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    font-weight: bold;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    margin-right: 15px;
+}
+
+.general-form textarea {
     resize: none;
     padding: 10px;
     min-height: calc(4em * 1.5);
@@ -195,10 +321,64 @@ body {
     border-radius: 3px;
 }
 
-.cluck-cluck-submit {
-    border: none;
-    outline: none;
-    padding: 10px 15px;
-    background-color: var(--button-color);
-    color: var(--button-text-color);
+footer {
+    margin-top: 15px;
+}
+
+@media screen and (max-width: 500px) {
+    body {
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: 1.15rem;
+        font-weight: bolder;
+    }
+    h2 {
+        font-size: 1.1rem;
+    }
+    h3 {
+        font-size: 1rem;
+    }
+
+    .cluck-content {
+        grid-column: 1 / 3;
+    }
+
+    .cluck h1 {
+        margin: 0;
+    }
+
+    .replied {
+        width: 90%;
+    }
+
+    .cluck-reply-section {
+        width: 90%;
+    }
+
+    .cluck-heading-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .cluck {
+        grid-template-columns: 1fr 4fr;
+    }
+
+    .header-wrapper {
+        padding: 15px 5px;
+    }
+    .header {
+        gap: 7px;
+    }
+    .main-navigation {
+        gap: 7px;
+    }
+    .account-navigation {
+        gap: 7px;
+    }
 }

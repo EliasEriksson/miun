@@ -17,16 +17,14 @@ class UserProfileEditForm extends Form
         return new UserProfileEditForm($manager->getUserProfile($id));
     }
 
-    public function __construct(UserProfile $userProfile, string $classPrefix = "edit")
+    public function __construct(UserProfile $userProfile, string $classPrefix = "general")
     {
         parent::__construct([
-            new Field("id", "hidden", $userProfile->getUserID(), $classPrefix),
             new Field("firstName", "text", $userProfile->getFirstName(), $classPrefix, "Förnamn"),
             new Field("lastName", "text", $userProfile->getLastName(), $classPrefix, "Efternamn:"),
             new Field("avatar", "file", "", $classPrefix, "Profilbild:", false, false),
             new Field("description", "textarea", $userProfile->getDescription(), "Beskriv dig själv:"),
-            new Field("updateProfile", "submit", "Uppdatera din profil", $classPrefix)
-        ], $classPrefix);
+        ], new Field("updateProfile", "submit", "Uppdatera din profil", $classPrefix), $classPrefix);
     }
 
     public function validate(): ?UserProfile

@@ -1,6 +1,10 @@
 <?php
-echo "Post:".var_dump($_POST)."<br><br>";
-echo "Files:".var_dump($_FILES)."<br><br>";
+echo "Post:" . var_dump($_POST) . "<br><br>";
+echo "Files:" . var_dump($_FILES) . "<br><br>";
+
+error_reporting(-1);
+ini_set("display_errors", 1);
+
 ?>
 
 
@@ -10,6 +14,7 @@ echo "Files:".var_dump($_FILES)."<br><br>";
     <title>Document</title>
 </head>
 <body>
-<a><a>test</a></a>
+<h2>hello</h2>
+<h1>there</h1>
 </body>
 </html>

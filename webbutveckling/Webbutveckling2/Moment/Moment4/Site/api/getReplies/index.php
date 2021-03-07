@@ -3,12 +3,12 @@ include_once __DIR__ . "/../../utils/config.php";
 include_once __DIR__ . "/../../utils/functions.php";
 include_once __DIR__ . "/../../utils/classes/manager.php";
 
-if (!isset($_GET["page"])) {
+if (!isset($_GET["page"]) && !isset($_GET["id"])) {
     http_response_code(400);
 }
 
 $manager = new Manager();
-$clucks = $manager->getLatestClucks($_GET["page"]);
-$data = extendClucks($clucks, $manager);
+$clucks = $manager->getCluckReplies($_GET["id"], $_GET["page"]);
+$json = extendClucks($clucks, $manager);
 
-echo json_encode($data, JSON_UNESCAPED_UNICODE);
+echo json_encode($json, JSON_UNESCAPED_UNICODE);

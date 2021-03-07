@@ -40,7 +40,7 @@ create table replies
 (
     id           int auto_increment not null,
     thisCluckID  int                not null,
-    replyCluckID int                not null,
+    replyCluckID int,
 
     constraint repliesPK primary key (id)
 );
@@ -67,4 +67,4 @@ alter table replies
     add constraint repliesReplyCluckFK
         foreign key (replyCluckID)
             references clucks (id)
-            on delete cascade;
+            on delete set null;

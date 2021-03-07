@@ -7,14 +7,14 @@ include_once __DIR__ . "/user.php";
 include_once __DIR__ . "/userProfile.php";
 
 
-class UserLoginForm extends Form {
-    public function __construct(string $classPrefix = "login")
+class UserLoginForm extends Form
+{
+    public function __construct(string $classPrefix = "general")
     {
         parent::__construct([
             new Field("email", "email", "", $classPrefix, "E-post:"),
             new Field("password", "password", "", $classPrefix, "Lösenord:", false),
-            new Field("login", "submit", "Logga in", $classPrefix)
-        ], $classPrefix);
+        ], new Field("login", "submit", "Logga in", $classPrefix), $classPrefix);
     }
 
     public function validate(): ?User

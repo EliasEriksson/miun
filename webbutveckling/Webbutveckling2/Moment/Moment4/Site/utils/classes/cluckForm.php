@@ -8,12 +8,11 @@ include_once __DIR__ . "/field.php";
 
 
 class CluckForm extends Form {
-    public function __construct(string $classPrefix = "cluck")
+    public function __construct(string $classPrefix = "general")
     {
         parent::__construct([
             new Field("content", "textarea", "", $classPrefix, "Kackel:"),
-            new Field("cluck", "submit", "Kackla!", $classPrefix)
-        ], $classPrefix);
+        ], new Field("cluck", "submit", "Kackla!", $classPrefix), $classPrefix);
     }
 
     public function validate(): ?Cluck

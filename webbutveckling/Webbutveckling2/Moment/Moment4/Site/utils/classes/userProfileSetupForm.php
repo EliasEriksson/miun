@@ -8,7 +8,8 @@ include_once __DIR__ . "/user.php";
 include_once __DIR__ . "/userProfile.php";
 
 
-function validateAvatar(User $user): string {
+function validateAvatar(User $user): string
+{
     if (isset($_FILES["avatar"]) && $extension = getExtensionFromMIME($_FILES["avatar"]["type"])) {
         $url = $user->getUrl();
 
@@ -18,7 +19,7 @@ function validateAvatar(User $user): string {
         $webPath = "$webDirectory$file";
         $filePath = "$fileDirectory$file";
 
-        echo "write dir: ".$fileDirectory."<br>";
+        echo "write dir: " . $fileDirectory . "<br>";
 
         if (!is_dir($fileDirectory)) {
             mkdir($fileDirectory, 0777, true);
@@ -32,15 +33,14 @@ function validateAvatar(User $user): string {
 
 class UserProfileSetupForm extends Form
 {
-    public function __construct(string $classPrefix = "profile-setup")
+    public function __construct(string $classPrefix = "general")
     {
         parent::__construct([
             new Field("firstName", "text", "", $classPrefix, "Förnamn:"),
             new Field("lastName", "text", "", $classPrefix, "Efternamn:"),
             new Field("avatar", "file", "", $classPrefix, "Profilbild:", false, false),
             new Field("description", "textarea", "", $classPrefix, "Beskriv dig själv:"),
-            new Field("setup", "submit", "Klar", $classPrefix)
-        ], $classPrefix);
+        ], new Field("setup", "submit", "Klar", $classPrefix), $classPrefix);
     }
 
 

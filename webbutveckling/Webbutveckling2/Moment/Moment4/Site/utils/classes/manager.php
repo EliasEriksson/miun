@@ -36,25 +36,6 @@ class Manager
         return null;
     }
 
-    public function deleteUser(int $id): bool
-    {
-        $sql = "delete from users where id=$id;";
-        if ($result = $this->connection->query($sql)) {
-            return true;
-        }
-        return false;
-    }
-
-    public function updateUser(string $email, string $password): ?User
-    {
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "update users set passwordHash = '$passwordHash' where email = '$email';";
-        if ($result = $this->connection->query($sql)) {
-            return $this->getUser($this->connection->insert_id);
-        }
-        return null;
-    }
-
     public function getUser(int $id): ?User
     {
         $sql = "select * from users where id=$id;";
@@ -141,23 +122,18 @@ class Manager
 
     public function deleteCluck(int $id): bool
     {
-        $sql = "";
+        $sql = "delete from clucks where id=$id;";
         if ($result = $this->connection->query($sql)) {
             return true;
         }
         return false;
     }
 
-    public function updateCluck(int $id, string $content)
+    public function updateCluck(int $id, string $content): ?Cluck
     {
-        $sql = "update clucks set content = '$content' where id=$id;";
-    }
-
-    public function getLatestCluck(): ?Cluck
-    {
-        $sql = "select * from clucks order by postDate desc limit 1;";
+        $sql = "update clucks set content = '$content', lastEdited = now() where id=$id;";
         if ($result = $this->connection->query($sql)) {
-            return Cluck::fromAssoc($result->fetch_assoc());
+            return $this->getCluck($id);
         }
         return null;
     }
@@ -174,10 +150,19 @@ class Manager
     public function getCluckFromURL(string $url): ?Cluck
     {
         $sql = "select * from clucks where url='$url';";
-        if ($result = $this->connection->query($sql)) {
+        if (($result = $this->connection->query($sql))->num_rows) {
             return Cluck::fromAssoc($result->fetch_assoc());
         }
         return null;
+    }
+
+    public function isReply(int $id): bool
+    {
+        $sql = "select count(*) as count from replies where thisCluckID=$id;";
+        if ($result = $this->connection->query($sql)) {
+            return $result->fetch_array()["count"] > 0;
+        }
+        return false;
     }
 
     public function getRepliedCluck(int $id): ?Cluck
@@ -186,15 +171,37 @@ class Manager
         select *
         from clucks
             where id = (
-            select replies.id
+            select replies.replyCluckID
             from clucks join replies on clucks.id = replies.thisCluckID
             where clucks.id = $id
         );";
-
-        if ($result = $this->connection->query($sql)) {
+        if (($result = $this->connection->query($sql))->num_rows) {
             return Cluck::fromAssoc($result->fetch_assoc());
         }
         return null;
+    }
+
+    public function getReplyCount(int $id): int
+    {
+        $sql = "select count(*) as count from replies where replyCluckID = $id;";
+        if ($result = $this->connection->query($sql)) {
+            return $result->fetch_assoc()["count"];
+        }
+        return 0;
+    }
+
+    public function getCluckReplies(int $id, int $page): array
+    {
+        $offset = $page * $this->pageLimit;
+        $sql = "select * from clucks join replies on clucks.id = replies.thisCluckID where replies.replyCluckID = $id
+                order by clucks.postDate desc limit $this->pageLimit offset $offset;";
+        $clucks = [];
+        if (($result = $this->connection->query($sql))->num_rows) {
+            while ($cluckData = $result->fetch_assoc()) {
+                array_push($clucks, Cluck::fromAssoc($cluckData));
+            }
+        }
+        return $clucks;
     }
 
     public function getLatestClucks(int $page = 0): array
@@ -210,17 +217,16 @@ class Manager
         return $clucks;
     }
 
-    public function getHotClucks(int $offset = 0): array
+    public function getHotClucks(int $page = 0): array
     {
+        $offset = $page * $this->pageLimit;
         $sql = "
-        select id, userID, content, postDate, lastEdited, countedReplies.cluckReplies, (countedReplies.cluckReplies / ((now() - postDate) / 1000000)) as heat
+        select id, userID, url, content, postDate, lastEdited, countedReplies.cluckReplies, (countedReplies.cluckReplies / ((now() - postDate) / 1000000)) as heat
         from clucks join (select replyCluckID, count(*) as cluckReplies from replies group by replyCluckID) countedReplies
         on clucks.id = countedReplies.replyCluckID
         order by heat desc limit $this->pageLimit offset $offset;";
-
-        $this->connection->query($sql);
         $clucks = [];
-        if ($result = $this->connection->query($sql)) {
+        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
             while ($cluckData = $result->fetch_assoc()) {
                 array_push($clucks, Cluck::fromAssoc($cluckData));
             }
@@ -228,11 +234,51 @@ class Manager
         return $clucks;
     }
 
+    public function getTopClucks(int $page): array
+    {
+        $offset = $page * $this->pageLimit;
+        $sql = "select * from clucks join (select replyCluckID, count(*) as count from replies group by replyCluckID) countedReplies
+                on clucks.id = countedReplies.replyCluckID
+                order by count desc limit $this->pageLimit offset $offset;";
+        $clucks = [];
+        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
+            while ($cluckData = $result->fetch_assoc()) {
+                array_push($clucks, Cluck::fromAssoc($cluckData));
+            }
+        }
+        return $clucks;
+    }
+
+    public function getUserClucks(int $id, int $page): array
+    {
+        $offset = $page * $this->pageLimit;
+        $sql = "select * from clucks where userID = $id 
+                order by postDate desc limit $this->pageLimit offset $offset;";
+        $clucks = [];
+        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
+            while ($cluckData = $result->fetch_assoc()) {
+                array_push($clucks, Cluck::fromAssoc($cluckData));
+            }
+        }
+        return $clucks;
+    }
+
+    public function getUsersAssoc(int $page): array
+    {
+        $offset = $page * $this->pageLimit;
+        $sql = "select id, email, url, firstName, lastName, avatar, description from users join userProfiles on users.id = userProfiles.userID
+                order by id desc limit 10 offset 0;";
+        $usersAssoc = [];
+        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
+            while ($userData = $result->fetch_assoc()) {
+                array_push($usersAssoc, $userData);
+            }
+        }
+        return $usersAssoc;
+    }
+
     public function __destruct()
     {
         $this->connection->close();
     }
 }
-
-//$manager = new Manager();
-//var_dump($manager->getHotClucks());

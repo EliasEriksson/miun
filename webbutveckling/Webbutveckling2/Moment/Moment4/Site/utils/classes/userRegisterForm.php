@@ -8,14 +8,13 @@ include_once __DIR__ . "/user.php";
 
 class UserRegisterForm extends Form
 {
-    public function __construct(string $classPrefix = "register")
+    public function __construct(string $classPrefix = "general")
     {
         parent::__construct([
-            new Field("email", "email","", $classPrefix, "E-post:"),
+            new Field("email", "email", "", $classPrefix, "E-post:"),
             new Field("password1", "password", "", $classPrefix, "Lösenord", false),
             new Field("password2", "password", "", $classPrefix, "Återupprepa Lösenord", false),
-            new Field("register", "submit", "Registrera dig", $classPrefix)
-        ], $classPrefix);
+        ], new Field("register", "submit", "Registrera dig", $classPrefix), $classPrefix);
     }
 
 

@@ -27,9 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 include "../../../templates/header.php";
 ?>
 
-<?php
-echo $userProfileEditForm->toHTML();
-?>
+<div class="main-wrapper">
+    <main class="main-content">
+        <div class="general-form-wrapper">
+            <?= $userProfileEditForm->toHTML() ?>
+        </div>
+    </main>
+</div>
 
 <?php
 include "../../../templates/footer.php";

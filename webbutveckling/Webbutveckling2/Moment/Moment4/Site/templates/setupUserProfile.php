@@ -21,9 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
 <?php
 include __DIR__ . "/../templates/header.php";
+?>
+<div class="main-wrapper">
+    <main class="main-content">
+        <div class="setup-profile-form-wrapper">
+            <?= $setupUserProfileForm->toHTML()?>
+        </div>
+    </main>
+</div>
 
-echo $setupUserProfileForm->toHTML();
-
+<?php
 include __DIR__ . "/../templates/footer.php";
 ?>
 </body>

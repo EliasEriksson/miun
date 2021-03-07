@@ -33,19 +33,20 @@ include __DIR__ . "/../templates/header.php";
             <h1><?= $userProfile->getFirstName() ?> <?= $userProfile->getLastName() ?></h1>
             <p class="profile-description"><?= $userProfile->getDescription() ?></p>
         </div>
+        <section class="cluck-reply-section">
+            <h2 class="replies-heading">Mitt kackel</h2>
+            <div id="clucks" class="cluck-replies"></div>
+        </section>
     </main>
 </div>
-
-<article>
-        <div>
-            <img>
-            <div><a><h2></h2></a><time></time></div>
-            <p></p>
-        </div>
-</article>
 
 <?php
 include __DIR__ . "/../templates/footer.php";
 ?>
+<script src="<?= $rootURL ?>/static/js/timestamp.js"></script>
+<script src="<?= $rootURL ?>/static/js/clucks.js"
+        root="<?= $rootURL ?>"
+        writeLink="<?= $writeDirectoryLink ?>"></script>
+<script src="<?= $rootURL ?>/static/js/userClucks.js" userID="<?=$user->getId()?>"></script>
 </body>
 </html>

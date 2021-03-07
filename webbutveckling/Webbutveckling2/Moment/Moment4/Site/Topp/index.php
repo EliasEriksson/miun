@@ -20,6 +20,6 @@ include "../templates/footer.php";
 <script src="<?= $rootURL ?>/static/js/clucks.js"
         root="<?= $rootURL ?>"
         writeLink="<?= $writeDirectoryLink ?>"></script>
-<script src="<?= $rootURL ?>/static/js/latestClucks.js"></script>
+<script src="<?=$rootURL?>/static/js/topClucks.js"></script>
 </body>
 </html>

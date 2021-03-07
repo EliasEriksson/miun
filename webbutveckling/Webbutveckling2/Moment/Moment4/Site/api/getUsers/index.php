@@ -8,7 +8,6 @@ if (!isset($_GET["page"])) {
 }
 
 $manager = new Manager();
-$clucks = $manager->getLatestClucks($_GET["page"]);
-$data = extendClucks($clucks, $manager);
+$users = $manager->getUsersAssoc($_GET["page"]);
 
-echo json_encode($data, JSON_UNESCAPED_UNICODE);
+echo json_encode($users, JSON_UNESCAPED_UNICODE);

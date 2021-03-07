@@ -31,9 +31,15 @@ if (isset($_SESSION["user"])) {
 <body>
 <?php
 include "../templates/header.php";
-
-echo $userLoginForm->toHTML();
-
+?>
+<div class="main-wrapper">
+    <main class="main-content">
+        <div class="general-form-wrapper">
+            <?=$userLoginForm->toHTML()?>
+        </div>
+    </main>
+</div>
+<?php
 include "../templates/footer.php";
 ?>
 </body>

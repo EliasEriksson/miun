@@ -8,8 +8,9 @@ abstract class Form extends HTMLElement
     protected $fields;
     private $error;
     private $userError;
+    private $submit;
 
-    public function __construct(array $fields, string $classPrefix)
+    public function __construct(array $fields, Field $submit, string $classPrefix)
     {
         parent::__construct($classPrefix);
         foreach ($fields as $field) {
@@ -20,12 +21,17 @@ abstract class Form extends HTMLElement
             }
         }
         $this->fields = $fields;
+        $this->submit = $submit;
         $this->error = "";
         $this->userError = false;
     }
 
     protected function validateFields(): bool
     {
+        if ($error = $this->submit->validateField()) {
+            $this->setError("wrong form", false);
+            return false;
+        }
         foreach ($this->fields as $field) {
             if ($error = $field->validateField()) {
                 $this->setError($error);
@@ -49,13 +55,16 @@ abstract class Form extends HTMLElement
         }
         $html = "<form class='$class' method='post' enctype='$enctype'>";
 
-        if ($this->userError) {
-            $html .= "<p class='user-error'>" . $this->getError() . "</p>";
-        }
+
 
         foreach ($this->fields as $field) {
             $html .= $field->toHTML();
         }
+        if ($this->userError) {
+            $class = $this->prefixClass("user-error");
+            $html .= "<p class='$class'>" . $this->getError() . "</p>";
+        }
+        $html .= $this->submit->toHTML();
 
         $html .= "</form>";
         return $html;
@@ -69,6 +78,6 @@ abstract class Form extends HTMLElement
 
     public function getError(): string
     {
-        return $this->error;
+        return trim($this->error, ":");
     }
 }

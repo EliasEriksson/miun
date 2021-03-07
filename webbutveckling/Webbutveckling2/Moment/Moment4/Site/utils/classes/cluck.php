@@ -42,16 +42,26 @@ class Cluck
         $this->url = $url;
         $this->postDate = DateTime::createFromFormat($format, $postDate, new DateTimeZone("utc"));
         if ($lastEdited) {
-            $this->lastEdited = DateTime::createFromFormat($format, $lastEdited);
+            $this->lastEdited = DateTime::createFromFormat($format, $lastEdited, new DateTimeZone("utc"));
         } else {
             $this->lastEdited = null;
         }
     }
 
-    public function getUser(): User
+    public function getUser(Manager $manager = null): User
     {
-        $manager = new Manager();
+        if (!$manager) {
+            $manager = new Manager();
+        }
         return $manager->getUser($this->userID);
+    }
+
+    public function getUserProfile(Manager $manager = null): UserProfile
+    {
+        if (!$manager) {
+            $manager = new Manager();
+        }
+        return $manager->getUserProfile($this->userID);
     }
 
     public function getRepliedCluck(int $id): ?Cluck
@@ -77,6 +87,29 @@ class Cluck
 
     public function getLink(): string
     {
-        return $GLOBALS["rootURL"] . "/$this->url";
+        return $GLOBALS["rootURL"] . "/Cluck/?$this->url";
+    }
+
+    public function getPostDate(): int
+    {
+        return $this->postDate->getTimestamp();
+    }
+
+    public function getLastEdited(): ?int
+    {
+        if ($this->lastEdited) {
+            return $this->lastEdited->getTimestamp();
+        }
+        return null;
+    }
+
+    public function getContent(): string
+    {
+        return $this->content;
+    }
+
+    public function getID(): int
+    {
+        return $this->id;
     }
 }

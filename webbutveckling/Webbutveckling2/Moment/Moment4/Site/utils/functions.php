@@ -103,20 +103,70 @@ function getExtensionFromMIME(string $mime): ?string
     return null;
 }
 
-function mergeClucksWithUserProfile(array $clucks, Manager $manager = null): string
+function extendCluck(Cluck $cluck, Manager $manager = null, bool $getRepliedClucks = true): array
 {
     if (!$manager) {
         $manager = new Manager();
     }
-    $data = [];
-    foreach ($clucks as $cluck) {
-        $cluckData = $cluck->getAssoc();
-        $userID = popAssoc($cluckData, "userID");
-        $userProfile = $manager->getUserProfile($userID);
-        $user = $manager->getUser($userID);
-        if ($userProfile) {
-            array_push($data, array_merge($userProfile->getAssoc(), $cluckData, ["userURL" => $user->getUrl()]));
+    $user = $cluck->getUser($manager);
+    $userProfile = $cluck->getUserProfile($manager);
+    if ($getRepliedClucks) {
+        if ($repliedCluck = $manager->getRepliedCluck($cluck->getID())) {
+            $extendedRepliedCluck = extendCluck($repliedCluck, $manager, false);
+        } else {
+            $extendedRepliedCluck = null;
         }
+    } else {
+        $extendedRepliedCluck = null;
     }
-    return json_encode($data, JSON_UNESCAPED_UNICODE);
+
+    return array_merge(
+        $cluck->getAssoc(),
+        $userProfile->getAssoc(), [
+            "userURL" => $user->getUrl(),
+            "repliedCluck" => $extendedRepliedCluck,
+            "replyCount" => $manager->getReplyCount($cluck->getID())
+        ]
+    );
 }
+
+function extendUser(User $user, Manager $manager): array
+{
+    if (!$manager) {
+        $manager = new Manager();
+    }
+    $userProfile = $user->getProfile();
+    return array_merge(
+        $user->getAssoc(),
+        $userProfile->getAssoc()
+    );
+}
+
+function extendUsers(array $users, Manager $manager): array
+{
+    if (!$manager) {
+        $manager = new Manager();
+    }
+    $extendedUsers = [];
+    foreach ($users as $user) {
+        array_push($extendedUsers, extendUser($user, $manager));
+    }
+    return $extendedUsers;
+}
+
+function extendClucks(array $clucks, Manager $manager = null, bool $getRepliedClucks = true): array
+{
+    if (!$manager) {
+        $manager = new Manager();
+    }
+    $extendedClucks = [];
+    foreach ($clucks as $cluck) {
+        array_push($extendedClucks, extendCluck($cluck, $manager, $getRepliedClucks));
+    }
+    return $extendedClucks;
+}
+
+//$manager = new Manager();
+//$c = $manager->getCluck(15);
+//$extendedC = extendCluck($c);
+//var_dump($extendedC);

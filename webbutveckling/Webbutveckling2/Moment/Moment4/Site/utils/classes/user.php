@@ -1,4 +1,5 @@
 <?php
+include_once __DIR__ . "/../config.php";
 include_once __DIR__ . "/manager.php";
 include_once __DIR__ . "/userProfile.php";
 
@@ -63,5 +64,9 @@ class User
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    function getWebURL(): string {
+        return $GLOBALS["rootURL"] . "/Profiles/Profile/?$this->url";
     }
 }

@@ -4,7 +4,7 @@ include_once "../utils/functions.php";
 include_once "../utils/classes/userRegisterForm.php";
 
 if (isset($_SESSION["user"])) {
-    header("location: ../");
+    redirect($rootURL);
 }
 
 $userRegisterForm = new UserRegisterForm();
@@ -26,9 +26,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
 <?php
 include "../templates/header.php";
+?>
 
-echo $userRegisterForm->toHTML();
+<div class="main-wrapper">
+    <main class="main-content">
+        <div class="general-form-wrapper">
+            <?= $userRegisterForm->toHTML() ?>
+        </div>
 
+    </main>
+</div>
+
+<?php
 include "../templates/footer.php";
 ?>
 </body>
