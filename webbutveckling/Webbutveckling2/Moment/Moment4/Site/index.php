@@ -16,6 +16,7 @@ include "templates/header.php";
 include "templates/cluckLists.php";
 include "templates/footer.php";
 ?>
+<script src="<?= $rootURL ?>/static/js/utils.js"></script>
 <script src="<?= $rootURL ?>/static/js/timestamp.js"></script>
 <script src="<?= $rootURL ?>/static/js/clucks.js"
         root="<?= $rootURL ?>"

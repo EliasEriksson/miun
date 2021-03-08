@@ -10,8 +10,8 @@ function timeAgo(timestamp) {
     let now = new Date();
     let timeDifference = Math.round(now.getTime() / 1000) - timestamp;
 
-    if (timeDifference / 86500 > 1) {
-        let then = new Date(timestamp);
+    if (timeDifference / 86400 > 1) {
+        let then = new Date(timestamp * 1000);
         if (then.getFullYear() === now.getFullYear()) {
             return dayMonthFormat.format(then);
         } else {

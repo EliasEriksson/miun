@@ -215,6 +215,10 @@ body {
     gap: 15px;
 }
 
+.cluck-edit-timestamp, .cluck-post-timestamp, .cluck-reply-count {
+    white-space: nowrap;
+}
+
 .cluck-edit-timestamp {
     color: var(--time-edit-color);
 }
