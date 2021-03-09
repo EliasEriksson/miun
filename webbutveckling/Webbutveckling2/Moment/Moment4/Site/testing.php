@@ -1,5 +1,5 @@
 <?php
-echo "Post:" . var_dump($_POST) . "<br><br>";
+echo "Post:" . ($_POST) . "<br><br>";
 echo "Files:" . var_dump($_FILES) . "<br><br>";
 
 error_reporting(-1);

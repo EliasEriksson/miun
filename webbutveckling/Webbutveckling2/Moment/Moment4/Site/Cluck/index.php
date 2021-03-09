@@ -49,13 +49,11 @@ include "../templates/header.php";
                                 <h2><?= $repliedUserProfile->getFirstName() ?> <?= $repliedUserProfile->getLastName() ?></h2>
                             </a>
                             <?php if ($repliedExtendedCluck["repliedCluck"]) { ?>
-<!--                                <div class="cluck-reply-link">-->
                                     <span class="cluck-and-reply-text">svarar</span>
                                     <a href="<?= $rootURL . '/Cluck/?' . $repliedExtendedCluck['repliedCluck']['url'] ?>"
                                        class="cluck-heading-link">
                                         <h3><?= $repliedExtendedCluck["repliedCluck"]["firstName"] ?> <?= $repliedExtendedCluck["repliedCluck"]["lastName"] ?></h3>
                                     </a>
-<!--                                </div>-->
                             <?php } ?>
                         </div>
                         <div class="cluck-metadata">
@@ -93,13 +91,11 @@ include "../templates/header.php";
                             <h1><?= $thisCluckUserProfile->getFirstName() ?> <?= $thisCluckUserProfile->getLastName() ?></h1>
                         </a>
                         <?php if ($thisExtendedCluck["repliedCluck"]) { ?>
-<!--                            <div class="cluck-reply-link">-->
                                 <span class="cluck-and-reply-text">svarar</span>
                                 <a href="<?= $rootURL . '/Cluck/?' . $thisExtendedCluck['repliedCluck']['url'] ?>"
                                    class="cluck-heading-link">
                                     <h3><?= $thisExtendedCluck["repliedCluck"]["firstName"] ?> <?= $thisExtendedCluck["repliedCluck"]["lastName"] ?></h3>
                                 </a>
-<!--                            </div>-->
                         <?php } ?>
                     </div>
                     <div class="cluck-metadata">
@@ -142,6 +138,7 @@ include "../templates/header.php";
 <?php
 include "../templates/footer.php";
 ?>
+<script src="<?= $rootURL ?>/static/js/utils.js"></script>
 <script src="<?= $rootURL ?>/static/js/timestamp.js"></script>
 <script src="<?= $rootURL ?>/static/js/clucks.js"
         root="<?= $rootURL ?>"

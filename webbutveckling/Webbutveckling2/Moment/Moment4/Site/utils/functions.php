@@ -122,7 +122,8 @@ function extendCluck(Cluck $cluck, Manager $manager = null, bool $getRepliedCluc
 
     return array_merge(
         $cluck->getAssoc(),
-        $userProfile->getAssoc(), [
+        $userProfile->getAssoc(),
+        [
             "userURL" => $user->getUrl(),
             "repliedCluck" => $extendedRepliedCluck,
             "replyCount" => $manager->getReplyCount($cluck->getID())
@@ -130,15 +131,22 @@ function extendCluck(Cluck $cluck, Manager $manager = null, bool $getRepliedCluc
     );
 }
 
-function extendUser(User $user, Manager $manager): array
+function extendUser(User $user, Manager $manager): ?array
 {
     if (!$manager) {
         $manager = new Manager();
     }
-    $userProfile = $user->getProfile();
+    $userProfile = $user->getProfile($manager);
+    if (!$userProfile) {
+        return null;
+    }
     return array_merge(
         $user->getAssoc(),
-        $userProfile->getAssoc()
+        $userProfile->getAssoc(),
+        [
+            "postCount" => $manager->getUserPostCount($user->getId()),
+            "replyCount" => $manager->getUserReplyCount($user->getId())
+        ]
     );
 }
 
@@ -149,7 +157,9 @@ function extendUsers(array $users, Manager $manager): array
     }
     $extendedUsers = [];
     foreach ($users as $user) {
-        array_push($extendedUsers, extendUser($user, $manager));
+        if ($extendedUser = extendUser($user, $manager)) {
+            array_push($extendedUsers, $extendedUser);
+        }
     }
     return $extendedUsers;
 }

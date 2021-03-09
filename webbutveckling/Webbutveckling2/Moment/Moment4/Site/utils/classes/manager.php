@@ -45,6 +45,19 @@ class Manager
         return null;
     }
 
+    public function getLatestUsers(int $page): array
+    {
+        $offset = $this->pageLimit * $page;
+        $sql = "select * from users order by users.id desc limit $this->pageLimit offset $offset";
+        $users = [];
+        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
+            while ($userData = $result->fetch_assoc()) {
+                array_push($users, User::fromAssoc($userData));
+            }
+        }
+        return $users;
+    }
+
     public function getUserFromEmail(string $email): ?User
     {
         $sql = "select * from users where email='$email';";
@@ -57,10 +70,30 @@ class Manager
     public function getUserFromURL(string $url): ?User
     {
         $sql = "select * from users where url = '$url';";
-        if ($result = $this->connection->query($sql)) {
+        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
             return User::fromAssoc($result->fetch_assoc());
         }
         return null;
+    }
+
+    public function getUserReplyCount(int $id): int
+    {
+        $sql = "select count(*) as replyCount
+                from (select clucks.id from users join clucks on users.id = clucks.userID where users.id = $id) joined
+                join replies on joined.id = replies.replyCluckID;";
+        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
+            return $result->fetch_assoc()["replyCount"];
+        }
+        return 0;
+    }
+
+    public function getUserPostCount(int $id): int
+    {
+        $sql = "select count(*) as postCount from users join clucks on users.id = clucks.userID where users.id = $id;";
+        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
+            return $result->fetch_assoc()["postCount"];
+        }
+        return 0;
     }
 
     public function createUserProfile(int $id, string $firstName, string $lastName, string $avatar, string $description): ?UserProfile
@@ -266,8 +299,9 @@ class Manager
     public function getUsersAssoc(int $page): array
     {
         $offset = $page * $this->pageLimit;
-        $sql = "select id, email, url, firstName, lastName, avatar, description from users join userProfiles on users.id = userProfiles.userID
-                order by id desc limit 10 offset 0;";
+        $sql = "select id, email, url, firstName, lastName, avatar, description 
+                from users join userProfiles on users.id = userProfiles.userID
+                order by id desc limit $this->pageLimit offset $offset;";
         $usersAssoc = [];
         if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
             while ($userData = $result->fetch_assoc()) {
@@ -281,4 +315,19 @@ class Manager
     {
         $this->connection->close();
     }
+
+    public function test($limit, $offset) {
+        $query = $this->connection->prepare("select * from clucks order by postDate desc limit ? offset ?;");
+        if (($query->bind_param("ii", $limit, $offset)) && ($query->execute())) {
+            $result = $query->get_result();
+            echo "was true ";
+            var_dump($result->num_rows);
+        } else {
+            echo "was false";
+        }
+
+    }
 }
+
+$manager = new Manager();
+$manager->test(5, 5);

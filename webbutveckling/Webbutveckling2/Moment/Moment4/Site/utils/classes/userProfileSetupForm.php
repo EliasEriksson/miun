@@ -19,8 +19,6 @@ function validateAvatar(User $user): string
         $webPath = "$webDirectory$file";
         $filePath = "$fileDirectory$file";
 
-        echo "write dir: " . $fileDirectory . "<br>";
-
         if (!is_dir($fileDirectory)) {
             mkdir($fileDirectory, 0777, true);
         }

@@ -8,6 +8,7 @@ if (!isset($_GET["page"])) {
 }
 
 $manager = new Manager();
-$users = $manager->getUsersAssoc($_GET["page"]);
+$users = $manager->getLatestUsers($_GET["page"]);
+$data = extendUsers($users, $manager);
 
-echo json_encode($users, JSON_UNESCAPED_UNICODE);
+echo json_encode($data, JSON_UNESCAPED_UNICODE);

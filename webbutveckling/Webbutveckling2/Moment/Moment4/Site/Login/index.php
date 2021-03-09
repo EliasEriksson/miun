@@ -3,6 +3,11 @@ include_once __DIR__ . "/../utils/config.php";
 include_once __DIR__ . "/../utils/functions.php";
 include_once __DIR__ . "/../utils/classes/userLoginForm.php";
 
+if (userLoggedIn()) {
+    $user = getSessionUser();
+    redirect($user->getWebURL());
+}
+
 $userLoginForm = new UserLoginForm();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($user = $userLoginForm->validate()) {
@@ -13,10 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             redirect("$rootURL/Profiles/Profile/");
         }
     }
-}
-
-if (isset($_SESSION["user"])) {
-//    redirect();
 }
 ?>
 

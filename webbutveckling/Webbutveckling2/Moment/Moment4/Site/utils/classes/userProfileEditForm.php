@@ -23,7 +23,7 @@ class UserProfileEditForm extends Form
             new Field("firstName", "text", $userProfile->getFirstName(), $classPrefix, "Förnamn"),
             new Field("lastName", "text", $userProfile->getLastName(), $classPrefix, "Efternamn:"),
             new Field("avatar", "file", "", $classPrefix, "Profilbild:", false, false),
-            new Field("description", "textarea", $userProfile->getDescription(), "Beskriv dig själv:"),
+            new Field("description", "textarea", $userProfile->getDescription(), $classPrefix, "Beskriv dig själv:"),
         ], new Field("updateProfile", "submit", "Uppdatera din profil", $classPrefix), $classPrefix);
     }
 

@@ -1,10 +1,10 @@
 let yearFormat = Intl.DateTimeFormat("sv", {
     year: "numeric", month: "short", day: "numeric"
-})
+});
 
 let dayMonthFormat = Intl.DateTimeFormat("sv", {
     month: "short", day: "numeric"
-})
+});
 
 function timeAgo(timestamp) {
     let now = new Date();

@@ -3,20 +3,34 @@ let writeLink = document.currentScript.getAttribute("writeLink");
 let baseApi = `${root}/api`;
 
 
+function makeClickable(element, link) {
+    element.addEventListener("click", (event) => {
+        event.preventDefault();
+        console.log("test")
+        let parent = event.target.parentElement;
+        if (parent.href) {
+            window.location.href = parent.href;
+        } else {
+            window.location.href = `${root}/Cluck/?${link}`;
+        }
+    });
+}
+
+
 class CluckLoader {
     constructor(getApi, id = null) {
         this.api = `${baseApi}/${getApi}/?page=`;
         this.id = id;
         this.currentPage = -1;
         this.loadingPage = -1;
-        this.fullyConsumed = false;
         this.cluckElements = document.getElementById("clucks");
-
+        this.fullyConsumed = !this.cluckElements;
     }
 
     addAvatar(element, json) {
+        let wrapper = createDiv("cluck-avatar-wrapper");
         if (!json.hasOwnProperty("avatar")) {
-            throw new ReferenceError("Undefined property avatar.")
+            throw new ReferenceError("Undefined property avatar.");
         }
 
         let img = document.createElement("img");
@@ -24,7 +38,8 @@ class CluckLoader {
         img.alt = "Cluck user avatar";
         img.src = `${writeLink}${json.avatar}`;
 
-        element.appendChild(img);
+        wrapper.appendChild(img)
+        element.appendChild(wrapper);
     }
 
     addReplyCount(element, json) {
@@ -179,8 +194,9 @@ class CluckLoader {
         if (!json.length) {
             this.fullyConsumed = true;
         }
+
         this.addClucks(json, headingGrade);
-        this.currentPage++
+        this.currentPage++;
     }
 
     async loadClucks(headingGrade = 2) {

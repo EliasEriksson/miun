@@ -8,18 +8,6 @@ function isInViewport(element) {
     );
 }
 
-function makeClickable(element, link) {
-    element.addEventListener("click", (event) => {
-        event.preventDefault();
-        let parent = event.target.parentElement;
-        if (parent.href) {
-            window.location.href = parent.href;
-        } else {
-            window.location.href = `${root}/Cluck/?${link}`;
-        }
-    });
-}
-
 function createDiv(...classes) {
     let element = document.createElement("div");
     for (let i = 0; i < classes.length; i++) {

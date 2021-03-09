@@ -10,7 +10,6 @@ $cluckForm = new CluckForm();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($cluck = $cluckForm->validate()) {
-        echo "And even here. ";
         redirect(".");
     }
 } ?>

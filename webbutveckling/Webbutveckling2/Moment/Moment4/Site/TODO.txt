@@ -1,0 +1,3 @@
+- fixa att det ett kackel svarar på länkar till sig själv med JS
+- strippa taggar förutom a taggar för inlägg
+- fixa javascript klass för utskrift

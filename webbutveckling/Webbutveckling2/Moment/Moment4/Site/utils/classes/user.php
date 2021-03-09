@@ -38,9 +38,11 @@ class User
         return null;
     }
 
-    public function getProfile(): ?UserProfile
+    public function getProfile(Manager $manager = null): ?UserProfile
     {
-        $manager = new Manager();
+        if (!$manager) {
+            $manager = new Manager();
+        }
         return $manager->getUserProfile($this->id);
     }
 
