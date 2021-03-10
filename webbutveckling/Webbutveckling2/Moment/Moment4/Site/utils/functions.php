@@ -37,15 +37,6 @@ function getCurrentPage(string $redirect = ""): string
     return "";
 }
 
-
-function popAssoc(array &$array, string $key)
-{
-    $value = $array[$key];
-    unset($array[$key]);
-    return $value;
-}
-
-
 function requireUserLogin()
 {
     $root = $GLOBALS["rootURL"];

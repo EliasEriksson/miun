@@ -25,22 +25,41 @@ class Manager
         $this->pageLimit = $pageLimit;
     }
 
-    public function createUser(string $email, string $password): ?User
+    private function checkDuplicateKey(string $key): bool
+    {
+        if ($this->connection->errno === 1062) {
+            if (preg_match("/^Duplicate\sentry\s'[^ ]+'\sfor\skey\s'$key'$/", $this->connection->error)) {
+                echo "got here";
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function createUser(string $email, string $password, int $failedRetries = 0): ?User
     {
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $url = uniqid();
-        $sql = "insert into users values (default, '$email', '$passwordHash', '$url');";
-        if ($result = $this->connection->query($sql)) {
+        $query = $this->connection->prepare("insert into users values (default, ?, '$passwordHash', '$url');");
+
+        if ($query->bind_param("s", $email) && $query->execute()) {
             return new User($this->connection->insert_id, $email, $passwordHash, $url);
+        }
+        if ($failedRetries >= 4 && $this->checkDuplicateKey("url")) {
+            $failedRetries++;
+            return $this->createUser($email, $password, $failedRetries);
         }
         return null;
     }
 
     public function getUser(int $id): ?User
     {
-        $sql = "select * from users where id=$id;";
-        if ($result = $this->connection->query($sql)) {
-            return User::fromAssoc($result->fetch_assoc());
+        $query = $this->connection->prepare("select * from users where id = ?;");
+
+        if ($query->bind_param("i", $id) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                return User::fromAssoc($result->fetch_assoc());
+            }
         }
         return null;
     }
@@ -48,11 +67,14 @@ class Manager
     public function getLatestUsers(int $page): array
     {
         $offset = $this->pageLimit * $page;
-        $sql = "select * from users order by users.id desc limit $this->pageLimit offset $offset";
         $users = [];
-        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
-            while ($userData = $result->fetch_assoc()) {
-                array_push($users, User::fromAssoc($userData));
+
+        $query = $this->connection->prepare("select * from users order by users.id desc limit $this->pageLimit offset ?");
+        if ($query->bind_param("i", $offset) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                while ($userData = $result->fetch_assoc()) {
+                    array_push($users, User::fromAssoc($userData));
+                }
             }
         }
         return $users;
@@ -60,46 +82,57 @@ class Manager
 
     public function getUserFromEmail(string $email): ?User
     {
-        $sql = "select * from users where email='$email';";
-        if (($result = $this->connection->query($sql))->num_rows) {
-            return User::fromAssoc($result->fetch_assoc());
+        $query = $this->connection->prepare("select * from users where email = ?;");
+        if ($query->bind_param("s", $email) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                return User::fromAssoc($result->fetch_assoc());
+            }
         }
         return null;
     }
 
     public function getUserFromURL(string $url): ?User
     {
-        $sql = "select * from users where url = '$url';";
-        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
-            return User::fromAssoc($result->fetch_assoc());
+        $query = $this->connection->prepare("select * from users where url = ?;");
+        if ($query->bind_param("s", $url) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                return User::fromAssoc($result->fetch_assoc());
+            }
         }
         return null;
     }
 
     public function getUserReplyCount(int $id): int
     {
-        $sql = "select count(*) as replyCount
-                from (select clucks.id from users join clucks on users.id = clucks.userID where users.id = $id) joined
-                join replies on joined.id = replies.replyCluckID;";
-        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
-            return $result->fetch_assoc()["replyCount"];
+        $query = $this->connection->prepare("select count(*) as replyCount
+                from (select clucks.id from users join clucks on users.id = clucks.userID where users.id = ?) joined
+                join replies on joined.id = replies.replyCluckID;");
+        if ($query->bind_param("i", $id) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                return $result->fetch_assoc()["replyCount"];
+            }
         }
         return 0;
     }
 
     public function getUserPostCount(int $id): int
     {
-        $sql = "select count(*) as postCount from users join clucks on users.id = clucks.userID where users.id = $id;";
-        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
-            return $result->fetch_assoc()["postCount"];
+
+        $query = $this->connection->prepare("select count(*) as postCount from users join clucks on users.id = clucks.userID where users.id = ?;");
+        if ($query->bind_param("i", $id) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                return $result->fetch_assoc()["postCount"];
+            }
         }
         return 0;
     }
 
     public function createUserProfile(int $id, string $firstName, string $lastName, string $avatar, string $description): ?UserProfile
     {
-        $sql = "insert into userProfiles values ($id, '$firstName', '$lastName', '$avatar', '$description');";
-        if ($result = $this->connection->query($sql)) {
+        $query = $this->connection->prepare(
+            "insert into userProfiles values (?, ?, ?, ?, ?);"
+        );
+        if ($query->bind_param("issss", $id, $firstName, $lastName, $avatar, $description) && $query->execute()) {
             return new UserProfile($id, $firstName, $lastName, $avatar, $description);
         }
         return null;
@@ -107,28 +140,34 @@ class Manager
 
     public function updateUserProfile(int $id, string $firstName, string $lastName, string $avatar, string $description): ?UserProfile
     {
-        $sql = "
-        update userProfiles set firstName = '$firstName', lastName = '$lastName', avatar = '$avatar', description = '$description'
-        where userID=$id;";
-        if ($result = $this->connection->query($sql)) {
-            return $this->getUserProfile($id);
+        $query = $this->connection->prepare(
+            "update userProfiles set firstName = ?, lastName = ?, avatar = ?, description = ? where userID = ?;"
+        );
+        if ($query->bind_param("ssssi", $firstName, $lastName, $avatar, $description, $id) && $query->execute()) {
+            return new UserProfile($id, $firstName, $lastName, $avatar, $description);
         }
         return null;
     }
 
     public function getUserProfile(int $id): ?UserProfile
     {
-        $sql = "select * from users join userProfiles on users.id = userProfiles.userID where id=$id;";
-        if (($result = $this->connection->query($sql))->num_rows) { //TODO do this num_rows where its needed
-            return UserProfile::fromAssoc($result->fetch_assoc());
+        $query = $this->connection->prepare(
+            "select * from users join userProfiles on users.id = userProfiles.userID where id=?;"
+        );
+        if ($query->bind_param("i", $id) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                return UserProfile::fromAssoc($result->fetch_assoc());
+            }
         }
         return null;
     }
 
     public function createReply(int $thisCluckID, int $replyCluckID): bool
     {
-        $sql = "insert into replies values (default, $thisCluckID, $replyCluckID);";
-        if ($result = $this->connection->query($sql)) {
+        $query = $this->connection->prepare(
+            "insert into replies values (default, ?, ?);"
+        );
+        if ($query->bind_param("ii", $thisCluckID, $replyCluckID) && $query->execute()) {
             return true;
         }
         return false;
@@ -137,8 +176,10 @@ class Manager
     public function createCluck(int $userID, string $content, int $replyID = 0): ?Cluck
     {
         $url = uniqid();
-        $sql = "insert into clucks values (default, $userID, '$content', '$url', now(), null);";
-        if ($result = $this->connection->query($sql)) {
+        $query = $this->connection->prepare(
+            "insert into clucks values (default, ?, ?, ?, now(), null);"
+        );
+        if ($query->bind_param("iss", $userID, $content, $url) && $query->execute()) {
             $id = $this->connection->insert_id;
             if ($replyID) {
                 if ($result = $this->createReply($id, $replyID)) {
@@ -150,13 +191,18 @@ class Manager
                 return $this->getCluck($id);
             }
         }
+        if ($this->checkDuplicateKey("url")) {
+            return $this->createCluck($userID, $content, $replyID);
+        }
         return null;
     }
 
     public function deleteCluck(int $id): bool
     {
-        $sql = "delete from clucks where id=$id;";
-        if ($result = $this->connection->query($sql)) {
+        $query = $this->connection->prepare(
+            "delete from clucks where id = ?;"
+        );
+        if ($query->bind_param("i", $id) && $query->execute()) {
             return true;
         }
         return false;
@@ -164,8 +210,10 @@ class Manager
 
     public function updateCluck(int $id, string $content): ?Cluck
     {
-        $sql = "update clucks set content = '$content', lastEdited = now() where id=$id;";
-        if ($result = $this->connection->query($sql)) {
+        $query = $this->connection->prepare(
+            "update clucks set content = ?, lastEdited = now() where id = ?;"
+        );
+        if ($query->bind_param("si", $content, $id) && $query->execute()) {
             return $this->getCluck($id);
         }
         return null;
@@ -173,52 +221,69 @@ class Manager
 
     public function getCluck(int $id): ?Cluck
     {
-        $sql = "select * from clucks where id=$id;";
-        if ($result = $this->connection->query($sql)) {
-            return Cluck::fromAssoc($result->fetch_assoc());
+        $query = $this->connection->prepare(
+            "select * from clucks where id = ?;"
+        );
+        if ($query->bind_param("i", $id) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                return Cluck::fromAssoc($result->fetch_assoc());
+            }
         }
         return null;
     }
 
     public function getCluckFromURL(string $url): ?Cluck
     {
-        $sql = "select * from clucks where url='$url';";
-        if (($result = $this->connection->query($sql))->num_rows) {
-            return Cluck::fromAssoc($result->fetch_assoc());
+        $query = $this->connection->prepare(
+            "select * from clucks where url = ?;"
+        );
+        if ($query->bind_param("s", $url) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                return Cluck::fromAssoc($result->fetch_assoc());
+            }
         }
         return null;
     }
 
     public function isReply(int $id): bool
     {
-        $sql = "select count(*) as count from replies where thisCluckID=$id;";
-        if ($result = $this->connection->query($sql)) {
-            return $result->fetch_array()["count"] > 0;
+        $query = $this->connection->prepare(
+            "select count(*) as count from replies where thisCluckID = ?;"
+        );
+        if ($query->bind_param("i", $id) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                return $result->fetch_assoc()["count"] > 0;
+            }
         }
         return false;
     }
 
     public function getRepliedCluck(int $id): ?Cluck
     {
-        $sql = "
-        select *
-        from clucks
-            where id = (
-            select replies.replyCluckID
-            from clucks join replies on clucks.id = replies.thisCluckID
-            where clucks.id = $id
-        );";
-        if (($result = $this->connection->query($sql))->num_rows) {
-            return Cluck::fromAssoc($result->fetch_assoc());
+        $query = $this->connection->prepare(
+            "select * from clucks where id = (
+                        select replies.replyCluckID
+                        from clucks join replies on clucks.id = replies.thisCluckID
+                        where clucks.id = ?
+                   );"
+        );
+        if ($query->bind_param("i", $id) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                return Cluck::fromAssoc($result->fetch_assoc());
+            }
         }
         return null;
     }
 
     public function getReplyCount(int $id): int
     {
-        $sql = "select count(*) as count from replies where replyCluckID = $id;";
-        if ($result = $this->connection->query($sql)) {
-            return $result->fetch_assoc()["count"];
+        $query = $this->connection->prepare(
+            "select count(*) as count from replies where replyCluckID = ?;"
+        );
+        if ($query->bind_param("i", $id) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                return $result->fetch_assoc()["count"];
+            }
         }
         return 0;
     }
@@ -226,12 +291,16 @@ class Manager
     public function getCluckReplies(int $id, int $page): array
     {
         $offset = $page * $this->pageLimit;
-        $sql = "select * from clucks join replies on clucks.id = replies.thisCluckID where replies.replyCluckID = $id
-                order by clucks.postDate desc limit $this->pageLimit offset $offset;";
         $clucks = [];
-        if (($result = $this->connection->query($sql))->num_rows) {
-            while ($cluckData = $result->fetch_assoc()) {
-                array_push($clucks, Cluck::fromAssoc($cluckData));
+        $query = $this->connection->prepare(
+            "select * from clucks join replies on clucks.id = replies.thisCluckID where replies.replyCluckID = ?
+                   order by clucks.postDate desc limit $this->pageLimit offset ?;"
+        );
+        if ($query->bind_param("ii", $id, $offset) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                while ($cluckData = $result->fetch_assoc()) {
+                    array_push($clucks, Cluck::fromAssoc($cluckData));
+                }
             }
         }
         return $clucks;
@@ -240,11 +309,15 @@ class Manager
     public function getLatestClucks(int $page = 0): array
     {
         $offset = $page * $this->pageLimit;
-        $sql = "select * from clucks order by postDate desc limit $this->pageLimit offset $offset;";
         $clucks = [];
-        if ($result = $this->connection->query($sql)) {
-            while ($cluckData = $result->fetch_assoc()) {
-                array_push($clucks, Cluck::fromAssoc($cluckData));
+        $query = $this->connection->prepare(
+            "select * from clucks order by postDate desc limit $this->pageLimit offset ?;"
+        );
+        if ($query->bind_param("i", $offset) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                while ($cluckData = $result->fetch_assoc()) {
+                    array_push($clucks, Cluck::fromAssoc($cluckData));
+                }
             }
         }
         return $clucks;
@@ -253,15 +326,18 @@ class Manager
     public function getHotClucks(int $page = 0): array
     {
         $offset = $page * $this->pageLimit;
-        $sql = "
-        select id, userID, url, content, postDate, lastEdited, countedReplies.cluckReplies, (countedReplies.cluckReplies / ((now() - postDate) / 1000000)) as heat
-        from clucks join (select replyCluckID, count(*) as cluckReplies from replies group by replyCluckID) countedReplies
-        on clucks.id = countedReplies.replyCluckID
-        order by heat desc limit $this->pageLimit offset $offset;";
         $clucks = [];
-        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
-            while ($cluckData = $result->fetch_assoc()) {
-                array_push($clucks, Cluck::fromAssoc($cluckData));
+        $query = $this->connection->prepare(
+            "select id, userID, url, content, postDate, lastEdited, countedReplies.cluckReplies, (countedReplies.cluckReplies / ((now() - postDate) / 1000000)) as heat
+                   from clucks join (select replyCluckID, count(*) as cluckReplies from replies group by replyCluckID) countedReplies
+                   on clucks.id = countedReplies.replyCluckID
+                   order by heat desc limit $this->pageLimit offset ?;"
+        );
+        if ($query->bind_param("i", $offset) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                while ($cluckData = $result->fetch_assoc()) {
+                    array_push($clucks, Cluck::fromAssoc($cluckData));
+                }
             }
         }
         return $clucks;
@@ -270,13 +346,17 @@ class Manager
     public function getTopClucks(int $page): array
     {
         $offset = $page * $this->pageLimit;
-        $sql = "select * from clucks join (select replyCluckID, count(*) as count from replies group by replyCluckID) countedReplies
-                on clucks.id = countedReplies.replyCluckID
-                order by count desc limit $this->pageLimit offset $offset;";
         $clucks = [];
-        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
-            while ($cluckData = $result->fetch_assoc()) {
-                array_push($clucks, Cluck::fromAssoc($cluckData));
+        $query = $this->connection->prepare(
+            "select * from clucks join (select replyCluckID, count(*) as count from replies group by replyCluckID) countedReplies
+                   on clucks.id = countedReplies.replyCluckID
+                   order by count desc limit $this->pageLimit offset ?;"
+        );
+        if ($query->bind_param("i", $offset) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                while ($cluckData = $result->fetch_assoc()) {
+                    array_push($clucks, Cluck::fromAssoc($cluckData));
+                }
             }
         }
         return $clucks;
@@ -285,49 +365,23 @@ class Manager
     public function getUserClucks(int $id, int $page): array
     {
         $offset = $page * $this->pageLimit;
-        $sql = "select * from clucks where userID = $id 
-                order by postDate desc limit $this->pageLimit offset $offset;";
         $clucks = [];
-        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
-            while ($cluckData = $result->fetch_assoc()) {
-                array_push($clucks, Cluck::fromAssoc($cluckData));
+        $query = $this->connection->prepare(
+            "select * from clucks where userID = ? 
+                order by postDate desc limit $this->pageLimit offset ?;"
+        );
+        if ($query->bind_param("ii", $id, $offset) && $query->execute()) {
+            if (($result = $query->get_result()) && $result->num_rows) {
+                while ($cluckData = $result->fetch_assoc()) {
+                    array_push($clucks, Cluck::fromAssoc($cluckData));
+                }
             }
         }
         return $clucks;
-    }
-
-    public function getUsersAssoc(int $page): array
-    {
-        $offset = $page * $this->pageLimit;
-        $sql = "select id, email, url, firstName, lastName, avatar, description 
-                from users join userProfiles on users.id = userProfiles.userID
-                order by id desc limit $this->pageLimit offset $offset;";
-        $usersAssoc = [];
-        if (($result = $this->connection->query($sql)) && ($result->num_rows)) {
-            while ($userData = $result->fetch_assoc()) {
-                array_push($usersAssoc, $userData);
-            }
-        }
-        return $usersAssoc;
     }
 
     public function __destruct()
     {
         $this->connection->close();
     }
-
-    public function test($limit, $offset) {
-        $query = $this->connection->prepare("select * from clucks order by postDate desc limit ? offset ?;");
-        if (($query->bind_param("ii", $limit, $offset)) && ($query->execute())) {
-            $result = $query->get_result();
-            echo "was true ";
-            var_dump($result->num_rows);
-        } else {
-            echo "was false";
-        }
-
-    }
 }
-
-$manager = new Manager();
-$manager->test(5, 5);

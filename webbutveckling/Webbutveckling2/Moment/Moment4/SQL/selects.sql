@@ -35,7 +35,7 @@ select count(*) as postCount from users join clucks on users.id = clucks.userID 
 
 -- counts how many times a user have been replied to
 select count(*) as replyCount
-from (select clucks.id from users join clucks on users.id = clucks.userID where users.id = 1) joined
+from (select clucks.id from users join clucks on users.id = clucks.userID where users.id = 1) as joined
     join replies on joined.id = replies.replyCluckID;
 
 select id, email, url, firstName, lastName, avatar, description
