@@ -11,7 +11,7 @@ if (!($thisCluck = $manager->getCluckFromURL($cluckURL))) {
 }
 $thisCluckUser = $thisCluck->getUser($manager);
 $thisCluckUserProfile = $thisCluck->getUserProfile($manager);
-$thisExtendedCluck = extendCluck($thisCluck, $manager);
+$thisExtendedCluck = $thisCluck->extend($manager);
 
 $cluckReplyForm = new CluckReplyForm($thisCluck);
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -39,23 +39,27 @@ include "../templates/header.php";
         <div class="cluck-page-content-wrapper">
             <?php if ($repliedCluck = $manager->getRepliedCluck($thisCluck->getID())) {
                 $repliedUserProfile = $repliedCluck->getUserProfile($manager);
-                $repliedExtendedCluck = extendCluck($repliedCluck, $manager) ?>
+                $repliedExtendedCluck = $repliedCluck->extend($manager) ?>
                 <article id="replied" class="cluck replied" data-replied-url="<?= $repliedCluck->getUrl() ?>">
                     <img class="cluck-avatar" src="<?= $repliedUserProfile->getWebLinkAvatar() ?>"
                          alt="cluck user avatar">
                     <div class="cluck-heading-wrapper">
-                        <div class="cluck-and-reply">
-                            <a class="cluck-heading-link" href="<?= $repliedCluck->getUser()->getWebURL() ?>">
-                                <h2><?= $repliedUserProfile->getFirstName() ?> <?= $repliedUserProfile->getLastName() ?></h2>
-                            </a>
-                            <?php if ($repliedExtendedCluck["repliedCluck"]) { ?>
+                        <div class="cluck-headings">
+                            <h2><?=$repliedCluck->getTitle()?></h2>
+                            <div class="cluck-and-reply">
+                                <span class="cluck-by">av</span><a class="cluck-heading-link" href="<?= $repliedCluck->getUser()->getWebURL() ?>">
+                                    <h3><?= $repliedUserProfile->getFirstName() ?> <?= $repliedUserProfile->getLastName() ?></h3>
+                                </a>
+                                <?php if ($repliedExtendedCluck["repliedCluck"]) { ?>
                                     <span class="cluck-and-reply-text">svarar</span>
                                     <a href="<?= $rootURL . '/Cluck/?' . $repliedExtendedCluck['repliedCluck']['url'] ?>"
                                        class="cluck-heading-link">
-                                        <h3><?= $repliedExtendedCluck["repliedCluck"]["firstName"] ?> <?= $repliedExtendedCluck["repliedCluck"]["lastName"] ?></h3>
+                                        <h4><?= $repliedExtendedCluck["repliedCluck"]["firstName"] ?> <?= $repliedExtendedCluck["repliedCluck"]["lastName"] ?></h4>
                                     </a>
-                            <?php } ?>
+                                <?php } ?>
+                            </div>
                         </div>
+
                         <div class="cluck-metadata">
                             <div class="cluck-publish-details">
                                 <span class="cluck-post-timestamp timestamp"><?= $repliedCluck->getPostDate() ?></span>
@@ -86,17 +90,20 @@ include "../templates/header.php";
                 <img class="cluck-avatar" src="<?= $thisCluckUserProfile->getWebLinkAvatar() ?>"
                      alt="cluck user avatar">
                 <div class="cluck-heading-wrapper">
-                    <div class="cluck-and-reply">
-                        <a class="cluck-heading-link" href="<?= $thisCluckUser->getWebURL() ?>">
-                            <h1><?= $thisCluckUserProfile->getFirstName() ?> <?= $thisCluckUserProfile->getLastName() ?></h1>
-                        </a>
-                        <?php if ($thisExtendedCluck["repliedCluck"]) { ?>
+                    <div class="cluck-headings">
+                        <h1><?=$thisCluck->getTitle()?></h1>
+                        <div class="cluck-and-reply">
+                            <span>av</span><a class="cluck-heading-link" href="<?= $thisCluckUser->getWebURL() ?>">
+                                <h2><?= $thisCluckUserProfile->getFirstName() ?> <?= $thisCluckUserProfile->getLastName() ?></h2>
+                            </a>
+                            <?php if ($thisExtendedCluck["repliedCluck"]) { ?>
                                 <span class="cluck-and-reply-text">svarar</span>
                                 <a href="<?= $rootURL . '/Cluck/?' . $thisExtendedCluck['repliedCluck']['url'] ?>"
                                    class="cluck-heading-link">
                                     <h3><?= $thisExtendedCluck["repliedCluck"]["firstName"] ?> <?= $thisExtendedCluck["repliedCluck"]["lastName"] ?></h3>
                                 </a>
-                        <?php } ?>
+                            <?php } ?>
+                        </div>
                     </div>
                     <div class="cluck-metadata">
                         <div class="cluck-publish-details">
@@ -140,9 +147,10 @@ include "../templates/footer.php";
 ?>
 <script src="<?= $rootURL ?>/static/js/utils.js"></script>
 <script src="<?= $rootURL ?>/static/js/timestamp.js"></script>
-<script src="<?= $rootURL ?>/static/js/clucks.js"
-        root="<?= $rootURL ?>"
-        writeLink="<?= $writeDirectoryLink ?>"></script>
-<script src="<?= $rootURL ?>/static/js/replies.js" cluckID="<?= $thisCluck->getID() ?>"></script>
+<script src="<?= $rootURL ?>/static/js/clucks.js"></script>
+<script src="<?= $rootURL ?>/static/js/replies.js"
+        cluckID="<?= $thisCluck->getID() ?>"
+        data-root="<?= $rootURL ?>"
+        data-writeLink="<?= $writeDirectoryLink ?>"></script>
 </body>
 </html>

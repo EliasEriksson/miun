@@ -1,3 +1,17 @@
+function makeClickable(element, link) {
+    element.addEventListener("click", (event) => {
+        event.preventDefault();
+        let parent = event.target.parentElement;
+        if (parent.href) {
+            window.location.href = parent.href;
+        } else {
+            // window.location.href = `${root}/Profiles/Profile/?${link}`;
+            window.location.href = link;
+        }
+    });
+}
+
+
 function isInViewport(element) {
     let rect = element.getBoundingClientRect();
     return (

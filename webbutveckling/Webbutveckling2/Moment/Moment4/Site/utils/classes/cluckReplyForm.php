@@ -22,6 +22,7 @@ class CluckReplyForm extends Form
     {
         parent::__construct([
             new Field("cluckID", "hidden", $cluck->getID()),
+            new Field("replyTitle", "text", "", $classPrefix, "Titel:"),
             new Field("replyContent", "textarea", "", $classPrefix, "Ditt svar:"),
         ], new Field("reply", "submit", "Svara", $classPrefix), $classPrefix);
     }
@@ -34,6 +35,6 @@ class CluckReplyForm extends Form
 
         $user = getSessionUserProfile();
         $manager = new Manager();
-        return $manager->createCluck($user->getUserID(), $_POST["replyContent"], $_POST["cluckID"]);
+        return $manager->createCluck($user->getUserID(), $_POST["replyTitle"], $_POST["replyContent"], $_POST["cluckID"]);
     }
 }

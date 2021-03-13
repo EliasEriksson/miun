@@ -9,6 +9,6 @@ if (!(isset($_GET["page"]) && isset($_GET["id"]))) {
 
 $manager = new Manager();
 $clucks = $manager->getUserClucks($_GET["id"], $_GET["page"]);
-$data = extendClucks($clucks, $manager);
+$data = Cluck::extendClucks($clucks, $manager);
 
 echo json_encode($data, JSON_UNESCAPED_UNICODE);

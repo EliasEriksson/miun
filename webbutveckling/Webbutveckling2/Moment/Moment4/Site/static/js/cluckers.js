@@ -1,22 +1,8 @@
-let root = document.currentScript.getAttribute("root");
-let writeLink = document.currentScript.getAttribute("writeLink");
-let baseApi = `${root}/api`;
-
-function makeClickable(element, link) {
-    element.addEventListener("click", (event) => {
-        event.preventDefault();
-        let parent = event.target.parentElement;
-        if (parent.href) {
-            window.location.href = parent.href;
-        } else {
-            window.location.href = `${root}/Profiles/Profile/?${link}`;
-        }
-    });
-}
-
 class CluckerLoader {
-    constructor(getApi) {
-        this.api = `${baseApi}/${getApi}/?page=`;
+    constructor(getApi, root, writeLink) {
+        this.root = root;
+        this.writeLink = writeLink;
+        this.api = `${this.root}/api/${getApi}/?page=`;
         this.currentPage = -1;
         this.loadingPage = -1;
         this.fullyConsumed = false;
@@ -32,7 +18,7 @@ class CluckerLoader {
         let img = document.createElement("img");
         img.classList.add("cluck-avatar");
         img.alt = "Cluck user avatar";
-        img.src = `${writeLink}${json.avatar}`;
+        img.src = `${this.writeLink}${json.avatar}`;
 
         wrapper.appendChild(img)
         element.appendChild(wrapper)
@@ -71,7 +57,7 @@ class CluckerLoader {
         }
 
         let wrapper = createA("cluck-heading-link");
-        wrapper.href = `${root}/Profiles/Profile/?${json.url}`;
+        wrapper.href = `${this.root}/Profiles/Profile/?${json.url}`;
 
         let hElement = document.createElement(`h${headingGrade}`);
         hElement.innerHTML = `${json.firstName} ${json.lastName}`;
@@ -110,7 +96,7 @@ class CluckerLoader {
                 }
 
                 let wrapper = createDiv("clucker");
-                makeClickable(wrapper, json[i].url);
+                makeClickable(wrapper, `${this.root}/Profiles/Profile/?${json[i].url}`);
 
                 this.addAvatar(wrapper, json[i]);
                 this.addHeadingWrapper(wrapper, json[i], headingGrade);

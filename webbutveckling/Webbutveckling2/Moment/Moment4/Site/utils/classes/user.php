@@ -21,6 +21,20 @@ class User
         );
     }
 
+    public static function extendUsers(array $users, Manager $manager = null): array
+    {
+        if (!$manager) {
+            $manager = new Manager();
+        }
+        $extendedUsers = [];
+        foreach ($users as $user) {
+            if ($extendedUser = $user->extend($manager)) {
+                array_push($extendedUsers, $extendedUser);
+            }
+        }
+        return $extendedUsers;
+    }
+
     public function __construct(int $id, string $email, string $passwordHash, string $url)
     {
         $this->id = $id;
@@ -36,6 +50,25 @@ class User
             return $manager->getUser($this->id);
         }
         return null;
+    }
+
+    public function extend(Manager $manager = null): ?array
+    {
+        if (!$manager) {
+            $manager = new Manager();
+        }
+        $userProfile = $this->getProfile($manager);
+        if (!$userProfile) {
+            return null;
+        }
+        return array_merge(
+            $this->getAssoc(),
+            $userProfile->getAssoc(),
+            [
+                "postCount" => $manager->getUserPostCount($this->getId()),
+                "replyCount" => $manager->getUserReplyCount($this->getId())
+            ]
+        );
     }
 
     public function getProfile(Manager $manager = null): ?UserProfile
@@ -68,7 +101,8 @@ class User
         return $this->url;
     }
 
-    function getWebURL(): string {
+    function getWebURL(): string
+    {
         return $GLOBALS["rootURL"] . "/Profiles/Profile/?$this->url";
     }
 }

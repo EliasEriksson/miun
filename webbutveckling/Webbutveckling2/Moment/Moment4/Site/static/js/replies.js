@@ -1,12 +1,15 @@
-let id = document.currentScript.getAttribute("cluckID");
-
-let cluckLoader = new CluckLoader("getReplies", id);
+let cluckLoader = new CluckLoader(
+    "getReplies",
+    document.currentScript.getAttribute("data-root"),
+    document.currentScript.getAttribute("data-writeLink"),
+    document.currentScript.getAttribute("cluckID")
+);
 
 window.addEventListener("load", async ()=>{
     await cluckLoader.loadClucks();
     let replied = document.getElementById("replied");
     if (replied) {
-        makeClickable(replied, replied.getAttribute("data-replied-url"));
+        makeClickable(replied, `./?${replied.getAttribute("data-replied-url")}`);
     }
 });
 

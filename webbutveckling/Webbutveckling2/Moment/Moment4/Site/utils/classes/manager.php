@@ -25,11 +25,15 @@ class Manager
         $this->pageLimit = $pageLimit;
     }
 
+    private function stripTags(string $string): string
+    {
+        return strip_tags($string, "<a>");
+    }
+
     private function checkDuplicateKey(string $key): bool
     {
         if ($this->connection->errno === 1062) {
             if (preg_match("/^Duplicate\sentry\s'[^ ]+'\sfor\skey\s'$key'$/", $this->connection->error)) {
-                echo "got here";
                 return true;
             }
         }
@@ -41,6 +45,7 @@ class Manager
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $url = uniqid();
         $query = $this->connection->prepare("insert into users values (default, ?, '$passwordHash', '$url');");
+        $email = strip_tags($email);
 
         if ($query->bind_param("s", $email) && $query->execute()) {
             return new User($this->connection->insert_id, $email, $passwordHash, $url);
@@ -83,6 +88,7 @@ class Manager
     public function getUserFromEmail(string $email): ?User
     {
         $query = $this->connection->prepare("select * from users where email = ?;");
+        $email = strip_tags($email);
         if ($query->bind_param("s", $email) && $query->execute()) {
             if (($result = $query->get_result()) && $result->num_rows) {
                 return User::fromAssoc($result->fetch_assoc());
@@ -94,6 +100,7 @@ class Manager
     public function getUserFromURL(string $url): ?User
     {
         $query = $this->connection->prepare("select * from users where url = ?;");
+        $url = strip_tags($url);
         if ($query->bind_param("s", $url) && $query->execute()) {
             if (($result = $query->get_result()) && $result->num_rows) {
                 return User::fromAssoc($result->fetch_assoc());
@@ -132,6 +139,9 @@ class Manager
         $query = $this->connection->prepare(
             "insert into userProfiles values (?, ?, ?, ?, ?);"
         );
+        $firstName = strip_tags($firstName);
+        $lastName = strip_tags($lastName);
+        $description = $this->stripTags($description);
         if ($query->bind_param("issss", $id, $firstName, $lastName, $avatar, $description) && $query->execute()) {
             return new UserProfile($id, $firstName, $lastName, $avatar, $description);
         }
@@ -143,6 +153,9 @@ class Manager
         $query = $this->connection->prepare(
             "update userProfiles set firstName = ?, lastName = ?, avatar = ?, description = ? where userID = ?;"
         );
+        $firstName = strip_tags($firstName);
+        $lastName = strip_tags($lastName);
+        $description = $this->stripTags($description);
         if ($query->bind_param("ssssi", $firstName, $lastName, $avatar, $description, $id) && $query->execute()) {
             return new UserProfile($id, $firstName, $lastName, $avatar, $description);
         }
@@ -173,13 +186,15 @@ class Manager
         return false;
     }
 
-    public function createCluck(int $userID, string $content, int $replyID = 0): ?Cluck
+    public function createCluck(int $userID, string $title, string $content, int $replyID = 0): ?Cluck
     {
         $url = uniqid();
         $query = $this->connection->prepare(
-            "insert into clucks values (default, ?, ?, ?, now(), null);"
+            "insert into clucks values (default, ?, ?, ?, ?, now(), null);"
         );
-        if ($query->bind_param("iss", $userID, $content, $url) && $query->execute()) {
+        $title = $this->stripTags($title);
+        $content = $this->stripTags($content);
+        if ($query->bind_param("isss", $userID, $title, $content, $url) && $query->execute()) {
             $id = $this->connection->insert_id;
             if ($replyID) {
                 if ($result = $this->createReply($id, $replyID)) {
@@ -208,12 +223,14 @@ class Manager
         return false;
     }
 
-    public function updateCluck(int $id, string $content): ?Cluck
+    public function updateCluck(int $id, string $title, string $content): ?Cluck
     {
         $query = $this->connection->prepare(
-            "update clucks set content = ?, lastEdited = now() where id = ?;"
+            "update clucks set title = ?, content = ?, lastEdited = now() where id = ?;"
         );
-        if ($query->bind_param("si", $content, $id) && $query->execute()) {
+        $title = $this->stripTags($title);
+        $content = $this->stripTags($content);
+        if ($query->bind_param("ssi", $title, $content, $id) && $query->execute()) {
             return $this->getCluck($id);
         }
         return null;
@@ -293,7 +310,8 @@ class Manager
         $offset = $page * $this->pageLimit;
         $clucks = [];
         $query = $this->connection->prepare(
-            "select * from clucks join replies on clucks.id = replies.thisCluckID where replies.replyCluckID = ?
+            "select clucks.id as id, userID, title, content, url, postDate, lastEdited 
+                   from clucks join replies on clucks.id = replies.thisCluckID where replies.replyCluckID = ?
                    order by clucks.postDate desc limit $this->pageLimit offset ?;"
         );
         if ($query->bind_param("ii", $id, $offset) && $query->execute()) {
@@ -328,7 +346,7 @@ class Manager
         $offset = $page * $this->pageLimit;
         $clucks = [];
         $query = $this->connection->prepare(
-            "select id, userID, url, content, postDate, lastEdited, countedReplies.cluckReplies, (countedReplies.cluckReplies / ((now() - postDate) / 1000000)) as heat
+            "select id, userID, title, url, content, postDate, lastEdited, countedReplies.cluckReplies, (countedReplies.cluckReplies / ((now() - postDate) / 1000000)) as heat
                    from clucks join (select replyCluckID, count(*) as cluckReplies from replies group by replyCluckID) countedReplies
                    on clucks.id = countedReplies.replyCluckID
                    order by heat desc limit $this->pageLimit offset ?;"
@@ -385,3 +403,10 @@ class Manager
         $this->connection->close();
     }
 }
+
+//$manager = new Manager();
+//echo "starting query<br><br>";
+//$cluck = $manager->getRepliedCluck(2);
+//echo $cluck->getID();
+//echo "ended query<br><br>";
+//var_dump($cluck);

@@ -11,6 +11,7 @@ class CluckForm extends Form {
     public function __construct(string $classPrefix = "general")
     {
         parent::__construct([
+            new Field("title", "text", "", $classPrefix, "Titel:"),
             new Field("content", "textarea", "", $classPrefix, "Kackel:"),
         ], new Field("cluck", "submit", "Kackla!", $classPrefix), $classPrefix);
     }
@@ -23,6 +24,6 @@ class CluckForm extends Form {
 
         $userProfile = getSessionUserProfile();
         $manager = new Manager();
-        return $manager->createCluck($userProfile->getUserID(), $_POST["content"]);
+        return $manager->createCluck($userProfile->getUserID(), $_POST["title"], $_POST["content"]);
     }
 }

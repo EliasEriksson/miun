@@ -20,7 +20,7 @@ if (!($userProfile = $user->getProfile())) {
     <?php
     include __DIR__ . "/../templates/head.php";
     ?>
-    <title>Cluck | User profile</title>
+    <title>Kackel | Profil</title>
 </head>
 <body>
 <?php
@@ -33,7 +33,7 @@ include __DIR__ . "/../templates/header.php";
                 <img class="profile-avatar" src="<?= $userProfile->getWebLinkAvatar() ?>" alt="avatar">
             </div>
             <div class="clucker-heading-wrapper">
-                <h1><?= $userProfile->getFirstName() ?> <?= $userProfile->getLastName() ?> profil</h1>
+                <h1><?= $userProfile->getFirstName() ?> <?= $userProfile->getLastName() ?>'s profil</h1>
                 <div class="clucker-metadata">
                     <?php if ($userTotalPosts = $manager->getUserPostCount($userProfile->getUserID())) {
                         if ($userTotalPosts === 1) { $unit = "gång"; } else { $unit = "gånger"; } ?>
@@ -63,9 +63,10 @@ include __DIR__ . "/../templates/footer.php";
 ?>
 <script src="<?= $rootURL ?>/static/js/utils.js"></script>
 <script src="<?= $rootURL ?>/static/js/timestamp.js"></script>
-<script src="<?= $rootURL ?>/static/js/clucks.js"
-        root="<?= $rootURL ?>"
-        writeLink="<?= $writeDirectoryLink ?>"></script>
-<script src="<?= $rootURL ?>/static/js/userClucks.js" userID="<?= $user->getId() ?>"></script>
+<script src="<?= $rootURL ?>/static/js/clucks.js"></script>
+<script src="<?= $rootURL ?>/static/js/userClucks.js"
+        userID="<?= $user->getId() ?>"
+        data-root="<?= $rootURL ?>"
+        data-writeLink="<?= $writeDirectoryLink ?>"></script>
 </body>
 </html>

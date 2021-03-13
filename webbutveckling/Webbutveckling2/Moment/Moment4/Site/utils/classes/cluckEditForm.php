@@ -13,7 +13,8 @@ class CluckEditForm extends Form {
     {
         parent::__construct([
             new Field("id", "hidden", $cluck->getID()),
-            new Field("updateContent", "textarea", $cluck->getContent(), $classPrefix, "Redigere Kackel:")
+            new Field("updateTitle", "text", $cluck->getTitle(), $classPrefix, "Redifera titel:"),
+            new Field("updateContent", "textarea", $cluck->getContent(), $classPrefix, "Redigere kackel:")
         ], new Field("cluckEditSubmit","submit", "Updatera", $classPrefix), $classPrefix);
     }
 
@@ -26,6 +27,6 @@ class CluckEditForm extends Form {
         requireUserProfileLogin();
 
         $manager = new Manager();
-        return $manager->updateCluck($_POST["id"], $_POST["updateContent"]);
+        return $manager->updateCluck($_POST["id"], $_POST["updateTitle"], $_POST["updateContent"]);
     }
 }

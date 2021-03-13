@@ -1,25 +1,8 @@
-let root = document.currentScript.getAttribute("root");
-let writeLink = document.currentScript.getAttribute("writeLink");
-let baseApi = `${root}/api`;
-
-
-function makeClickable(element, link) {
-    element.addEventListener("click", (event) => {
-        event.preventDefault();
-        console.log("test")
-        let parent = event.target.parentElement;
-        if (parent.href) {
-            window.location.href = parent.href;
-        } else {
-            window.location.href = `${root}/Cluck/?${link}`;
-        }
-    });
-}
-
-
 class CluckLoader {
-    constructor(getApi, id = null) {
-        this.api = `${baseApi}/${getApi}/?page=`;
+    constructor(getApi, root, writeLink, id = null) {
+        this.root = root;
+        this.writeLink = writeLink;
+        this.api = `${this.root}/api/${getApi}/?page=`;
         this.id = id;
         this.currentPage = -1;
         this.loadingPage = -1;
@@ -36,7 +19,7 @@ class CluckLoader {
         let img = document.createElement("img");
         img.classList.add("cluck-avatar");
         img.alt = "Cluck user avatar";
-        img.src = `${writeLink}${json.avatar}`;
+        img.src = `${this.writeLink}${json.avatar}`;
 
         wrapper.appendChild(img)
         element.appendChild(wrapper);
@@ -89,10 +72,25 @@ class CluckLoader {
         element.appendChild(wrapper);
     }
 
+    addHeadings(element, json, headingGrade) {
+        if (!json.hasOwnProperty("title")) {
+            throw new ReferenceError("missing properties")
+        }
+        let wrapper = createDiv("cluck-headings");
+
+        let h = document.createElement(`h${headingGrade}`);
+        h.innerHTML = json.title;
+
+        wrapper.appendChild(h);
+        this.addCluckAndReply(wrapper, json, headingGrade + 1);
+
+        element.appendChild(wrapper);
+    }
+
     addContentHeadings(element, json, headingGrade) {
         let wrapper = createDiv("cluck-heading-wrapper")
 
-        this.addCluckAndReply(wrapper, json, headingGrade)
+        this.addHeadings(wrapper, json, headingGrade)
         this.addMetadata(wrapper, json);
 
         element.appendChild(wrapper);
@@ -119,7 +117,11 @@ class CluckLoader {
 
         let wrapper = createDiv("cluck-and-reply");
 
-        let url = `${root}/Profiles/Profile/?${json.userURL}`;
+        let cluckBy = createSpan("cluck-by");
+        cluckBy.innerHTML = "av";
+        wrapper.appendChild(cluckBy);
+
+        let url = `${this.root}/Profiles/Profile/?${json.userURL}`;
         let heading = `${json.firstName} ${json.lastName}`;
         this.addHeadingLink(wrapper, heading, headingGrade, url, "cluck-heading-link")
 
@@ -134,7 +136,7 @@ class CluckLoader {
             wrapper.appendChild(span);
 
             heading = `${json.repliedCluck.firstName} ${json.repliedCluck.lastName}`;
-            url = `${root}/Cluck/?${json.repliedCluck.url}`
+            url = `${this.root}/Cluck/?${json.repliedCluck.url}`
             this.addHeadingLink(wrapper, heading, headingGrade + 1, url, "cluck-heading-link");
         }
 
@@ -161,7 +163,7 @@ class CluckLoader {
                 }
                 let cluckElement = document.createElement("article");
                 cluckElement.classList.add("cluck");
-                makeClickable(cluckElement, json[i].url);
+                makeClickable(cluckElement, `${this.root}/Cluck/?${json[i].url}`);
 
                 this.addAvatar(cluckElement, json[i]);
                 this.addContentHeadings(cluckElement, json[i], headingGrade);

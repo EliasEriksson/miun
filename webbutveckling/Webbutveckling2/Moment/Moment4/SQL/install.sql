@@ -28,6 +28,7 @@ create table clucks
 (
     id         int auto_increment not null,
     userID     int                not null,
+    title      varchar(128),
     content    varchar(250),
     url        char(13) unique,
     postDate   timestamp default current_timestamp,

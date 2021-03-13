@@ -9,6 +9,6 @@ if (!isset($_GET["page"])) {
 
 $manager = new Manager();
 $users = $manager->getLatestUsers($_GET["page"]);
-$data = extendUsers($users, $manager);
+$data = User::extendUsers($users, $manager);
 
 echo json_encode($data, JSON_UNESCAPED_UNICODE);

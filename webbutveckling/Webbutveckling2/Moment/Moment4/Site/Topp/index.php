@@ -18,9 +18,9 @@ include "../templates/footer.php";
 ?>
 <script src="<?= $rootURL ?>/static/js/utils.js"></script>
 <script src="<?= $rootURL ?>/static/js/timestamp.js"></script>
-<script src="<?= $rootURL ?>/static/js/clucks.js"
-        root="<?= $rootURL ?>"
-        writeLink="<?= $writeDirectoryLink ?>"></script>
-<script src="<?=$rootURL?>/static/js/topClucks.js"></script>
+<script src="<?= $rootURL ?>/static/js/clucks.js"></script>
+<script src="<?=$rootURL?>/static/js/topClucks.js"
+        data-root="<?= $rootURL ?>"
+        data-writeLink="<?= $writeDirectoryLink ?>"></script>
 </body>
 </html>

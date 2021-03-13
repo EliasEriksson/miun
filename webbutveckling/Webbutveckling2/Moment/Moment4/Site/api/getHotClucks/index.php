@@ -8,6 +8,6 @@ if (!isset($_GET["page"])) {
 }
 $manager = new Manager();
 $clucks = $manager->getHotClucks($_GET["page"]);
-$json = extendClucks($clucks, $manager);
+$json = Cluck::extendClucks($clucks, $manager);
 
 echo json_encode($json, JSON_UNESCAPED_UNICODE);

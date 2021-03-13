@@ -20,9 +20,9 @@ include "../templates/footer.php";
 
 <script src="<?= $rootURL ?>/static/js/utils.js"></script>
 <script src="<?= $rootURL ?>/static/js/timestamp.js"></script>
-<script src="<?= $rootURL ?>/static/js/cluckers.js"
-        root="<?= $rootURL ?>"
-        writeLink="<?= $writeDirectoryLink ?>"></script>
-<script src="<?= $rootURL ?>/static/js/latestCluckers.js"></script>
+<script src="<?= $rootURL ?>/static/js/cluckers.js"></script>
+<script src="<?= $rootURL ?>/static/js/latestCluckers.js"
+        data-root="<?= $rootURL ?>"
+        data-writeLink="<?= $writeDirectoryLink ?>"></script>
 </body>
 </html>
