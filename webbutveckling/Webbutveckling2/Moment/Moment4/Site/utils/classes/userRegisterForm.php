@@ -17,7 +17,6 @@ class UserRegisterForm extends Form
         ], new Field("register", "submit", "Registrera dig", $classPrefix), $classPrefix);
     }
 
-
     public function validate(): ?User
     {
         if (!$this->validateFields()) {

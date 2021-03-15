@@ -10,7 +10,7 @@ create table users
 
     -- require email format to be something@something.something
     -- its not the best check but its better than nothing
-    constraint usersEmail check ( email regexp '^[^@]+@[^.]\..+$' and length(email) >= 5),
+    constraint usersEmail check ( email regexp '^[^@]+@[^.]+\..+' and length(email) >= 5),
     constraint passwordHash check ( length(passwordHash) > 0 ),
     constraint usersPK primary key (id)
 );
@@ -25,11 +25,11 @@ create table userProfiles
     profileCreated timestamp    not null,
 
     -- makes sure filepath starts from root
-    constraint userProfilesProfilePicture check ( profilePicture regexp '/.+'),
+    constraint userProfilesProfilePicture check ( profilePicture regexp '^/.+'),
     -- weak check to at least exclude numbers from the first name
-    constraint userProfilesFirstName check ( firstName regexp '^[^0-9]+$'),
+    constraint userProfilesFirstName check ( firstName regexp '^[[:alpha:]]+$'),
     -- weak check to at least exclude numbers from the last name
-    constraint userProfilesLastName check ( lastName regexp '^[^0-9]+$'),
+    constraint userProfilesLastName check ( lastName regexp '^[[:alpha:]]+$'),
     constraint userProfilesPK primary key (userID)
 );
 
@@ -38,7 +38,7 @@ create table followers
     thisUserID     int not null,
     followedUserID int not null,
 
-    constraint followSelf check ( thisUserID != followers.followedUserID ),
+    constraint followSelf check ( thisUserID != followedUserID ),
     constraint followersPK primary key (thisUserID, followedUserID)
 );
 

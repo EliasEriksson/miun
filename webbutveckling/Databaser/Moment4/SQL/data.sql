@@ -12,9 +12,9 @@ values (1, 'John', 'Doe', 'This is John Doe', '/path/to/profile/picture.png', no
 insert into userProfiles
 values (2, 'Jane', 'Doe', 'This is Jane Doe', '/path/to/profile/picture.png', now());
 insert into userProfiles
-values (3, 'Tom', 'scot', 'This is Tom Scot', 'path/to/profile/picture.png', now());
+values (3, 'Tom', 'scot', 'This is Tom Scot', '/path/to/profile/picture.png', now());
 insert into userProfiles
-values (4, 'Sara', 'scot', 'This is Sara Scot', 'path/to/profile/picture.png', now());
+values (4, 'Sara', 'scot', 'This is Sara Scot', '/path/to/profile/picture.png', now());
 
 insert into followers
 values (1, 4);

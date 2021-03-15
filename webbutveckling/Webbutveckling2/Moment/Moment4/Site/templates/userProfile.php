@@ -6,10 +6,11 @@ include_once __DIR__ . "/../utils/classes/manager.php";
 $userURL = getCurrentPage();
 $manager = new Manager();
 
-if (!($user = $manager->getUserFromURL($userURL))) {
+if (!($profileUser = $manager->getUserFromURL($userURL))) {
     redirect("$rootURL/");
 }
-if (!($userProfile = $user->getProfile())) {
+
+if (!($profileUserProfile = $profileUser->getProfile())) {
     redirect("$rootURL/");
 }
 ?>
@@ -30,29 +31,40 @@ include __DIR__ . "/../templates/header.php";
     <main class="main-content">
         <div class="profile">
             <div class="profile-avatar-wrapper">
-                <img class="profile-avatar" src="<?= $userProfile->getWebLinkAvatar() ?>" alt="avatar">
+                <img class="profile-avatar" src="<?= $profileUserProfile->getWebLinkAvatar() ?>" alt="avatar">
             </div>
             <div class="clucker-heading-wrapper">
-                <h1><?= $userProfile->getFirstName() ?> <?= $userProfile->getLastName() ?>'s profil</h1>
+                <h1><?= $profileUserProfile->getFirstName() ?> <?= $profileUserProfile->getLastName() ?>'s profil</h1>
                 <div class="clucker-metadata">
-                    <?php if ($userTotalPosts = $manager->getUserPostCount($userProfile->getUserID())) {
-                        if ($userTotalPosts === 1) { $unit = "gång"; } else { $unit = "gånger"; } ?>
+                    <?php if ($userTotalPosts = $manager->getUserPostCount($profileUserProfile->getUserID())) {
+                        if ($userTotalPosts === 1) {
+                            $unit = "gång";
+                        } else {
+                            $unit = "gånger";
+                        } ?>
                         <span class="clucker-total-posts"></span>
                     <?php } ?>
-                    <?php if ($userTotalReplies = $manager->getReplyCount($userProfile->getUserID())) {
-                        if ($userTotalPosts === 1) { $unit = "gång"; } else { $unit = "gånger"; } ?>
+                    <?php if ($userTotalReplies = $manager->getReplyCount($profileUserProfile->getUserID())) {
+                        if ($userTotalPosts === 1) {
+                            $unit = "gång";
+                        } else {
+                            $unit = "gånger";
+                        } ?>
                         <span class="clucker-total-replies"></span>
                     <?php } ?>
                 </div>
             </div>
             <div class="cluckers-description-wrapper">
-                <p class="profile-description"><?= $userProfile->getDescription() ?></p>
+                <p class="profile-description"><?= $profileUserProfile->getDescription() ?></p>
             </div>
-
-
         </div>
         <section class="cluck-reply-section">
-            <h2 class="replies-heading">Mitt kackel</h2>
+            <?php if (userProfileLoggedIn() && ($ownUserProfile = getSessionUserProfile()) && $ownUserProfile->getUserID() == $profileUserProfile->getUserID()) {
+                ?>
+                <h2 class="replies-heading">Mitt kackel</h2>
+            <?php } else { ?>
+                <h2><?= $profileUserProfile->getFirstName() ?> <?= $profileUserProfile->getLastName() ?>'s kackel</h2>
+            <?php } ?>
             <div id="clucks" class="cluck-replies"></div>
         </section>
     </main>
@@ -61,11 +73,13 @@ include __DIR__ . "/../templates/header.php";
 <?php
 include __DIR__ . "/../templates/footer.php";
 ?>
+
 <script src="<?= $rootURL ?>/static/js/utils.js"></script>
 <script src="<?= $rootURL ?>/static/js/timestamp.js"></script>
 <script src="<?= $rootURL ?>/static/js/clucks.js"></script>
+
 <script src="<?= $rootURL ?>/static/js/userClucks.js"
-        userID="<?= $user->getId() ?>"
+        userID="<?= $profileUser->getId() ?>"
         data-root="<?= $rootURL ?>"
         data-writeLink="<?= $writeDirectoryLink ?>"></script>
 </body>
