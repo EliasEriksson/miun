@@ -6,7 +6,11 @@ include_once __DIR__ . "/field.php";
 include_once __DIR__ . "/user.php";
 include_once __DIR__ . "/userProfile.php";
 
-
+/**
+ * Class UserLoginForm
+ *
+ * constructs, validates and generates HTML for a form.
+ */
 class UserLoginForm extends Form
 {
     public function __construct(string $classPrefix = "general")
@@ -17,13 +21,29 @@ class UserLoginForm extends Form
         ], new Field("login", "submit", "Logga in", $classPrefix), $classPrefix);
     }
 
-    public function validate(): ?User
+    /**
+     * validates the form.
+     *
+     * if the form successfully validates an attempt is made to authenticate the user
+     * if the user is successfully authenticated the authenticated user object is returned.
+     * if the form doesnt validate or if the user doesnt authenticate null is returned.
+     *
+     * if a database connection is already established form an outer scope the
+     * connection can be passed thru as an argument instead of establishing a
+     * new connection to the database.
+     *
+     * @param Manager|null $manager
+     * @return User|null
+     */
+    public function validate(Manager $manager = null): ?User
     {
         if (!$this->validateFields()) {
             return null;
         }
 
-        $manager = new Manager();
+        if (!$manager) {
+            $manager = new Manager();
+        }
         $user = $manager->getUserFromEmail($_POST["email"]);
         if ($user) {
             if ($user->authenticate($_POST["password"])) {

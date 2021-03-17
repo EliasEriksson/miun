@@ -6,14 +6,33 @@ include_once __DIR__ . "/field.php";
 include_once __DIR__ . "/manager.php";
 include_once __DIR__ . "/user.php";
 include_once __DIR__ . "/userProfile.php";
-include_once __DIR__ . "/userProfileSetupForm.php";
+include_once __DIR__ . "/userProfileForm.php";
 
 
-class UserProfileEditForm extends Form
+/**
+ * Class UserProfileEditForm
+ *
+ * constructs, validates and generates HTML for a form
+ */
+class UserProfileEditForm extends UserProfileForm
 {
-    public static function fromID(int $id): UserProfileEditForm
+    /**
+     * alternative constructor if the object from outer scope is not in scope but the outer scope
+     * have the ID
+     *
+     * if a database connection is already established form an outer scope the
+     * connection can be passed thru as an argument instead of establishing a
+     * new connection to the database.
+     *
+     * @param int $id
+     * @param Manager|null $manager
+     * @return UserProfileEditForm
+     */
+    public static function fromID(int $id, Manager $manager = null): UserProfileEditForm
     {
-        $manager = new Manager();
+        if (!$manager) {
+            $manager = new Manager();
+        }
         return new UserProfileEditForm($manager->getUserProfile($id));
     }
 
@@ -27,7 +46,20 @@ class UserProfileEditForm extends Form
         ], new Field("updateProfile", "submit", "Uppdatera din profil", $classPrefix), $classPrefix);
     }
 
-    public function validate(): ?UserProfile
+    /**
+     * validates the form.
+     *
+     * if the form is successfully validated the given userProfile in the constructor is updated
+     * with new data in the database and and updated userProfile object is returned.
+     *
+     * if a database connection is already established form an outer scope the
+     * connection can be passed thru as an argument instead of establishing a
+     * new connection to the database.
+     *
+     * @param Manager|null $manager
+     * @return UserProfile|null
+     */
+    public function validate(Manager $manager = null): ?UserProfile
     {
         if (!$this->validateFields()) {
             return null;
@@ -35,9 +67,11 @@ class UserProfileEditForm extends Form
 
         $user = getSessionUser();
 
-        $avatarWebPath = validateAvatar($user);
+        $avatarWebPath = $this->validateAvatar($user);
 
-        $manager = new Manager();
+        if (!$manager) {
+            $manager = new Manager();
+        }
         if ($userProfile = $manager->updateUserProfile($user->getId(), $_POST["firstName"], $_POST["lastName"], $avatarWebPath, $_POST["description"])) {
             $_SESSION["userProfile"] = $userProfile;
             return $userProfile;

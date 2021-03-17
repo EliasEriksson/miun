@@ -1,3 +1,9 @@
+/**
+ * loads users from one of the API end points that receives users
+ *
+ * all add methods in this class is used t create an HTML structure that is written to DOM
+ */
+
 class CluckerLoader {
     constructor(getApi, root, writeLink) {
         this.root = root;
@@ -115,10 +121,24 @@ class CluckerLoader {
 
     }
 
+    /**
+     * generates the next URL to request
+     *
+     * @returns {string}
+     */
     nextPageURL() {
         return this.api + ++this.loadingPage;
     }
 
+    /**
+     * requests the get API and adds users to the DOM.
+     *
+     * if the json array received is empty its assumed that there is no more data to get
+     * and fullConsumed is set to true
+     *
+     * @param headingGrade
+     * @returns {Promise<void>}
+     */
     async fetchUsers(headingGrade) {
         let response = await fetch(this.nextPageURL());
         if (response.status !== 200) {
@@ -134,6 +154,16 @@ class CluckerLoader {
         this.currentPage++;
     }
 
+    /**
+     * attempts to load more users if conditions to do so are met
+     *
+     * to load more users on of the bottom 5 users must be in the users viewport.
+     * the requested api have not yet returned an empty array.
+     * there must not already be an ongoing request to the API
+     *
+     * @param headingGrade
+     * @returns {Promise<void>}
+     */
     async loadUsers(headingGrade = 2) {
         if (this.fullyConsumed || this.loadingPage !== this.currentPage) {
             return;

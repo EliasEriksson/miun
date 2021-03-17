@@ -1,3 +1,11 @@
+/**
+ * this script handles the mobile view of the home page
+ *
+ * it allows the user to flip from displaying posts to displaying users when a button is clicked
+ * on the home screen for non desktop users
+ *
+ */
+
 let enabled = false;
 let clucksShown = true;
 

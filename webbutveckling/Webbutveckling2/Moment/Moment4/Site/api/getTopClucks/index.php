@@ -11,4 +11,6 @@ $manager = new Manager();
 $clucks = $manager->getTopClucks($_GET["page"]);
 $data = Cluck::extendClucks($clucks);
 
+// sends CLuck data as described in Cluck::extendClucks
+
 echo json_encode($data, JSON_UNESCAPED_UNICODE);

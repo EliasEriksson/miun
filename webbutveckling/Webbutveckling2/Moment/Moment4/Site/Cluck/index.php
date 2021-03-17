@@ -7,6 +7,7 @@ include_once "../utils/classes/cluckReplyForm.php";
 $cluckURL = getCurrentPage($rootURL);
 $manager = new Manager();
 if (!($thisCluck = $manager->getCluckFromURL($cluckURL))) {
+    // no cluck with this URL exists, redirect to home
     redirect($rootURL);
 }
 $thisCluckUser = $thisCluck->getUser($manager);
@@ -15,7 +16,8 @@ $thisExtendedCluck = $thisCluck->extend($manager);
 
 $cluckReplyForm = new CluckReplyForm($thisCluck);
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if ($reply = $cluckReplyForm->validate()) {
+    if ($reply = $cluckReplyForm->validate($manager)) {
+        // reply to post was successfully made, redirect to the newly created reply
         $replyURL = $reply->getUrl();
         redirect("$rootURL/Cluck/?$replyURL");
     }

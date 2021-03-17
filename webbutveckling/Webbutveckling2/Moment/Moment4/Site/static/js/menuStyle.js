@@ -1,3 +1,8 @@
+/**
+ * adds CSS styling to the navigation elements that links to the same page the user is on.
+ * used to show the user that "you are on this page".
+ */
+
 function cleanURL(url) {
     return url.split("?")[0];
 }

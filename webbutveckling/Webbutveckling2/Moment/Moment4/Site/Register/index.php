@@ -3,13 +3,15 @@ include_once "../utils/config.php";
 include_once "../utils/functions.php";
 include_once "../utils/classes/userRegisterForm.php";
 
-if (isset($_SESSION["user"])) {
+if (userLoggedIn()) {
+    // the user already have an account, redirect to home
     redirect($rootURL);
 }
 
 $userRegisterForm = new UserRegisterForm();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($user = $userRegisterForm->validate()) {
+        // successful registration, redirect the user to setup its profile
         redirect("$rootURL/Profiles/Profile/");
     }
 }

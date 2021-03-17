@@ -110,6 +110,10 @@ body {
     border-radius: 3px;
 }
 
+.button:hover {
+    cursor: pointer;
+}
+
 .current-navigation-button {
     background-color: var(--current-menu-button-color);
 }
@@ -534,8 +538,6 @@ footer {
         grid-row: 1;
     }
 }
-
-
 
 @media screen and (max-width: 400px) {
     .cluck {

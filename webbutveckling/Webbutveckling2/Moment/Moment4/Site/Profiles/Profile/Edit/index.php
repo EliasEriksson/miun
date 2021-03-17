@@ -9,6 +9,7 @@ $userProfile = getSessionUserProfile();
 $userProfileEditForm = new UserProfileEditForm($userProfile);
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($userProfile = $userProfileEditForm->validate()) {
+        // successful edit of a user profile, redirect to the profile
         redirect("$rootURL/Profiles/Profile/?" . $user->getUrl());
     }
 }

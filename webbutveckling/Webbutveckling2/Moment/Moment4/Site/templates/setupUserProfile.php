@@ -6,6 +6,7 @@ include_once __DIR__ . "/../utils/classes/userProfileSetupForm.php";
 $setupUserProfileForm = new UserProfileSetupForm();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($userProfile = $setupUserProfileForm->validate()) {
+        // successful profile setup, redirect to the newly setup profile
         redirect("$rootURL/Profiles/Profile/?".getCurrentPage());
     }
 }?>

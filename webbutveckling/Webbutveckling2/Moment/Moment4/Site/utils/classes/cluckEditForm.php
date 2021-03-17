@@ -7,7 +7,11 @@ include_once __DIR__ . "/form.php";
 include_once __DIR__ . "/field.php";
 include_once __DIR__ . "/cluck.php";
 
-
+/**
+ * Class CluckEditForm
+ *
+ * constructs, validates and generates HTML for a form
+ */
 class CluckEditForm extends Form {
     public function __construct(Cluck $cluck, string $classPrefix = "general")
     {
@@ -18,7 +22,19 @@ class CluckEditForm extends Form {
         ], new Field("cluckEditSubmit","submit", "Updatera", $classPrefix), $classPrefix);
     }
 
-    public function validate(): ?Cluck
+    /**
+     * validates the form.
+     *
+     * if the form validates successfully the data in the database is updated
+     *
+     * if a database connection is already established form an outer scope the
+     * connection can be passed thru as an argument instead of establishing a
+     * new connection to the database.
+     *
+     * @param Manager|null $manager
+     * @return Cluck|null
+     */
+    public function validate(Manager $manager = null): ?Cluck
     {
         if (!$this->validateFields()) {
             return null;
@@ -26,7 +42,9 @@ class CluckEditForm extends Form {
 
         requireUserProfileLogin();
 
-        $manager = new Manager();
+        if (!$manager) {
+            $manager = new Manager();
+        }
         return $manager->updateCluck($_POST["id"], $_POST["updateTitle"], $_POST["updateContent"]);
     }
 }

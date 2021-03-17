@@ -1,3 +1,8 @@
+/**
+ * loads clucks from /api/getHotClucks/
+ * when the page is loaded and if the user scroll
+ */
+
 let cluckLoader = new CluckLoader(
     "getHotClucks",
     document.currentScript.getAttribute("data-root"),

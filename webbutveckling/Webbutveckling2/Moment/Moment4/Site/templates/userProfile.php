@@ -7,10 +7,12 @@ $userURL = getCurrentPage();
 $manager = new Manager();
 
 if (!($profileUser = $manager->getUserFromURL($userURL))) {
+    // there is no user with this URL so redirect to home
     redirect("$rootURL/");
 }
 
 if (!($profileUserProfile = $profileUser->getProfile())) {
+    // the user that owns this URL have not yet finished their profile so redirect to home
     redirect("$rootURL/");
 }
 ?>

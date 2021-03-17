@@ -1,3 +1,10 @@
+/**
+ * adds an event listener on the element and redirects the user to given URL
+ * unless the clicked elements parent is an <a>
+ *
+ * @param element
+ * @param link
+ */
 function makeClickable(element, link) {
     element.addEventListener("click", (event) => {
         event.preventDefault();
@@ -5,13 +12,17 @@ function makeClickable(element, link) {
         if (parent.href) {
             window.location.href = parent.href;
         } else {
-            // window.location.href = `${root}/Profiles/Profile/?${link}`;
             window.location.href = link;
         }
     });
 }
 
-
+/**
+ * checks if the element is rendered in the window
+ *
+ * @param element
+ * @returns {boolean}
+ */
 function isInViewport(element) {
     let rect = element.getBoundingClientRect();
     return (
@@ -22,6 +33,12 @@ function isInViewport(element) {
     );
 }
 
+/**
+ * creates a div element with given css classes
+ *
+ * @param classes
+ * @returns {HTMLDivElement}
+ */
 function createDiv(...classes) {
     let element = document.createElement("div");
     for (let i = 0; i < classes.length; i++) {
@@ -30,6 +47,12 @@ function createDiv(...classes) {
     return element;
 }
 
+/**
+ * creates a span element with given CSS classes
+ *
+ * @param classes
+ * @returns {HTMLSpanElement}
+ */
 function createSpan(...classes) {
     let element = document.createElement("span");
     for (let i = 0; i < classes.length; i++) {
@@ -38,6 +61,12 @@ function createSpan(...classes) {
     return element;
 }
 
+/**
+ * creates an a element with given CSS classes
+ *
+ * @param classes
+ * @returns {HTMLAnchorElement}
+ */
 function createA(...classes) {
     let element = document.createElement("a");
     for (let i = 0; i < classes.length; i++) {

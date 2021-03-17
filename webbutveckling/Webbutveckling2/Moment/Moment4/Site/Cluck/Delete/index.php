@@ -6,16 +6,18 @@ include_once __DIR__ . "/../../utils/classes/manager.php";
 $cluckURL = getCurrentPage($rootURL);
 $manager = new Manager();
 
-$currentUserProfile = getSessionUserProfile();
+$currentUserProfile = getSessionUserProfile(); // requires the user to have a profile
 
 if (!($cluck = $manager->getCluckFromURL($cluckURL))) {
-    redirect($rootURL);
+    // no post on this URL exists, redirect to home
+    redirect("$rootURL");
 }
 
 $cluckPostUserProfile = $cluck->getUserProfile($manager);
 
-if (!($currentUserProfile->getUserID() === $cluckPostUserProfile)) {
-    redirect($rootURL);
+if (!($currentUserProfile->getUserID() === $cluckPostUserProfile->getUserID())) {
+    // the user that requested the delete is not the owner of the post
+    redirect("$rootURL");
 }
 
 $manager->deleteCluck($cluck->getID());

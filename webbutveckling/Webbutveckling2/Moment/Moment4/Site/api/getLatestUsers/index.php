@@ -11,4 +11,6 @@ $manager = new Manager();
 $users = $manager->getLatestUsers($_GET["page"]);
 $data = User::extendUsers($users, $manager);
 
+// sends User data as described in User::extendUsers
+
 echo json_encode($data, JSON_UNESCAPED_UNICODE);

@@ -1,3 +1,8 @@
+/**
+ * loads clucks from one of the API end points that receives clucks
+ *
+ * all add methods in this class is used to create an HTML structure that is written to DOM
+ */
 class CluckLoader {
     constructor(getApi, root, writeLink, id = null) {
         this.root = root;
@@ -179,6 +184,11 @@ class CluckLoader {
         }
     }
 
+    /**
+     * generates the next URL to request
+     *
+     * @returns {string}
+     */
     nextPageURL() {
         if (this.id) {
             return `${this.api}${++this.loadingPage}&id=${this.id}`;
@@ -186,6 +196,15 @@ class CluckLoader {
         return this.api + ++this.loadingPage;
     }
 
+    /**
+     * requests the get API and adds posts to the DOM.
+     *
+     * if the json array received is empty its assumed that there is no more data to get
+     * and fullyConsumed is set to true
+     *
+     * @param headingGrade
+     * @returns {Promise<void>}
+     */
     async fetchClucks(headingGrade) {
         let response = await fetch(this.nextPageURL());
         if (response.status !== 200) {
@@ -201,6 +220,16 @@ class CluckLoader {
         this.currentPage++;
     }
 
+    /**
+     * attempts to load more clucks if conditions to do so are met
+     *
+     * to load more clucks one of the bottom 5 clucks must be in the users viewport.
+     * the requested api have not yet returned an empty array.
+     * there must not already be an ongoing request to the API
+     *
+     * @param headingGrade
+     * @returns {Promise<void>}
+     */
     async loadClucks(headingGrade = 2) {
         if (this.fullyConsumed || this.loadingPage !== this.currentPage) {
             return;

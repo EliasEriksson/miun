@@ -1,11 +1,18 @@
+// format for time difference larger than 24h and the year have changed
 let yearFormat = Intl.DateTimeFormat("sv", {
     year: "numeric", month: "short", day: "numeric"
 });
-
+// format for time where the difference is more than 24h but the year is still the same
 let dayMonthFormat = Intl.DateTimeFormat("sv", {
     month: "short", day: "numeric"
 });
 
+/**
+ * formats the time from unix time to the time that should be displayed
+ *
+ * @param timestamp
+ * @returns {string}
+ */
 function timeAgo(timestamp) {
     let now = new Date();
     let timeDifference = Math.round(now.getTime() / 1000) - timestamp;
@@ -30,11 +37,20 @@ function timeAgo(timestamp) {
     return timeDifference + "s";
 }
 
+/**
+ * formats a single element to use the displayed time format instead of unix time
+ *
+ * @param element
+ */
 function formatTimeStamp(element) {
     let timestamp = parseInt(element.innerHTML, 10);
     element.innerHTML = timeAgo(timestamp);
 }
 
+/**
+ * formats all elements on the page that have the class timestamp to use
+ * the display time format instead of unix timestamp
+ */
 function formatTimestamps() {
     let timeStampElements = document.getElementsByClassName("timestamp");
     for (let i = 0; i < timeStampElements.length; i++) {
@@ -42,6 +58,9 @@ function formatTimestamps() {
     }
 }
 
+/**
+ * convert all timestamps as soon the page is loaded
+ */
 window.addEventListener("load", () => {
     formatTimestamps();
 });

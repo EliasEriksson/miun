@@ -10,4 +10,6 @@ $manager = new Manager();
 $clucks = $manager->getHotClucks($_GET["page"]);
 $json = Cluck::extendClucks($clucks, $manager);
 
+// sends CLuck data as described in Cluck::extendClucks
+
 echo json_encode($json, JSON_UNESCAPED_UNICODE);

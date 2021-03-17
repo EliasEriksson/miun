@@ -1,3 +1,8 @@
+/**
+ * loads clucks from /api/getLatestClucks/
+ * when the page is loaded and if the user scroll
+ */
+
 let cluckLoader = new CluckLoader(
     "getLatestClucks",
     document.currentScript.getAttribute("data-root"),

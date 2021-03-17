@@ -1,3 +1,8 @@
+/**
+ * loads users from /api/getLatestUsers/
+ * when the page is loaded and if the user scroll
+ */
+
 let cluckerLoader = new CluckerLoader(
     "getLatestUsers",
     document.currentScript.getAttribute("data-root"),

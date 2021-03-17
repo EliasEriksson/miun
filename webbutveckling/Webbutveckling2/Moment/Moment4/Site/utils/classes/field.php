@@ -176,26 +176,53 @@ class Field extends HTMLElement
 
     // getters
 
+    /**
+     * gets the name of the name value of the input field
+     *
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
 
+    /**
+     * gets the value of the value attribute on the input field
+     * (innerHTML of <textarea>)
+     * @return string
+     */
     public function getValue(): string
     {
         return $this->value;
     }
 
+    /**
+     * gets the type of the type attribute on the input field
+     * (just textarea for <textarea>)
+     *
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
+    /**
+     * get refill on failed post, meaning the field should be filled with accessible data on a failed post
+     *
+     * @return bool
+     */
     public function getRefillOnFailedPost(): bool
     {
         return $this->refillOnFailedPost;
     }
 
+    /**
+     * sets the value of the value attribute on the input field
+     * (innerHTML for <textarea>)
+     *
+     * @param string $value
+     */
     public function setValue(string $value): void
     {
         $this->value = $value;

@@ -4,12 +4,6 @@ include_once __DIR__."/functions.php";
 
 session_start();
 
-if ($_SERVER["HTTP_HOST"] === "localhost:63342") {
-    $rootURL = "/Site/";
-} else {
-    $rootURL = "/dt093g/Moment4/Site/";
-}
-
 //error_reporting(-1);
 //ini_set("display_errors", 1);
 if (isset($_SERVER["CONTEXT_DOCUMENT_ROOT"]) && isset($_SERVER["CONTEXT_PREFIX"])) {

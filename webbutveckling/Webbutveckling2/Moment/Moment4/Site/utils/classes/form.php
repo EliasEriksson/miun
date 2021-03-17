@@ -3,6 +3,11 @@ include_once __DIR__ . "/../config.php";
 include_once __DIR__ . "/htmlElement.php";
 
 
+/**
+ * Class Form
+ *
+ * class to represent required functionality of a form
+ */
 abstract class Form extends HTMLElement
 {
     protected $fields;
@@ -26,6 +31,13 @@ abstract class Form extends HTMLElement
         $this->userError = false;
     }
 
+    /**
+     * validates each field in the form
+     *
+     * true if all fields validated
+     *
+     * @return bool
+     */
     protected function validateFields(): bool
     {
         if ($error = $this->submit->validateField()) {
@@ -41,8 +53,18 @@ abstract class Form extends HTMLElement
         return true;
     }
 
+    /**
+     * abstract method that concrete child classes have to implement
+     *
+     * @return mixed
+     */
     public abstract function validate(); //?object // too bad php7.2 is so bad it cant handle this return type when 7.4 can
 
+    /**
+     * generates teh HTML representation of the form
+     *
+     * @return string
+     */
     public function toHTML(): string
     {
         $class = $this->prefixClass("form");
@@ -70,12 +92,25 @@ abstract class Form extends HTMLElement
         return $html;
     }
 
+    /**
+     * sets an error
+     *
+     * if an error is a userError the $error will be shown to the user in the HTML
+     *
+     * @param string $error
+     * @param bool $userError
+     */
     protected function setError(string $error, $userError = true): void
     {
         $this->error = $error;
         $this->userError = $userError;
     }
 
+    /**
+     * gets the error.
+     *
+     * @return string
+     */
     public function getError(): string
     {
         return trim($this->error, ":");
