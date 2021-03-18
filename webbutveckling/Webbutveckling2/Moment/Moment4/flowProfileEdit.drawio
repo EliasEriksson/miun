@@ -1,1 +1,74 @@
-<mxfile host="app.diagrams.net" modified="2021-03-18T13:45:36.483Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36" version="14.4.9" etag="VRuNgmJLyVAANloRChi6" type="github"><diagram id="Mp2Uuh-F_AQAcxuKa9gE">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-03-18T15:05:16.938Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36" etag="0eD_bL_xXffMFcrXFKSx" version="14.4.9" type="github">
+  <diagram id="Mp2Uuh-F_AQAcxuKa9gE" name="Page-1">
+    <mxGraphModel dx="669" dy="626" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="2000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="iyLqxL35FdQnbjra5VvL-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iyLqxL35FdQnbjra5VvL-1" target="iyLqxL35FdQnbjra5VvL-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-1" value="/Profile/Edit/?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iyLqxL35FdQnbjra5VvL-2" target="iyLqxL35FdQnbjra5VvL-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-15" value="nej" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1" source="iyLqxL35FdQnbjra5VvL-2" target="iyLqxL35FdQnbjra5VvL-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-2" value="är användaren&lt;br&gt;inloggad?" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="180" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iyLqxL35FdQnbjra5VvL-6" target="iyLqxL35FdQnbjra5VvL-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-17" value="nej" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1" source="iyLqxL35FdQnbjra5VvL-6" target="iyLqxL35FdQnbjra5VvL-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-6" value="har användaren&lt;br&gt;en profil?" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="320" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-11" value="ja" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iyLqxL35FdQnbjra5VvL-8" target="iyLqxL35FdQnbjra5VvL-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-18" value="nej" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iyLqxL35FdQnbjra5VvL-8" target="iyLqxL35FdQnbjra5VvL-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-8" value="POST?" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="460" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-13" value="nej" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iyLqxL35FdQnbjra5VvL-10" target="iyLqxL35FdQnbjra5VvL-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-20" value="ja" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iyLqxL35FdQnbjra5VvL-10" target="iyLqxL35FdQnbjra5VvL-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-10" value="redigerings formet&lt;br&gt;validerar?" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="210" y="460" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-12" value="Visa formet för att&lt;br&gt;redigera profilen" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="580" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-14" value="/Login" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="220" y="180" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-16" value="/Profile/Profile/" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="220" y="320" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1" source="iyLqxL35FdQnbjra5VvL-19" target="iyLqxL35FdQnbjra5VvL-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-19" value="redigera inlägget&lt;br&gt;i databasen" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="460" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iyLqxL35FdQnbjra5VvL-21" value="/Profiles/Profile/?" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="580" y="460" width="120" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
