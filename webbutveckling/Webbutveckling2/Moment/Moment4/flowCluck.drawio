@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-03-18T13:02:24.649Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36" etag="CYZtab4nfaH67CHmj-DJ" version="14.4.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-03-18T13:09:49.900Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36" etag="Z-VvfBCCyrlor743cRj3" version="14.4.9" type="github">
   <diagram id="Y9szXQ_khthJUK_e-TBU" name="Page-1">
     <mxGraphModel dx="1422" dy="806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="2000" math="0" shadow="0">
       <root>
@@ -99,13 +99,13 @@
         <mxCell id="C6XxgDwA5r2vYgIf8eIn-32" value="lägg till ett form&lt;br&gt;för att göra ett svar" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="80" y="740" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="C6XxgDwA5r2vYgIf8eIn-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="C6XxgDwA5r2vYgIf8eIn-34" target="C6XxgDwA5r2vYgIf8eIn-38">
+        <mxCell id="C6XxgDwA5r2vYgIf8eIn-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1" source="C6XxgDwA5r2vYgIf8eIn-34" target="C6XxgDwA5r2vYgIf8eIn-38">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="C6XxgDwA5r2vYgIf8eIn-34" value="användaren&lt;br&gt;trycker på&lt;br&gt;radera" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="470" y="460" width="140" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="C6XxgDwA5r2vYgIf8eIn-41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="C6XxgDwA5r2vYgIf8eIn-36" target="C6XxgDwA5r2vYgIf8eIn-40">
+        <mxCell id="C6XxgDwA5r2vYgIf8eIn-41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1" source="C6XxgDwA5r2vYgIf8eIn-36" target="C6XxgDwA5r2vYgIf8eIn-40">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="C6XxgDwA5r2vYgIf8eIn-36" value="användaren&lt;br&gt;trycker på&lt;br&gt;redigera" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
