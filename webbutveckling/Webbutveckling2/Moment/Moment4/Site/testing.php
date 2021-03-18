@@ -15,8 +15,6 @@ ini_set("display_errors", 1);
 </head>
 <body>
 
-<form>
-    <p>hello</p>
-</form>
+<a href="./?id=1"></a>
 </body>
 </html>

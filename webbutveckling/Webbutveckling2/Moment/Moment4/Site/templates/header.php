@@ -11,8 +11,8 @@ $someUserURL = getCurrentPage();
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if ($cluck = $cluckForm->validate()) {
-        redirect(".");
+    if (userProfileLoggedIn() && $cluck = $cluckForm->validate()) {
+        redirect($cluck->getLink());
     }
 } ?>
 <div class="header-wrapper">

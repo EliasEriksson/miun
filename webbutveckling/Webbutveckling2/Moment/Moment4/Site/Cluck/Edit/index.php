@@ -4,10 +4,10 @@ include_once "../../utils/functions.php";
 include_once "../../utils/classes/cluckEditForm.php";
 include_once "../../utils/classes/manager.php";
 
+$currentUserProfile = getSessionUserProfile(); // forces the user to be logged in and have a profile
+
 $cluckURL = getCurrentPage($rootURL);
 $manager = new Manager();
-
-$currentUserProfile = getSessionUserProfile(); // forces the user to be logged in and have a profile
 
 if (!($cluck = $manager->getCluckFromURL($cluckURL))) {
     // no cluck with this URL exists, redirect to home

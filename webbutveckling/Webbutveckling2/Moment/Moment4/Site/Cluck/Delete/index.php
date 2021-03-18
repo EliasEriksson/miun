@@ -3,10 +3,10 @@ include_once __DIR__ . "/../../utils/config.php";
 include_once __DIR__ . "/../../utils/functions.php";
 include_once __DIR__ . "/../../utils/classes/manager.php";
 
+$currentUserProfile = getSessionUserProfile(); // requires the user to have a profile
+
 $cluckURL = getCurrentPage($rootURL);
 $manager = new Manager();
-
-$currentUserProfile = getSessionUserProfile(); // requires the user to have a profile
 
 if (!($cluck = $manager->getCluckFromURL($cluckURL))) {
     // no post on this URL exists, redirect to home
