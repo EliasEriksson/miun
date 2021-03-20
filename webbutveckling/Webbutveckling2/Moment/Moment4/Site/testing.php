@@ -15,9 +15,5 @@ var_dump($_SERVER);
 </head>
 <body>
 
-<form>
-
-</form>
-
 </body>
 </html>

@@ -43,9 +43,11 @@ include "templates/footer.php";
 <script src="<?= $rootURL ?>/static/js/timestamp.js"></script>
 <script src="<?= $rootURL ?>/static/js/clucks.js"></script>
 <script src="<?= $rootURL ?>/static/js/cluckers.js"></script>
-<script src="<?= $rootURL ?>/static/js/latestCluckers.js" data-root="<?= $rootURL ?>"
+<script src="<?= $rootURL ?>/static/js/latestCluckers.js"
+        data-root="<?= $rootURL ?>"
         data-writeLink="<?= $writeDirectoryLink ?>"></script>
-<script src="<?= $rootURL ?>/static/js/latestClucks.js" data-root="<?= $rootURL ?>"
+<script src="<?= $rootURL ?>/static/js/latestClucks.js"
+        data-root="<?= $rootURL ?>"
         data-writeLink="<?= $writeDirectoryLink ?>"></script>
 <script src="<?=$rootURL?>/static/js/swap.js"></script>
 </body>

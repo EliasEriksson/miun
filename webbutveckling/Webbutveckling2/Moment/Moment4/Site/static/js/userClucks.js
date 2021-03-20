@@ -6,7 +6,7 @@ let cluckLoader = new CluckLoader(
     "getUserClucks",
     document.currentScript.getAttribute("data-root"),
     document.currentScript.getAttribute("data-writeLink"),
-    document.currentScript.getAttribute("userID")
+    document.currentScript.getAttribute("data-userID")
 );
 
 window.addEventListener("load", async () => {

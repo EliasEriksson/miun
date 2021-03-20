@@ -81,7 +81,7 @@ include __DIR__ . "/../templates/footer.php";
 <script src="<?= $rootURL ?>/static/js/clucks.js"></script>
 
 <script src="<?= $rootURL ?>/static/js/userClucks.js"
-        userID="<?= $profileUser->getId() ?>"
+        data-userID="<?= $profileUser->getId() ?>"
         data-root="<?= $rootURL ?>"
         data-writeLink="<?= $writeDirectoryLink ?>"></script>
 </body>

@@ -151,7 +151,7 @@ include "../templates/footer.php";
 <script src="<?= $rootURL ?>/static/js/timestamp.js"></script>
 <script src="<?= $rootURL ?>/static/js/clucks.js"></script>
 <script src="<?= $rootURL ?>/static/js/replies.js"
-        cluckID="<?= $thisCluck->getID() ?>"
+        data-cluckID="<?= $thisCluck->getID() ?>"
         data-root="<?= $rootURL ?>"
         data-writeLink="<?= $writeDirectoryLink ?>"></script>
 </body>
