@@ -4,7 +4,7 @@ echo "Files:" . var_dump($_FILES) . "<br><br>";
 
 error_reporting(-1);
 ini_set("display_errors", 1);
-
+var_dump($_SERVER);
 ?>
 
 
@@ -15,6 +15,9 @@ ini_set("display_errors", 1);
 </head>
 <body>
 
-<a href="./?id=1"></a>
+<form>
+
+</form>
+
 </body>
 </html>
