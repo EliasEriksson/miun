@@ -8,6 +8,19 @@ body {
     position: relative;
     height: 100vh;
     font-family: "Open Sans", serif;
+    line-height: 1.5;
+}
+
+a {
+    color: #0e6500;
+}
+
+img {
+    display: flex;
+}
+
+a:active {
+    color: #0e6500;
 }
 
 .big-green {
@@ -116,6 +129,12 @@ body {
    max-width: 960px;
 }
 
+.news-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .news h1 {
     padding: 30px 0;
 }
@@ -129,6 +148,8 @@ body {
 .news-article {
     background-color: #fff;
     padding: 10px;
+    height: fit-content;
+    max-width: 500px;
 }
 
 .news-article h2 {
@@ -137,18 +158,24 @@ body {
 
 .news-article-content {
     margin-top: 32px;
-    display: grid;
-    grid-template-columns: 1fr 150px;
+    /*display: grid;*/
+    /*grid-template-columns: 1fr 150px;*/
 }
 
 .news-article img {
-    width: 100%;
+    width: 33%;
     object-fit: cover;
+    float: right;
+    max-width: 150px;
 }
 
-footer {
-    padding: 30px;
+.home-footer {
     position: absolute;
+}
+
+.home-footer {
+    padding: 30px;
+
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
@@ -157,8 +184,99 @@ footer {
     background-color: #e8eed7;
 }
 
-footer a {
+.about-us-wrapper h1 {
+    padding: 30px 0;
+}
+
+.about-us {
+    padding: 30px;
+    background-color: #fff;
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-wrapper h1 {
+    padding-left: 15px;
+}
+
+.contact {
+    background-color: #f8faf3;
+    padding: 15px;
+    max-width: 600px;
+}
+
+.general-form-wrapper {
+    border: 1px solid #000;
+}
+
+.contact-information {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.general-form legend {
+    display: none;
+}
+
+.general-form fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border: none;
+    align-items: flex-end;
+
+}
+
+.general-form label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.general-form textarea {
+    resize: none;
+    height: calc(6em * 1.5);
+    line-height: 1.5;
+}
+
+.general-form input[type=submit] {
+    font-size: 1.5rem;
+    width: fit-content;
+    padding: 5px;
+    color: #0e6500;
+    background-color: #e8eed7;
+    border: 1px solid #0e6500;
+}
+
+.general-form textarea, input[type=text], input[type=email] {
+    font-size: 1.25rem;
+    padding: 5px;
+    /*border: none;*/
+    /*border-bottom: 1px solid #0e6500;*/
+}
+
+.footer a {
     text-decoration: none;
+}
+
+.general-footer {
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+    background-color: #e8eed7;
+}
+
+@media screen and (max-width: 980px) {
+    .news-articles {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -197,3 +315,17 @@ footer a {
         width: 100%;
     }
 }
+
+/*@media screen and (max-width: 400px) {*/
+/*    .news-article-content {*/
+/*        grid-template-columns: 1fr;*/
+/*    }*/
+
+/*    .news-article-content p {*/
+/*        grid-row: 2;*/
+/*    }*/
+
+/*    .news-article-content img {*/
+/*        grid-row: 1;*/
+/*    }*/
+/*}*/
