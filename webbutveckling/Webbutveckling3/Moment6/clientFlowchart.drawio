@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-10-26T12:10:27.968Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36" etag="I2QfaRrLt0bhugR2xFvj" version="15.5.8" type="github">
+<mxfile host="app.diagrams.net" modified="2021-10-26T12:39:11.691Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36" etag="4FzoGNduQ3mcpKRqH8Mp" version="15.5.8" type="github">
   <diagram id="WiQCbs44LWPuVq2uQzzB" name="Page-1">
-    <mxGraphModel dx="694" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="2000" math="0" shadow="0">
+    <mxGraphModel dx="872" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="2000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -16,39 +16,39 @@
         <mxCell id="f3yNmSJpMfuCNNHlSyYO-1" value="Användaren går&lt;br&gt;in på sidan" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="240" y="40" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="f3yNmSJpMfuCNNHlSyYO-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-3" target="f3yNmSJpMfuCNNHlSyYO-11">
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-3" target="f3yNmSJpMfuCNNHlSyYO-49">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="f3yNmSJpMfuCNNHlSyYO-3" value="Användaren&lt;br&gt;trycker på&lt;br&gt;arbetslivserfarenheter" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
           <mxGeometry x="220" y="260" width="160" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="f3yNmSJpMfuCNNHlSyYO-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-4" target="f3yNmSJpMfuCNNHlSyYO-11">
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-4" target="f3yNmSJpMfuCNNHlSyYO-49">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="120" y="360" />
-              <mxPoint x="300" y="360" />
+              <mxPoint x="120" y="340" />
+              <mxPoint x="300" y="340" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="f3yNmSJpMfuCNNHlSyYO-4" value="Användaren&lt;br&gt;trycker på&lt;br&gt;utbildning" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
           <mxGeometry x="40" y="260" width="160" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="f3yNmSJpMfuCNNHlSyYO-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-5" target="f3yNmSJpMfuCNNHlSyYO-11">
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-5" target="f3yNmSJpMfuCNNHlSyYO-49">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="480" y="360" />
-              <mxPoint x="300" y="360" />
+              <mxPoint x="480" y="340" />
+              <mxPoint x="300" y="340" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="f3yNmSJpMfuCNNHlSyYO-5" value="Användaren&lt;br&gt;trycker på&amp;nbsp;&lt;br&gt;projekt" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
           <mxGeometry x="400" y="260" width="160" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="f3yNmSJpMfuCNNHlSyYO-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-11" target="f3yNmSJpMfuCNNHlSyYO-26">
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-11" target="f3yNmSJpMfuCNNHlSyYO-31">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="f3yNmSJpMfuCNNHlSyYO-11" value="Hämta innehåll från&amp;nbsp;&lt;br&gt;REST endpoint" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="240" y="390" width="120" height="60" as="geometry" />
+          <mxGeometry x="240" y="460" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="f3yNmSJpMfuCNNHlSyYO-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-17" target="f3yNmSJpMfuCNNHlSyYO-3">
           <mxGeometry relative="1" as="geometry" />
@@ -68,8 +68,60 @@
         <mxCell id="f3yNmSJpMfuCNNHlSyYO-19" value="Ett HTML template&lt;br&gt;för webbplatser&lt;br&gt;hämtas" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="420" y="160" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="f3yNmSJpMfuCNNHlSyYO-26" value="Farmställ en tabell&lt;br&gt;av innehåll enligt HTML template" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="240" y="480" width="120" height="60" as="geometry" />
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-39" value="nej" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-31" target="f3yNmSJpMfuCNNHlSyYO-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-43" value="ja" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-31" target="f3yNmSJpMfuCNNHlSyYO-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-31" value="Finns det mer&amp;nbsp;&lt;br&gt;innehåll än&amp;nbsp;&lt;br&gt;page limit?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="560" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-35" target="f3yNmSJpMfuCNNHlSyYO-37">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="780" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="200" y="930" />
+              <mxPoint x="200" y="790" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-35" value="Framställ nytt&lt;br&gt;innehåll enligt HTML&lt;br&gt;template och &lt;br&gt;skriv ut till DOM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="900" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-38" value="nej" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-37" target="f3yNmSJpMfuCNNHlSyYO-35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-37" value="Allt innehåll&lt;br&gt;utskrivet?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="730" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-42" target="f3yNmSJpMfuCNNHlSyYO-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-42" value="Beräkna hur&lt;br&gt;många sidor av&lt;br&gt;innehåll som finns i&lt;br&gt;webbtjänsten" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="590" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-44" target="f3yNmSJpMfuCNNHlSyYO-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-44" value="beräkna nuvarande&lt;br&gt;sidan" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="590" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-46" target="f3yNmSJpMfuCNNHlSyYO-37">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="620" y="790" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-46" value="Framställ en&lt;br&gt;paginator till DOM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="690" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="f3yNmSJpMfuCNNHlSyYO-49" target="f3yNmSJpMfuCNNHlSyYO-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3yNmSJpMfuCNNHlSyYO-49" value="Ränsa nuvarande&lt;br&gt;innehåll på sidan" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="360" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
