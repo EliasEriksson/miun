@@ -1,10 +1,13 @@
-<mxfile host="app.diagrams.net" modified="2021-10-26T10:27:58.353Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36" etag="ciMcYshU1CwZXb-Cppgq" version="15.5.8" type="github">
+<mxfile host="app.diagrams.net" modified="2021-10-26T10:54:55.409Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36" etag="dIJKW1Dh5xQbVCkVxbYb" version="15.5.8" type="github">
   <diagram id="dKu6GSsMsmZb2snLdSed" name="Page-1">
-    <mxGraphModel dx="694" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="2000" math="0" shadow="0">
+    <mxGraphModel dx="578" dy="634" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="2000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="LYgwBQ-WcepCRoTYSZpj-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-1" target="LYgwBQ-WcepCRoTYSZpj-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-1" target="LYgwBQ-WcepCRoTYSZpj-91">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="LYgwBQ-WcepCRoTYSZpj-1" value="Användaren&lt;br&gt;går in på sidan" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -19,20 +22,35 @@
         <mxCell id="LYgwBQ-WcepCRoTYSZpj-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-15" target="LYgwBQ-WcepCRoTYSZpj-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-15" target="LYgwBQ-WcepCRoTYSZpj-85">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="LYgwBQ-WcepCRoTYSZpj-15" value="Ett HTML template &lt;br&gt;för att rendra innehållet hämtas" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="180" y="160" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-34" target="LYgwBQ-WcepCRoTYSZpj-72">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="LYgwBQ-WcepCRoTYSZpj-34" value="Upp knappen &lt;br&gt;blir tryckt" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
-          <mxGeometry x="340" y="560" width="120" height="60" as="geometry" />
+          <mxGeometry x="340" y="770" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-36" target="LYgwBQ-WcepCRoTYSZpj-79">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="LYgwBQ-WcepCRoTYSZpj-36" value="Undo knappen &lt;br&gt;blir tryckt" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
-          <mxGeometry x="340" y="660" width="120" height="60" as="geometry" />
+          <mxGeometry x="340" y="670" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-37" target="LYgwBQ-WcepCRoTYSZpj-81">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="LYgwBQ-WcepCRoTYSZpj-37" value="Radera knappen&lt;br&gt;blir tryckt" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
-          <mxGeometry x="350" y="760" width="120" height="60" as="geometry" />
+          <mxGeometry x="340" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-38" target="LYgwBQ-WcepCRoTYSZpj-72">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="LYgwBQ-WcepCRoTYSZpj-38" value="Ner knappen &lt;br&gt;blir tryckt" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
-          <mxGeometry x="340" y="860" width="120" height="60" as="geometry" />
+          <mxGeometry x="340" y="870" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="LYgwBQ-WcepCRoTYSZpj-46" value="nej" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-44" target="LYgwBQ-WcepCRoTYSZpj-49">
           <mxGeometry relative="1" as="geometry">
@@ -42,23 +60,153 @@
         <mxCell id="LYgwBQ-WcepCRoTYSZpj-44" value="Allt innehåll &lt;br&gt;utskrivet?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="180" y="350" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="LYgwBQ-WcepCRoTYSZpj-49" value="Framställ ett nytt innehåll enligt&lt;br&gt;HTML template och skriv ut till DOM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="180" y="460" width="120" height="60" as="geometry" />
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-49" target="LYgwBQ-WcepCRoTYSZpj-74">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="570" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="LYgwBQ-WcepCRoTYSZpj-50" value="Lyssna efter click events för upp knappen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="180" y="560" width="120" height="60" as="geometry" />
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-49" value="Framställ ett nytt innehåll enligt&lt;br&gt;HTML template och skriv ut till DOM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-74" target="LYgwBQ-WcepCRoTYSZpj-51">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="630" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-73" target="LYgwBQ-WcepCRoTYSZpj-34">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="570" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-51" target="LYgwBQ-WcepCRoTYSZpj-73">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-51" target="LYgwBQ-WcepCRoTYSZpj-36">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="LYgwBQ-WcepCRoTYSZpj-51" value="Lyssna efter click events på undo knappen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="180" y="660" width="120" height="60" as="geometry" />
+          <mxGeometry x="180" y="670" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="LYgwBQ-WcepCRoTYSZpj-52" value="Lyssna efter click events på radera knappen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="180" y="760" width="120" height="60" as="geometry" />
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-73" target="LYgwBQ-WcepCRoTYSZpj-53">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="830" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="LYgwBQ-WcepCRoTYSZpj-53" value="Lyssna efter click event på ner &lt;br&gt;knappen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="180" y="860" width="120" height="60" as="geometry" />
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-74" target="LYgwBQ-WcepCRoTYSZpj-37">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="800" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="LYgwBQ-WcepCRoTYSZpj-55" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="180" y="950" width="120" height="80" as="geometry" />
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-53" target="LYgwBQ-WcepCRoTYSZpj-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-53" target="LYgwBQ-WcepCRoTYSZpj-38">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="910" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-53" value="Lyssna efter click events på ner &lt;br&gt;knappen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="870" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-62" value="nej" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-55" target="LYgwBQ-WcepCRoTYSZpj-61">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-67" value="ja" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-55" target="LYgwBQ-WcepCRoTYSZpj-44">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="410" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="120" y="1010" />
+              <mxPoint x="120" y="390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-55" value="Alla fält lyssnar&lt;br&gt;efter ett event?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="970" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-61" target="LYgwBQ-WcepCRoTYSZpj-55">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="390" y="1020" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="350" y="1120" />
+              <mxPoint x="350" y="1010" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-61" target="LYgwBQ-WcepCRoTYSZpj-65">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-61" value="Lyssna efter input events på&lt;br&gt;fältets input" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1090" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-65" target="LYgwBQ-WcepCRoTYSZpj-72">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-65" value="fältets input blir&lt;br&gt;redigerat" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-72" value="Förbered en PUT request om ingen annan request är föreberäd" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="870" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-73" value="Lyssna efter click events för upp knappen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="770" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-74" value="Lyssna efter click events på radera knappen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-79" value="Återställ alla fält till&lt;br&gt;sitt ursprungliga&amp;nbsp;&lt;br&gt;tillstånd" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="670" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-81" value="Förbered en DELETE&lt;br&gt;request och ta bort tidigare förberedd request" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-83" value="Förbered en POST&lt;br&gt;request för att lägga&lt;br&gt;till innehållet" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-85" target="LYgwBQ-WcepCRoTYSZpj-87">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-85" value="Användaren&lt;br&gt;trycker på +&lt;br&gt;knappen" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-87" target="LYgwBQ-WcepCRoTYSZpj-83">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-87" target="LYgwBQ-WcepCRoTYSZpj-74">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="500" />
+              <mxPoint x="320" y="550" />
+              <mxPoint x="240" y="550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-87" value="Framställ ett nytt innehåll enligt &lt;br&gt;HTML template och skriv ut till DOM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-94" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-91" target="LYgwBQ-WcepCRoTYSZpj-96">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-91" value="Användaren&lt;br&gt;trycker på&amp;nbsp;&lt;br&gt;apply knappen" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="50" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-100" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-96" target="LYgwBQ-WcepCRoTYSZpj-97">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-96" value="Alla &lt;br&gt;förberedda requests &lt;br&gt;skickade?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="40" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LYgwBQ-WcepCRoTYSZpj-97" target="LYgwBQ-WcepCRoTYSZpj-99">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-97" value="Skicka request" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LYgwBQ-WcepCRoTYSZpj-99" value="200 &amp;lt;= status &amp;lt; 300" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="260" width="120" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
