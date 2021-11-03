@@ -1,0 +1,66 @@
+﻿{
+  "information": [
+    {
+      "info": "Elias Eriksson."
+    },
+    {
+      "info": "Jag studerar på Mittuniversitetet i Sundsvall."
+    }
+  ],
+  "kurser": [
+    {
+      "kurskod": "DG008G",
+      "namn": "Typografi och form för webb",
+      "progression": "A",
+      "kursplan": "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/Sok-kursplan/kursplan/Print/?kursplanid=24399"
+    },
+    {
+      "kurskod": "DT003G",
+      "namn": "Databaser",
+      "progression": "A",
+      "kursplan": "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/Sok-kursplan/kursplan/Print/?kursplanid=21595"
+    },
+    {
+      "kurskod": "DT057G",
+      "namn": "Webbutveckling I",
+      "progression": "A",
+      "kursplan": "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/Sok-kursplan/kursplan/Print/?kursplanid=22782"
+    },
+    {
+      "kurskod": "DT084G",
+      "namn": "Introduktion till programmering i JavaScript",
+      "progression": "A",
+      "kursplan": "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/Sok-kursplan/kursplan/Print/?kursplanid=30811"
+    },
+    {
+      "kurskod": "DT093G",
+      "namn": "Webbutveckling II",
+      "progression": "B",
+      "kursplan": "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/Sok-kursplan/kursplan/Print/?kursplanid=27133"
+    },
+    {
+      "kurskod": "DT163G",
+      "namn": "Digital bildbehandling för webb",
+      "progression": "A",
+      "kursplan": "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/Sok-kursplan/kursplan/Print/?kursplanid=24403"
+    },
+    {
+      "kurskod": "DT173G",
+      "namn": "Webbutveckling III",
+      "progression": "B",
+      "kursplan": "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/Sok-kursplan/kursplan/Print/?kursplanid=22706"
+    },
+    {
+      "kurskod": "DT071G",
+      "namn": "Programmering i C#.NET",
+      "progression": "A",
+      "kursplan": "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/Sok-kursplan/kursplan/Print/?kursplanid=25557"
+    },
+    {
+      "kurskod": "DT162G",
+      "namn": "Javascriptbaserad webbutveckling",
+      "progression": "B",
+      "kursplan": "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/Sok-kursplan/kursplan/Print/?kursplanid=24366"
+    }
+  ]
+}

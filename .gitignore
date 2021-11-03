@@ -2,3 +2,7 @@
 **/.~lock*
 .~loack.Moment2_Elias_Eriksson.odt#
 *.zip
+**/bin/
+**/obj/
+**/riderModule.iml
+**/_ReSharper.Caches/

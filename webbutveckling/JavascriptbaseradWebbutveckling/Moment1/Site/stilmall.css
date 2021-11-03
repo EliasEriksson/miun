@@ -1,0 +1,108 @@
+﻿/*
+    Stilmall för Moment 1 - DT162G, JavaScript-baserad webbutveckling 
+    Fyll i egna CSS-regler här under för att snygga till webbsidan
+*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: georgia, serif;
+    font-size: 18px;
+    line-height: 1.6em;
+    background-color: #ccc;
+
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 960px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    margin: 2px 0 2px 0;
+}
+
+thead td {
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 2em;
+    font-size: 14px;
+    color: #666;
+}
+
+thead td:nth-child(1) {
+    width: 100%;
+}
+
+thead td:nth-child(2) {
+    width: 100%;
+}
+
+tr:nth-child(even) {
+    background-color: #ccc;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 6em 1fr 15ch;
+    padding: 10px;
+}
+
+.kurser {
+    margin: 1em 0 1em 0;
+}
+
+
+@media screen and (max-width: 960px) {
+    thead tr {
+        display: none;
+    }
+
+    td:nth-of-type(1):before {
+        content: "Kurskod: ";
+        font-weight: bold;
+    }
+
+    td:nth-of-type(2):before {
+        content: "Kursnamn: ";
+        font-weight: bold;
+    }
+
+    td:nth-of-type(3):before {
+        content: "Progression: ";
+        font-weight: bold;
+    }
+
+    tr {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    td {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    td:before {
+        display: flex;
+    }
+}
