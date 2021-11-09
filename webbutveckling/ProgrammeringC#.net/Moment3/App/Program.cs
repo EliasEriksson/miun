@@ -7,6 +7,12 @@ namespace App
     {
         private static readonly Book.Book Book = new();
 
+        /**
+         * Reads a string value from user input
+         *
+         * if user input is only an X the operation is interrupted
+         * 
+         */
         private static string ReadString(string message, bool clear = true)
         {
             var input = "";
@@ -26,6 +32,11 @@ namespace App
             return input;
         }
 
+        /**
+         * Reads a string from user input and converts to int
+         *
+         * if the conversion fails the user is prompted again.
+         */
         private static int ReadInt(string message, bool clear = true)
         {
             while (true)
@@ -46,6 +57,9 @@ namespace App
             }
         }
 
+        /**
+         * prompts the user for name and content and adds page to the guestbook
+         */
         private static void AddPage()
         {
             try
@@ -60,15 +74,20 @@ namespace App
             }
         }
 
+        /**
+         * prompts the user for an index of a page to remove
+         *
+         * if the index exists the page is removed
+         */
         private static void RemovePage()
         {
             try
             {
-                if (Book.NumberOfPages() == 0) Console.WriteLine("There are currently no pages.");
+                if (Book.NumberOfPages() == 0) return;
                 int index;
                 do
                 {
-                    index = ReadInt($"Which page do you want to delete?\n{Book.GetPages()}");
+                    index = ReadInt($"Which page do you want to delete?\n\n{Book.GetPages()}");
                 } while (!(0 <= index && index < Book.NumberOfPages()));
 
                 Book.RemovePage(index);
@@ -81,12 +100,12 @@ namespace App
 
         private static void Main()
         {
-            do
+            while (true)
             {
                 Console.Clear();
                 Console.WriteLine("E L I A S   G U E S T B O O K\n");
                 Console.WriteLine("1. Write in the guestbook");
-                Console.WriteLine("2. Remove a post\n");
+                if (Book.NumberOfPages() > 0) Console.WriteLine("2. Remove a post\n");
                 Console.WriteLine(Book.GetPages());
 
                 try
@@ -95,7 +114,6 @@ namespace App
                     switch (command)
                     {
                         case null:
-                            Console.WriteLine("You did not supply an action so nothing happened.");
                             continue;
                         case "1":
                             AddPage();
@@ -109,7 +127,7 @@ namespace App
                 {
                     break;
                 }
-            } while (true);
+            }
         }
     }
 }
