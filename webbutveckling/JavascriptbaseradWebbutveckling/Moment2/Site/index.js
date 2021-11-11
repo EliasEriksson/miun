@@ -22,11 +22,11 @@ const headers = {
 
 const validateCourse = (course) => {
     if (!course["courseId"]) {
-        throw new Error("Missing 'courseId' field.")
+        throw new Error("Missing 'courseId' field or field data.")
     } else if (!course["courseName"]) {
-        throw new Error("Missing 'courseName' field.")
+        throw new Error("Missing 'courseName' field or field data.")
     } else if (!course["coursePeriod"]) {
-        throw new Error("Missing 'coursePeriod' field.")
+        throw new Error("Missing 'coursePeriod' field or field data.")
     } else if (Object.keys(course).length !== 3) {
         throw new Error("Too many fields.")
     }
@@ -34,11 +34,11 @@ const validateCourse = (course) => {
 
 const readDB = async () => {
     return JSON.parse(await fs.readFile("db.json", "utf-8"));
-}
+};
 
 const writeDB = async (data) => {
     await fs.writeFile("db.json", JSON.stringify(data, null, 1), "utf-8");
-}
+};
 
 const findCourse = (id, courses) => {
     for (const course of courses) {
@@ -46,7 +46,13 @@ const findCourse = (id, courses) => {
             return course;
         }
     }
-    throw new Error("No such item.")
+    throw new Error("No such item.");
+};
+
+const writeCookies = (response) => {
+    response.cookie("rootURL", rootURL);
+    response.cookie("apiRoot", apiRoot);
+    response.cookie("staticRoot", staticRoot);
 }
 
 app.get(`${rootURL}/`, (request, response) => {
@@ -55,12 +61,16 @@ app.get(`${rootURL}/`, (request, response) => {
         rootURL: rootURL
     };
     let html = nunjucks.render(__dirname + "/templates/courses.njk", context);
-    response.cookie("apiRoot", apiRoot);
+    writeCookies(response);
     response.writeHead(200, {...headers.html});
     response.end(html);
 });
 
-app.get(`${rootURL}/course/:id`, async (request, response) => {
+app.get(`${rootURL}/course/`, async (request, response) => {
+    response.redirect("../");
+});
+
+app.get(`${rootURL}/course/:id/`, async (request, response) => {
     try {
         let data = await readDB();
         let id = parseInt(request.params.id);
@@ -70,7 +80,7 @@ app.get(`${rootURL}/course/:id`, async (request, response) => {
             course: findCourse(id, data)
         };
         let html = nunjucks.render(__dirname + "/templates/course.njk", context);
-        response.cookie("apiRoot", apiRoot);
+        writeCookies(response);
         response.writeHead(200, {...headers.html});
         response.end(html);
     } catch (e) {
@@ -79,7 +89,7 @@ app.get(`${rootURL}/course/:id`, async (request, response) => {
     }
 });
 
-app.get(`${rootURL}/api/courses/`, async (request, response, next) => {
+app.get(`${apiRoot}/courses/`, async (request, response, next) => {
     try {
         let data = await readDB();
         response.writeHead(200, {...headers["json"]});
@@ -89,10 +99,10 @@ app.get(`${rootURL}/api/courses/`, async (request, response, next) => {
     }
 });
 
-app.get(`${rootURL}/api/course/:id`, async (request, response, next) => {
+app.get(`${apiRoot}/course/:id/`, async (request, response, next) => {
     try {
         let data = await readDB();
-
+        // TODO fix this bug using findCourse()
         if (data[request.params.id]) {
             response.writeHead(200, {...headers["json"]});
             response.end(JSON.stringify(data[request.params.id], null, 1));
@@ -104,7 +114,7 @@ app.get(`${rootURL}/api/course/:id`, async (request, response, next) => {
     }
 })
 
-app.post(`${rootURL}/api/courses/`, async (request, response, next) => {
+app.post(`${apiRoot}/courses/`, async (request, response, next) => {
     try {
         validateCourse(request.body);
         let data = await readDB();
@@ -128,7 +138,7 @@ app.post(`${rootURL}/api/courses/`, async (request, response, next) => {
 
 });
 
-app.put(`${rootURL}/api/course/:id`, async (request, response, next) => {
+app.put(`${apiRoot}/course/:id/`, async (request, response, next) => {
     try {
         validateCourse(request.body);
         let data = await readDB();
@@ -155,7 +165,7 @@ app.put(`${rootURL}/api/course/:id`, async (request, response, next) => {
     }
 });
 
-app.delete(`${rootURL}/course/:id`, async (request, response, next) => {
+app.delete(`${apiRoot}/course/:id/`, async (request, response, next) => {
     try {
         let data = await readDB();
         let id = parseInt(request.params.id);
@@ -181,7 +191,7 @@ app.delete(`${rootURL}/course/:id`, async (request, response, next) => {
     }
 });
 
-const port = 8080;
+const port = 8081;
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}${rootURL}`);
 });

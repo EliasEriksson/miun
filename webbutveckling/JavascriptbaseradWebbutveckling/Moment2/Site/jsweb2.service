@@ -1,0 +1,12 @@
+[Unit]
+Description=jsweb moment 2
+After=multi-user.target
+StartLimitIntervalSec=60
+
+[Service]
+Restart=on-failure
+WorkingDirectory=/var/www/miun-jsweb2/
+ExecStart=/var/www/miun-jsweb2/node_modules/nodemon/bin/nodemon.js -e js,njk /var/www/miun-jsweb2/index.js
+
+[Install]
+WantedBy=multi-user.target

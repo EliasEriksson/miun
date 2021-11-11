@@ -1,10 +1,38 @@
 {% extends "templates/base.njk" %}
 
 {% block head %}
-<link href="{{ rootURL }}/static/css/main.css" rel="stylesheet" type="text/css">
-<script src="{{ rootURL }}/static/js/courses.js" type="module"></script>
+<script src="{{ staticRoot }}/js/courses.js" type="module"></script>
 {% endblock %}
 
 {% block content %}
-<main>HELLO WORLD groot is {{ rootURL }}</main>
+<main>
+    <form id="course-form">
+        <label>
+            Kurskod:
+            <input name="courseId" type="text">
+        </label>
+        <label>
+            Kursnamn:
+            <input name="courseName" type="text">
+        </label>
+        <label>
+            Period:
+            <input name="coursePeriod" type="number">
+        </label>
+        <div class="submit-buttons">
+            <input id="post" name="post-button" type="submit" value="Lägg till">
+        </div>
+    </form>
+    <h1>Kurslista</h1>
+    <div class="results">
+        <div id="result-heading" class="result-heading">
+            <div class="heading-row">
+                <div>Kurskod:</div>
+                <div>Kursnamn:</div>
+                <div>Period:</div>
+            </div>
+        </div>
+        <div id="result-data" class="result-data"></div>
+    </div>
+</main>
 {% endblock %}

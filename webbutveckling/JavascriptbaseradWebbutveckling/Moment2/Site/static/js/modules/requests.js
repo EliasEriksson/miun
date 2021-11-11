@@ -1,7 +1,7 @@
 import {getCookies} from "./cookie.js";
 
 export const requestTemplate = async (templateName) => {
-    let response = await fetch(`./templates/${templateName}`);
+    let response = await fetch(`${templateName}`);
     return await response.text();
 };
 /**
@@ -15,7 +15,8 @@ export const requestTemplate = async (templateName) => {
  * @param data: general data to be sent with the request.
  */
 export const requestEndpoint = async (endpoint, token = null, method = "GET", data = undefined) => {
-    let apiURL = getCookies()["apiRoot"]
+    let apiURL = getCookies()["apiRoot"];
+    console.log(apiURL)
     let init = {
         method: method,
         headers: {
@@ -29,8 +30,9 @@ export const requestEndpoint = async (endpoint, token = null, method = "GET", da
         init["body"] = JSON.stringify(data);
     }
     let response = await fetch(`${apiURL}${endpoint}`, init);
-    if (method === "DELETE") {
-        return [null, response.status];
+
+    if (200 <= response.status && response.status < 300) {
+        return [await response.json(), response.status];
     }
-    return [await response.json(), response.status];
+    return [await response.text(), response.status];
 };
