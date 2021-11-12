@@ -1,3 +1,8 @@
+/**
+ * converts the document cookie string to a javascript object
+ *
+ * @returns {{}}
+ */
 export const getCookies = () => {
     let cookies = {};
     document.cookie.split("; ").forEach(cookie => {
@@ -5,10 +10,4 @@ export const getCookies = () => {
         cookies[key] = decodeURIComponent(value);
     })
     return cookies;
-}
-
-export const writeCookies = (cookies) => {
-    document.cookie = Object.keys(cookies).map(key => {
-        return `${key}=${cookies[key]}`;
-    }).join("; ");
 }

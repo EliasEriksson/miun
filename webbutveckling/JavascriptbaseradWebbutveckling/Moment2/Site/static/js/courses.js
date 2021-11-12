@@ -9,6 +9,11 @@ const coursePeriodElement = formElement.querySelector("[name=coursePeriod]");
 const postElement = formElement.querySelector("[name=post-button]")
 const tableBodyElement = document.getElementById("result-data");
 
+/**
+ * reads the form content from the global DOM elements.
+ *
+ * @returns {{courseName, coursePeriod, courseId}}
+ */
 const getCurrentFormCourse = () => {
     return {
         courseId: courseIdElement.value,
@@ -17,6 +22,11 @@ const getCurrentFormCourse = () => {
     }
 }
 
+/**
+ * requests data from the server and renders all the courses from the "database" file.
+ *
+ * @returns {Promise<void>}
+ */
 const getAll = async () => {
     let cookies = getCookies();
     let templateP = requestTemplate(`${cookies["staticRoot"]}/templates/courseRow.html`);
@@ -24,18 +34,24 @@ const getAll = async () => {
 
     let template = await templateP;
     let [courses, status] = await coursesP;
-
-    for (const course of courses) {
-        let spacer = document.createElement("div");
-        spacer.classList.add("spacer");
-        course["courseLink"] = `${cookies["rootURL"]}/course/${course.id}/`;
-        tableBodyElement.appendChild(spacer);
-        tableBodyElement.appendChild(render(template, course));
+    if (200 <= status && status < 300) {
+        for (const course of courses) {
+            let spacer = document.createElement("div");
+            spacer.classList.add("spacer");
+            course["courseLink"] = `${cookies["rootURL"]}/course/${course.id}/`;
+            tableBodyElement.appendChild(spacer);
+            tableBodyElement.appendChild(render(template, course));
+        }
     }
 }
 
+/**
+ * posts the current form data and attempts to create a new course
+ *
+ * @returns {Promise<void>}
+ */
 const post = async () => {
-    let [data, status] = await requestEndpoint(`/courses/`, null, "post", {
+    await requestEndpoint(`/courses/`, null, "post", {
         ...getCurrentFormCourse()
     });
 }

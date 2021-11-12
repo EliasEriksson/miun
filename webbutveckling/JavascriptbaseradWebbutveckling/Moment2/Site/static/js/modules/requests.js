@@ -1,9 +1,19 @@
 import {getCookies} from "./cookie.js";
 
+
+/**
+ * request file from the template directory.
+ *
+ * this template will be used with the render function in xrender.ts
+ *
+ * @param templateName: filename of the template.
+ */
 export const requestTemplate = async (templateName) => {
     let response = await fetch(`${templateName}`);
     return await response.text();
 };
+
+
 /**
  * a general function to preform GET / POST / PUT / DELETE request.
  *
@@ -16,7 +26,6 @@ export const requestTemplate = async (templateName) => {
  */
 export const requestEndpoint = async (endpoint, token = null, method = "GET", data = undefined) => {
     let apiURL = getCookies()["apiRoot"];
-    console.log(apiURL)
     let init = {
         method: method,
         headers: {
