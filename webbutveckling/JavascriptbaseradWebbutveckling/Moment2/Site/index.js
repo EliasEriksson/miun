@@ -258,7 +258,7 @@ app.put(`${apiRoot}/course/:id/`, async (request, response, next) => {
 
 /**
  * api endpoint for deleting an existing course from the "database" file.
- */
+ */                     // /course/
 app.delete(`${apiRoot}/course/:id/`, async (request, response, next) => {
     try {
         let data = await readDB();

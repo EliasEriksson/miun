@@ -55,4 +55,8 @@ window.addEventListener("load", async () => {
         await del();
         redirect("../../");
     });
+
+    fetch("asdasd").then((response) => {
+
+    })
 });
