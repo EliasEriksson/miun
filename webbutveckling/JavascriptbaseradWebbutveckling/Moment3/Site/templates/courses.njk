@@ -1,0 +1,38 @@
+{% extends "templates/base.njk" %}
+
+{% block head %}
+<script src="{{ staticRoot }}/js/courses.js" type="module"></script>
+{% endblock %}
+
+{% block content %}
+<main>
+    <form id="course-form">
+        <label>
+            Kurskod:
+            <input name="code" type="text">
+        </label>
+        <label>
+            Kursnamn:
+            <input name="name" type="text">
+        </label>
+        <label>
+            Period:
+            <input name="period" type="number">
+        </label>
+        <div class="submit-buttons">
+            <input id="post" name="post-button" type="submit" value="Lägg till">
+        </div>
+    </form>
+    <h1>Kurslista</h1>
+    <div class="results">
+        <div id="result-heading" class="result-heading">
+            <div class="heading-row">
+                <div>Kurskod:</div>
+                <div>Kursnamn:</div>
+                <div>Period:</div>
+            </div>
+        </div>
+        <div id="result-data" class="result-data"></div>
+    </div>
+</main>
+{% endblock %}

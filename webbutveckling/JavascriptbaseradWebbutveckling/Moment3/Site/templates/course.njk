@@ -1,0 +1,28 @@
+{% extends "templates/base.njk" %}
+
+{% block head %}
+    <script src="{{ staticRoot }}/js/course.js" type="module"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <form id="course-form">
+            <label>
+                Kurs id:
+                <input name="code" type="text" value="{{ course.code }}">
+            </label>
+            <label>
+                Kursnamn:
+                <input name="name" type="text" value="{{ course.name }}">
+            </label>
+            <label>
+                Period:
+                <input name="period" type="number" value="{{ course.period }}">
+            </label>
+            <div class="submit-buttons">
+                <input id="update" class="button" name="update-button" type="submit" value="Uppdatera">
+                <input id="delete" class="button" name="delete-button" type="submit" value="Radera">
+            </div>
+        </form>
+    </main>
+{% endblock %}
