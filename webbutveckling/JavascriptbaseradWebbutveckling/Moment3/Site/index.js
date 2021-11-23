@@ -55,6 +55,16 @@ const validateCourse = (course) => {
 };
 
 /**
+ * Reads secret credentials from .credentials.json
+ *
+ * the format of the content in the json file is as follows
+ * {
+ *  "user": "users username",
+ *  "pwd": "users password",
+ *  "db": "mongo db db name",
+ *  "host": "mongodb host name",
+ *  "port": 27017
+ * }
  *
  * @returns {Promise<{user: string, pwd: string, db: string, host: string, port: number}>}
  */
@@ -222,12 +232,12 @@ app.delete(`${apiRoot}/courses/:id/`, async (request, response, next) => {
     }
 });
 
-const webPort = 8082;
+const port = 8082;
 readCredentials().then(async cred => {
     await mongoose.connect(
         `mongodb://${cred.user}:${cred.pwd}@${cred.host}:${cred.port}/${cred.db}`
     );
-    app.listen(webPort, async () => {
-        console.log(`Example app listening at http://localhost:${webPort}${rootURL}`);
+    app.listen(port, async () => {
+        console.log(`Example app listening at http://localhost:${port}${rootURL}`);
     });
 })
