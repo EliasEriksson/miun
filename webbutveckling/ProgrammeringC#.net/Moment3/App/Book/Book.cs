@@ -19,12 +19,17 @@ namespace App.Book
                 var name = reader.ReadLine();
                 if (reader.EndOfStream)
                 {
-                    throw new SerializeException();
+                    // hopefully it was just something at the end of the file
+                    // that was not supposed to be there. 
+                    // save the book in its current state and pray for the best.
+                    this.Save();
+                    break;
                 }
 
                 var content = reader.ReadLine();
                 this._pages.Add(new Page(name, content));
             }
+            reader.Close();
         }
 
         /**

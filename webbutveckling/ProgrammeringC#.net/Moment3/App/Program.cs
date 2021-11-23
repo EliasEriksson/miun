@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using App.Book;
 
 namespace App
@@ -6,28 +7,50 @@ namespace App
     internal static class Program
     {
         private static readonly Book.Book Book = new();
+        private static readonly Dictionary<string, Action> UserActions = new()
+        {
+            {"1", AddPage},
+            {"2", RemovePage}
+        };
 
+        /**
+         * returns true if the input string is anything but null
+         */
+        private static bool ValidateNotNull(string input)
+        {
+            return input != null;
+        }
+
+        /**
+         * returns true if the input string is anything but empty or null
+         *
+         * used as a parameter for ReadString
+         */
+        private static bool ValidateNotEmpty(string input)
+        {
+            return !string.IsNullOrEmpty(input);
+        }
+        
         /**
          * Reads a string value from user input
          *
          * if user input is only an X the operation is interrupted
          * 
          */
-        private static string ReadString(string message, bool clear = true)
+        private static string ReadString(string message, Func<string, bool> validator, bool clear = true)
         {
-            var input = "";
-            while (string.IsNullOrEmpty(input))
+            string input;
+            do
             {
                 if (clear) Console.Clear();
                 Console.WriteLine("X to exit.");
                 Console.WriteLine(message);
                 input = Console.ReadLine();
-            }
-
-            if (input.ToLower() == "x")
-            {
-                throw new CancelOperation();
-            }
+                if (input?.ToLower() == "x")
+                {
+                    throw new CancelOperation();
+                }
+            } while (!validator(input));
 
             return input;
         }
@@ -44,7 +67,7 @@ namespace App
                 if (clear) Console.Clear();
                 try
                 {
-                    return Convert.ToInt32(ReadString(message, false));
+                    return Convert.ToInt32(ReadString(message, ValidateNotEmpty, false));
                 }
                 catch (FormatException)
                 {
@@ -64,8 +87,8 @@ namespace App
         {
             try
             {
-                var name = ReadString("Your name: ");
-                var content = ReadString("What is on your mind: ");
+                var name = ReadString("Your name: ", ValidateNotEmpty);
+                var content = ReadString("What is on your mind: ", ValidateNotEmpty);
                 Book.AddPage(name, content);
                 Book.Save();
             }
@@ -110,17 +133,10 @@ namespace App
 
                 try
                 {
-                    var command = ReadString("", false);
-                    switch (command)
+                    var action = ReadString("", ValidateNotNull, false);
+                    if (UserActions.ContainsKey(action))
                     {
-                        case null:
-                            continue;
-                        case "1":
-                            AddPage();
-                            break;
-                        case "2":
-                            RemovePage();
-                            break;
+                        UserActions[action]();
                     }
                 }
                 catch (CancelOperation)

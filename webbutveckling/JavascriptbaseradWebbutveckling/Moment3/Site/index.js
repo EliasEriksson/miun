@@ -223,10 +223,11 @@ app.delete(`${apiRoot}/courses/:id/`, async (request, response, next) => {
 });
 
 const webPort = 8082;
-app.listen(webPort, async () => {
-    const cred = await readCredentials();
-    console.log(`Example app listening at http://localhost:${webPort}${rootURL}`);
+readCredentials().then(async cred => {
     await mongoose.connect(
         `mongodb://${cred.user}:${cred.pwd}@${cred.host}:${cred.port}/${cred.db}`
     );
-});
+    app.listen(webPort, async () => {
+        console.log(`Example app listening at http://localhost:${webPort}${rootURL}`);
+    });
+})
