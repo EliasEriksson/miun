@@ -13,8 +13,8 @@ namespace App.Game
         {
             this._marker = marker;
             this._score = 0;
-            this.SelectX = 0;
-            this.SelectY = 0;
+            this.SelectX = 1;
+            this.SelectY = 1;
         }
         
         public abstract void Play(Board board);
@@ -33,6 +33,8 @@ namespace App.Game
         {
             this._score++;
         }
+
+        public abstract void Reset();
     }
 
     public class Human : Player
@@ -45,6 +47,7 @@ namespace App.Game
         {
             while (true)
             {
+                Console.WriteLine($"Currently playing: {this}\n");
                 board.Draw(this.SelectX, this.SelectY);
                 var key = Console.ReadKey().Key;
                 if (key == ConsoleKey.UpArrow)
@@ -64,7 +67,7 @@ namespace App.Game
                     try
                     {
                         board.SetMarker(this.SelectX, this.SelectY, this.GetMarker());
-                        Program.ClearN(13);
+                        Program.ClearN(15);
                         return;
                     }
                     catch (Board.DuplicateEntryException)
@@ -75,8 +78,14 @@ namespace App.Game
 
                 this.SelectX = Program.Mod(SelectX, 3);
                 this.SelectY = Program.Mod(SelectY, 3);
-                Program.ClearN(13);
+                Program.ClearN(15);
             }
+        }
+
+        public override void Reset()
+        {
+            this.SelectX = 1;
+            this.SelectY = 1;
         }
 
         public override string ToString()
@@ -92,6 +101,11 @@ namespace App.Game
         }
         
         public override void Play(Board board)
+        {
+            
+        }
+
+        public override void Reset()
         {
             
         }

@@ -28,12 +28,14 @@ namespace App.Game
                     try
                     {
                         player.GrantScore();
-                        Program.ClearN(2);
+                        Program.ClearN(1);
                         DrawScore();
+                        Console.WriteLine();
                         Console.WriteLine(board);
-                        Continue(player);
+                        Console.WriteLine($"{player} won!");
+                        Continue();
                         board = new Board();
-                        Program.ClearN(14);
+                        Program.ClearN(15);
                     }
                     catch (Exit)
                     {
@@ -51,12 +53,11 @@ namespace App.Game
                 Console.Write($"| {player}: {player.GetScore()} ");
             }
 
-            Console.WriteLine("|\n");
+            Console.WriteLine("|");
         }
         
-        private static void Continue(Player player)
+        private static void Continue()
         {
-            Console.WriteLine($"{player} won!");
             Console.WriteLine("Continue playing?");
             (string, Action)[] actions =
             {
