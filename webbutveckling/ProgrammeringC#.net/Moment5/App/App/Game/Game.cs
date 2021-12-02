@@ -4,66 +4,95 @@ namespace App.Game
 {
     public class Game
     {
-        private Player _player1;
-        private Player _player2;
-        private Board _board;
-
-        private Game(Player player1, Player player2)
+        private readonly Player[] _players;
+        
+        private Game(Player[] players)
         {
-            this._player1 = player1;
-            this._player2 = player2;
-            this._board = new Board();
+            this._players = players;
         }
-        private class ExitGame : Exception
+
+        private class Exit : Exception
         {
         }
 
-        private static void StartGame(Player player1, Player player2)
+        private void Start()
         {
+            DrawScore();
             var board = new Board();
-            string endMessage;
-
             while (true)
             {
-                player1.Play(board);
-                if (board.IsWinner(player1))
+                foreach (var player in this._players)
                 {
-                    endMessage = "Player 1 Wins!";
-                    break;
-                }
-
-                player2.Play(board);
-                if (board.IsWinner(player2))
-                {
-                    endMessage = "Player 2 Wins!";
-                    break;
+                    player.Play(board);
+                    if (!board.IsWinner(player)) continue;
+                    try
+                    {
+                        player.GrantScore();
+                        Program.ClearN(2);
+                        DrawScore();
+                        Console.WriteLine(board);
+                        Continue(player);
+                        board = new Board();
+                        Program.ClearN(14);
+                    }
+                    catch (Exit)
+                    {
+                        Program.ClearN(16);
+                        return;
+                    }
                 }
             }
-            Console.Clear();
-            Console.WriteLine();
-            Console.WriteLine(board);
-            Console.WriteLine(endMessage);
-            Console.WriteLine("Press any key");
         }
 
-        public static void Run()
+        private void DrawScore()
         {
-            (string, Action)[] actions = {
-                ("Player Vs Player", () => StartGame(new Human(Marker.Cross), new Human(Marker.Circle))),
-                ("Player Vs Ai", () => StartGame(new Human(Marker.Cross), new Ai(Marker.Circle))),
-                ("Ai Vs Ai", () => StartGame(new Ai(Marker.Cross), new Ai(Marker.Circle))),
-                ("Exit", () => throw new ExitGame())
+            foreach (var player in this._players)
+            {
+                Console.Write($"| {player}: {player.GetScore()} ");
+            }
+
+            Console.WriteLine("|\n");
+        }
+        
+        private static void Continue(Player player)
+        {
+            Console.WriteLine($"{player} won!");
+            Console.WriteLine("Continue playing?");
+            (string, Action)[] actions =
+            {
+                ("Yes", () => { }),
+                ("No", () => throw new Exit())
             };
-            
             Chose(actions);
         }
 
-        private static void Chose((string, Action)[] actions, bool clear = true)
+        public static void MainMenu()
+        {
+            (string, Action)[] actions =
+            {
+                ("Player Vs Player", () => new Game(new Player[]{new Human(Marker.Cross), new Human(Marker.Circle)}).Start()),
+                ("Player Vs Ai", () => new Game(new Player[]{new Human(Marker.Cross), new Ai(Marker.Circle)}).Start()),
+                ("Ai Vs Ai", () => new Game(new Player[]{ new Human(Marker.Cross), new Ai(Marker.Circle)}).Start()),
+                ("Exit", () => throw new Exit())
+            };
+            try
+            {
+                while (true)
+                {
+                    Chose(actions);
+                }
+            }
+            catch (Exit)
+            {
+            }
+        }
+
+        private static void Chose((string, Action)[] actions)
         {
             var current = 0;
+            
             while (true)
             {
-                if (clear) Console.Clear();
                 for (var i = 0; i < actions.Length; i++)
                 {
                     Console.Write(i == current ? "> " : "  ");
@@ -71,31 +100,22 @@ namespace App.Game
                 }
 
                 var key = Console.ReadKey().Key;
-                if (key == ConsoleKey.UpArrow)
+                switch (key)
                 {
-                    current -= 1;
-                }
-                else if (key == ConsoleKey.DownArrow)
-                {
-                    current += 1;
-                }
-                else if (key == ConsoleKey.Enter)
-                {
-                    try
-                    {
+                    case ConsoleKey.UpArrow:
+                        current -= 1;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        current += 1;
+                        break;
+                    case ConsoleKey.Enter or ConsoleKey.Spacebar:
+                        Program.ClearN(actions.Length);
                         actions[current].Item2();
-                    }
-                    catch (ExitGame)
-                    {
                         return;
-                    }
-                }
-                else
-                {
-                    continue;
                 }
 
                 current = Program.Mod(current, actions.Length);
+                Program.ClearN(actions.Length);
             }
         }
     }

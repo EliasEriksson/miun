@@ -45,7 +45,6 @@ namespace App.Game
         {
             while (true)
             {
-                Program.ClearAllButN(1);
                 board.Draw(this.SelectX, this.SelectY);
                 var key = Console.ReadKey().Key;
                 if (key == ConsoleKey.UpArrow)
@@ -60,11 +59,12 @@ namespace App.Game
                 } else if (key == ConsoleKey.RightArrow)
                 {
                     this.SelectX += 1;
-                } else if (key == ConsoleKey.Enter)
+                } else if (key is ConsoleKey.Enter or ConsoleKey.Spacebar)
                 {
                     try
                     {
                         board.SetMarker(this.SelectX, this.SelectY, this.GetMarker());
+                        Program.ClearN(13);
                         return;
                     }
                     catch (Board.DuplicateEntryException)
@@ -75,7 +75,13 @@ namespace App.Game
 
                 this.SelectX = Program.Mod(SelectX, 3);
                 this.SelectY = Program.Mod(SelectY, 3);
+                Program.ClearN(13);
             }
+        }
+
+        public override string ToString()
+        {
+            return $"Player {(char) this.GetMarker()}";
         }
     }
 
@@ -88,6 +94,11 @@ namespace App.Game
         public override void Play(Board board)
         {
             
+        }
+
+        public override string ToString()
+        {
+            return $"Ai {(char) this.GetMarker()}";
         }
     }
 }
