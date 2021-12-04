@@ -58,7 +58,7 @@ public static void ClearN(int n)
             board.SetMarker(0, 1, Marker.Cross);
             board.SetMarker(1, 0, Marker.Circle);
 
-            var ai = new Ai(Marker.Cross);
+            var ai = new AiEasy(Marker.Cross);
             ai.Play(board);
         }
     }
