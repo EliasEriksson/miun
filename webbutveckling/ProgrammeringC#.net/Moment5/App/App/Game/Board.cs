@@ -163,5 +163,31 @@ namespace App.Game
             board.SetMarker(0, 0, Marker.Circle);
             Console.WriteLine(board);
         }
+
+        public (int, int) GetSize()
+        {
+            return (this._board.GetLength(0), this._board.GetLength(1));
+        }
+
+        public int GetWidth()
+        {
+            return this._board.GetLength(0);
+        }
+
+        public int GetHeight()
+        {
+            return this._board.GetLength(1);
+        }
+        
+        public Marker Get(int x, int y)
+        {
+            return this._board[x, y];
+        }
+
+        public int WinCondition()
+        {
+            return 3;
+        }
+        
     }
 }
