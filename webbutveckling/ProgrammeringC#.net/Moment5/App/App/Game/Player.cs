@@ -98,9 +98,9 @@ namespace App.Game
         }
     }
 
-    public class Ai : Player
+    public abstract class Ai : Player
     {
-        private class Node<T>
+        protected class Node<T>
         {
             private readonly T _data;
             private Node<T> _next;
@@ -151,27 +151,10 @@ namespace App.Game
             }
         }
 
-        public Ai(Marker marker) : base(marker)
+        protected Ai(Marker marker) : base(marker)
         {
         }
-
-        public override void Play(Board board)
-        {
-            var result = this.Traverse(board, 0, 0, 1, 1);
-            if (result != null)
-            {
-                while (result != null)
-                {
-                    Console.WriteLine(result.GetData());
-                    result = result.GetNext();
-                }
-            }
-            else
-            {
-                Console.WriteLine("was null");
-            }
-        }
-
+        
         public override void Reset()
         {
         }
@@ -181,7 +164,7 @@ namespace App.Game
             return $"Ai {(char) this.GetMarker()}";
         }
 
-        private Node<(int, int)> Traverse(Board board, int x, int y, int moveX, int moveY, int possibleInRow = 0,
+        protected Node<(int, int)> Traverse(Board board, int x, int y, int moveX, int moveY, int possibleInRow = 0,
             Node<(int, int)> previousPossibleNodes = null)
         {
             if (x >= board.GetWidth() || y >= board.GetHeight())
@@ -248,6 +231,42 @@ namespace App.Game
             }
 
             return Traverse(board, x + moveX, y + moveY, moveX, moveY, possibleInRow, previousPossibleNodes);
+        }
+    }
+
+    public class AiEasy : Ai
+    {
+        public AiEasy(Marker marker) : base(marker)
+        {
+        }
+
+        public override void Play(Board board)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class MediumAi : Ai
+    {
+        public MediumAi(Marker marker) : base(marker)
+        {
+        }
+
+        public override void Play(Board board)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class HardAi : Ai
+    {
+        public HardAi(Marker marker) : base(marker)
+        {
+        }
+
+        public override void Play(Board board)
+        {
+            throw new NotImplementedException();
         }
     }
 }
