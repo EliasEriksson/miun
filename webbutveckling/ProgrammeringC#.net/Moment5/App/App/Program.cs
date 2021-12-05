@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO.Compression;
 using App.Game;
 
 namespace App
@@ -12,33 +10,23 @@ namespace App
             return (int) (a - b * Math.Floor(a / b));
         }
 
-private static void ClearCurrentLine()
-{
-    var (x, y) = Console.GetCursorPosition();
-    Console.SetCursorPosition(0, y);
-    Console.Write(new string(' ', Console.BufferWidth));
-    Console.SetCursorPosition(0, y);
-}
-        
-        public static void ClearAllButN(int n)
+        private static void ClearCurrentLine()
         {
             var (x, y) = Console.GetCursorPosition();
-            for (var i = n; i < y - n; i++)
+            Console.SetCursorPosition(0, y);
+            Console.Write(new string(' ', Console.BufferWidth));
+            Console.SetCursorPosition(0, y);
+        }
+
+        public static void ClearN(int n)
+        {
+            var (x, y) = Console.GetCursorPosition();
+            for (var i = 0; i <= n; i++)
             {
-                Console.SetCursorPosition(0, i);
+                Console.SetCursorPosition(0, y - i);
                 ClearCurrentLine();
             }
         }
-
-public static void ClearN(int n)
-{
-    var (x, y) = Console.GetCursorPosition();
-    for (var i = 0; i <= n; i++)
-    {
-        Console.SetCursorPosition(0, y - i);
-        ClearCurrentLine();
-    }
-}
 
         private static int Main()
         {

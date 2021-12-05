@@ -244,7 +244,7 @@ namespace App.Game
         {
             throw new NotImplementedException();
         }
-    }
+    } // full random
 
     public class MediumAi : Ai
     {
@@ -256,7 +256,7 @@ namespace App.Game
         {
             throw new NotImplementedException();
         }
-    }
+    } // weighted random
 
     public class HardAi : Ai
     {
@@ -268,5 +268,5 @@ namespace App.Game
         {
             throw new NotImplementedException();
         }
-    }
+    } // max weight then random
 }
