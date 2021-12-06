@@ -148,20 +148,5 @@ namespace App.Game
 
             return ++inRow == 3 || this.IsWinner(marker, x + moveX, y + moveY, moveX, moveY, inRow);
         }
-
-        public static void Test()
-        {
-            var board = new Board();
-            board.SetMarker(1, 1, Marker.Circle);
-            board.SetMarker(0, 1, Marker.Cross);
-            board.SetMarker(0, 2, Marker.Circle);
-            board.SetMarker(2, 2, Marker.Cross);
-            board.SetMarker(1, 0, Marker.Circle);
-            board.SetMarker(1, 2, Marker.Cross);
-            board.SetMarker(2, 0, Marker.Circle);
-            board.SetMarker(2, 1, Marker.Cross);
-            board.SetMarker(0, 0, Marker.Circle);
-            Console.WriteLine(board);
-        }
     }
 }
