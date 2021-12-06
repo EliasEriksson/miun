@@ -148,5 +148,46 @@ namespace App.Game
 
             return ++inRow == 3 || this.IsWinner(marker, x + moveX, y + moveY, moveX, moveY, inRow);
         }
+
+        public static void Test()
+        {
+            var board = new Board();
+            board.SetMarker(1, 1, Marker.Circle);
+            board.SetMarker(0, 1, Marker.Cross);
+            board.SetMarker(0, 2, Marker.Circle);
+            board.SetMarker(2, 2, Marker.Cross);
+            board.SetMarker(1, 0, Marker.Circle);
+            board.SetMarker(1, 2, Marker.Cross);
+            board.SetMarker(2, 0, Marker.Circle);
+            board.SetMarker(2, 1, Marker.Cross);
+            board.SetMarker(0, 0, Marker.Circle);
+            Console.WriteLine(board);
+        }
+
+        public (int, int) GetSize()
+        {
+            return (this._board.GetLength(0), this._board.GetLength(1));
+        }
+
+        public int GetWidth()
+        {
+            return this._board.GetLength(0);
+        }
+
+        public int GetHeight()
+        {
+            return this._board.GetLength(1);
+        }
+        
+        public Marker Get(int x, int y)
+        {
+            return this._board[x, y];
+        }
+
+        public int WinCondition()
+        {
+            return 3;
+        }
+        
     }
 }

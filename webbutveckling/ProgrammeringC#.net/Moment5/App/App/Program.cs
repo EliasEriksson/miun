@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Game;
 
 namespace App
 {
@@ -16,16 +17,6 @@ namespace App
             Console.Write(new string(' ', Console.BufferWidth));
             Console.SetCursorPosition(0, y);
         }
-        
-        public static void ClearAllButN(int n)
-        {
-            var (x, y) = Console.GetCursorPosition();
-            for (var i = n; i < y - n; i++)
-            {
-                Console.SetCursorPosition(0, i);
-                ClearCurrentLine();
-            }
-        }
 
         public static void ClearN(int n)
         {
@@ -35,16 +26,28 @@ namespace App
                 Console.SetCursorPosition(0, y - i);
                 ClearCurrentLine();
             }
-
         }
 
         private static int Main()
         {
-            Console.Clear();
-            Console.CursorVisible = false;
-            Game.Game.MainMenu();
-            Console.CursorVisible = true;
+            // Console.Clear();
+            // Console.CursorVisible = false;
+            // Game.Game.MainMenu();
+            // Console.CursorVisible = true;
+            Test();
             return 0;
+        }
+
+        private static void Test()
+        {
+            var board = new Board();
+            board.SetMarker(0, 0, Marker.Cross);
+            board.SetMarker(2, 2, Marker.Cross);
+            board.SetMarker(0, 1, Marker.Cross);
+            board.SetMarker(1, 0, Marker.Circle);
+
+            var ai = new AiEasy(Marker.Cross);
+            ai.Play(board);
         }
     }
 }
