@@ -1,0 +1,9 @@
+0. En simpel crud ska skapas
+1. startas ett Razorpages projekt
+2. en model som representerar en film skapas
+3. ändrar titeln i Pages/Shared/_Layout
+4. seed database
+5. constraints på model [] sakerna
+6. sökning
+7. validering
+8. hur en request går igenom filstrukturen

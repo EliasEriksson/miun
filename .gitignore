@@ -8,3 +8,4 @@
 **/_ReSharper.Caches/
 **/node_modules/
 **/.credentials.json
+**/.db*
