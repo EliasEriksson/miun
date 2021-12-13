@@ -2,6 +2,8 @@
 	
 1. startas ett Razorpages projekt
 	- dotnet new webapp -o name
+	- Pages
+	- wwwroot
 	
 2. en model som representerar en film skapas
 	- dotnet-aspnet-codegenerator razorpage -m Model -dc Context -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
