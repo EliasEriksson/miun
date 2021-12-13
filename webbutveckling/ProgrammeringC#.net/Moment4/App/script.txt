@@ -1,9 +1,22 @@
 0. En simpel crud ska skapas
+	
 1. startas ett Razorpages projekt
+	- dotnet new webapp -o name
+	
 2. en model som representerar en film skapas
-3. ändrar titeln i Pages/Shared/_Layout
+	- dotnet-aspnet-codegenerator razorpage -m Model -dc Context -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
+
 4. seed database
+	- Models/seedData.cs
+	
 5. constraints på model [] sakerna
+	- Models/Movie.cs
+	
 6. sökning
-7. validering
+	- Pages/Movies/Index.cshtml.cs + Index.cshtml
+
+7. validering / constraints
+	- Modesl/Movie.cs + JQuery
+	
 8. hur en request går igenom filstrukturen
+	- Page -> _ViewStart -> Layout -> Page 
