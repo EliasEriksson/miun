@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+header, main, footer {
+    display: flex;
+    justify-content: center;
+}
+
+.window {
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.content {
+    max-width: 960px;
+}
