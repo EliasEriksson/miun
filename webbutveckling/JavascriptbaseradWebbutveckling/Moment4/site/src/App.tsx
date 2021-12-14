@@ -1,34 +1,138 @@
-import React from 'react';
-import './App.css';
+import React, {ChangeEvent, FormEvent} from 'react';
+
+const rollDice = (numberOfDice: number, sides: number): number => {
+    let sum = 0;
+    for (let i = 0; i < numberOfDice; i++) {
+        sum += Math.floor(Math.random() * (sides - 1 + 1) + 1);
+    }
+    return sum;
+}
+
 
 class Header extends React.Component {
     render = (): JSX.Element => {
         return (
-            <div className="content-wrapper">
+            <div className="content-wrapper header">
                 <header className="content"><h1>Den fantastiska React sidan!</h1></header>
             </div>
         );
     }
 }
 
+class NumberInput extends React.Component<{ label: string, defaultNumber?: number }, { number: number }> {
+    constructor(props: { label: string, defaultNumber?: number }) {
+        super(props);
+        this.state = {
+            number: props["defaultNumber"] ?? 0
+        }
+    }
 
-class Main extends React.Component {
+    onChange = (event: ChangeEvent<HTMLInputElement>) => {
+        this.setState(() => ({
+            number: parseInt(event.target.value)
+        }));
+    }
+
     render = (): JSX.Element => {
         return (
-            <div className="content-wrapper">
-                <main className="content">Main</main>
+            <label>
+                {this.props.label}
+                <input onChange={e => {
+                    this.onChange(e)
+                }} type="number" value={this.state.number}/>
+            </label>
+        );
+    }
+}
+
+class SubmitInput extends React.Component<{ label: string }> {
+    render = (): JSX.Element => {
+        return (
+            <input type="submit" value={this.props.label}/>
+        );
+    }
+}
+
+class DiceRollForm extends React.Component<{}, { result?: number }> {
+    private readonly numberOfDice: React.RefObject<NumberInput>;
+    private readonly diceMaxValue: React.RefObject<NumberInput>;
+
+    constructor(props: {}) {
+        super(props);
+        this.numberOfDice = React.createRef<NumberInput>();
+        this.diceMaxValue = React.createRef<NumberInput>();
+        this.state = {
+            result: undefined
+        }
+    }
+
+    onSubmit = (event: FormEvent) => {
+        event.preventDefault();
+
+        this.setState(() => ({
+            result: rollDice(
+                this.numberOfDice.current?.state.number ?? 0,
+                this.diceMaxValue.current?.state.number ?? 0
+            )
+        }));
+        console.log(this.state.result)
+    }
+
+    render = (): JSX.Element => {
+        if (this.state.result) {
+            return (
+                <div>
+                    <form onSubmit={event => this.onSubmit(event)}>
+                        <NumberInput label={"Antal tärningar:"}
+                                     defaultNumber={2}
+                                     ref={this.numberOfDice}/>
+                        <NumberInput label={"Antal sidor på vardera tärning:"}
+                                     defaultNumber={6}
+                                     ref={this.diceMaxValue}/>
+                        <SubmitInput label={"Rulla tärningar"}/>
+                    </form>
+                    <p>Du rullade {this.numberOfDice.current?.state.number} tärningar
+                        med {this.diceMaxValue.current?.state.number} sidor och fick summan {this.state.result}</p>
+                </div>
+            );
+        }
+        return (
+            <div>
+                <form onSubmit={event => this.onSubmit(event)}>
+                    <NumberInput label={"Antal tärningar:"} defaultNumber={2} ref={this.numberOfDice}/>
+                    <NumberInput label={"Antal sidor på vardera tärning:"} defaultNumber={6} ref={this.diceMaxValue}/>
+                    <SubmitInput label={"Rulla tärningar"}/>
+                </form>
             </div>
         );
     }
 }
 
+class Main extends React.Component<{}, { count: number }> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            count: 0
+        }
+    }
+
+    render = (): JSX.Element => {
+        return (
+            <div className="content-wrapper main">
+                <main className="content">
+                    <DiceRollForm/>
+                </main>
+            </div>
+        );
+    }
+}
 
 class Footer extends React.Component<{ repoLink: string }> {
     render = (): JSX.Element => {
         return (
-            <div className="content-wrapper">
+            <div className="content-wrapper footer">
                 <footer className="content">
-                    <p>Elias Eriksson 🄯 | <a href={this.props.repoLink}>Repo</a></p>
+                    <p>Elias Eriksson 🄯 | <a target="_blank" rel="noreferrer" href={this.props.repoLink}>Repo</a></p>
                 </footer>
             </div>
         );
