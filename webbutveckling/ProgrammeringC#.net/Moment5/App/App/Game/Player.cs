@@ -154,7 +154,7 @@ namespace App.Game
         protected Ai(Marker marker) : base(marker)
         {
         }
-        
+
         public override void Reset()
         {
         }
@@ -195,8 +195,9 @@ namespace App.Game
                 else if (possibleInRow == board.WinCondition())
                 {
                     // return current and add previous possible, set previous possible to null
-                    
-                    if (previousPossibleNodes == null) return new Node<(int, int)>(
+
+                    if (previousPossibleNodes == null)
+                        return new Node<(int, int)>(
                             (x, y),
                             Traverse(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
                         );
@@ -205,6 +206,7 @@ namespace App.Game
                         previousPossibleNodes.Add(Traverse(board, x + moveX, y + moveY, moveX, moveY, possibleInRow));
                         return previousPossibleNodes;
                     }
+
                     var n = new Node<(int, int)>(
                         (x, y),
                         Traverse(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
