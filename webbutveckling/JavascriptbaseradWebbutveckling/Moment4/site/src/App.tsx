@@ -8,12 +8,25 @@ const rollDice = (numberOfDice: number, sides: number): number => {
     return sum;
 }
 
-
 class Header extends React.Component {
     render = (): JSX.Element => {
         return (
             <div className="content-wrapper header">
-                <header className="content"><h1>Den fantastiska React sidan!</h1></header>
+                <header className="content">
+                    <h1>Den fantastiska React sidan!</h1>
+                </header>
+            </div>
+        );
+    }
+}
+
+class Footer extends React.Component<{ repoLink: string }> {
+    render = (): JSX.Element => {
+        return (
+            <div className="content-wrapper footer">
+                <footer className="content">
+                    <p>Elias Eriksson 🄯 | <a target="_blank" rel="noreferrer" href={this.props.repoLink}>Repo</a></p>
+                </footer>
             </div>
         );
     }
@@ -69,17 +82,20 @@ class DiceRollForm extends React.Component<{}, { result?: number }> {
     onSubmit = (event: FormEvent) => {
         event.preventDefault();
 
-        this.setState(() => ({
-            result: rollDice(
-                this.numberOfDice.current?.state.number ?? 0,
-                this.diceMaxValue.current?.state.number ?? 0
-            )
-        }));
-        console.log(this.state.result)
+        const numberOfDice = this.numberOfDice.current?.state.number ?? 0;
+        const numberOfSides = this.diceMaxValue.current?.state.number ?? 0;
+        if (numberOfDice > 0 && numberOfSides > 0) {
+            this.setState(() => ({
+                result: rollDice(
+                    numberOfDice,
+                    numberOfSides
+                )
+            }));
+        }
     }
 
     render = (): JSX.Element => {
-        if (this.state.result) {
+        if (this.state.result !== undefined) {
             return (
                 <div>
                     <form onSubmit={event => this.onSubmit(event)}>
@@ -108,32 +124,13 @@ class DiceRollForm extends React.Component<{}, { result?: number }> {
     }
 }
 
-class Main extends React.Component<{}, { count: number }> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            count: 0
-        }
-    }
-
+class Main extends React.Component {
     render = (): JSX.Element => {
         return (
             <div className="content-wrapper main">
                 <main className="content">
                     <DiceRollForm/>
                 </main>
-            </div>
-        );
-    }
-}
-
-class Footer extends React.Component<{ repoLink: string }> {
-    render = (): JSX.Element => {
-        return (
-            <div className="content-wrapper footer">
-                <footer className="content">
-                    <p>Elias Eriksson 🄯 | <a target="_blank" rel="noreferrer" href={this.props.repoLink}>Repo</a></p>
-                </footer>
             </div>
         );
     }
