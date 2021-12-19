@@ -298,9 +298,11 @@ namespace App.Game
             for (var i = 0; i < board.GetHeight(); i++)
             {
                 moves = this.FindMoves(board, 0, i, 1, 0);
+                if (board.GetWidth() - moves?.GetLength() >= board.WinCondition() - 1)
+                {
+                    // TODO investigate if its a win.                    
+                }
                 moves?.AddDataToList(ref result);
-                
-                
                 Console.WriteLine($"[{String.Join(", ", result)}]");
                 Console.Write("");
             } // all rows
