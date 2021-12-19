@@ -96,7 +96,7 @@ namespace App.Game
     public abstract class Ai : Player
     {
         private readonly Random _random;
-        private class Node<T>
+        protected class Node<T>
         {
             private readonly T _data;
             private Node<T> _next;
@@ -194,7 +194,7 @@ namespace App.Game
             return $"Ai {(char) this.GetMarker()}";
         }
 
-        private Node<(int, int)> Traverse(Board board, int x, int y, int moveX, int moveY, int possibleInRow = 0,
+        private Node<(int, int)> FindMoves(Board board, int x, int y, int moveX, int moveY, int possibleInRow = 0,
             Node<(int, int)> previousPossibleNodes = null)
         {
             if (x >= board.GetWidth() || y >= board.GetHeight())
@@ -229,17 +229,17 @@ namespace App.Game
                     if (previousPossibleNodes == null)
                         return new Node<(int, int)>(
                             (x, y),
-                            Traverse(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
+                            FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
                         );
                     if (current == this.GetMarker())
                     {
-                        previousPossibleNodes.Add(Traverse(board, x + moveX, y + moveY, moveX, moveY, possibleInRow));
+                        previousPossibleNodes.Add(FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow));
                         return previousPossibleNodes;
                     }
 
                     var n = new Node<(int, int)>(
                         (x, y),
-                        Traverse(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
+                        FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
                     );
                     n.Add(previousPossibleNodes);
                     return n;
@@ -251,7 +251,7 @@ namespace App.Game
                     {
                         return new Node<(int, int)>(
                             (x, y),
-                            Traverse(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
+                            FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
                         );
                     }
                 }
@@ -262,46 +262,52 @@ namespace App.Game
                 previousPossibleNodes = null;
             }
 
-            return Traverse(board, x + moveX, y + moveY, moveX, moveY, possibleInRow, previousPossibleNodes);
+            return FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow, previousPossibleNodes);
         }
 
         protected List<(int, int)> Traverse(Board board)
         {
             var result = new List<(int, int)>();
-            
+            Node<(int, int)> moves;
+
             for (var i = 0; i < board.GetHeight() - board.WinCondition() + 1; i++)
             {
-                this.Traverse(board, 0, i, 1, 1)?.AddDataToList(ref result);
+                moves = this.FindMoves(board, 0, i, 1, 1);
+                moves?.AddDataToList(ref result);
+                
                 Console.WriteLine($"[{String.Join(", ", result)}]");
                 Console.Write("");
             } // top left to bottom right
 
             for (var i = board.WinCondition() - 1; i < board.GetHeight(); i++)
             {
-                this.Traverse(board, 0, i, 1, -1)?.AddDataToList(ref result);
+                this.FindMoves(board, 0, i, 1, -1)?.AddDataToList(ref result);
                 Console.WriteLine($"[{String.Join(", ", result)}]");
                 Console.Write("");
             } // bottom left to top right
 
             for (var i = 1; i < board.GetWidth() - board.WinCondition(); i++)
             {
-                this.Traverse(board, i, 0, 1, 1)?.AddDataToList(ref result);
+                this.FindMoves(board, i, 0, 1, 1)?.AddDataToList(ref result);
                 Console.WriteLine($"[{String.Join(", ", result)}]");
-                this.Traverse(board, i, board.GetHeight() - 1, 1, -1)?.AddDataToList(ref result);
+                this.FindMoves(board, i, board.GetHeight() - 1, 1, -1)?.AddDataToList(ref result);
                 Console.WriteLine($"[{String.Join(", ", result)}]");
                 Console.Write("");
             }
 
             for (var i = 0; i < board.GetHeight(); i++)
             {
-                this.Traverse(board, 0, i, 1, 0)?.AddDataToList(ref result);
+                moves = this.FindMoves(board, 0, i, 1, 0);
+                moves?.AddDataToList(ref result);
+                
+                
                 Console.WriteLine($"[{String.Join(", ", result)}]");
                 Console.Write("");
             } // all rows
 
             for (var i = 0; i < board.GetWidth(); i++)
             {
-                this.Traverse(board, i, 0, 0, 1)?.AddDataToList(ref result);
+                this.FindMoves(board, i, 0, 0, 1)?.AddDataToList(ref result);
                 Console.WriteLine($"[{String.Join(", ", result)}]");
                 Console.Write("");
             } // all columns
@@ -311,6 +317,8 @@ namespace App.Game
             
             return result;
         }
+
+        
     }
 
     public class EasyAi : Ai
@@ -382,5 +390,67 @@ namespace App.Game
 
             return mostCommon[this.RandomInt(mostCommon.Count)];
         }
+        
+        private Node<(int, int)> IdentifyWin(Board board, Marker player, int x, int y, int moveX, int moveY, Node<(int, int)> node = null)
+        {
+            if (x >= board.GetWidth() || y >= board.GetHeight())
+            {
+                return null;
+            }
+
+            var current = board.Get(x, y);
+            if (current == player || current == Marker.None)
+            {
+                if (node == null)
+                {
+                    node = new Node<(int, int)>((x, y));
+                }
+                else
+                {
+                    node.Add((x, y));
+                }
+                
+                if (node.GetLength() > board.WinCondition())
+                {
+                    node = node.GetNext();
+                }
+
+                if (node.GetLength() == board.WinCondition())
+                {
+                    if (this.CountMarker(board, Marker.None, node) == 1)
+                    {
+                        while (board.Get(node.GetData()) != Marker.None)
+                        {
+                            node = node.GetNext();
+                        }
+                        return new Node<(int, int)>(node.GetData());
+                    }
+                }
+            }
+            else
+            {
+                node = null;
+            }
+
+            return this.IdentifyWin(board, player, x + moveX, y + moveY, moveX, moveY, node);
+        }
+
+        private int CountMarker(Board board, Marker marker, Node<(int, int)> node)
+        {
+            if (node == null)
+            {
+                return 0;
+            }
+            
+            var (x, y) = node.GetData();
+            var current = board.Get(x, y);
+            if (current == marker)
+            {
+                return 1 + CountMarker(board, marker, node.GetNext());
+            }
+
+            return CountMarker(board, marker, node.GetNext());
+        }
+        
     } // max weight then random
 }

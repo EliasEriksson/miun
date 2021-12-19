@@ -185,6 +185,12 @@ namespace App.Game
             return this._board[x, y];
         }
 
+        public Marker Get((int, int) coordinate)
+        {
+            var (x, y) = coordinate;
+            return this.Get(x, y);
+        }
+        
         public List<(int, int)> GetEmptySlots()
         {
             var remainingCoordinates = new List<(int, int)>();
