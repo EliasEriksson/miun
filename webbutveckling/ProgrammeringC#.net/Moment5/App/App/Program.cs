@@ -30,11 +30,11 @@ namespace App
 
         private static int Main()
         {
-            // Console.Clear();
-            // Console.CursorVisible = false;
-            // Game.Game.MainMenu();
-            // Console.CursorVisible = true;
-            Test();
+            Console.Clear();
+            Console.CursorVisible = false;
+            Game.Game.MainMenu();
+            Console.CursorVisible = true;
+            // Test();
             return 0;
         }
 
@@ -46,7 +46,7 @@ namespace App
             board.SetMarker(0, 1, Marker.Cross);
             board.SetMarker(1, 0, Marker.Circle);
 
-            var ai = new AiEasy(Marker.Cross);
+            var ai = new EasyAi(Marker.Cross);
             ai.Play(board);
         }
     }

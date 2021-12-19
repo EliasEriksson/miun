@@ -23,7 +23,8 @@ namespace App.Game
             {
                 foreach (var player in this._players)
                 {
-                    player.Play(board);
+                    var (x, y) = player.Play(board);
+                    board.SetMarker(x, y, player.GetMarker());
                     if (!board.IsWinner(player)) continue;
                     try
                     {
@@ -72,8 +73,8 @@ namespace App.Game
             (string, Action)[] actions =
             {
                 ("Player Vs Player", () => new Game(new Player[]{new Human(Marker.Cross), new Human(Marker.Circle)}).Start()),
-                ("Player Vs Ai", () => new Game(new Player[]{new Human(Marker.Cross), new AiEasy(Marker.Circle)}).Start()),
-                ("Ai Vs Ai", () => new Game(new Player[]{ new AiEasy(Marker.Cross), new AiEasy(Marker.Circle)}).Start()),
+                ("Player Vs Ai", () => new Game(new Player[]{new Human(Marker.Cross), new MediumAi(Marker.Circle)}).Start()),
+                ("Ai Vs Ai", () => new Game(new Player[]{ new EasyAi(Marker.Cross), new EasyAi(Marker.Circle)}).Start()),
                 ("Exit", () => throw new Exit())
             };
             try

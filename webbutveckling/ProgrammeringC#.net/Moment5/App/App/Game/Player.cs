@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace App.Game
 {
@@ -13,7 +15,7 @@ namespace App.Game
             this._score = 0;
         }
 
-        public abstract void Play(Board board);
+        public abstract (int, int) Play(Board board);
 
         public Marker GetMarker()
         {
@@ -29,8 +31,7 @@ namespace App.Game
         {
             this._score++;
         }
-
-        public abstract void Reset();
+        
     }
 
     public class Human : Player
@@ -44,7 +45,7 @@ namespace App.Game
             this._selectY = 1;
         }
 
-        public override void Play(Board board)
+        public override (int, int) Play(Board board)
         {
             while (true)
             {
@@ -71,9 +72,9 @@ namespace App.Game
                 {
                     try
                     {
-                        board.SetMarker(this._selectX, this._selectY, this.GetMarker());
+                        // board.SetMarker(this._selectX, this._selectY, this.GetMarker());
                         Program.ClearN(15);
-                        return;
+                        return (this._selectX, this._selectY);
                     }
                     catch (Board.DuplicateEntryException)
                     {
@@ -86,12 +87,6 @@ namespace App.Game
             }
         }
 
-        public override void Reset()
-        {
-            this._selectX = 1;
-            this._selectY = 1;
-        }
-
         public override string ToString()
         {
             return $"Player {(char) this.GetMarker()}";
@@ -100,21 +95,33 @@ namespace App.Game
 
     public abstract class Ai : Player
     {
-        protected class Node<T>
+        private readonly Random _random;
+        private class Node<T>
         {
             private readonly T _data;
             private Node<T> _next;
+            private int _length;
 
             public Node(T data)
             {
                 this._data = data;
                 this._next = null;
+                this._length = 1;
             }
 
             public Node(T data, Node<T> next)
             {
                 this._data = data;
                 this._next = next;
+                if (next == null)
+                {
+                    this._length = 1;
+                }
+                else
+                {
+                    this._length = this._next._length + 1;
+                }
+                
             }
 
             public T GetData()
@@ -125,6 +132,11 @@ namespace App.Game
             public Node<T> GetNext()
             {
                 return this._next;
+            }
+
+            public int GetLength()
+            {
+                return this._length;
             }
 
             public Node<T> Add(T data)
@@ -140,6 +152,7 @@ namespace App.Game
 
             public void Add(Node<T> node)
             {
+                this._length += node._length;
                 if (this._next == null)
                 {
                     this._next = node;
@@ -149,22 +162,39 @@ namespace App.Game
                     this._next.Add(node);
                 }
             }
+
+            public void AddDataToList(ref List<T> list)
+            {
+                list.Add(this.GetData());
+                if (this._next == null)
+                {
+                    return;
+                }
+                this._next.AddDataToList(ref list);
+            }
         }
 
         protected Ai(Marker marker) : base(marker)
         {
+            this._random = new Random();
         }
 
-        public override void Reset()
+        private int RandomInt(int low, int high)
         {
+            return this._random.Next(low, high);
         }
 
+        protected int RandomInt(int high)
+        {
+            return this.RandomInt(0, high);
+        }
+        
         public override string ToString()
         {
             return $"Ai {(char) this.GetMarker()}";
         }
 
-        protected Node<(int, int)> Traverse(Board board, int x, int y, int moveX, int moveY, int possibleInRow = 0,
+        private Node<(int, int)> Traverse(Board board, int x, int y, int moveX, int moveY, int possibleInRow = 0,
             Node<(int, int)> previousPossibleNodes = null)
         {
             if (x >= board.GetWidth() || y >= board.GetHeight())
@@ -234,17 +264,68 @@ namespace App.Game
 
             return Traverse(board, x + moveX, y + moveY, moveX, moveY, possibleInRow, previousPossibleNodes);
         }
+
+        protected List<(int, int)> Traverse(Board board)
+        {
+            var result = new List<(int, int)>();
+            
+            for (var i = 0; i < board.GetHeight() - board.WinCondition() + 1; i++)
+            {
+                this.Traverse(board, 0, i, 1, 1)?.AddDataToList(ref result);
+                Console.WriteLine($"[{String.Join(", ", result)}]");
+                Console.Write("");
+            } // top left to bottom right
+
+            for (var i = board.WinCondition() - 1; i < board.GetHeight(); i++)
+            {
+                this.Traverse(board, 0, i, 1, -1)?.AddDataToList(ref result);
+                Console.WriteLine($"[{String.Join(", ", result)}]");
+                Console.Write("");
+            } // bottom left to top right
+
+            for (var i = 1; i < board.GetWidth() - board.WinCondition(); i++)
+            {
+                this.Traverse(board, i, 0, 1, 1)?.AddDataToList(ref result);
+                Console.WriteLine($"[{String.Join(", ", result)}]");
+                this.Traverse(board, i, board.GetHeight() - 1, 1, -1)?.AddDataToList(ref result);
+                Console.WriteLine($"[{String.Join(", ", result)}]");
+                Console.Write("");
+            }
+
+            for (var i = 0; i < board.GetHeight(); i++)
+            {
+                this.Traverse(board, 0, i, 1, 0)?.AddDataToList(ref result);
+                Console.WriteLine($"[{String.Join(", ", result)}]");
+                Console.Write("");
+            } // all rows
+
+            for (var i = 0; i < board.GetWidth(); i++)
+            {
+                this.Traverse(board, i, 0, 0, 1)?.AddDataToList(ref result);
+                Console.WriteLine($"[{String.Join(", ", result)}]");
+                Console.Write("");
+            } // all columns
+
+            Console.WriteLine($"[{String.Join(", ", result)}]");
+            Console.Write("");
+            
+            return result;
+        }
     }
 
-    public class AiEasy : Ai
+    public class EasyAi : Ai
     {
-        public AiEasy(Marker marker) : base(marker)
+        public EasyAi(Marker marker) : base(marker)
         {
         }
 
-        public override void Play(Board board)
+        public override (int, int) Play(Board board)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Currently playing: {this}\n");
+            board.Draw(0, 0);
+            Thread.Sleep(1500);
+            var availableCoordinates = board.GetEmptySlots();
+            return availableCoordinates[this.RandomInt(availableCoordinates.Count)];
         }
     } // full random
 
@@ -254,9 +335,10 @@ namespace App.Game
         {
         }
 
-        public override void Play(Board board)
+        public override (int, int) Play(Board board)
         {
-            throw new NotImplementedException();
+            var result = this.Traverse(board);
+            return result[this.RandomInt(result.Count)];
         }
     } // weighted random
 
@@ -266,9 +348,39 @@ namespace App.Game
         {
         }
 
-        public override void Play(Board board)
+        public override (int, int) Play(Board board)
         {
-            throw new NotImplementedException();
+            var result = this.Traverse(board);
+
+            var foo = new Dictionary<(int, int), int>();
+            foreach (var item in result)
+            {
+                if (!foo.ContainsKey(item))
+                {
+                    foo[item] = 1;
+                }
+                else
+                {
+                    foo[item]++;
+                }
+            }
+
+            var mostCommon = new List<(int, int)>();
+            var highestCount = 0;
+            foreach (var (coordinate, count) in foo)
+            {
+                if (count > highestCount)
+                {
+                    highestCount = count;
+                    mostCommon.Clear();
+                    mostCommon.Add(coordinate);
+                } else if (count == highestCount)
+                {
+                    mostCommon.Add(coordinate);
+                }
+            }
+
+            return mostCommon[this.RandomInt(mostCommon.Count)];
         }
     } // max weight then random
 }

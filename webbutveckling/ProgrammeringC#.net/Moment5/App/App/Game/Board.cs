@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace App.Game
 {
@@ -184,10 +185,27 @@ namespace App.Game
             return this._board[x, y];
         }
 
+        public List<(int, int)> GetEmptySlots()
+        {
+            var remainingCoordinates = new List<(int, int)>();
+
+            for (var x = 0; x < this.GetWidth(); x++)
+            {
+                for (var y = 0; y < this.GetHeight(); y++)
+                {
+                    if (this.Get(x, y) == Marker.None)
+                    {
+                        remainingCoordinates.Add((x, y));
+                    }
+                }
+            }
+
+            return remainingCoordinates;
+        }
+        
         public int WinCondition()
         {
             return 3;
         }
-        
     }
 }
