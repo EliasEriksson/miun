@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using App.Game;
 
 namespace App
@@ -34,20 +35,7 @@ namespace App
             Console.CursorVisible = false;
             Game.Game.MainMenu();
             Console.CursorVisible = true;
-            // Test();
             return 0;
-        }
-
-        private static void Test()
-        {
-            var board = new Board();
-            board.SetMarker(0, 0, Marker.Cross);
-            board.SetMarker(2, 2, Marker.Cross);
-            board.SetMarker(0, 1, Marker.Cross);
-            board.SetMarker(1, 0, Marker.Circle);
-
-            var ai = new EasyAi(Marker.Cross);
-            ai.Play(board);
         }
     }
 }
