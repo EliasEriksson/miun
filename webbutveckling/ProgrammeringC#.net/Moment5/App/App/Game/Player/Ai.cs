@@ -39,10 +39,10 @@ namespace App.Game.Player
             var current = board.Get(x, y);
             if (current == marker)
             {
-                return 1 + CountMarker(board, marker, node.GetNext());
+                return 1 + this.CountMarker(board, marker, node.GetNext());
             }
 
-            return CountMarker(board, marker, node.GetNext());
+            return this.CountMarker(board, marker, node.GetNext());
         }
         
         protected (int, int) FindMove(Board board, List<(int, int)> moves)
@@ -119,17 +119,17 @@ namespace App.Game.Player
                     if (previousPossibleNodes == null)
                         return new Node<(int, int)>(
                             (x, y),
-                            FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
+                            this.FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
                         );
                     if (current == this.GetMarker())
                     {
-                        previousPossibleNodes.Add(FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow));
+                        previousPossibleNodes.Add(this.FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow));
                         return previousPossibleNodes;
                     }
 
                     var n = new Node<(int, int)>(
                         (x, y),
-                        FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
+                        this.FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
                     );
                     n.Add(previousPossibleNodes);
                     return n;
@@ -141,7 +141,7 @@ namespace App.Game.Player
                     {
                         return new Node<(int, int)>(
                             (x, y),
-                            FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
+                            this.FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
                         );
                     }
                 }
@@ -152,7 +152,7 @@ namespace App.Game.Player
                 previousPossibleNodes = null;
             }
 
-            return FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow, previousPossibleNodes);
+            return this.FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow, previousPossibleNodes);
         }
         
         protected Node<(int, int)> IdentifyWin(Board board, Marker player, int x, int y, int moveX, int moveY, Node<(int, int)> node = null)
