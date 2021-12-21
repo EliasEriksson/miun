@@ -22,12 +22,15 @@ namespace App.Game
                 {
                     Console.WriteLine($"Currently playing: {player}");
                     player.Play(board);
-                    board.Erase(1);
+                    board.Erase(2);
+                    Console.Clear();
+                    this.DrawScore();
 
                     if (board.IsWinner(player))
                     {
                         player.GrantScore();
                         Program.ClearN(1);
+                        Console.Clear();
                         this.DrawScore();
                         board.Draw(0, 0);
                         Console.WriteLine($"{player} won!");
@@ -37,7 +40,7 @@ namespace App.Game
                             return;
                         }
 
-                        board.Erase(1);
+                        board.Erase(2);
                         board = new Board(x, y, win);
                     }
                     else if (board.GetUnchangedPositions().Count == 0) // draw
@@ -47,6 +50,7 @@ namespace App.Game
                         if (!Continue())
                         {
                             board.Erase(3);
+                            Console.Clear();
                             return;
                         }
 

@@ -45,11 +45,19 @@ namespace App
         public static void ClearN(int n)
         {
             var (x, y) = Console.GetCursorPosition();
-            for (var i = 0; i <= n; i++)
+            try
             {
-                Console.SetCursorPosition(0, y - i);
-                ClearCurrentLine();
+                for (var i = 0; i <= n; i++)
+                {
+                    Console.SetCursorPosition(0, y - i);
+                    ClearCurrentLine();
+                }
             }
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.Clear();
+            }
+            
         }
 
         private static int Main()

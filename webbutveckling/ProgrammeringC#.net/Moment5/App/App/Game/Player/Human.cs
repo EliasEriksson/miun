@@ -9,8 +9,8 @@ namespace App.Game.Player
 
         public Human(Marker marker) : base(marker)
         {
-            this._selectX = 1;
-            this._selectY = 1;
+            this._selectX = 0;
+            this._selectY = 0;
         }
 
         public override void Play(Board board)
