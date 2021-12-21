@@ -11,24 +11,24 @@ namespace App.Game
         {
             this._players = players;
         }
-
+        
         private void Start(int x, int y, int win)
         {
-            DrawScore();
+            this.DrawScore();
             var board = new Board(x, y, win);
             while (true)
             {
                 foreach (var player in this._players)
                 {
-                    Console.WriteLine($"Currently playing: {player}\n");
+                    Console.WriteLine($"Currently playing: {player}");
                     player.Play(board);
-                    board.Erase(2);
+                    board.Erase(1);
 
                     if (board.IsWinner(player))
                     {
                         player.GrantScore();
                         Program.ClearN(1);
-                        DrawScore();
+                        this.DrawScore();
                         board.Draw(0, 0);
                         Console.WriteLine($"{player} won!");
                         if (!Continue())
@@ -37,7 +37,7 @@ namespace App.Game
                             return;
                         }
 
-                        board.Erase(2);
+                        board.Erase(1);
                         board = new Board(x, y, win);
                     }
                     else if (board.GetUnchangedPositions().Count == 0) // draw
