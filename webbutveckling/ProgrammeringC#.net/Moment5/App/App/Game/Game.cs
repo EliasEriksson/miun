@@ -5,7 +5,7 @@ namespace App.Game
     public class Game
     {
         private readonly Player.Player[] _players;
-        
+
         private Game(Player.Player[] players)
         {
             this._players = players;
@@ -34,7 +34,10 @@ namespace App.Game
                         Console.WriteLine();
                         Console.WriteLine(board);
                         Console.WriteLine($"{player} won!");
-                        Continue();
+                        if (!Continue())
+                        {
+                            return;
+                        }
                         board = new Board();
                         Program.ClearN(15);
                     }
@@ -56,43 +59,88 @@ namespace App.Game
 
             Console.WriteLine("|");
         }
-        
-        private static void Continue()
+
+        private static bool Continue()
         {
             Console.WriteLine("Continue playing?");
-            (string, Action)[] actions =
+            (string, Func<bool>)[] actions =
             {
-                ("Yes", () => { }),
-                ("No", () => throw new Exit())
+                ("Yes", () => true),
+                ("No", () => false)
             };
-            Chose(actions);
+            return Chose(actions);
         }
 
         public static void MainMenu()
         {
-            (string, Action)[] actions =
+            (string, Func<bool>)[] actions =
             {
-                ("Player Vs Player", () => new Game(new Player.Player[]{new Player.Human(Marker.Cross), new Player.Human(Marker.Circle)}).Start()),
-                ("Player Vs Ai", () => new Game(new Player.Player[]{new Player.Human(Marker.Cross), new Player.MediumAi(Marker.Circle)}).Start()),
-                ("Ai Vs Ai", () => new Game(new Player.Player[]{ new Player.MediumAi(Marker.Cross), new Player.EasyAi(Marker.Circle)}).Start()),
-                ("Exit", () => throw new Exit())
-            };
-            try
-            {
-                while (true)
+                ("Player Vs Player", () =>
                 {
-                    Chose(actions);
-                }
-            }
-            catch (Exit)
+                    new Game(new Player.Player[]
+                    {
+                        new Player.Human(Marker.Cross), new Player.Human(Marker.Circle)
+                    }).Start();
+                    Console.WriteLine("returning");
+                    return false;
+                }),
+                ("Player Vs Ai", () =>
+                {
+                    new Game(new Player.Player[]
+                    {
+                        new Player.Human(Marker.Cross), ChoseAi(Marker.Circle)
+                    }).Start();
+                    return false;
+                }),
+                ("Ai Vs Ai", () =>
+                {
+                    new Game(new Player.Player[]
+                    {
+                        ChoseAi(Marker.Cross), ChoseAi(Marker.Circle)
+                    }).Start();
+                    return false;
+                }),
+                ("Exit", () => true)
+            };
+
+            while (!Chose(actions))
             {
             }
+
         }
 
-        private static void Chose((string, Action)[] actions)
+        private static Player.Ai ChoseAi(Marker marker)
+        {
+            Player.Ai ai = null;
+
+            (string, Func<bool>)[] actions =
+            {
+                ("Easy Ai", () =>
+                {
+                    ai = new Player.EasyAi(marker);
+                    return false;
+                }),
+                ("Medium Ai", () =>
+                {
+                    ai = new Player.MediumAi(marker);
+                    return false;
+                }),
+                ("Hard Ai", () =>
+                {
+                    ai = new Player.HardAi(marker);
+                    return false;
+                })
+            };
+
+            Chose(actions);
+
+            return ai;
+        }
+
+        private static bool Chose((string, Func<bool>)[] actions)
         {
             var current = 0;
-            
+
             while (true)
             {
                 for (var i = 0; i < actions.Length; i++)
@@ -112,8 +160,7 @@ namespace App.Game
                         break;
                     case ConsoleKey.Enter or ConsoleKey.Spacebar:
                         Program.ClearN(actions.Length);
-                        actions[current].Item2();
-                        return;
+                        return actions[current].Item2();
                 }
 
                 current = Program.Mod(current, actions.Length);
