@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Game;
+using App.Generics;
 
 namespace App
 {
@@ -31,11 +32,18 @@ namespace App
 
         private static int Main()
         {
-            Console.Clear();
-            Console.CursorVisible = false;
-            Game.Game.MainMenu();
-            Console.CursorVisible = true;
+            // Console.Clear();
+            // Console.CursorVisible = false;
+            // Game.Game.MainMenu();
+            // Console.CursorVisible = true;
+            Test();
             return 0;
+        }
+
+        private static void Test()
+        {
+            var grid = new Grid<int>(2, 3, 0);
+
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using App.Generics;
 
 namespace App.Game.Player
 {

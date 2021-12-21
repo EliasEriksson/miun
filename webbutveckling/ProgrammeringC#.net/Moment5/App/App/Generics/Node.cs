@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace App.Game.Player
+namespace App.Generics
 {
     public class Node<T>
         {
