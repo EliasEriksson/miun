@@ -50,13 +50,6 @@ namespace App.Game
             Console.WriteLine(this.GetDrawing(selectX, selectY));
         }
 
-        private string DrawLine()
-        {
-            return "  " + string.Join('|', Enumerable.Range(0, this.GetWidth()).Select(
-                (_) => "         ")
-            ) + "\n";
-        }
-
         private string DrawLine(Marker[] markers, bool selected)
         {
             return (selected ? ">" : " ") + string.Join('|', Enumerable.Range(0, this.GetWidth()).Select(
