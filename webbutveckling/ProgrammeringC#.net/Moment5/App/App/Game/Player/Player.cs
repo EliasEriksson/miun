@@ -11,7 +11,7 @@ namespace App.Game.Player
             this._score = 0;
         }
 
-        public abstract (int, int) Play(Board board);
+        public abstract void Play(Board board);
 
         public Marker GetMarker()
         {
@@ -27,6 +27,5 @@ namespace App.Game.Player
         {
             this._score++;
         }
-        
     }
 }

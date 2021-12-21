@@ -13,7 +13,7 @@ namespace App.Game.Player
             this._selectY = 1;
         }
 
-        public override (int, int) Play(Board board)
+        public override void Play(Board board)
         {
             while (true)
             {
@@ -40,9 +40,9 @@ namespace App.Game.Player
                 {
                     try
                     {
-                        // board.SetMarker(this._selectX, this._selectY, this.GetMarker());
+                        board.Set(this._selectX, this._selectY, this.GetMarker());
                         Program.ClearN(15);
-                        return (this._selectX, this._selectY);
+                        return;
                     }
                     catch (Board.DuplicateEntryException)
                     {

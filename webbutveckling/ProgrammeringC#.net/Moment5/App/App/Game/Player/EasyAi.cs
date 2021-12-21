@@ -9,13 +9,13 @@ namespace App.Game.Player
         {
         }
 
-        public override (int, int) Play(Board board)
+        public override void Play(Board board)
         {
             Console.WriteLine($"Currently playing: {this}\n");
             board.Draw(0, 0);
             Thread.Sleep(1500);
-            var availableCoordinates = board.GetEmptySlots();
-            return availableCoordinates[this.RandomInt(availableCoordinates.Count)];
+            var availableCoordinates = board.GetUnchangedPositions();
+            board.Set(availableCoordinates[this.RandomInt(availableCoordinates.Count)], this.GetMarker());
         }
     } // full random
 }

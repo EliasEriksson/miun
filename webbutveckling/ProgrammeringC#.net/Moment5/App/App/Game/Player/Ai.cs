@@ -80,7 +80,7 @@ namespace App.Game.Player
                 return mostCommon[this.RandomInt(mostCommon.Count)];
             }
 
-            var availableCoordinates = board.GetEmptySlots();
+            var availableCoordinates = board.GetUnchangedPositions();
             return availableCoordinates[this.RandomInt(availableCoordinates.Count)];
         }
         
@@ -97,7 +97,7 @@ namespace App.Game.Player
             {
                 possibleInRow += 1;
 
-                if (possibleInRow < board.WinCondition())
+                if (possibleInRow < board.GetWin())
                 {
                     if (current == Marker.None)
                     {
@@ -112,7 +112,7 @@ namespace App.Game.Player
                         }
                     }
                 }
-                else if (possibleInRow == board.WinCondition())
+                else if (possibleInRow == board.GetWin())
                 {
                     // return current and add previous possible, set previous possible to null
 
@@ -174,12 +174,12 @@ namespace App.Game.Player
                     node.Add((x, y));
                 }
                 
-                if (node.GetLength() > board.WinCondition())
+                if (node.GetLength() > board.GetWin())
                 {
                     node = node.GetNext();
                 }
 
-                if (node.GetLength() == board.WinCondition())
+                if (node.GetLength() == board.GetWin())
                 {
                     if (this.CountMarker(board, Marker.None, node) == 1)
                     {
@@ -202,17 +202,17 @@ namespace App.Game.Player
         protected void Traverse(Board board, Func< int, int ,int, int, bool> method)
         {
 
-            for (var i = 0; i < board.GetHeight() - board.WinCondition() + 1; i++)
+            for (var i = 0; i < board.GetHeight() - board.GetWin() + 1; i++)
             {
                 if (method(0, i, 1, 1)) return;
             } // top left to bottom right
  
-            for (var i = board.WinCondition() - 1; i < board.GetHeight(); i++)
+            for (var i = board.GetWin() - 1; i < board.GetHeight(); i++)
             {
                 if (method(0, i, 1, -1)) return;
             } // bottom left to top right
 
-            for (var i = 1; i < board.GetWidth() - board.WinCondition(); i++)
+            for (var i = 1; i < board.GetWidth() - board.GetWin(); i++)
             {
                 if(method(i, 0, 1, 1)) return;
                 if(method(i, board.GetHeight() - 1, 1, -1)) return;

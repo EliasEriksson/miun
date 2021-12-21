@@ -4,8 +4,8 @@ namespace App.Generics
 {
     public class Grid<T>
     {
-        private readonly T[,] _grid;
-        private readonly T _init;
+        protected readonly T[,] _grid;
+        protected readonly T _init;
 
         public Grid(int width, int height, T init)
         {

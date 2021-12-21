@@ -11,7 +11,7 @@ namespace App.Game.Player
         {
         }
 
-        public override (int, int) Play(Board board)
+        public override void Play(Board board)
         {
             Console.WriteLine($"Currently playing: {this}\n");
             board.Draw(0, 0);
@@ -21,7 +21,7 @@ namespace App.Game.Player
             this.Traverse(board, (x, y, moveX, moveY) =>
             {
                 var moves = this.FindMoves(board, x, y, moveX, moveY);
-                if (board.GetWidth() - moves?.GetLength() >= board.WinCondition() - 1)
+                if (board.GetWidth() - moves?.GetLength() >= board.GetWin() - 1)
                 {
                     move = this.IdentifyWin(board, this.GetMarker(), x, y, moveX, moveY);
                     if (move != null)
@@ -35,16 +35,18 @@ namespace App.Game.Player
 
             if (move != null)
             {
-                return move.GetData();
+                board.Set(move.GetData(), this.GetMarker());
+                return;
             }
 
             if (result.Count > 0)
             {
-                return result[this.RandomInt(result.Count)];
+                board.Set(result[this.RandomInt(result.Count)], this.GetMarker());
+                return;
             }
 
-            var availableMoves = board.GetEmptySlots();
-            return availableMoves[this.RandomInt(availableMoves.Count)];
+            var availableMoves = board.GetUnchangedPositions();
+            board.Set(availableMoves[this.RandomInt(availableMoves.Count)], this.GetMarker());
         }
     } // weighted random
 }

@@ -14,13 +14,12 @@ namespace App.Game
         private void Start()
         {
             DrawScore();
-            var board = new Board();
+            var board = new Board(3, 3, 3);
             while (true)
             {
                 foreach (var player in this._players)
                 {
-                    var (x, y) = player.Play(board);
-                    board.SetMarker(x, y, player.GetMarker());
+                    player.Play(board);
                     if (!board.IsWinner(player)) continue;
 
                     player.GrantScore();
@@ -35,7 +34,7 @@ namespace App.Game
                         return;
                     }
 
-                    board = new Board();
+                    board = new Board(3, 3, 3);
                     Program.ClearN(15);
                 }
             }
