@@ -20,14 +20,12 @@ namespace App.Game.Player
             board.Traverse((x, y, moveX, moveY) =>
             {
                 var moves = this.FindMoves(board, x, y, moveX, moveY);
-                if (board.GetWidth() - moves?.GetLength() >= board.GetWin() - 1)
+                move = this.IdentifyWin(board, this.GetMarker(), x, y, moveX, moveY);
+                if (move != null)
                 {
-                    move = this.IdentifyWin(board, this.GetMarker(), x, y, moveX, moveY);
-                    if (move != null)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
+
                 moves?.AddDataToList(ref result);
                 return false;
             });

@@ -22,15 +22,13 @@ namespace App.Game.Player
             board.Traverse((x, y, moveX, moveY) =>
             {
                 var moves = this.FindMoves(board, x, y, moveX, moveY);
-                // TODO FUCK THIS IS A BUG NOT CORRECT. WORKS BY COINSIDENCE ON 3x3 board
-                if (board.GetWidth() - moves?.GetLength() >= board.GetWin() - 1)
+
+                move = this.IdentifyWin(board, this.GetMarker(), x, y, moveX, moveY);
+                if (move != null)
                 {
-                    move = this.IdentifyWin(board, this.GetMarker(), x, y, moveX, moveY);
-                    if (move != null)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
+                
                 moves?.AddDataToList(ref moveFrequencyList);
                 return false;
             });
