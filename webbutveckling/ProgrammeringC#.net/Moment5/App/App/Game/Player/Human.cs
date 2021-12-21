@@ -17,7 +17,6 @@ namespace App.Game.Player
         {
             while (true)
             {
-                Console.WriteLine($"Currently playing: {this}\n");
                 board.Draw(this._selectX, this._selectY);
                 var key = Console.ReadKey().Key;
                 if (key == ConsoleKey.UpArrow)
@@ -41,7 +40,6 @@ namespace App.Game.Player
                     try
                     {
                         board.Set(this._selectX, this._selectY, this.GetMarker());
-                        Program.ClearN(15);
                         return;
                     }
                     catch (Board.DuplicateEntryException)
@@ -51,7 +49,7 @@ namespace App.Game.Player
 
                 this._selectX = Program.Mod(_selectX, 3);
                 this._selectY = Program.Mod(_selectY, 3);
-                Program.ClearN(15);
+                board.Erase();
             }
         }
 

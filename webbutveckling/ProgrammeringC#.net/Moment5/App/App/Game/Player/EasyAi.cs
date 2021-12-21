@@ -11,7 +11,6 @@ namespace App.Game.Player
 
         public override void Play(Board board)
         {
-            Console.WriteLine($"Currently playing: {this}\n");
             board.Draw(0, 0);
             Thread.Sleep(1500);
             var availableCoordinates = board.GetUnchangedPositions();

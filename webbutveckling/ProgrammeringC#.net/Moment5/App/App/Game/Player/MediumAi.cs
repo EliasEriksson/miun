@@ -13,12 +13,11 @@ namespace App.Game.Player
 
         public override void Play(Board board)
         {
-            Console.WriteLine($"Currently playing: {this}\n");
             board.Draw(0, 0);
             Thread.Sleep(1500);
             var result = new List<(int, int)>();
             Node<(int, int)> move = null;
-            this.Traverse(board, (x, y, moveX, moveY) =>
+            board.Traverse((x, y, moveX, moveY) =>
             {
                 var moves = this.FindMoves(board, x, y, moveX, moveY);
                 if (board.GetWidth() - moves?.GetLength() >= board.GetWin() - 1)

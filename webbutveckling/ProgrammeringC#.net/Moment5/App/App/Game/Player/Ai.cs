@@ -198,35 +198,5 @@ namespace App.Game.Player
 
             return this.IdentifyWin(board, player, x + moveX, y + moveY, moveX, moveY, node);
         }
-        
-        protected void Traverse(Board board, Func< int, int ,int, int, bool> method)
-        {
-
-            for (var i = 0; i < board.GetHeight() - board.GetWin() + 1; i++)
-            {
-                if (method(0, i, 1, 1)) return;
-            } // top left to bottom right
- 
-            for (var i = board.GetWin() - 1; i < board.GetHeight(); i++)
-            {
-                if (method(0, i, 1, -1)) return;
-            } // bottom left to top right
-
-            for (var i = 1; i < board.GetWidth() - board.GetWin(); i++)
-            {
-                if(method(i, 0, 1, 1)) return;
-                if(method(i, board.GetHeight() - 1, 1, -1)) return;
-            }
-
-            for (var i = 0; i < board.GetHeight(); i++)
-            {
-                if(method(0, i, 1, 0)) return;
-            } // all rows
-
-            for (var i = 0; i < board.GetWidth(); i++)
-            {
-                if(method(i, 0, 0, 1)) return;
-            } // all columns
-        }
     }
 }

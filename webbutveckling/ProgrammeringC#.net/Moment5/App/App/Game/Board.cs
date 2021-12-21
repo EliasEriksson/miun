@@ -149,9 +149,9 @@ namespace App.Game
             return ++row == 3 || this.IsWinner(marker, x + moveX, y + moveY, moveX, moveY, row);
         }
         
-        public void Erase()
+        public void Erase(int extra = 0)
         {
-            Program.ClearN(this.GetHeight() * 3 + this.GetHeight() - 1 + 2);
+            Program.ClearN(this.GetHeight() * 3 + this.GetHeight() - 1 + 2 + extra);
         }
     }
 }

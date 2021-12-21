@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace App.Game
 {
@@ -19,35 +20,33 @@ namespace App.Game
             {
                 foreach (var player in this._players)
                 {
+                    Console.WriteLine($"Currently playing: {player}\n");
                     player.Play(board);
+                    board.Erase(2);
                     if (!board.IsWinner(player)) continue;
 
                     player.GrantScore();
                     Program.ClearN(1);
                     DrawScore();
-                    Console.WriteLine();
-                    Console.WriteLine(board);
+                    board.Draw(0, 0);
                     Console.WriteLine($"{player} won!");
                     if (!Continue())
                     {
-                        Program.ClearN(16);
+                        board.Erase(3);
                         return;
                     }
-
+                    
+                    board.Erase(2);
                     board = new Board(3, 3, 3);
-                    Program.ClearN(15);
                 }
             }
         }
 
         private void DrawScore()
         {
-            foreach (var player in this._players)
-            {
-                Console.Write($"| {player}: {player.GetScore()} ");
-            }
-
-            Console.WriteLine("|");
+            Console.WriteLine(
+                string.Join(" | ", this._players.Select((player => $"{player}: {player.GetScore()}")))
+            );
         }
 
         private static bool Continue()
@@ -71,7 +70,6 @@ namespace App.Game
                     {
                         new Player.Human(Marker.Cross), new Player.Human(Marker.Circle)
                     }).Start();
-                    Console.WriteLine("returning");
                     return false;
                 }),
                 ("Player Vs Ai", () =>
