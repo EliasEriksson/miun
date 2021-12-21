@@ -11,10 +11,6 @@ namespace App.Game
             this._players = players;
         }
 
-        private class Exit : Exception
-        {
-        }
-
         private void Start()
         {
             DrawScore();
@@ -26,26 +22,21 @@ namespace App.Game
                     var (x, y) = player.Play(board);
                     board.SetMarker(x, y, player.GetMarker());
                     if (!board.IsWinner(player)) continue;
-                    try
-                    {
-                        player.GrantScore();
-                        Program.ClearN(1);
-                        DrawScore();
-                        Console.WriteLine();
-                        Console.WriteLine(board);
-                        Console.WriteLine($"{player} won!");
-                        if (!Continue())
-                        {
-                            return;
-                        }
-                        board = new Board();
-                        Program.ClearN(15);
-                    }
-                    catch (Exit)
+
+                    player.GrantScore();
+                    Program.ClearN(1);
+                    DrawScore();
+                    Console.WriteLine();
+                    Console.WriteLine(board);
+                    Console.WriteLine($"{player} won!");
+                    if (!Continue())
                     {
                         Program.ClearN(16);
                         return;
                     }
+
+                    board = new Board();
+                    Program.ClearN(15);
                 }
             }
         }
@@ -106,7 +97,6 @@ namespace App.Game
             while (!Chose(actions))
             {
             }
-
         }
 
         private static Player.Ai ChoseAi(Marker marker)
