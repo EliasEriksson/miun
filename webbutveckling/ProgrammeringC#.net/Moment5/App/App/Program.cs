@@ -66,12 +66,7 @@ namespace App
             Console.CursorVisible = false;
             Game.Game.MainMenu();
             Console.CursorVisible = true;
-            // Test();
             return 0;
-        }
-
-        private static void Test()
-        {
         }
     }
 }
