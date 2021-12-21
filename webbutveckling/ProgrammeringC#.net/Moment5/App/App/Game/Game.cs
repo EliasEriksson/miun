@@ -23,21 +23,33 @@ namespace App.Game
                     Console.WriteLine($"Currently playing: {player}\n");
                     player.Play(board);
                     board.Erase(2);
-                    if (!board.IsWinner(player)) continue;
-
-                    player.GrantScore();
-                    Program.ClearN(1);
-                    DrawScore();
-                    board.Draw(0, 0);
-                    Console.WriteLine($"{player} won!");
-                    if (!Continue())
-                    {
-                        board.Erase(3);
-                        return;
-                    }
                     
-                    board.Erase(2);
-                    board = new Board(3, 3, 3);
+                    if (board.IsWinner(player))
+                    {
+                        player.GrantScore();
+                        Program.ClearN(1);
+                        DrawScore();
+                        board.Draw(0, 0);
+                        Console.WriteLine($"{player} won!");
+                        if (!Continue())
+                        {
+                            board.Erase(3);
+                            return;
+                        }
+                        board.Erase(2);
+                        board = new Board(3, 3, 3);
+                    } else if (board.GetUnchangedPositions().Count == 0) // draw
+                    {
+                        board.Draw(0, 0);
+                        Console.WriteLine($"Draw!");
+                        if (!Continue())
+                        {
+                            board.Erase(3);
+                            return;
+                        }
+                        board.Erase(2);
+                        board = new Board(3, 3, 3);
+                    }
                 }
             }
         }
