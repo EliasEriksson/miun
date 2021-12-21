@@ -4,9 +4,9 @@ namespace App.Game
 {
     public class Game
     {
-        private readonly Player[] _players;
+        private readonly Player.Player[] _players;
         
-        private Game(Player[] players)
+        private Game(Player.Player[] players)
         {
             this._players = players;
         }
@@ -72,9 +72,9 @@ namespace App.Game
         {
             (string, Action)[] actions =
             {
-                ("Player Vs Player", () => new Game(new Player[]{new Human(Marker.Cross), new Human(Marker.Circle)}).Start()),
-                ("Player Vs Ai", () => new Game(new Player[]{new Human(Marker.Cross), new HardAi(Marker.Circle)}).Start()),
-                ("Ai Vs Ai", () => new Game(new Player[]{ new HardAi(Marker.Cross), new HardAi(Marker.Circle)}).Start()),
+                ("Player Vs Player", () => new Game(new Player.Player[]{new Player.Human(Marker.Cross), new Player.Human(Marker.Circle)}).Start()),
+                ("Player Vs Ai", () => new Game(new Player.Player[]{new Player.Human(Marker.Cross), new Player.MediumAi(Marker.Circle)}).Start()),
+                ("Ai Vs Ai", () => new Game(new Player.Player[]{ new Player.MediumAi(Marker.Cross), new Player.EasyAi(Marker.Circle)}).Start()),
                 ("Exit", () => throw new Exit())
             };
             try

@@ -103,7 +103,7 @@ namespace App.Game
             }
         }
 
-        public bool IsWinner(Player player)
+        public bool IsWinner(Player.Player player)
         {
             var marker = player.GetMarker();
             if (this.IsWinner(marker, 0, 0, 1, 1)) // top left to bottom right
