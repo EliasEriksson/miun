@@ -12,10 +12,10 @@ namespace App.Game
             this._players = players;
         }
 
-        private void Start()
+        private void Start(int x, int y, int win)
         {
             DrawScore();
-            var board = new Board(3, 3, 3);
+            var board = new Board(x, y, win);
             while (true)
             {
                 foreach (var player in this._players)
@@ -23,7 +23,7 @@ namespace App.Game
                     Console.WriteLine($"Currently playing: {player}\n");
                     player.Play(board);
                     board.Erase(2);
-                    
+
                     if (board.IsWinner(player))
                     {
                         player.GrantScore();
@@ -36,9 +36,11 @@ namespace App.Game
                             board.Erase(3);
                             return;
                         }
+
                         board.Erase(2);
-                        board = new Board(3, 3, 3);
-                    } else if (board.GetUnchangedPositions().Count == 0) // draw
+                        board = new Board(x, y, win);
+                    }
+                    else if (board.GetUnchangedPositions().Count == 0) // draw
                     {
                         board.Draw(0, 0);
                         Console.WriteLine($"Draw!");
@@ -47,8 +49,9 @@ namespace App.Game
                             board.Erase(3);
                             return;
                         }
+
                         board.Erase(2);
-                        board = new Board(3, 3, 3);
+                        board = new Board(x, y, win);
                     }
                 }
             }
@@ -74,6 +77,10 @@ namespace App.Game
 
         public static void MainMenu()
         {
+            const string xMessage = "Board width: ";
+            const string yMessage = "Board height: ";
+            const string winMessage = "In a row to win: ";
+
             (string, Func<bool>)[] actions =
             {
                 ("Player Vs Player", () =>
@@ -81,7 +88,11 @@ namespace App.Game
                     new Game(new Player.Player[]
                     {
                         new Player.Human(Marker.Cross), new Player.Human(Marker.Circle)
-                    }).Start();
+                    }).Start(
+                        Program.ReadInt(xMessage),
+                        Program.ReadInt(yMessage),
+                        Program.ReadInt(winMessage)
+                    );
                     return false;
                 }),
                 ("Player Vs Ai", () =>
@@ -89,7 +100,11 @@ namespace App.Game
                     new Game(new Player.Player[]
                     {
                         new Player.Human(Marker.Cross), ChoseAi(Marker.Circle)
-                    }).Start();
+                    }).Start(
+                        Program.ReadInt(xMessage),
+                        Program.ReadInt(yMessage),
+                        Program.ReadInt(winMessage)
+                    );
                     return false;
                 }),
                 ("Ai Vs Ai", () =>
@@ -97,7 +112,11 @@ namespace App.Game
                     new Game(new Player.Player[]
                     {
                         ChoseAi(Marker.Cross), ChoseAi(Marker.Circle)
-                    }).Start();
+                    }).Start(
+                        Program.ReadInt(xMessage),
+                        Program.ReadInt(yMessage),
+                        Program.ReadInt(winMessage)
+                    );
                     return false;
                 }),
                 ("Exit", () => true)

@@ -47,8 +47,8 @@ namespace App.Game.Player
                     }
                 }
 
-                this._selectX = Program.Mod(_selectX, 3);
-                this._selectY = Program.Mod(_selectY, 3);
+                this._selectX = Program.Mod(_selectX, board.GetWidth());
+                this._selectY = Program.Mod(_selectY, board.GetHeight());
                 board.Erase();
             }
         }

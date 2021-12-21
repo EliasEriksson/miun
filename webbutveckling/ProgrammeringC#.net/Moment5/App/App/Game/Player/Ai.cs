@@ -87,7 +87,7 @@ namespace App.Game.Player
         protected Node<(int, int)> FindMoves(Board board, int x, int y, int moveX, int moveY, int possibleInRow = 0,
             Node<(int, int)> previousPossibleNodes = null)
         {
-            if (x >= board.GetWidth() || y >= board.GetHeight())
+            if (x >= board.GetWidth() || y >= board.GetHeight() || x < 0 || y < 0)
             {
                 return null;
             }
@@ -157,7 +157,7 @@ namespace App.Game.Player
         
         protected Node<(int, int)> IdentifyWin(Board board, Marker player, int x, int y, int moveX, int moveY, Node<(int, int)> node = null)
         {
-            if (x >= board.GetWidth() || y >= board.GetHeight())
+            if (x >= board.GetWidth() || y >= board.GetHeight() || x < 0 || y < 0)
             {
                 return null;
             }

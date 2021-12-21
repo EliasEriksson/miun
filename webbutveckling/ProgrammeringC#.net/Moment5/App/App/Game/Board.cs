@@ -41,7 +41,7 @@ namespace App.Game
             return
                 this.DrawHeading(selectX) +
                 string.Join(this.DrawCrossings(), Enumerable.Range(0, this.GetHeight()).Select(
-                    (y) => this.DrawLine() + this.DrawLine(this.GetRow(y), y == selectY) + this.DrawLine())
+                    (y) => this.DrawLine(this.GetRow(y), y == selectY))
                 );
         }
 
@@ -59,28 +59,28 @@ namespace App.Game
 
         private string DrawLine(Marker[] markers, bool selected)
         {
-            return (selected ? "> " : "  ") + string.Join('|', Enumerable.Range(0, this.GetWidth()).Select(
+            return (selected ? ">" : " ") + string.Join('|', Enumerable.Range(0, this.GetWidth()).Select(
                 (x) => DrawMarker(markers[x]))
             ) + "\n";
         }
 
         private string DrawCrossings()
         {
-            return "  " + string.Join('+', Enumerable.Range(0, this.GetWidth()).Select(
-                (_) => " — — — — ")
+            return " " + string.Join('+', Enumerable.Range(0, this.GetWidth()).Select(
+                (_) => "  —  ")
             ) + "\n";
         }
 
         private string DrawHeading(int selectX)
         {
-            return "  " + string.Join(" ", Enumerable.Range(0, this.GetWidth()).Select(
-                (x) => "    " + (x == selectX ? "v" : " ") + "    "
+            return " " + string.Join(" ", Enumerable.Range(0, this.GetWidth()).Select(
+                (x) => "  " + (x == selectX ? "v" : " ") + "  "
             )) + "\n";
         }
 
         private static string DrawMarker(Marker marker)
         {
-            return $"    {(char) marker}    ";
+            return $"  {(char) marker}  ";
         }
 
         public int GetWin()
@@ -136,22 +136,26 @@ namespace App.Game
 
         private bool IsWinner(Marker marker, int x, int y, int moveX, int moveY, int row = 0)
         {
-            if (x > this.GetWidth() || y > this.GetHeight())
+            if (x >= this.GetWidth() || y >= this.GetHeight() || x < 0 || y < 0)
             {
                 return false;
             }
 
-            if (this.Get(x, y) != marker)
+            if (this.Get(x, y) == marker)
             {
-                return false;
+                row++;
+            }
+            else
+            {
+                row = 0;
             }
 
-            return ++row == 3 || this.IsWinner(marker, x + moveX, y + moveY, moveX, moveY, row);
+            return row == this.GetWin() || this.IsWinner(marker, x + moveX, y + moveY, moveX, moveY, row);
         }
         
         public void Erase(int extra = 0)
         {
-            Program.ClearN(this.GetHeight() * 3 + this.GetHeight() - 1 + 2 + extra);
+            Program.ClearN(this.GetHeight() + this.GetHeight() - 1 + 2 + extra);
         }
     }
 }

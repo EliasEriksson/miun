@@ -1,14 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using App.Game;
-using App.Generics;
 
 namespace App
 {
     internal static class Program
     {
+        public static int ReadInt(string message)
+        {
+            Console.CursorVisible = true;
+            Console.WriteLine(message);
+            while (true)
+            {
+                try
+                {
+                    var result = Convert.ToInt32(Console.ReadLine());
+                    ClearN(2);
+                    Console.CursorVisible = false;
+                    return result;
+                }
+                catch (OverflowException)
+                {
+                    
+                }
+                catch (FormatException)
+                {
+                    
+                }
+                ClearN(1);
+            }
+        }
+        
         public static int Mod(double a, double b)
         {
             return (int) (a - b * Math.Floor(a / b));
@@ -44,12 +64,6 @@ namespace App
 
         private static void Test()
         {
-            var board = new Board(3, 3, 3);
-            board.Set(0, 0, Marker.Cross);
-            board.Set(1, 0, Marker.Cross);
-            board.Set(2, 0, Marker.Cross);
-            board.Set((2, 0), Marker.Cross);
-            
         }
     }
 }
