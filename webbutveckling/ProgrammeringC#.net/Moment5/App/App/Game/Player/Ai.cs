@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace App.Game.Player
 {
-    public abstract partial class Ai : Player
+    public abstract class Ai : Player
     {
         private readonly Random _random;
 
