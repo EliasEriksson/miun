@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using App.Game;
 using App.Generics;
 
@@ -42,8 +44,17 @@ namespace App
 
         private static void Test()
         {
-            var grid = new Grid<int>(2, 3, 0);
-
+            var board = new BoardN(3, 3, 3);
+            board.Set(0, 0, Marker.Cross);
+            board.Set(1, 0, Marker.Cross);
+            board.Set(2, 0, Marker.Cross);
+            // Console.WriteLine(board.DrawEmptyLine());
+            // Console.WriteLine(board.DrawLine(board.GetRow(0)));
+            // Console.WriteLine(board.DrawEmptyLine());
+            // board.Draw(0, 1);
+            // Thread.Sleep(500);
+            // board.Erase();
+            // Console.WriteLine("exited");
         }
     }
 }

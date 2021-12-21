@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using App.Generics;
 
 namespace App.Game
 {
@@ -8,6 +10,128 @@ namespace App.Game
         None = 32,
         Cross = 88,
         Circle = 79
+    }
+
+    public class BoardN : Grid<Marker>
+    {
+        private readonly int _win;
+
+        public BoardN(int x, int y, int win) : base(x, y, Marker.None)
+        {
+            this._win = win;
+        }
+
+        public string GetDrawing(int selectX, int selectY)
+        {
+            return this.DrawHeading(selectX) +
+                   string.Join(this.DrawCrossings(), Enumerable.Range(0, this.GetHeight()).Select(
+                       (y) => this.DrawLine() + this.DrawLine(this.GetRow(y), y == selectY) + this.DrawLine())
+                   );
+        }
+
+        public void Draw(int selectX, int selectY)
+        {
+            Console.WriteLine(this.GetDrawing(selectX, selectY));
+        }
+
+        private string DrawLine()
+        {
+            return "  " + string.Join('|', Enumerable.Range(0, this.GetWidth()).Select(
+                (_) => "         ")
+            ) + "\n";
+        }
+
+        private string DrawLine(Marker[] markers, bool selected)
+        {
+            return (selected ? "> " : "  ") + string.Join('|', Enumerable.Range(0, this.GetWidth()).Select(
+                (x) => DrawMarker(markers[x]))
+            ) + "\n";
+        }
+
+        private string DrawCrossings()
+        {
+            return "  " + string.Join('+', Enumerable.Range(0, this.GetWidth()).Select(
+                (_) => " — — — — ")
+            ) + "\n";
+        }
+
+        private string DrawHeading(int selectX)
+        {
+            return "  " + string.Join(" ", Enumerable.Range(0, this.GetWidth()).Select(
+                (x) => "    " + (x == selectX ? "v" : " ") + "    "
+            )) + "\n";
+        }
+
+        private static string DrawMarker(Marker marker)
+        {
+            return $"    {(char) marker}    ";
+        }
+
+        public int GetWin()
+        {
+            return this._win;
+        }
+
+        public bool Winner(Marker marker)
+        {
+            var winner = false;
+            this.Traverse(((x, y, moveX, moveY) =>
+            {
+                winner = this.Winner(marker, x, y, moveX, moveY);
+                
+                return winner;
+            }));
+            return winner;
+        }
+        
+        public void Traverse(Func<int, int, int, int, bool> method)
+        {
+            for (var i = 0; i < this.GetHeight() - this.GetWin() + 1; i++)
+            {
+                if (method(0, i, 1, 1)) return;
+            } // top left to bottom right
+
+            for (var i = this.GetWin() - 1; i < this.GetHeight(); i++)
+            {
+                if (method(0, i, 1, -1)) return;
+            } // bottom left to top right
+
+            for (var i = 1; i < this.GetWidth() - this.GetWin(); i++)
+            {
+                if (method(i, 0, 1, 1)) return;
+                if (method(i, this.GetHeight() - 1, 1, -1)) return;
+            }
+
+            for (var i = 0; i < this.GetHeight(); i++)
+            {
+                if (method(0, i, 1, 0)) return;
+            } // all rows
+
+            for (var i = 0; i < this.GetWidth(); i++)
+            {
+                if (method(i, 0, 0, 1)) return;
+            } // all columns
+        }
+
+        private bool Winner(Marker marker, int x, int y, int moveX, int moveY, int row = 0)
+        {
+            if (x > this.GetWidth() || y > this.GetHeight())
+            {
+                return false;
+            }
+
+            if (this.Get(x, y) != marker)
+            {
+                return false;
+            }
+
+            return ++row == 3 || this.Winner(marker, x + moveX, y + moveY, moveX, moveY, row);
+        }
+        
+        public void Erase()
+        {
+            Program.ClearN(this.GetHeight() * 3 + this.GetHeight() - 1 + 2);
+        }
     }
 
     public class Board
@@ -179,7 +303,7 @@ namespace App.Game
         {
             return this._board.GetLength(1);
         }
-        
+
         public Marker Get(int x, int y)
         {
             return this._board[x, y];
@@ -190,7 +314,7 @@ namespace App.Game
             var (x, y) = coordinate;
             return this.Get(x, y);
         }
-        
+
         public List<(int, int)> GetEmptySlots()
         {
             var remainingCoordinates = new List<(int, int)>();
@@ -208,7 +332,7 @@ namespace App.Game
 
             return remainingCoordinates;
         }
-        
+
         public int WinCondition()
         {
             return 3;
