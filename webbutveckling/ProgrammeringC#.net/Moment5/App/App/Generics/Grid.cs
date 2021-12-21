@@ -41,6 +41,28 @@ namespace App.Generics
         {
             this._grid[x, y] = value;
         }
+
+        public T[] GetRow(int y)
+        {
+            var values = new T[this.GetWidth()];
+            for (var x = 0; x < this.GetWidth(); x++)
+            {
+                values[x] = this.Get(x, y);
+            }
+
+            return values;
+        }
+
+        public T[] GetColumn(int x)
+        {
+            var values = new T[this.GetHeight()];
+            for (var y = 0; y < this.GetHeight(); y++)
+            {
+                values[y] = this.Get(x, y);
+            }
+
+            return values;
+        }
         
         public int GetWidth()
         {
