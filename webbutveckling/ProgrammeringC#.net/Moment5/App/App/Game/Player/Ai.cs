@@ -22,7 +22,7 @@ namespace App.Game.Player
         {
             return this.RandomInt(0, high);
         }
-        
+
         public override string ToString()
         {
             return $"Ai {(char) this.GetMarker()}";
@@ -34,7 +34,7 @@ namespace App.Game.Player
             {
                 return 0;
             }
-            
+
             var (x, y) = node.GetData();
             var current = board.Get(x, y);
             if (current == marker)
@@ -44,7 +44,7 @@ namespace App.Game.Player
 
             return this.CountMarker(board, marker, node.GetNext());
         }
-        
+
         protected (int, int) FindMove(Board board, List<(int, int)> moves)
         {
             var moveCounter = new Dictionary<(int, int), int>();
@@ -69,7 +69,8 @@ namespace App.Game.Player
                     highestCount = count;
                     mostCommon.Clear();
                     mostCommon.Add(coordinate);
-                } else if (count == highestCount)
+                }
+                else if (count == highestCount)
                 {
                     mostCommon.Add(coordinate);
                 }
@@ -83,7 +84,7 @@ namespace App.Game.Player
             var availableCoordinates = board.GetUnchangedPositions();
             return availableCoordinates[this.RandomInt(availableCoordinates.Count)];
         }
-        
+
         protected Node<(int, int)> FindMoves(Board board, int x, int y, int moveX, int moveY, int possibleInRow = 0,
             Node<(int, int)> previousPossibleNodes = null)
         {
@@ -96,10 +97,10 @@ namespace App.Game.Player
             if (current == this.GetMarker() || current == Marker.None)
             {
                 possibleInRow += 1;
-
-                if (possibleInRow < board.GetWin())
+                
+                if (current == Marker.None)
                 {
-                    if (current == Marker.None)
+                    if (possibleInRow < board.GetWin())
                     {
                         // extend previous possible
                         if (previousPossibleNodes == null)
@@ -111,38 +112,44 @@ namespace App.Game.Player
                             previousPossibleNodes.Add((x, y));
                         }
                     }
-                }
-                else if (possibleInRow == board.GetWin())
-                {
-                    // return current and add previous possible, set previous possible to null
+                    else if (possibleInRow == board.GetWin())
+                    {
+                        // return current and add previous possible, set previous possible to null
 
-                    if (previousPossibleNodes == null)
-                        return new Node<(int, int)>(
+                        if (previousPossibleNodes == null)
+                            return new Node<(int, int)>(
+                                (x, y),
+                                this.FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
+                            );
+                        if (current == this.GetMarker())
+                        {
+                            previousPossibleNodes.Add(this.FindMoves(board, x + moveX, y + moveY, moveX, moveY,
+                                possibleInRow));
+                            return previousPossibleNodes;
+                        }
+
+                        previousPossibleNodes.Add(new Node<(int, int)>(
                             (x, y),
                             this.FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
-                        );
-                    if (current == this.GetMarker())
-                    {
-                        previousPossibleNodes.Add(this.FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow));
+                        ));
                         return previousPossibleNodes;
                     }
-
-                    var n = new Node<(int, int)>(
-                        (x, y),
-                        this.FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
-                    );
-                    n.Add(previousPossibleNodes);
-                    return n;
-                }
-                else
-                {
-                    // return with current and set previous possible to null again
-                    if (current == Marker.None)
+                    else
                     {
-                        return new Node<(int, int)>(
-                            (x, y),
-                            this.FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
-                        );
+                        // return with current and set previous possible to null again
+
+                        if (previousPossibleNodes == null)
+                        {
+                            return new Node<(int, int)>(
+                                (x, y),
+                                this.FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow)
+                            );
+                        }
+
+                        previousPossibleNodes.Add(new Node<(int, int)>((x, y), this.FindMoves(
+                            board, x + moveX, y + moveY, moveX, moveY, possibleInRow
+                        )));
+                        return previousPossibleNodes;
                     }
                 }
             }
@@ -154,8 +161,9 @@ namespace App.Game.Player
 
             return this.FindMoves(board, x + moveX, y + moveY, moveX, moveY, possibleInRow, previousPossibleNodes);
         }
-        
-        protected Node<(int, int)> IdentifyWin(Board board, Marker player, int x, int y, int moveX, int moveY, Node<(int, int)> node = null)
+
+        protected Node<(int, int)> IdentifyWin(Board board, Marker player, int x, int y, int moveX, int moveY,
+            Node<(int, int)> node = null)
         {
             if (x >= board.GetWidth() || y >= board.GetHeight() || x < 0 || y < 0)
             {
@@ -173,7 +181,7 @@ namespace App.Game.Player
                 {
                     node.Add((x, y));
                 }
-                
+
                 if (node.GetLength() > board.GetWin())
                 {
                     node = node.GetNext();
@@ -187,6 +195,7 @@ namespace App.Game.Player
                         {
                             node = node.GetNext();
                         }
+
                         return new Node<(int, int)>(node.GetData());
                     }
                 }

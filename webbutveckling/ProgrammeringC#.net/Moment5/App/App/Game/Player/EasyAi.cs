@@ -12,7 +12,7 @@ namespace App.Game.Player
         public override void Play(Board board)
         {
             board.Draw(0, 0);
-            Thread.Sleep(1500);
+            Thread.Sleep(250);
             var availableCoordinates = board.GetUnchangedPositions();
             board.Set(availableCoordinates[this.RandomInt(availableCoordinates.Count)], this.GetMarker());
         }

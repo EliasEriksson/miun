@@ -13,7 +13,7 @@ namespace App.Game.Player
         public override void Play(Board board)
         {
             board.Draw(0, 0);
-            Thread.Sleep(1500);
+            Thread.Sleep(250);
             var result = new List<(int, int)>();
             Node<(int, int)> move = null;
             board.Traverse((x, y, moveX, moveY) =>
