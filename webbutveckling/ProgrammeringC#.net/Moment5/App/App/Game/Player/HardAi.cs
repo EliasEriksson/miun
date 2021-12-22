@@ -35,6 +35,7 @@ namespace App.Game.Player
             
             // if there is a winning move, use it
             if (move != null)
+            
             {
                 board.Set(move.GetData(), this.GetMarker());
                 return;
@@ -51,5 +52,10 @@ namespace App.Game.Player
             // if enemy have a winning move, block it. Else use the most optimal move
             board.Set(move?.GetData() ?? this.FindMove(board, moveFrequencyList), this.GetMarker());
         }
-    } // max weight then random
+
+        public override string ToString()
+        {
+            return $"Hard {base.ToString()}";
+        }
+    }
 }

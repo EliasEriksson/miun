@@ -44,5 +44,10 @@ namespace App.Game.Player
             var availableMoves = board.GetUnchangedPositions();
             board.Set(availableMoves[this.RandomInt(availableMoves.Count)], this.GetMarker());
         }
-    } // weighted random
+
+        public override string ToString()
+        {
+            return $"Medium {base.ToString()}";
+        }
+    }
 }

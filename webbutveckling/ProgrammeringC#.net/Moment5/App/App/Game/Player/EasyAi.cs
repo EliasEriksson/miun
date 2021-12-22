@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 
 namespace App.Game.Player
@@ -16,5 +15,10 @@ namespace App.Game.Player
             var availableCoordinates = board.GetUnchangedPositions();
             board.Set(availableCoordinates[this.RandomInt(availableCoordinates.Count)], this.GetMarker());
         }
-    } // full random
+
+        public override string ToString()
+        {
+            return $"Easy {base.ToString()}";
+        }
+    }
 }
