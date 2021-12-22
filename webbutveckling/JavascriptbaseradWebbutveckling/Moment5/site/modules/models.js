@@ -45,12 +45,12 @@ class Ingredient extends mongoose.model("Ingredient", new mongoose.Schema({
         unique: true
     }
 }, {strict: "throw"})) {
-    save = async (callback) => {
-        super.save();
-        if (callback) {
-            await callback();
-        }
-    }
+    // save = async (callback) => {
+    //     await super.save();
+    //     if (callback) {
+    //         await callback();
+    //     }
+    // }
 }
 
 
@@ -83,13 +83,13 @@ class Recipe extends mongoose.model("Recipe", new mongoose.Schema({
         required: true
     }
 }, {strict: "throw"})) {
-    save = async (callback) => {
-        await super.save();
-
-        if (callback) {
-            await callback();
-        }
-    }
+    // save = async (callback) => {
+    //     await super.save();
+    //
+    //     if (callback) {
+    //         await callback();
+    //     }
+    // }
 }
 
 module.exports = {
