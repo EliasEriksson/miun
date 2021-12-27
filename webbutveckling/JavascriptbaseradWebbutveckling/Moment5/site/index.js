@@ -13,6 +13,7 @@ app.use(rootURL, express.static(`${__dirname}/static`));
 app.get(`${apiRoot}/ingredients/`, async (request, response, next) => {
     try {
         await response.status(200).json(await models.ingredient.find());
+        next();
     } catch (e) {
         next(e);
     }
@@ -22,6 +23,7 @@ app.get(`${apiRoot}/ingredients/:id/`, async (request, response, next) => {
     try {
         const ingredient = await models.ingredient.findById(request.params.id);
         await response.status(200).json(ingredient);
+        next();
     } catch (e) {
         next(e);
     }
@@ -50,7 +52,6 @@ app.put(`${apiRoot}/ingredients/:id`, async (request, response, next) => {
 
 app.delete(`${apiRoot}/ingredients/:id`, async (request, response, next) => {
     try {
-        console.log(request.params.id)
         const ingredient = await models.ingredient.findByIdAndDelete(request.params.id);
         response.status(200).json(ingredient);
         next();
@@ -59,14 +60,65 @@ app.delete(`${apiRoot}/ingredients/:id`, async (request, response, next) => {
     }
 });
 
-app.get(`${apiRoot}/recipes/`, async (request, response, next) => {
+app.get(`${apiRoot}/tags/`, async (request, response, next) => {
     try {
-        response.status(200).json(await models.recipe.find().populate("ingredients.ingredient"));
+        await response.status(200).json(await models.tag.find());
         next();
     } catch (e) {
         next(e);
     }
+});
 
+app.get(`${apiRoot}/tags/:id`, async (request, response, next) => {
+    try {
+        const tag = await models.tag.findById(request.params.id);
+        await response.status(200).json(tag);
+        next();
+    } catch (e) {
+        next(e);
+    }
+});
+
+app.post(`${apiRoot}/tags/`, async (request, response, next) => {
+    try {
+        const tag = new models.tag(request.body);
+        await tag.save();
+        response.status(201).json(tag);
+        next();
+    } catch (e) {
+        next(e);
+    }
+});
+
+app.put(`${apiRoot}/tags/:id`, async (request, response, next) => {
+    try {
+        const tag = await models.tag.findByIdAndUpdate(request.params.id, request.body);
+        response.status(200).json(tag);
+        next();
+    } catch (e) {
+        next(e);
+    }
+});
+
+app.delete(`${apiRoot}/tags/:id`, async (request, response, next) => {
+    try {
+        const tag = await models.tag.findByIdAndDelete(request.params.id);
+        response.status(200).json(tag);
+        next();
+    } catch (e) {
+        next(e);
+    }
+});
+
+app.get(`${apiRoot}/recipes/`, async (request, response, next) => {
+    try {
+        response.status(200).json(
+            await models.recipe.find().populate("ingredients.ingredient").populate("tags.tag")
+        );
+        next();
+    } catch (e) {
+        next(e);
+    }
 });
 
 app.get(`${apiRoot}/recipes/:id`, async (request, response, next) => {
@@ -80,9 +132,7 @@ app.get(`${apiRoot}/recipes/:id`, async (request, response, next) => {
 
 app.post(`${apiRoot}/recipes/`, async (request, response, next) => {
     try {
-        console.log(request.body)
         const recipe = new models.recipe(request.body);
-        console.log(recipe)
         await recipe.save();
         response.status(201).json(recipe);
         next();

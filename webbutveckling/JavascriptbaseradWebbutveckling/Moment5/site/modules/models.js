@@ -1,58 +1,34 @@
 const mongoose = require("mongoose");
 
-// const Ingredient = mongoose.model("Ingredient", new mongoose.Schema({
-//     ingredient: {
-//         type: [String],
-//         required: true,
-//         unique: true
-//     }
-// }, {strict: "throw"}));
-//
-// const Recipe = mongoose.model("Recipe", new mongoose.Schema({
-//     title: {
-//         type: String,
-//         required: true
-//     },
-//     description: {
-//         type: String,
-//         required: true
-//     },
-//     ingredients: {
-//         type: [
-//             {
-//                 type: {
-//                     "ingredient": {
-//                         type: mongoose.Schema.Types.ObjectId,
-//                         ref: "Ingredient"
-//                     },
-//                     "amount": Number
-//                 },
-//                 required: true
-//             }
-//         ],
-//         required: true
-//     },
-//     instructions: {
-//         type: [String],
-//         required: true
-//     }
-// }, {strict: "throw"}));
-
 class Ingredient extends mongoose.model("Ingredient", new mongoose.Schema({
     ingredient: {
         type: String,
         required: true,
         unique: true
     }
-}, {strict: "throw"})) {
-    // save = async (callback) => {
-    //     await super.save();
-    //     if (callback) {
-    //         await callback();
-    //     }
-    // }
+}, {strict: "throw", versionKey: false})) {
+    constructor(body) {
+        if (body) {
+            body.ingredient = body.ingredient.toLowerCase();
+        }
+        super(body);
+    }
 }
 
+class Tag extends mongoose.model("Tag", new mongoose.Schema({
+    tag: {
+        type: String,
+        required: true,
+        unique: true
+    }
+}, {strict: "throw", versionKey: false})) {
+    constructor(body) {
+        if (body) {
+            body.tag = body.tag.toLowerCase();
+        }
+        super(body);
+    }
+}
 
 class Recipe extends mongoose.model("Recipe", new mongoose.Schema({
     title: {
@@ -69,11 +45,24 @@ class Recipe extends mongoose.model("Recipe", new mongoose.Schema({
                 type: {
                     "ingredient": {
                         type: mongoose.Schema.Types.ObjectId,
-                        ref: "Ingredient"
+                        ref: "Ingredient",
+                        required: true
                     },
-                    "amount": Number
+                    "amount": {
+                        type: Number,
+                        required: true
+                    },
+                    "unit": {
+                        type: String,
+                        enum: [
+                            "ml", "cl", "dl", "l",
+                            "g", "kg", "st"
+                        ],
+                        required: true
+                    }
                 },
-                required: true
+                required: true,
+                unique: true
             }
         ],
         required: true
@@ -81,18 +70,36 @@ class Recipe extends mongoose.model("Recipe", new mongoose.Schema({
     instructions: {
         type: [String],
         required: true
+    },
+    tags: {
+        type: [
+            {
+                type: {
+                    "tag": {
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: "Tag"
+                    }
+                },
+                required: true,
+                unique: true
+            }
+        ],
+        options: {versionKey: false}
     }
-}, {strict: "throw"})) {
-    // save = async (callback) => {
-    //     await super.save();
-    //
-    //     if (callback) {
-    //         await callback();
-    //     }
-    // }
+}, {strict: "throw", versionKey: false})) {
+    constructor(body) {
+        if (body) {
+            body.ingredients.forEach((ingredient) => {
+                ingredient.ingredient = ingredient.ingredient.toLowerCase();
+                ingredient.unit = ingredient.unit.toLowerCase();
+            });
+        }
+        super(body);
+    }
 }
 
 module.exports = {
     "ingredient": Ingredient,
+    "tag": Tag,
     "recipe": Recipe
 };
