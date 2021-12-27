@@ -1,36 +1,25 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
 
-class Ingredient extends mongoose.model("Ingredient", new mongoose.Schema({
+const ingredientSchema = new mongoose.Schema({
     ingredient: {
         type: String,
         required: true,
         unique: true
     }
-}, {strict: "throw", versionKey: false})) {
-    constructor(body) {
-        if (body) {
-            body.ingredient = body.ingredient.toLowerCase();
-        }
-        super(body);
-    }
-}
+}, {strict: "throw", versionKey: false});
+ingredientSchema.plugin(mongoosePaginate);
 
-class Tag extends mongoose.model("Tag", new mongoose.Schema({
+const tagSchema = new mongoose.Schema({
     tag: {
         type: String,
         required: true,
         unique: true
     }
-}, {strict: "throw", versionKey: false})) {
-    constructor(body) {
-        if (body) {
-            body.tag = body.tag.toLowerCase();
-        }
-        super(body);
-    }
-}
+}, {strict: "throw", versionKey: false});
+tagSchema.plugin(mongoosePaginate);
 
-class Recipe extends mongoose.model("Recipe", new mongoose.Schema({
+const recipeSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -86,7 +75,28 @@ class Recipe extends mongoose.model("Recipe", new mongoose.Schema({
         ],
         options: {versionKey: false}
     }
-}, {strict: "throw", versionKey: false})) {
+}, {strict: "throw", versionKey: false});
+recipeSchema.plugin(mongoosePaginate);
+
+class Ingredient extends mongoose.model("Ingredient", ingredientSchema) {
+    constructor(body) {
+        if (body) {
+            body.ingredient = body.ingredient.toLowerCase();
+        }
+        super(body);
+    }
+}
+
+class Tag extends mongoose.model("Tag", tagSchema) {
+    constructor(body) {
+        if (body) {
+            body.tag = body.tag.toLowerCase();
+        }
+        super(body);
+    }
+}
+
+class Recipe extends mongoose.model("Recipe", recipeSchema) {
     constructor(body) {
         if (body) {
             body.ingredients.forEach((ingredient) => {
