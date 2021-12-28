@@ -2,34 +2,35 @@ import React from "react";
 
 export type Unit = "ml" | "cl" | "dl" | "l" | "g" | "kg" | "st";
 
-export interface Ingredient {
+export interface IngredientData {
     _id: string
     ingredient: string,
 }
 
-export interface Tag {
+export interface TagData {
     _id: string,
     tag: string
 }
 
 export interface RecipeData {
+    _id: string,
     title: string,
     description: string,
     ingredients: {
-        ingredient: Ingredient
+        ingredient: IngredientData
         amount: number,
         unit: Unit
     }[],
     instructions: string[],
-    tags: Tag[]
+    tags: TagData[]
 }
 
-export class RecipeSummary extends React.Component<RecipeData> {
+export class RecipeSummary extends React.Component<{data: RecipeData}> {
     render = () => {
         return (
             <div>
-                <h2>{this.props.title}</h2>
-                <p>{this.props.description}</p>
+                <h2>{this.props.data.title}</h2>
+                <p>{this.props.data.description}</p>
             </div>
         );
     }

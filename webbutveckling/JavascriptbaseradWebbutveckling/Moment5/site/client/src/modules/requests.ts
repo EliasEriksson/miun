@@ -30,7 +30,8 @@ interface ApiResponse<T> {
  * @param data: general data to be sent with the request.
  */
 export const requestEndpoint = async <T>(endpoint: Endpoints, method: HttpMethods = "GET", token = null, data = undefined): Promise<[ApiResponse<T>, number]> => {
-    const apiURL = getCookies()["apiRoot"];
+    // const apiURL = getCookies()["apiRoot"];
+    const apiURL = `/jsweb/moment5/api`
 
     let headers = new Headers({
         "Content-Type": "application/json"
@@ -47,6 +48,7 @@ export const requestEndpoint = async <T>(endpoint: Endpoints, method: HttpMethod
     if (data) {
         init["body"] = JSON.stringify(data);
     }
-    let response = await fetch(`${apiURL}${endpoint}`, init);
+    const url = `${apiURL}${endpoint}`;
+    let response = await fetch(url, init);
     return [await response.json(), response.status];
 };
