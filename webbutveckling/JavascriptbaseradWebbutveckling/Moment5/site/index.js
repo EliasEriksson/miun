@@ -1,6 +1,7 @@
+const mongoose = require("mongoose");
+mongoose.plugin(require("mongoose-paginate-v2"));
 const express = require("express");
 const fs = require("fs").promises;
-const mongoose = require("mongoose");
 const models = require("./modules/models");
 
 const rootURL = "/jsweb/moment5";
@@ -18,7 +19,7 @@ const writeCookies = (response) => {
 const searchParams = (request) => {
     const defaultOptions = {
         page: 1,
-        limit: 2
+        limit: 5
     }
     if (request.query.page) {
         defaultOptions.page = parseInt(request.query.page);
@@ -33,7 +34,9 @@ const searchParams = (request) => {
 app.get(`${apiRoot}/ingredients/`, async (request, response, next) => {
     try {
         writeCookies(response);
-        await response.status(200).json(await models.ingredient.paginate({}, searchParams(request)));
+        await response.status(200).json(await models.ingredient.paginate({}, {
+            ...searchParams(request)
+        }));
         next();
     } catch (e) {
         next(e);
@@ -88,7 +91,9 @@ app.delete(`${apiRoot}/ingredients/:id`, async (request, response, next) => {
 app.get(`${apiRoot}/tags/`, async (request, response, next) => {
     try {
         writeCookies(response);
-        await response.status(200).json(await models.tag.find());
+        await response.status(200).json(await models.tag.paginate({}, {
+            ...searchParams(request)
+        }));
         next();
     } catch (e) {
         next(e);
@@ -144,7 +149,13 @@ app.get(`${apiRoot}/recipes/`, async (request, response, next) => {
     try {
         writeCookies(response);
         response.status(200).json(
-            await models.recipe.find().populate("ingredients.ingredient").populate("tags.tag")
+            await models.recipe.paginate({}, {
+                ...searchParams(request),
+                populate: [
+                    "ingredients.ingredient",
+                    "tags.tag"
+                ]
+            })
         );
         next();
     } catch (e) {

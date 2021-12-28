@@ -1,25 +1,37 @@
 const mongoose = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate-v2");
 
-const ingredientSchema = new mongoose.Schema({
+class Ingredient extends mongoose.model("Ingredient", new mongoose.Schema({
     ingredient: {
         type: String,
         required: true,
         unique: true
     }
-}, {strict: "throw", versionKey: false});
-ingredientSchema.plugin(mongoosePaginate);
+}, {strict: "throw", versionKey: false})) {
+    constructor(body) {
+        if (body) {
+            body.ingredient = body.ingredient.toLowerCase();
+        }
+        super(body);
+    }
+}
 
-const tagSchema = new mongoose.Schema({
+class Tag extends mongoose.model("Tag", new mongoose.Schema({
     tag: {
         type: String,
         required: true,
         unique: true
     }
-}, {strict: "throw", versionKey: false});
-tagSchema.plugin(mongoosePaginate);
+}, {strict: "throw", versionKey: false})) {
+    constructor(body) {
+        if (body) {
+            body.tag = body.tag.toLowerCase();
+        }
+        super(body);
+    }
+}
 
-const recipeSchema = new mongoose.Schema({
+class Recipe extends mongoose.model("Recipe", new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -75,28 +87,7 @@ const recipeSchema = new mongoose.Schema({
         ],
         options: {versionKey: false}
     }
-}, {strict: "throw", versionKey: false});
-recipeSchema.plugin(mongoosePaginate);
-
-class Ingredient extends mongoose.model("Ingredient", ingredientSchema) {
-    constructor(body) {
-        if (body) {
-            body.ingredient = body.ingredient.toLowerCase();
-        }
-        super(body);
-    }
-}
-
-class Tag extends mongoose.model("Tag", tagSchema) {
-    constructor(body) {
-        if (body) {
-            body.tag = body.tag.toLowerCase();
-        }
-        super(body);
-    }
-}
-
-class Recipe extends mongoose.model("Recipe", recipeSchema) {
+}, {strict: "throw", versionKey: false})) {
     constructor(body) {
         if (body) {
             body.ingredients.forEach((ingredient) => {
