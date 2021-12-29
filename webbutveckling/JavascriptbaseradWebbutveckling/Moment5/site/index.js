@@ -165,7 +165,7 @@ app.get(`${apiRoot}/recipes/`, async (request, response, next) => {
 
 app.get(`${apiRoot}/recipes/:id`, async (request, response, next) => {
     try {
-        const recipe = await models.recipe.findById(request.params.id).populate("ingredients.ingredient");
+        const recipe = await models.recipe.findById(request.params.id).populate("ingredients.ingredient").populate("tags.tag");
         writeCookies(response);
         await response.status(200).json(recipe);
     } catch (e) {
@@ -210,15 +210,6 @@ app.delete(`${apiRoot}/recipes/:id`, async (request, response, next) => {
 const readCredentials = async () => {
     return await JSON.parse(await fs.readFile(".credentials.json", "utf-8"));
 }
-
-app.get(`${apiRoot}`, async (request, response, next) => {
-    try {
-        writeCookies(response);
-        await response.json({"message": "hello world"});
-    } catch (e) {
-        next(e);
-    }
-});
 
 const PORT = 8083;
 readCredentials().then(async cred => {

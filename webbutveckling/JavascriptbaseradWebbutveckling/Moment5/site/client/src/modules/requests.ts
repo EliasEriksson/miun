@@ -1,12 +1,8 @@
-import {getCookies} from "./cookie";
-
-
 type Endpoints = `/ingredients/${string}` |`/tags/${string}` | `/recipes/${string}`
-
 
 type HttpMethods = "GET" | "POST" | "PUT" | "DELETE";
 
-interface ApiResponse<T> {
+export interface ApiResponse<T> {
     docs: T[],
     totalDocs: number,
     limit: number,
@@ -25,17 +21,17 @@ interface ApiResponse<T> {
  * necessary headers will be set as needed.
  *
  * @param endpoint: the api endpoint to request
- * @param token: the authentication token. required for POST / PUT / DELETE.
+ * @param token: the authentication token.
  * @param method: the request method.
  * @param data: general data to be sent with the request.
  */
-export const requestEndpoint = async <T>(endpoint: Endpoints, method: HttpMethods = "GET", token = null, data = undefined): Promise<[ApiResponse<T>, number]> => {
-    // const apiURL = getCookies()["apiRoot"];
+export const requestEndpoint = async <T>(endpoint: Endpoints, method: HttpMethods = "GET", token = null, data = undefined): Promise<[T, number]> => {
     const apiURL = `/jsweb/moment5/api`
 
     let headers = new Headers({
         "Content-Type": "application/json"
     });
+
     if (token) {
         headers.set("Authorization", `Token ${token}`);
     }

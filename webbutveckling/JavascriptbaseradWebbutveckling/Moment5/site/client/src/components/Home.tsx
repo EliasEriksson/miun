@@ -1,11 +1,11 @@
 import React from "react";
-import {Footer, Header} from "./margins";
-import {requestEndpoint} from "../modules/requests";
+import {ApiResponse, requestEndpoint} from "../modules/requests";
 import {RecipeData, RecipeSummary} from "./Recipe";
 import {Loader} from "./Loader";
 
 
-export class Home extends React.Component<{}, {
+export class Home extends React.Component<{
+}, {
     recipes: JSX.Element[], fetchedAll: boolean
 }> {
     private fetching: boolean;
@@ -26,15 +26,18 @@ export class Home extends React.Component<{}, {
     fetchContent = async () => {
         this.fetching = true;
         if (this.nextApiPage) {
-            const [data, status] = await requestEndpoint<RecipeData>(`/recipes/?page=${this.nextApiPage}`);
+            const [data, status] = await requestEndpoint<ApiResponse<RecipeData>>(`/recipes/?page=${this.nextApiPage}`);
             if (200 <= status && status < 300) {
                 await this.setState(({
                     recipes: [...this.state.recipes, ...data.docs.map((recipeData) => {
-                        return (<RecipeSummary key={recipeData._id} data={recipeData}/>);
+                        return (<RecipeSummary
+                                key={recipeData._id}
+                                data={recipeData}/>
+                        );
                     })]
                 }));
                 this.nextApiPage = data.nextPage;
-                if (!this.nextApiPage) this.setState(({fetchedAll: true}));
+                if (!this.nextApiPage) await this.setState(({fetchedAll: true}));
                 this.fetching = false;
             }
         } else {
@@ -55,16 +58,14 @@ export class Home extends React.Component<{}, {
 
     render = () => {
         return (
-            <div>
-                <Header/>
-                <main>
-                    <div>
-                        {this.state.recipes}
-                    </div>
-                    {!this.state.fetchedAll ? <Loader onEnterViewport={this.handleViewportEnter} onLeaveViewport={this.handleViewportLeave}/> : null}
-                </main>
-                <Footer/>
-            </div>
+            <main>
+                <div>
+                    {this.state.recipes}
+                </div>
+                {!this.state.fetchedAll ? <Loader
+                    onEnterViewport={this.handleViewportEnter}
+                    onLeaveViewport={this.handleViewportLeave}/> : null}
+            </main>
         );
     }
 }
