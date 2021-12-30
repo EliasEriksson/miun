@@ -18,7 +18,6 @@ export const RecipeForm = (props: { _id?: string }) => {
         tags: []
     });
 
-
     useEffect(() => {
         if (!mounted) {
             mounted = true;
@@ -39,55 +38,85 @@ export const RecipeForm = (props: { _id?: string }) => {
         }
     }, []);
     return (
-        <form onSubmit={event => {
-        }}>
+        <form onSubmit={e => e.preventDefault()}>
             <input type={"hidden"} value={recipeData._id}/>
-            <textarea value={recipeData.title} onChange={(e) => {
-                setRecipeData({...recipeData, title: e.target.value});
-            }}/>
-            <textarea value={recipeData.description} onChange={e => {
-                setRecipeData({...recipeData, description: e.target.value});
-            }}/>
             <div>
-                <button onClick={(e) => {
-
+                <textarea value={recipeData.title} onChange={(e) => {
+                    setRecipeData({...recipeData, title: e.target.value});
+                }}/>
+                <textarea value={recipeData.description} onChange={e => {
+                    setRecipeData({...recipeData, description: e.target.value});
+                }}/>
+            </div>
+            <div>
+                <button onClick={async (e) => {
+                    recipeData.ingredients.push({
+                        _id: "",
+                        ingredient: {
+                            _id: "",
+                            ingredient: ""
+                        },
+                        amount: 0,
+                        unit: "st"
+                    });
+                    await setRecipeData({...recipeData});
                 }}>add ingredient
                 </button>
-            </div>
+                {
+                    recipeData.ingredients.map((ingredientData) => {
+                        return (<div key={ingredientData._id}>
+                            <input type={"hidden"} value={ingredientData.ingredient._id}/>
+                            <IngredientDataList initial={ingredientData.ingredient} event={(data) => {
+                                ingredientData.ingredient.ingredient = data.ingredient;
+                                ingredientData.ingredient._id = data._id;
+                                setRecipeData({...recipeData});
+                            }}/>
+                            <input type={"number"} value={ingredientData.amount} onChange={e => {
+                                const amount = parseInt(e.target.value)
+                                ingredientData.amount = amount >= 0 ? amount : 0;
+                                setRecipeData({...recipeData});
 
-            {
-                recipeData.ingredients.map((ingredientData) => {
-                    return (<div key={ingredientData._id}>
-                        <input type={"hidden"} value={ingredientData.ingredient._id}/>
-                        <IngredientDataList current={ingredientData.ingredient} setIngredient={(data) => {
-                            ingredientData.ingredient.ingredient = data.ingredient;
-                            ingredientData.ingredient._id = data._id;
+                            }}/>
+                            <UnitSelect name={"unit"} value={ingredientData.unit}
+                                        event={(e: ChangeEvent<HTMLSelectElement>) => {
+                                            ingredientData.unit = e.target.value as Unit;
+                                            setRecipeData({...recipeData});
+                                        }}/>
+                        </div>)
+                    })
+                }
+            </div>
+            <div>
+                {
+                    recipeData.instructions.map((instructionData, index) => {
+                        return <textarea key={`${recipeData._id}-${index}`} value={instructionData} onChange={e => {
+                            recipeData.instructions[index] = e.target.value;
+                            setRecipeData(recipeData);
                         }}/>
-                        <input type={"number"} value={ingredientData.amount} onChange={e => {
-                            ingredientData.amount = parseInt(e.target.value);
+                    })
+                }
+            </div>
+            <div>
+                <button onClick={async e => {
+                    recipeData.tags.push({
+                        _id: "",
+                        tag: {
+                            _id: "",
+                            tag: ""
+                        }
+                    })
+                    await setRecipeData({...recipeData});
+                }}
+                >add tag</button>
+                {
+                    recipeData.tags.map(tagData => {
+                        return <TagDataList key={tagData._id} initial={tagData.tag} event={(data) => {
+                            tagData.tag.tag = data.tag;
+                            tagData.tag._id = data._id
                         }}/>
-                        <UnitSelect name={"unit"} setUnit={(e: ChangeEvent<HTMLSelectElement>) => {
-                            ingredientData.unit = e.target.value as Unit;
-                        }}/>
-                    </div>)
-                })
-            }
-            {
-                recipeData.instructions.map((instructionData, index) => {
-                    return <textarea key={`${recipeData._id}-${index}`} value={instructionData} onChange={e => {
-                        recipeData.instructions[index] = e.target.value;
-                        setRecipeData(recipeData);
-                    }}/>
-                })
-            }
-            {
-                recipeData.tags.map(tagData => {
-                    return <TagDataList key={tagData._id} _id={tagData._id} setTag={(data) => {
-                        tagData.tag.tag = data.tag;
-                        tagData.tag._id = data._id
-                    }}/>
-                })
-            }
+                    })
+                }
+            </div>
         </form>
     );
 }

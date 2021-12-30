@@ -6,8 +6,8 @@ import {TagData} from "../types";
 let mounted = false;
 
 
-export const TagDataList = (props: { _id: string, setTag: (data: TagData) => void }) => {
-    const [search, setSearch] = useState("");
+export const TagDataList = (props: { initial: TagData, event: (data: TagData) => void }) => {
+    const [search, setSearch] = useState(props.initial.tag);
     const [options, setOptions] = useState<JSX.Element[]>([]);
 
     useEffect(() => {
@@ -25,15 +25,16 @@ export const TagDataList = (props: { _id: string, setTag: (data: TagData) => voi
         };
     }, [search]);
 
-    const htmlId = `${props._id}-tags`
+    const htmlId = `${props.initial._id}-tags`
     return (
         <label>
             <input onChange={async (e) => {
-                await setSearch(e.target.value);
+                setSearch(e.target.value);
             }} onBlur={async e => {
-                const [data, status] = await requestEndpoint<ApiResponse<TagData>>(`/tags/?s=${search}&exact=true`);
+                setSearch(e.target.value);
+                const [data, status] = await requestEndpoint<ApiResponse<TagData>>(`/tags/?s=${e.target.value}&exact=true`);
                 if (200 <= status && status < 300 && data.docs.length) {
-                    props.setTag(data.docs[0]);
+                    props.event(data.docs[0]);
                 }
             }} list={htmlId} value={search}/>
             <datalist id={htmlId}>

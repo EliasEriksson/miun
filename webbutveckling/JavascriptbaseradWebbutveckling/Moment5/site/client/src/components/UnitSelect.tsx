@@ -1,9 +1,12 @@
 import React, {ChangeEvent, useState} from "react";
 
-export const UnitSelect = (props: { name: string, setUnit: (e: ChangeEvent<HTMLSelectElement>) => void }) => {
-    const [value, setValue] = useState();
+export const UnitSelect = (props: { name: string, value: string, event: (e: ChangeEvent<HTMLSelectElement>) => void }) => {
+    const [value, setValue] = useState(props.value);
     return (
-        <select name={props.name} onChange={e => props.setUnit(e)}>
+        <select value={value} name={props.value} onChange={async e => {
+            setValue(e.target.value);
+            props.event(e);
+        }}>
             <option value={"ml"}>ml</option>
             <option value={"cl"}>cl</option>
             <option value={"dl"}>dl</option>
