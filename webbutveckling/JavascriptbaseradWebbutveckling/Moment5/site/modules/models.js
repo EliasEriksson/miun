@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const mongoosePaginate = require("mongoose-paginate-v2");
 
 class Ingredient extends mongoose.model("Ingredient", new mongoose.Schema({
     ingredient: {

@@ -190,7 +190,7 @@ app.put(`${apiRoot}/recipes/:id`, async (request, response, next) => {
         const recipe = await models.recipe.findByIdAndUpdate(request.params.id, request.body);
         writeCookies(response);
         response.status(200).json(recipe);
-        next()
+        next();
     } catch (e) {
         next(e);
     }

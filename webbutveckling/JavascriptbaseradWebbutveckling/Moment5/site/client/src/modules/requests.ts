@@ -1,3 +1,4 @@
+// noinspection TypeScriptDuplicateUnionOrIntersectionType
 type Endpoints = `/ingredients/${string}` |`/tags/${string}` | `/recipes/${string}`
 
 type HttpMethods = "GET" | "POST" | "PUT" | "DELETE";
@@ -38,7 +39,7 @@ export const requestEndpoint = async <T>(endpoint: Endpoints, method: HttpMethod
 
     let init: RequestInit = {
         method: method,
-        headers: headers
+        headers: headers,
     };
 
     if (data) {

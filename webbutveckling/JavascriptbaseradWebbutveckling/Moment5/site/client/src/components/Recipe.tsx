@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {Loader} from "./Loader";
 import {requestEndpoint} from "../modules/requests";
+import {Link, useParams} from "react-router-dom";
 
 export type Unit = "ml" | "cl" | "dl" | "l" | "g" | "kg" | "st";
 
@@ -35,35 +36,25 @@ export interface RecipeData {
     tags: RecipeTagData[]
 }
 
-export class RecipeSummary extends React.Component<{ data: RecipeData }> {
-    render = () => {
-        return (
-            <div>
-                <a href={`/recipes/${this.props.data._id}`}><h2>{this.props.data.title}</h2></a>
-                <p>{this.props.data.description}</p>
-            </div>
-        );
-    }
+export const RecipeSummary = (props: { data: RecipeData }) => {
+    return (
+        <div>
+            <Link to={`/recipes/${props.data._id}`}><h2>{props.data.title}</h2></Link>
+            <p>{props.data.description}</p>
+        </div>
+    );
 }
 
-export class Recipe extends React.Component<{
-    _id: string
-}, {
-    page: JSX.Element | null
-}> {
-    constructor(props: { _id: string }) {
-        super(props);
-        this.state = {
-            page: null
-        }
-    }
-
-    async componentDidMount() {
-        const [data, status] = await requestEndpoint<RecipeData>(`/recipes/${this.props._id}/`);
-        if (200 <= status && status < 300) {
-            this.setState(({
-                page: (
+export const Recipe = () => {
+    const params = useParams();
+    const [page, setPage] = useState<null | JSX.Element>(null);
+    useEffect (() => {
+        let mounted = true;
+        requestEndpoint<RecipeData>(`/recipes/${params._id}`, "GET", null, undefined).then(async ([data, status]) => {
+            if (200 <= status && status < 300 && mounted) {
+                setPage(
                     <div>
+                        <Link to={`/recipes/edit/${data._id}`}>Edit</Link>
                         <h2>{data.title}</h2>
                         <p>{data.description}</p>
                         <ol>
@@ -88,17 +79,26 @@ export class Recipe extends React.Component<{
                             ))}
                         </ul>
                     </div>
-                )
-            }))
-        }
-    }
+                );
+            }
+        })
+        return () => {mounted = false}
+    });
 
-    render = () => {
-        return (
-            <main>
-                {this.state.page}
-                {!this.state.page ? <Loader/> : null}
-            </main>
-        );
-    }
+    return (
+        <main>
+            {page}
+            {!page ? <Loader/> : null}
+        </main>
+    );
+}
+
+export const EditRecipe = () => {
+    const params = useParams();
+    return (
+        <div>
+            <p>this is the edit page!</p>
+            <Link to={`/recipes/${params._id}`}>Go back</Link>
+        </div>
+    );
 }
