@@ -1,8 +1,8 @@
 import React from "react";
 import {ApiResponse, requestEndpoint} from "../modules/requests";
-import {RecipeData, RecipeSummary} from "./Recipe";
 import {Loader} from "./Loader";
-
+import {RecipeData} from "../types";
+import {RecipeSummary} from "./RecipeSummary";
 
 export class Home extends React.Component<{
 }, {

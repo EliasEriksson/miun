@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form>
+    <label>
+        <input id="input" list="test">
+    </label>
+    <button>add ingredient</button>
+    <datalist id="test">
+        <option value="testing">
+    </datalist>
+</form>
+<script>
+    const inputElement = document.getElementById("input");
+    inputElement.addEventListener("blur", () => console.log("fired"))
+</script>
+</body>
+</html>

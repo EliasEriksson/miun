@@ -1,7 +1,7 @@
 // noinspection TypeScriptDuplicateUnionOrIntersectionType
-type Endpoints = `/ingredients/${string}` |`/tags/${string}` | `/recipes/${string}`
+export type Endpoints = `/ingredients/${string}` |`/tags/${string}` | `/recipes/${string}`
 
-type HttpMethods = "GET" | "POST" | "PUT" | "DELETE";
+export type HttpMethods = "GET" | "POST" | "PUT" | "DELETE";
 
 export interface ApiResponse<T> {
     docs: T[],
