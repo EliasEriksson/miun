@@ -4,30 +4,32 @@ class Ingredient extends mongoose.model("Ingredient", new mongoose.Schema({
     ingredient: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        lowercase: true
     }
 }, {strict: "throw", versionKey: false})) {
-    constructor(body) {
-        if (body) {
-            body.ingredient = body.ingredient.toLowerCase();
-        }
-        super(body);
-    }
+    // constructor(body) {
+    //     if (body) {
+    //         body.ingredient = body.ingredient.toLowerCase();
+    //     }
+    //     super(body);
+    // }
 }
 
 class Tag extends mongoose.model("Tag", new mongoose.Schema({
     tag: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        lowercase: true
     }
 }, {strict: "throw", versionKey: false})) {
-    constructor(body) {
-        if (body) {
-            body.tag = body.tag.toLowerCase();
-        }
-        super(body);
-    }
+    // constructor(body) {
+    //     if (body) {
+    //         body.tag = body.tag.toLowerCase();
+    //     }
+    //     super(body);
+    // }
 }
 
 class Recipe extends mongoose.model("Recipe", new mongoose.Schema({
@@ -87,15 +89,15 @@ class Recipe extends mongoose.model("Recipe", new mongoose.Schema({
         options: {versionKey: false}
     }
 }, {strict: "throw", versionKey: false})) {
-    constructor(body) {
-        if (body) {
-            body.ingredients.forEach((ingredient) => {
-                ingredient.ingredient = ingredient.ingredient.toLowerCase();
-                ingredient.unit = ingredient.unit.toLowerCase();
-            });
-        }
-        super(body);
-    }
+    // constructor(body) {
+    //     if (body) {
+    //         body.ingredients.forEach((ingredient) => {
+    //             ingredient.ingredient = ingredient.ingredient.toLowerCase();
+    //             ingredient.unit = ingredient.unit.toLowerCase();
+    //         });
+    //     }
+    //     super(body);
+    // }
 }
 
 module.exports = {

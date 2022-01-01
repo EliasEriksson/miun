@@ -128,7 +128,6 @@ app.post(`${apiRoot}/tags/`, async (request, response, next) => {
 app.put(`${apiRoot}/tags/:id`, async (request, response, next) => {
     try {
         const tag = await models.tag.findByIdAndUpdate(request.params.id, request.body);
-        
         response.status(200).json(tag);
         next();
     } catch (e) {
@@ -189,9 +188,12 @@ app.post(`${apiRoot}/recipes/`, async (request, response, next) => {
 
 app.put(`${apiRoot}/recipes/:id`, async (request, response, next) => {
     try {
+        console.log(request.body)
         const recipe = await models.recipe.findByIdAndUpdate(request.params.id, request.body);
+        console.log("----")
+        console.log()
         
-        response.status(200).json(recipe);
+        response.status(200).json(JSON.parse(JSON.stringify(recipe)));
         next();
     } catch (e) {
         next(e);

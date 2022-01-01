@@ -11,8 +11,8 @@ export const IngredientDataList = (props: { initial: IngredientData, event: (dat
 
     useEffect(() => {
         mounted = true;
-        requestEndpoint<ApiResponse<IngredientData>>(`/ingredients/?s=${search}`).then(async ([data, status]) => {
-            if (200 <= status && status < 300 && mounted) {
+        requestEndpoint<ApiResponse<IngredientData>>(`/ingredients/?s=${search}`).then(async (data) => {
+            if (mounted) {
                 await setOptions(data.docs.map(ingredientData => {
                     return (<option key={ingredientData._id} value={ingredientData.ingredient}/>);
                 }));
@@ -24,17 +24,23 @@ export const IngredientDataList = (props: { initial: IngredientData, event: (dat
         };
     }, [search]);
 
-    const htmlId = `${props.initial._id}-tags`;
+    const htmlId = `${props.initial._id}-ingredients`;
     return (
         <label>
             <input onChange={async (e) => {
                 setSearch(e.target.value);
             }} onBlur={async e => {
                 setSearch(e.target.value);
-                const [data, status] = await requestEndpoint<ApiResponse<IngredientData>>(`/ingredients/?s=${e.target.value}&exact=true`);
-                if (200 <= status && status < 300 && data.docs.length) {
+                const data = await requestEndpoint<ApiResponse<IngredientData>>(`/ingredients/?s=${e.target.value}&exact=true`);
+                if (data.docs.length) {
                     props.event(data.docs[0]);
+                } else {
+                    props.event({
+                        _id: "",
+                        ingredient: e.target.value
+                    });
                 }
+
             }} list={htmlId} value={search}/>
             <datalist id={htmlId}>
                 {options}

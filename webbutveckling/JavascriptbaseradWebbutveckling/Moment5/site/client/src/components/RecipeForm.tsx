@@ -1,14 +1,15 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
-import {RecipeData, Unit} from "../types";
+import {IngredientData, RecipeData, RecipeRequestData, TagData, Unit} from "../types";
 import {requestEndpoint} from "../modules/requests";
 import {IngredientDataList} from "./IngredientDataList";
 import {TagDataList} from "./TagDataList";
 import {UnitSelect} from "./UnitSelect";
+import {useNavigate} from "react-router-dom";
 
 let mounted = false;
 
 export const RecipeForm = (props: { _id?: string }) => {
-    const [loaded, setLoaded] = useState<boolean>(false);
+    const navigate = useNavigate();
     const [recipeData, setRecipeData] = useState<RecipeData>({
         _id: "",
         title: "",
@@ -22,14 +23,11 @@ export const RecipeForm = (props: { _id?: string }) => {
         if (!mounted) {
             mounted = true;
             if (props._id) {
-                requestEndpoint<RecipeData>(`/recipes/${props._id}`).then(async ([data, status]) => {
-                    if (200 <= status && status < 300 && mounted) {
+                requestEndpoint<RecipeData>(`/recipes/${props._id}`).then(async (data) => {
+                    if (mounted) {
                         await setRecipeData(data);
                     }
                 })
-                setLoaded(true);
-            } else {
-                setLoaded(true);
             }
         }
 
@@ -37,9 +35,71 @@ export const RecipeForm = (props: { _id?: string }) => {
             mounted = false;
         }
     }, []);
+
     return (
-        <form onSubmit={e => e.preventDefault()}>
-            <input type={"hidden"} value={recipeData._id}/>
+        <form onSubmit={async e => {
+            e.preventDefault();
+
+            const requests: Promise<any>[] = [];
+            recipeData.ingredients.forEach(ingredient => {
+                if (!ingredient.ingredient._id) {
+                    requests.push(
+                        requestEndpoint<IngredientData>(
+                            "/ingredients/", "POST", null, {ingredient: ingredient.ingredient.ingredient}
+                        ).then(data => {
+                            ingredient.ingredient._id = data._id;
+                        })
+                    );
+                }
+            });
+
+            recipeData.tags.forEach(tag => {
+                if (!tag.tag._id) {
+                    requests.push(
+                        requestEndpoint<TagData>(
+                            "/tags/", "POST", null, {tag: tag.tag.tag}
+                        ).then(data => {
+                            tag.tag._id = data._id;
+                        })
+                    );
+                }
+            });
+
+            await Promise.all(requests);
+            await setRecipeData({...recipeData});
+
+            const data: RecipeRequestData = {
+                title: recipeData.title,
+                description: recipeData.description,
+                instructions: recipeData.instructions,
+                ingredients: recipeData.ingredients.map(ingredient => {
+                    return {
+                        // id is guaranteed to exist after the requests above have finished.
+                        ingredient: ingredient.ingredient._id as string,
+                        amount: ingredient.amount,
+                        unit: ingredient.unit
+                    }
+                }),
+                tags: recipeData.tags.map(tag => {
+                    return {
+                        // id is guaranteed to exist after the requests above have finished.
+                        tag: tag.tag._id as string
+                    }
+                })
+            }
+
+            if (recipeData._id) {
+                await requestEndpoint<RecipeData>(
+                    `/recipes/${recipeData._id}`, "PUT", null, data
+                );
+                navigate(`/recipes/${recipeData._id}`);
+            } else {
+                const response = await requestEndpoint<RecipeData>(
+                    "/recipes/", "POST", null, data
+                );
+                navigate(`/recipes/${response._id}`);
+            }
+        }}>
             <div>
                 <textarea value={recipeData.title} onChange={(e) => {
                     setRecipeData({...recipeData, title: e.target.value});
@@ -50,10 +110,9 @@ export const RecipeForm = (props: { _id?: string }) => {
             </div>
             <div>
                 <button onClick={async (e) => {
+                    e.preventDefault();
                     recipeData.ingredients.push({
-                        _id: "",
                         ingredient: {
-                            _id: "",
                             ingredient: ""
                         },
                         amount: 0,
@@ -62,61 +121,70 @@ export const RecipeForm = (props: { _id?: string }) => {
                     await setRecipeData({...recipeData});
                 }}>add ingredient
                 </button>
-                {
-                    recipeData.ingredients.map((ingredientData) => {
-                        return (<div key={ingredientData._id}>
-                            <input type={"hidden"} value={ingredientData.ingredient._id}/>
-                            <IngredientDataList initial={ingredientData.ingredient} event={(data) => {
-                                ingredientData.ingredient.ingredient = data.ingredient;
-                                ingredientData.ingredient._id = data._id;
-                                setRecipeData({...recipeData});
-                            }}/>
-                            <input type={"number"} value={ingredientData.amount} onChange={e => {
-                                const amount = parseInt(e.target.value)
-                                ingredientData.amount = amount >= 0 ? amount : 0;
-                                setRecipeData({...recipeData});
+                <div>
+                    {
+                        recipeData.ingredients.map((ingredientData, index) => {
+                            const key = `${recipeData._id}-ingredients-${index}`;
+                            return (<div key={key}>
+                                <IngredientDataList initial={ingredientData.ingredient} event={async (data) => {
 
-                            }}/>
-                            <UnitSelect name={"unit"} value={ingredientData.unit}
-                                        event={(e: ChangeEvent<HTMLSelectElement>) => {
-                                            ingredientData.unit = e.target.value as Unit;
-                                            setRecipeData({...recipeData});
-                                        }}/>
-                        </div>)
-                    })
-                }
+                                    ingredientData.ingredient.ingredient = data.ingredient;
+                                    ingredientData.ingredient._id = data._id;
+                                    setRecipeData({...recipeData});
+                                }}/>
+                                <input type={"number"} value={ingredientData.amount}
+                                       onChange={e => {
+                                           const amount = parseInt(e.target.value)
+                                           ingredientData.amount = amount >= 0 ? amount : 0;
+                                           setRecipeData({...recipeData});
+
+                                       }}/>
+                                <UnitSelect value={ingredientData.unit}
+                                            event={(e: ChangeEvent<HTMLSelectElement>) => {
+                                                ingredientData.unit = e.target.value as Unit;
+                                                setRecipeData({...recipeData});
+                                            }}/>
+                            </div>)
+                        })
+                    }
+                </div>
+
             </div>
             <div>
                 {
                     recipeData.instructions.map((instructionData, index) => {
-                        return <textarea key={`${recipeData._id}-${index}`} value={instructionData} onChange={e => {
-                            recipeData.instructions[index] = e.target.value;
-                            setRecipeData(recipeData);
-                        }}/>
+                        return <textarea key={`${recipeData._id}-instruction-${index}`} value={instructionData}
+                                         onChange={e => {
+                                             recipeData.instructions[index] = e.target.value;
+                                             setRecipeData(recipeData);
+                                         }}/>
                     })
                 }
             </div>
             <div>
                 <button onClick={async e => {
+                    e.preventDefault();
                     recipeData.tags.push({
-                        _id: "",
                         tag: {
-                            _id: "",
                             tag: ""
                         }
                     })
                     await setRecipeData({...recipeData});
                 }}
-                >add tag</button>
+                >add tag
+                </button>
                 {
-                    recipeData.tags.map(tagData => {
-                        return <TagDataList key={tagData._id} initial={tagData.tag} event={(data) => {
+                    recipeData.tags.map((tagData, index) => {
+                        const key = `${recipeData._id}-ingredients-${index}-name`;
+                        return <TagDataList key={key} initial={tagData.tag} event={(data) => {
                             tagData.tag.tag = data.tag;
-                            tagData.tag._id = data._id
+                            tagData.tag._id = data._id;
+                            setRecipeData({...recipeData});
                         }}/>
                     })
                 }
             </div>
+            <input type={"submit"} value={"apply"}/>
         </form>
     );
 }

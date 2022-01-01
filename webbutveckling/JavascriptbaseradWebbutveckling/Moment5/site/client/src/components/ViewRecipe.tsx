@@ -13,8 +13,8 @@ export const ViewRecipe = () => {
     useEffect(() => {
         if (!mounted) {
             mounted = true;
-            requestEndpoint<RecipeData>(`/recipes/${params._id}`, "GET", null, undefined).then(async ([data, status]) => {
-                if (200 <= status && status < 300 && mounted) {
+            requestEndpoint<RecipeData>(`/recipes/${params._id}`, "GET", null, undefined).then(async (data) => {
+                if (mounted) {
                     await setPage(
                         <div>
                             <Link to={`/recipes/edit/${data._id}`}>Edit</Link>

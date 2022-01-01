@@ -26,7 +26,7 @@ export interface ApiResponse<T> {
  * @param method: the request method.
  * @param data: general data to be sent with the request.
  */
-export const requestEndpoint = async <T>(endpoint: Endpoints, method: HttpMethods = "GET", token = null, data = undefined): Promise<[T, number]> => {
+export const requestEndpoint = async <T>(endpoint: Endpoints, method: HttpMethods = "GET", token = null, data: object|undefined = undefined): Promise<T> => {
     const apiURL = `/jsweb/moment5/api`
 
     let headers = new Headers({
@@ -47,5 +47,8 @@ export const requestEndpoint = async <T>(endpoint: Endpoints, method: HttpMethod
     }
     const url = `${apiURL}${endpoint}`;
     let response = await fetch(url, init);
-    return [await response.json(), response.status];
+    if (200 <= response.status && response.status < 300) {
+        return await response.json();
+    }
+    throw new Error(await response.text());
 };

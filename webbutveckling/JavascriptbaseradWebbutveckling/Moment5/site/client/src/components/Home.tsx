@@ -4,8 +4,7 @@ import {Loader} from "./Loader";
 import {RecipeData} from "../types";
 import {RecipeSummary} from "./RecipeSummary";
 
-export class Home extends React.Component<{
-}, {
+export class Home extends React.Component<{}, {
     recipes: JSX.Element[], fetchedAll: boolean
 }> {
     private fetching: boolean;
@@ -26,23 +25,21 @@ export class Home extends React.Component<{
     fetchContent = async () => {
         this.fetching = true;
         if (this.nextApiPage) {
-            const [data, status] = await requestEndpoint<ApiResponse<RecipeData>>(`/recipes/?page=${this.nextApiPage}`);
-            if (200 <= status && status < 300) {
-                await this.setState(({
-                    recipes: [...this.state.recipes, ...data.docs.map((recipeData) => {
-                        return (<RecipeSummary
-                                key={recipeData._id}
-                                data={recipeData}/>
-                        );
-                    })]
-                }));
-                this.nextApiPage = data.nextPage;
-                if (!this.nextApiPage) await this.setState(({fetchedAll: true}));
-                this.fetching = false;
-            }
-        } else {
+            const data = await requestEndpoint<ApiResponse<RecipeData>>(`/recipes/?page=${this.nextApiPage}`);
+
+            await this.setState(({
+                recipes: [...this.state.recipes, ...data.docs.map((recipeData) => {
+                    return (<RecipeSummary
+                            key={recipeData._id}
+                            data={recipeData}/>
+                    );
+                })]
+            }));
+            this.nextApiPage = data.nextPage;
+            if (!this.nextApiPage) await this.setState(({fetchedAll: true}));
             this.fetching = false;
         }
+
     }
 
     handleViewportEnter = async () => {

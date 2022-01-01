@@ -12,8 +12,8 @@ export const TagDataList = (props: { initial: TagData, event: (data: TagData) =>
 
     useEffect(() => {
         mounted = true;
-        requestEndpoint<ApiResponse<TagData>>(`/tags/?s=${search}`).then(async ([data, status]) => {
-            if (200 <= status && status < 300 && mounted) {
+        requestEndpoint<ApiResponse<TagData>>(`/tags/?s=${search}`).then(async (data) => {
+            if (mounted) {
                 await setOptions(data.docs.map(tagData => {
                     return (<option key={tagData._id} value={tagData.tag}/>);
                 }));
@@ -25,16 +25,21 @@ export const TagDataList = (props: { initial: TagData, event: (data: TagData) =>
         };
     }, [search]);
 
-    const htmlId = `${props.initial._id}-tags`
+    const htmlId = `${props.initial._id}-tags`;
     return (
         <label>
             <input onChange={async (e) => {
                 setSearch(e.target.value);
             }} onBlur={async e => {
                 setSearch(e.target.value);
-                const [data, status] = await requestEndpoint<ApiResponse<TagData>>(`/tags/?s=${e.target.value}&exact=true`);
-                if (200 <= status && status < 300 && data.docs.length) {
+                const data = await requestEndpoint<ApiResponse<TagData>>(`/tags/?s=${e.target.value}&exact=true`);
+                if (data.docs.length) {
                     props.event(data.docs[0]);
+                } else {
+                    props.event({
+                        _id: "",
+                        "tag": e.target.value
+                    })
                 }
             }} list={htmlId} value={search}/>
             <datalist id={htmlId}>

@@ -8,18 +8,15 @@
     <title>Document</title>
 </head>
 <body>
-<form>
-    <label>
-        <input id="input" list="test">
-    </label>
-    <button>add ingredient</button>
-    <datalist id="test">
-        <option value="testing">
-    </datalist>
+<form id="form">
+    <input name="foo" type="text" value="">
 </form>
 <script>
-    const inputElement = document.getElementById("input");
-    inputElement.addEventListener("blur", () => console.log("fired"))
+    const formElement = document.getElementById("form");
+    const formData = new FormData(formElement);
+    for (const [name, value] of formData.entries()) {
+        console.log(name, value)
+    }
 </script>
 </body>
 </html>
