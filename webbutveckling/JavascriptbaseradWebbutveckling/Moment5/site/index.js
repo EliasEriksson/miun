@@ -148,7 +148,6 @@ app.delete(`${apiRoot}/tags/:id`, async (request, response, next) => {
 
 app.get(`${apiRoot}/recipes/`, async (request, response, next) => {
     try {
-        
         response.status(200).json(
             await models.recipe.paginate({}, {
                 ...searchParams(request),
@@ -188,12 +187,9 @@ app.post(`${apiRoot}/recipes/`, async (request, response, next) => {
 
 app.put(`${apiRoot}/recipes/:id`, async (request, response, next) => {
     try {
-        console.log(request.body)
         const recipe = await models.recipe.findByIdAndUpdate(request.params.id, request.body);
-        console.log("----")
-        console.log()
-        
-        response.status(200).json(JSON.parse(JSON.stringify(recipe)));
+
+        response.status(200).json(recipe);
         next();
     } catch (e) {
         next(e);
