@@ -3,6 +3,8 @@ import {ApiResponse, requestEndpoint} from "../modules/requests";
 import {Loader} from "./Loader";
 import {RecipeData} from "../types";
 import {RecipeSummary} from "./RecipeSummary";
+import {NewRecipe} from "./NewRecipe";
+import {Link} from "react-router-dom";
 
 
 let fetching = false;
@@ -55,6 +57,7 @@ export const Home: React.FC = () => {
 
     return (
         <main>
+            <Link to={"/recipes/new/"}>New</Link>
             <div>{state.recipes}</div>
             {!state.fetchedAll ? <Loader
                 onEnterViewport={async () => fetchContent(state, setState)}
