@@ -6,16 +6,23 @@ import {RecipeData} from "../types";
 
 let mounted = false;
 
+interface State {
+    page: JSX.Element | null
+}
+
 export const ViewRecipe = () => {
     const params = useParams();
-    const [page, setPage] = useState<null | JSX.Element>(null);
+    const [state, setState] = useState<State>({
+        page: null
+    });
+    // const [page, setPage] = useState<null | JSX.Element>(null);
 
     useEffect(() => {
         if (!mounted) {
             mounted = true;
             requestEndpoint<RecipeData>(`/recipes/${params._id}`, "GET", null, undefined).then(async (data) => {
                 if (mounted) {
-                    await setPage(
+                    state.page = (
                         <div>
                             <Link to={`/recipes/edit/${data._id}`}>Edit</Link>
                             <h2>{data.title}</h2>
@@ -43,6 +50,7 @@ export const ViewRecipe = () => {
                             </ul>
                         </div>
                     );
+                    await setState({...state});
                 }
             })
         }
@@ -53,8 +61,8 @@ export const ViewRecipe = () => {
 
     return (
         <main>
-            {page}
-            {!page ? <Loader/> : null}
+            {state.page}
+            {!state.page ? <Loader/> : null}
         </main>
     );
 }

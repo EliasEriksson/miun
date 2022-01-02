@@ -4,33 +4,41 @@ import {IngredientData} from "../types";
 
 let mounted = false;
 
+interface State {
+    search: string,
+    options: JSX.Element[]
+}
+
 
 export const IngredientDataList = (props: { initial: IngredientData, event: (data: IngredientData) => void }) => {
-    const [search, setSearch] = useState(props.initial.ingredient);
-    const [options, setOptions] = useState<JSX.Element[]>([]);
+    const [state, setState] = useState<State>({
+        search: props.initial.ingredient,
+        options: []
+    });
 
     useEffect(() => {
         mounted = true;
-        requestEndpoint<ApiResponse<IngredientData>>(`/ingredients/?s=${search}`).then(async (data) => {
+        requestEndpoint<ApiResponse<IngredientData>>(`/ingredients/?s=${state.search}`).then(async (data) => {
             if (mounted) {
-                await setOptions(data.docs.map(ingredientData => {
-                    return (<option key={ingredientData._id} value={ingredientData.ingredient}/>);
-                }));
+                state.options = data.docs.map(ingredientData => {
+                    return (<option key={ingredientData._id} value={ingredientData.ingredient}/>)
+                });
+                await setState({...state});
             }
         })
 
         return () => {
             mounted = false;
         };
-    }, [search]);
+    }, [state.search]);
 
     const htmlId = `${props.initial._id}-ingredients`;
     return (
         <label>
             <input onChange={async (e) => {
-                setSearch(e.target.value);
+                setState({...state, search: e.target.value})
             }} onBlur={async e => {
-                setSearch(e.target.value);
+                setState({...state, search: e.target.value})
                 const data = await requestEndpoint<ApiResponse<IngredientData>>(`/ingredients/?s=${e.target.value}&exact=true`);
                 if (data.docs.length) {
                     props.event(data.docs[0]);
@@ -41,9 +49,9 @@ export const IngredientDataList = (props: { initial: IngredientData, event: (dat
                     });
                 }
 
-            }} list={htmlId} value={search}/>
+            }} list={htmlId} value={state.search}/>
             <datalist id={htmlId}>
-                {options}
+                {state.options}
             </datalist>
         </label>
     )
