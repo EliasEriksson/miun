@@ -178,7 +178,9 @@ app.post(`${apiRoot}/recipes/`, async (request, response, next) => {
         const recipe = new models.recipe(request.body);
         await recipe.save();
         
-        response.status(201).json(recipe);
+        response.status(201).json(
+            await models.recipe.findById(recipe._id).populate("ingredients.ingredient").populate("tags.tag")
+        );
         next();
     } catch (e) {
         next(e);
@@ -189,7 +191,9 @@ app.put(`${apiRoot}/recipes/:id`, async (request, response, next) => {
     try {
         const recipe = await models.recipe.findByIdAndUpdate(request.params.id, request.body);
 
-        response.status(200).json(recipe);
+        response.status(200).json(
+            await models.recipe.findById(recipe._id).populate("ingredients.ingredient").populate("tags.tag")
+        );
         next();
     } catch (e) {
         next(e);

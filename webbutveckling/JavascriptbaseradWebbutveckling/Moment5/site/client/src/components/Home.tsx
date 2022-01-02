@@ -38,7 +38,7 @@ const fetchContent = async (state: State, setState: React.Dispatch<SetStateActio
     }
 }
 
-export const Home = () => {
+export const Home: React.FC = () => {
     const [state, setState] = useState<State>({
         recipes: [],
         fetchedAll: false

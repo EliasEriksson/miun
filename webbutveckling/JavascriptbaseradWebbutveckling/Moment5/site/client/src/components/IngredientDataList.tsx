@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {ApiResponse, requestEndpoint} from "../modules/requests";
 import {IngredientData} from "../types";
+import {v4 as uuid} from "uuid";
+
 
 let mounted = false;
 
@@ -10,7 +12,9 @@ interface State {
 }
 
 
-export const IngredientDataList = (props: { initial: IngredientData, event: (data: IngredientData) => void }) => {
+export const IngredientDataList: React.FC<{
+    initial: IngredientData, event: (data: IngredientData) => void
+}> = props => {
     const [state, setState] = useState<State>({
         search: props.initial.ingredient,
         options: []
@@ -20,9 +24,11 @@ export const IngredientDataList = (props: { initial: IngredientData, event: (dat
         mounted = true;
         requestEndpoint<ApiResponse<IngredientData>>(`/ingredients/?s=${state.search}`).then(async (data) => {
             if (mounted) {
-                state.options = data.docs.map(ingredientData => {
-                    return (<option key={ingredientData._id} value={ingredientData.ingredient}/>)
-                });
+                state.options = data.docs.map(ingredientData =>
+                    (
+                        <option key={ingredientData.key ?? ingredientData._id} value={ingredientData.ingredient}/>
+                    )
+                );
                 await setState({...state});
             }
         })
@@ -45,7 +51,8 @@ export const IngredientDataList = (props: { initial: IngredientData, event: (dat
                 } else {
                     props.event({
                         _id: "",
-                        ingredient: e.target.value
+                        ingredient: e.target.value,
+                        key: uuid()
                     });
                 }
 
