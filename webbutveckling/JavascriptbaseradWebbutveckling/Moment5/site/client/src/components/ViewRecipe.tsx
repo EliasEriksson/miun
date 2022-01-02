@@ -29,21 +29,21 @@ export const ViewRecipe = () => {
                             <p>{recipeData.description}</p>
                             <ol>
                                 {recipeData.ingredients.map(data => (
-                                    <li key={data.key}>
+                                    <li key={data.key ?? data._id}>
                                         {data.ingredient.ingredient} {data.amount} {data.unit}
                                     </li>
                                 ))}
                             </ol>
                             <ol>
                                 {recipeData.instructions.map(data => (
-                                    <li key={data.key}>
+                                    <li key={data.key ?? data._id}>
                                         {data.instruction}
                                     </li>
                                 ))}
                             </ol>
                             <ul>
                                 {recipeData.tags.map(data => (
-                                    <li key={data.key}>
+                                    <li key={data.key ?? data._id}>
                                         {data.tag.tag}
                                     </li>
                                 ))}

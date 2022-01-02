@@ -10,14 +10,8 @@ import {Instructions} from "./Instructions";
 import {v4 as uuid} from "uuid";
 
 
-let mounted = false;
-
 interface State {
     recipeData: RecipeData
-}
-
-interface Attributes {
-
 }
 
 const handleSubmit = async (state: State, setState: React.Dispatch<SetStateAction<State>>, navigate: NavigateFunction) => {
@@ -50,9 +44,10 @@ const handleSubmit = async (state: State, setState: React.Dispatch<SetStateActio
     await setState({...state});
 
     const data: RecipeRequestData = {
+        _id: state.recipeData._id,
         title: state.recipeData.title,
         description: state.recipeData.description,
-        instructions: state.recipeData.instructions,
+        instructions: state.recipeData.instructions.map(instruction => ({instruction: instruction.instruction})),
         ingredients: state.recipeData.ingredients.map(ingredient => {
             return {
                 // id is guaranteed to exist after the requests above have finished.
@@ -82,14 +77,17 @@ const handleSubmit = async (state: State, setState: React.Dispatch<SetStateActio
     }
 }
 
+const handleDelete = async (state: State, navigate: NavigateFunction) => {
+    if (window.confirm(`Are you sure you want to delete recipe '${state.recipeData.title}'?`)) {
+        await requestEndpoint(`/recipes/${state.recipeData._id}/`, "DELETE", null);
+        navigate("/");
+    }
+}
 
 export const RecipeForm: React.FC<{
     _id?: string
 }> = props => {
     const navigate = useNavigate();
-    const attributes = useRef<Attributes>({
-
-    });
     const [state, setState] = useState<State>({
         recipeData: {
             _id: "",
@@ -102,34 +100,33 @@ export const RecipeForm: React.FC<{
         }
     });
     useEffect(() => {
-        if (!mounted) {
-            mounted = true;
-            if (props._id) {
-                requestEndpoint<RecipeData>(`/recipes/${props._id}`).then(async (data) => {
-                    if (mounted) {
-                        state.recipeData = data;
-                        await setState({...state});
-                    }
-                })
-            }
+        if (props._id) {
+            requestEndpoint<RecipeData>(`/recipes/${props._id}`).then(async (data) => {
+                state.recipeData = data;
+                await setState({...state});
+
+            })
         }
 
         return () => {
-            attributes.current = {};
-            mounted = false;
         }
     }, []);
     return (
-        <form onSubmit={async e => {
-            e.preventDefault();
-            await handleSubmit(state, setState, navigate);
-        }}>
+        <form onSubmit={async e => e.preventDefault()
+        }>
             <Title parentState={state} parentSetState={setState}/>
             <Description parentState={state} parentSetState={setState}/>
             <Ingredients parentState={state} parentSetState={setState}/>
             <Instructions parentState={state} parentSetState={setState}/>
             <Tags parentState={state} parentSetState={setState}/>
-            <input type={"submit"} value={"apply"}/>
+            <input type={"submit"} value={"apply"} onClick={async e => {
+                e.preventDefault();
+                await handleSubmit(state, setState, navigate);
+            }}/>
+            <input type={"submit"} value={"delete"} onClick={async e => {
+                e.preventDefault();
+                await handleDelete(state, navigate)
+            }} />
         </form>
     );
 }
