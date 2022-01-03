@@ -1,4 +1,4 @@
-import React, {SetStateAction, useEffect, useRef, useState} from "react";
+import React, {SetStateAction, useEffect, useState} from "react";
 import {IngredientData, RecipeData, RecipeRequestData, TagData} from "../types";
 import {requestEndpoint} from "../modules/requests";
 import {NavigateFunction, useNavigate} from "react-router-dom";
@@ -43,8 +43,7 @@ const handleSubmit = async (state: State, setState: React.Dispatch<SetStateActio
     await Promise.all(requests);
     await setState({...state});
 
-    const data: RecipeRequestData = {
-        _id: state.recipeData._id,
+    let data: RecipeRequestData = {
         title: state.recipeData.title,
         description: state.recipeData.description,
         instructions: state.recipeData.instructions.map(instruction => ({instruction: instruction.instruction})),
@@ -65,6 +64,7 @@ const handleSubmit = async (state: State, setState: React.Dispatch<SetStateActio
     };
 
     if (state.recipeData._id) {
+        data._id = state.recipeData._id;
         await requestEndpoint<RecipeData>(
             `/recipes/${state.recipeData._id}`, "PUT", null, data
         );
@@ -84,13 +84,13 @@ const handleDelete = async (state: State, navigate: NavigateFunction) => {
     }
 }
 
+
 export const RecipeForm: React.FC<{
     _id?: string
 }> = props => {
     const navigate = useNavigate();
     const [state, setState] = useState<State>({
         recipeData: {
-            _id: "",
             title: "",
             description: "",
             ingredients: [],

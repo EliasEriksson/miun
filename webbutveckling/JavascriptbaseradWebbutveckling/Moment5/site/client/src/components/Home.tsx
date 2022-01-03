@@ -3,18 +3,93 @@ import {ApiResponse, requestEndpoint} from "../modules/requests";
 import {Loader} from "./Loader";
 import {RecipeData} from "../types";
 import {RecipeSummary} from "./RecipeSummary";
-import {NewRecipe} from "./NewRecipe";
 import {Link} from "react-router-dom";
 
 
 let fetching = false;
 let fetchMore = true;
 let nextApiPage: number | null = 1;
+let recipeIds: Set<string> = new Set();
 
 
 interface State {
-    recipes: JSX.Element[],
+    search: string
+    recipes: RecipeData[],
     fetchedAll: boolean
+}
+
+const reset = async (state: State, setState: React.Dispatch<SetStateAction<State>>) => {
+    fetching = false;
+    fetchMore = true;
+    nextApiPage = 1;
+    recipeIds = new Set<string>();
+    state.recipes = [];
+    state.fetchedAll = false;
+    await setState({...state});
+    console.log("set state allegedly finished")
+}
+
+const fetchContentS = async (state: State, setState: React.Dispatch<SetStateAction<State>>) => {
+    fetchMore = true;
+    while (fetchMore && nextApiPage) {
+        fetching = true;
+        if (state.search) {
+            const data = await requestEndpoint<{
+                relevantSearch: ApiResponse<RecipeData> | null,
+                titleSearch: ApiResponse<RecipeData> | null,
+                ingredientSearch: ApiResponse<RecipeData> | null
+            }>(`/recipes/?page=${nextApiPage}&s=${state.search}`);
+            if (data.relevantSearch) {
+                data.relevantSearch.docs.forEach(recipeData => {
+                    if (!recipeIds.has(recipeData._id as string)) {
+                        state.recipes.push(recipeData);
+                        recipeIds.add(recipeData._id as string);
+                    }
+                });
+            }
+            if (data.titleSearch) {
+                data.titleSearch.docs.forEach(recipeData => {
+                    if (!recipeIds.has(recipeData._id as string)) {
+                        state.recipes.push(recipeData);
+                        recipeIds.add(recipeData._id as string);
+                    }
+                });
+            }
+            if (data.ingredientSearch) {
+                data.ingredientSearch.docs.forEach(recipeData => {
+                    if (!recipeIds.has(recipeData._id as string)) {
+                        state.recipes.push(recipeData);
+                        recipeIds.add(recipeData._id as string);
+                    }
+                });
+            }
+
+            if (data.relevantSearch?.hasNextPage || data.titleSearch?.hasNextPage || data.ingredientSearch?.hasNextPage) {
+                nextApiPage++;
+            } else {
+                nextApiPage = null;
+            }
+
+        } else {
+            const data = await requestEndpoint<ApiResponse<RecipeData>>(
+                `/recipes/?page=${nextApiPage}`
+            );
+            data.docs.forEach(recipeData => {
+                // id is guaranteed on objects directly from db
+                if (!recipeIds.has(recipeData._id as string)) {
+                    state.recipes.push(recipeData);
+                    recipeIds.add(recipeData._id as string);
+                }
+            });
+            nextApiPage = data.nextPage;
+        }
+        if (!nextApiPage) {
+            await setState({...state, fetchedAll: true});
+        } else {
+            await setState({...state});
+        }
+        fetching = false;
+    }
 }
 
 const fetchContent = async (state: State, setState: React.Dispatch<SetStateAction<State>>) => {
@@ -26,9 +101,7 @@ const fetchContent = async (state: State, setState: React.Dispatch<SetStateActio
                 `/recipes/?page=${nextApiPage}`
             );
             data.docs.forEach(recipeData => {
-                state.recipes.push((
-                    <RecipeSummary key={recipeData._id} data={recipeData}/>
-                ))
+                state.recipes.push(recipeData)
             })
             await setState({
                 ...state,
@@ -42,26 +115,42 @@ const fetchContent = async (state: State, setState: React.Dispatch<SetStateActio
 
 export const Home: React.FC = () => {
     const [state, setState] = useState<State>({
+        search: "",
         recipes: [],
         fetchedAll: false
     });
 
     useEffect(() => {
         return () => {
-            fetching = false;
-            fetchMore = true
-            nextApiPage = 1;
-            setState({recipes: [], fetchedAll: false})
+            reset(state, setState);
         };
     }, []);
 
     return (
         <main>
             <Link to={"/recipes/new/"}>New</Link>
-            <div>{state.recipes}</div>
-            {!state.fetchedAll ? <Loader
-                onEnterViewport={async () => fetchContent(state, setState)}
-                onLeaveViewport={async () => fetchMore = false}/> : null}
+            <div>
+                <form onSubmit={async e => e.preventDefault()}>
+                    <input onChange={async e => {
+                        state.search = e.target.value;
+                        while (fetching) {
+                            await new Promise(resolve => setTimeout(resolve, 40));
+                        }
+                        await reset(state, setState);
+
+                    }} value={state.search}/>
+                </form>
+                <div>
+                    {
+                        state.recipes.map(recipeData => (
+                            <RecipeSummary key={recipeData._id} data={recipeData}/>
+                        ))
+                    }
+                </div>
+                {!state.fetchedAll ? <Loader
+                    onEnterViewport={async () => fetchContentS(state, setState)}
+                    onLeaveViewport={async () => fetchMore = false}/> : null}
+            </div>
         </main>
     )
 }
