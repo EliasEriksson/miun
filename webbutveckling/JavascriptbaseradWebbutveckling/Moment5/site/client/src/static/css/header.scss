@@ -1,0 +1,32 @@
+.header-wrapper {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+header {
+  display: flex;
+  gap: 1em;
+  margin: auto 1em;
+  max-width: 960px;
+  width: 100%;
+  flex-wrap: wrap;
+
+  svg {
+    width: 150px;
+    height: 150px;
+
+    flex-basis: fit-content;
+    background: none;
+    border: none;
+    outline: none;
+  }
+
+  h1 {
+    flex-basis: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+}

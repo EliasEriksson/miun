@@ -1,0 +1,17 @@
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .tag {
+      border-radius: 3px;
+      padding: 0.15em 0.5em;
+      background-color: #4a4d54;
+    }
+  }
+}

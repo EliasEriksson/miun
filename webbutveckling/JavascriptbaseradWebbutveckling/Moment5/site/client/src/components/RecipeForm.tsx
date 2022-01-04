@@ -8,6 +8,7 @@ import {Title} from "./Title";
 import {Description} from "./Description";
 import {Instructions} from "./Instructions";
 import {v4 as uuid} from "uuid";
+import "../static/css/recipeForm.scss";
 
 
 interface State {
@@ -104,7 +105,6 @@ export const RecipeForm: React.FC<{
             requestEndpoint<RecipeData>(`/recipes/${props._id}`).then(async (data) => {
                 state.recipeData = data;
                 await setState({...state});
-
             })
         }
 
@@ -112,21 +112,28 @@ export const RecipeForm: React.FC<{
         }
     }, []);
     return (
-        <form onSubmit={async e => e.preventDefault()
+        <form className={"recipe-form"} onSubmit={async e => e.preventDefault()
         }>
             <Title parentState={state} parentSetState={setState}/>
+            <hr/>
             <Description parentState={state} parentSetState={setState}/>
+            <hr/>
             <Ingredients parentState={state} parentSetState={setState}/>
+            <hr/>
             <Instructions parentState={state} parentSetState={setState}/>
+            <hr/>
             <Tags parentState={state} parentSetState={setState}/>
-            <input type={"submit"} value={"apply"} onClick={async e => {
-                e.preventDefault();
-                await handleSubmit(state, setState, navigate);
-            }}/>
-            <input type={"submit"} value={"delete"} onClick={async e => {
-                e.preventDefault();
-                await handleDelete(state, navigate)
-            }} />
+            <hr/>
+            <div className={"wrapper buttons"}>
+                <input className={"submit-button"} type={"submit"} value={"Apply"} onClick={async e => {
+                    e.preventDefault();
+                    await handleSubmit(state, setState, navigate);
+                }}/>
+                <input className={"delete-button"} type={"submit"} value={"Delete"} onClick={async e => {
+                    e.preventDefault();
+                    await handleDelete(state, navigate)
+                }}/>
+            </div>
         </form>
     );
 }

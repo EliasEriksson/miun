@@ -141,10 +141,6 @@ app.delete(`${apiRoot}/tags/:id`, async (request, response, next) => {
     }
 });
 
-// tags:   Array.from(text.matchAll(/#(?<tags>\w+\W*)/gu)).map(match => match[1])
-// words:  Array.from(text.matchAll(/(?:^|\s)(?<words>(\w+))/gu)).map(match => match[1])
-// search:
-
 app.get(`${apiRoot}/search/`, async (request, response, next) => {
     try {
         const searchString = `${request.query.s ?? ""}`;

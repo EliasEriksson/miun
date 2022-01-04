@@ -38,10 +38,17 @@ export const IngredientDataList: React.FC<{
         };
     }, [state.search]);
 
-    const htmlId = `${props.initial._id}-ingredients`;
+    const identifier = props.initial.key ?? props.initial._id
+    const htmlId = `${identifier}-ingredients`;
     return (
-        <label>
-            <input onChange={async (e) => {
+        <>
+            <label htmlFor={identifier + "-ingredient-input"}>
+                Ingredient:
+                <datalist id={htmlId}>
+                    {state.options}
+                </datalist>
+            </label>
+            <input id={identifier + "-ingredient-input"} onChange={async (e) => {
                 setState({...state, search: e.target.value})
             }} onBlur={async e => {
                 setState({...state, search: e.target.value})
@@ -57,9 +64,6 @@ export const IngredientDataList: React.FC<{
                 }
 
             }} list={htmlId} value={state.search}/>
-            <datalist id={htmlId}>
-                {state.options}
-            </datalist>
-        </label>
+        </>
     )
 }

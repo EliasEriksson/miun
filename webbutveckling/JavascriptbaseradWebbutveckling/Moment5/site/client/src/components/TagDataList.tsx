@@ -34,10 +34,12 @@ export const TagDataList = (props: { initial: TagData, event: (data: TagData) =>
         };
     }, [state.search]);
 
-    const htmlId = `${props.initial.key ?? props.initial._id}-tags`;
+    const identifier = props.initial.key ?? props.initial._id
+    const htmlId = `${identifier}-tags`;
     return (
-        <label>
-            <input onChange={async (e) => {
+        <>
+            <label htmlFor={`${identifier}-input`}>Tag:</label>
+            <input id={`${identifier}-input`} onChange={async (e) => {
                 await setState({...state, search: e.target.value});
             }} onBlur={async e => {
                 await setState({...state, search: e.target.value});
@@ -56,6 +58,6 @@ export const TagDataList = (props: { initial: TagData, event: (data: TagData) =>
             <datalist id={htmlId}>
                 {state.options}
             </datalist>
-        </label>
+        </>
     )
 }

@@ -1,0 +1,40 @@
+.home {
+  hr {
+    margin: 1em 0;
+    border: none;
+    width: 100%;
+    height: 1px;
+    background-color: #4a4d54;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+    input {
+      width: 100%;
+      padding: 0.5em 0.75em;
+    }
+  }
+
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    form {
+      width: 100%;
+      flex-basis: 600px;
+    }
+
+    .new {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-width: fit-content;
+    }
+  }
+}

@@ -115,7 +115,7 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
             $and: [
                 ...qTags.map(qTag => ({"tags.tag": qTag.id})),
                 ...qIngredients.map(qIngredients => ({"ingredients.ingredient": qIngredients._id})),
-                ...words.map(word => ({"title": new RegExp(word)}))
+                ...words.map(word => ({"title": new RegExp(word, "i")}))
             ]
         }, options) : null;
 
@@ -131,11 +131,38 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
                 ...qTags.map(qTag => ({"tags.tag": qTag.id})),
                 ...words.map(word => ({"title": new RegExp(word)}))
             ]
-        }, options): null;
+        }, options) : null;
 
         return {
             relevantSearch: relevantQuery, titleSearch: titleQuery, ingredientSearch: ingredientQuery
         };
+    }
+
+    static capitalize = (str) => {
+        return str.replace(/^\w|[!?.]\s\w/gu, (txt, extra) => {
+            if (!extra) {
+                return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
+            }
+            return txt.substring(0, 2).toLowerCase() + txt.charAt(2).toUpperCase();
+        });
+    }
+
+    save = async (callback) => {
+        this.title.toLowerCase();
+        this.title = Recipes.capitalize(this.title.toLowerCase());
+        this.description = Recipes.capitalize(this.description.toLowerCase());
+
+        this.instructions.forEach(
+            instructionObj => {
+                instructionObj.instruction = Recipes.capitalize(
+                    instructionObj.instruction.toLowerCase()
+                )
+            }
+        );
+        await super.save();
+        if (callback) {
+            await callback();
+        }
     }
 }
 
