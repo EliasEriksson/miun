@@ -29,9 +29,9 @@ export const Ingredients: React.FC<{
                                     Amount:
                                 </label>
                                 <input id={(ingredientData.key ?? ingredientData._id) + "-amount-input"} type={"number"}
-                                       value={ingredientData.amount}
+                                       value={`${parseFloat(`${ingredientData.amount}`) ?? 0}`}
                                        onChange={e => {
-                                           const amount = parseInt(e.target.value)
+                                           const amount = parseFloat(e.target.value)
                                            ingredientData.amount = amount >= 0 ? amount : 0;
                                            props.parentSetState({...props.parentState});
                                        }}/>

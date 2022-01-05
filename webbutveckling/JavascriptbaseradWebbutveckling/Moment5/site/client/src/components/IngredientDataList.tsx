@@ -49,10 +49,10 @@ export const IngredientDataList: React.FC<{
                 </datalist>
             </label>
             <input id={identifier + "-ingredient-input"} onChange={async (e) => {
-                setState({...state, search: e.target.value})
+                setState({...state, search: e.target.value.toLowerCase()})
             }} onBlur={async e => {
-                setState({...state, search: e.target.value})
-                const data = await requestEndpoint<ApiResponse<IngredientData>>(`/ingredients/?s=${e.target.value}&exact=true`);
+                setState({...state, search: e.target.value.toLowerCase()})
+                const data = await requestEndpoint<ApiResponse<IngredientData>>(`/ingredients/?s=${e.target.value.toLowerCase()}&exact=true`);
                 if (data.docs.length) {
                     props.event(data.docs[0]);
                 } else {

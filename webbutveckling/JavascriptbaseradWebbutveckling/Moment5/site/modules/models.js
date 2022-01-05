@@ -84,7 +84,7 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
 }, {strict: "throw", versionKey: false})) {
     static search = async (searchString, options) => {
         // noinspection JSCheckFunctionSignatures
-        const tags = Array.from(searchString.matchAll(/(?<=#)(\w+)/gu)).map(match => match[1]);
+        const tags = Array.from(searchString.matchAll(/(?<=#)([\w-]+)/gu)).map(match => match[1]);
         // noinspection JSCheckFunctionSignatures
         const words = Array.from(searchString.matchAll(/(?:^|\s)(\w+)/gu)).map(match => match[1]);
 
@@ -151,6 +151,8 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
         this.title.toLowerCase();
         this.title = Recipes.capitalize(this.title.toLowerCase());
         this.description = Recipes.capitalize(this.description.toLowerCase());
+
+        console.log(this)
 
         this.instructions.forEach(
             instructionObj => {

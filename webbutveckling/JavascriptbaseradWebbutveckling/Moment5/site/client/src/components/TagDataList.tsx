@@ -40,7 +40,7 @@ export const TagDataList = (props: { initial: TagData, event: (data: TagData) =>
         <>
             <label htmlFor={`${identifier}-input`}>Tag:</label>
             <input id={`${identifier}-input`} onChange={async (e) => {
-                await setState({...state, search: e.target.value});
+                await setState({...state, search: e.target.value.replace(/[^\w-]/gu, "")});
             }} onBlur={async e => {
                 await setState({...state, search: e.target.value});
 
