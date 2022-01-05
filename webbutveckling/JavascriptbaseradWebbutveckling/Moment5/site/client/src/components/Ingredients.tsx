@@ -4,7 +4,6 @@ import {IngredientDataList} from "./IngredientDataList";
 import {UnitSelect} from "./UnitSelect";
 import {v4 as uuid} from "uuid";
 import {ReactComponent as TrashCan} from "../media/assests/delete.svg";
-import "../static/css/ingredient.scss"
 
 interface ParentState {
     recipeData: RecipeData

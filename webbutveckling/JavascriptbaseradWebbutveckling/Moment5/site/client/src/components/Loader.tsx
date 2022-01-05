@@ -5,6 +5,6 @@ import handleViewport from "react-in-viewport";
 
 export const Loader = handleViewport((props: { forwardedRef: React.Ref<any> }) => {
     return (
-        <img ref={props.forwardedRef} src={loading} alt={"loading more content"}/>
+        <img className={"loader"} ref={props.forwardedRef} src={loading} alt={"loading more content"}/>
     );
 });
