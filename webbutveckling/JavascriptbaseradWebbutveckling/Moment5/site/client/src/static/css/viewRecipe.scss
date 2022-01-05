@@ -46,4 +46,12 @@
     gap: 0.5em;
     flex-basis: 65ch;
   }
+
+  .ingredients {
+    .ingredient {
+      li {
+        text-transform: capitalize;
+      }
+    }
+  }
 }
