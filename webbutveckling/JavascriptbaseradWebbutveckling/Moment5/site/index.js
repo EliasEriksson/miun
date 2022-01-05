@@ -56,7 +56,12 @@ app.post(`${apiRoot}/ingredients/`, async (request, response, next) => {
         response.status(201).json(ingredient);
         next();
     } catch (e) {
-        next(e);
+        try {
+            response.status(400).send(e.errors);
+            next();
+        } catch (e) {
+            next(e);
+        }
     }
 });
 
@@ -67,7 +72,12 @@ app.put(`${apiRoot}/ingredients/:id`, async (request, response, next) => {
         response.status(200).json(ingredient);
         next();
     } catch (e) {
-        next(e);
+        try {
+            response.status(400).send(e.errors);
+            next();
+        } catch (e) {
+            next(e);
+        }
     }
 });
 
@@ -78,7 +88,12 @@ app.delete(`${apiRoot}/ingredients/:id`, async (request, response, next) => {
         response.status(200).json(ingredient);
         next();
     } catch (e) {
-        next(e);
+        try {
+            response.status(400).send(e.errors);
+            next();
+        } catch (e) {
+            next(e);
+        }
     }
 });
 
@@ -116,17 +131,29 @@ app.post(`${apiRoot}/tags/`, async (request, response, next) => {
         response.status(201).json(tag);
         next();
     } catch (e) {
-        next(e);
+        try {
+            response.status(400).send(e.errors);
+            next();
+        } catch (e) {
+            next(e);
+        }
     }
 });
 
 app.put(`${apiRoot}/tags/:id`, async (request, response, next) => {
     try {
-        const tag = await models.Tags.findByIdAndUpdate(request.params.id, request.body);
+        const tag = await models.Tags.findByIdAndUpdate(request.params.id, request.body, {
+
+        });
         response.status(200).json(tag);
         next();
     } catch (e) {
-        next(e);
+        try {
+            response.status(400).send(e.errors);
+            next();
+        } catch (e) {
+            next(e);
+        }
     }
 });
 
@@ -137,75 +164,14 @@ app.delete(`${apiRoot}/tags/:id`, async (request, response, next) => {
         response.status(200).json(tag);
         next();
     } catch (e) {
-        next(e);
+        try {
+            response.status(400).send(e.errors);
+            next();
+        } catch (e) {
+            next(e);
+        }
     }
 });
-
-app.get(`${apiRoot}/search/`, async (request, response, next) => {
-    try {
-        const searchString = `${request.query.s ?? ""}`;
-        // noinspection JSCheckFunctionSignatures
-        const tags = Array.from(searchString.matchAll(/(?<=#)(\w+)/gu)).map(match => match[1]);
-        // noinspection JSCheckFunctionSignatures
-        const words = Array.from(searchString.matchAll(/(?:^|\s)(\w+)/gu)).map(match => match[1]);
-
-        let qTagsP;
-        let qIngredientsP;
-
-        if (tags.length) {
-            qTagsP = models.Tags.find({
-                $or: tags.map(tag => ({
-                    "tag": tag
-                }))
-            });
-        }
-
-        if (words.length) {
-            qIngredientsP = models.Ingredients.find({
-                $or: words.map(ingredient => ({
-                    "ingredient": ingredient
-                }))
-            });
-        }
-
-        let [qTags, qIngredients] = await Promise.all([qTagsP, qIngredientsP]);
-        qTags = qTags ?? [];
-        qIngredients = qIngredients ?? [];
-        if (qTags.length || words.length) {
-            const relevantQuery = await models.Recipes.find({
-                $and: [
-                    ...qTags.map(qTag => ({"tags.tag": qTag.id})),
-                    ...qIngredients.map(qIngredients => ({"ingredients.ingredient": qIngredients._id})),
-                    ...words.map(word => ({"title": new RegExp(word)}))
-                ]
-            }).limit(5);
-
-            const ingredientQuery = await models.Recipes.find({
-                $and: [
-                    ...qTags.map(qTag => ({"tags.tag": qTag.id})),
-                    ...qIngredients.map(qIngredients => ({"ingredients.ingredient": qIngredients._id}))
-                ]
-            }).limit(5);
-
-            const titleQuery = await models.Recipes.find({
-                $and: [
-                    ...qTags.map(qTag => ({"tags.tag": qTag.id})),
-                    ...words.map(word => ({"title": new RegExp(word)}))
-                ]
-            }).limit(5);
-
-            await response.status(200).json({
-                relevant: relevantQuery, title: titleQuery, ingredient: ingredientQuery
-            })
-        } else {
-            next(new Error("invalid search"));
-        }
-        next();
-    } catch (e) {
-        next(e);
-    }
-
-})
 
 app.get(`${apiRoot}/recipes/`, async (request, response, next) => {
     try {
@@ -252,20 +218,30 @@ app.post(`${apiRoot}/recipes/`, async (request, response, next) => {
         );
         next();
     } catch (e) {
-        next(e);
+        try {
+            response.status(400).json(e.errors);
+            next();
+        } catch (e) {
+            next(e);
+        }
     }
 });
 
 app.put(`${apiRoot}/recipes/:id`, async (request, response, next) => {
     try {
-        const recipe = await models.Recipes.findByIdAndUpdate(request.params.id, request.body);
+        const recipe = await models.Recipes.findAndUpdate(request.params.id, request.body);
 
         response.status(200).json(
-            await models.Recipes.findById(recipe._id).populate("ingredients.ingredient").populate("tags.tag")
+            await models.Recipes.findById(recipe.id).populate("ingredients.ingredient").populate("tags.tag")
         );
         next();
     } catch (e) {
-        next(e);
+        try {
+            response.status(400).send(e.errors);
+            next();
+        } catch (e) {
+            next(e);
+        }
     }
 });
 
@@ -275,7 +251,12 @@ app.delete(`${apiRoot}/recipes/:id`, async (request, response, next) => {
         response.status(200).json(recipe);
         next();
     } catch (e) {
-        next(e);
+        try {
+            response.status(400).send(e.errors);
+            next();
+        } catch (e) {
+            next(e);
+        }
     }
 });
 

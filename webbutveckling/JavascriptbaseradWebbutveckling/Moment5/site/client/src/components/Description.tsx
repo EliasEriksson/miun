@@ -3,7 +3,8 @@ import {RecipeData} from "../types";
 import {autoGrow} from "../modules/triggers";
 
 interface ParentState {
-    recipeData: RecipeData
+    recipeData: RecipeData,
+    error: string
 }
 
 export const Description: React.FC<{

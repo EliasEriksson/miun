@@ -52,26 +52,31 @@ export const ViewRecipe = () => {
                 ))}
             </ul>
             <div className={"columns"}>
-                <div className={"ingredients-wrapper"}>
-                    <h3>Ingredients</h3>
-                    <ul className={"ingredients"}>
-                        {state.recipeData.ingredients.map(data => (
-                            <li key={data.key ?? data._id}>
-                                {data.ingredient.ingredient} {data.amount} {data.unit}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <div className={"instructions-wrapper"}>
-                    <h3>Instructions</h3>
-                    <ol className={"instructions"}>
-                        {state.recipeData.instructions.map(data => (
-                            <li className={"instruction"} key={data.key ?? data._id}>
-                                {data.instruction}
-                            </li>
-                        ))}
-                    </ol>
-                </div>
+                {state.recipeData.ingredients.length ? (
+                    <div className={"ingredients-wrapper"}>
+                        <h3>Ingredients</h3>
+                        <ul className={"ingredients"}>
+                            {state.recipeData.ingredients.map(data => (
+                                <li key={data.key ?? data._id}>
+                                    {data.ingredient.ingredient} {data.amount} {data.unit}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ) : null}
+
+                {state.recipeData.instructions.length ? (
+                    <div className={"instructions-wrapper"}>
+                        <h3>Instructions</h3>
+                        <ol className={"instructions"}>
+                            {state.recipeData.instructions.map(data => (
+                                <li className={"instruction"} key={data.key ?? data._id}>
+                                    {data.instruction}
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                ) : null}
             </div>
             {!state.recipeData._id ? <Loader/> : null}
         </div>

@@ -7,7 +7,8 @@ import {ReactComponent as TrashCan} from "../media/assests/delete.svg";
 import {autoGrow} from "../modules/triggers";
 
 interface ParentState {
-    recipeData: RecipeData
+    recipeData: RecipeData,
+    error: string
 }
 
 const addAutoGrow = (element: HTMLTextAreaElement | null, identifier: string, refs: {

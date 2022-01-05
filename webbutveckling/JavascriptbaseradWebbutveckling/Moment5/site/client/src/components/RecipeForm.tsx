@@ -12,7 +12,8 @@ import "../static/css/recipeForm.scss";
 
 
 interface State {
-    recipeData: RecipeData
+    recipeData: RecipeData,
+    error: string
 }
 
 const handleSubmit = async (state: State, setState: React.Dispatch<SetStateAction<State>>, navigate: NavigateFunction) => {
@@ -41,47 +42,62 @@ const handleSubmit = async (state: State, setState: React.Dispatch<SetStateActio
         }
     });
 
-    await Promise.all(requests);
-    await setState({...state});
+    try {
+        await Promise.all(requests);
 
-    let data: RecipeRequestData = {
-        title: state.recipeData.title,
-        description: state.recipeData.description,
-        instructions: state.recipeData.instructions.map(instruction => ({instruction: instruction.instruction})),
-        ingredients: state.recipeData.ingredients.map(ingredient => {
-            return {
-                // id is guaranteed to exist after the requests above have finished.
-                ingredient: ingredient.ingredient._id as string,
-                amount: ingredient.amount,
-                unit: ingredient.unit
-            }
-        }),
-        tags: state.recipeData.tags.map(tag => {
-            return {
-                // id is guaranteed to exist after the requests above have finished.
-                tag: tag.tag._id as string
-            }
-        })
-    };
+        let data: RecipeRequestData = {
+            title: state.recipeData.title,
+            description: state.recipeData.description,
+            instructions: state.recipeData.instructions.map(instruction => ({instruction: instruction.instruction})),
+            ingredients: state.recipeData.ingredients.map(ingredient => {
+                return {
+                    // id is guaranteed to exist after the requests above have finished.
+                    ingredient: ingredient.ingredient._id as string,
+                    amount: ingredient.amount,
+                    unit: ingredient.unit
+                }
+            }),
+            tags: state.recipeData.tags.map(tag => {
+                return {
+                    // id is guaranteed to exist after the requests above have finished.
+                    tag: tag.tag._id as string
+                }
+            })
+        };
 
-    if (state.recipeData._id) {
-        data._id = state.recipeData._id;
-        await requestEndpoint<RecipeData>(
-            `/recipes/${state.recipeData._id}`, "PUT", null, data
-        );
-        navigate(`/recipes/${state.recipeData._id}`);
-    } else {
-        const response = await requestEndpoint<RecipeData>(
-            "/recipes/", "POST", null, data
-        );
-        navigate(`/recipes/${response._id}`);
+        if (state.recipeData._id) {
+            data._id = state.recipeData._id;
+            await requestEndpoint<RecipeData>(
+                `/recipes/${state.recipeData._id}`, "PUT", null, data
+            );
+            navigate(`/recipes/${state.recipeData._id}`);
+        } else {
+            const response = await requestEndpoint<RecipeData>(
+                "/recipes/", "POST", null, data
+            );
+            navigate(`/recipes/${response._id}`);
+        }
+        state.error = "";
+    } catch (e: any) {
+        handleSubmitError(JSON.parse(e.message), state);
     }
+    await setState({...state});
 }
 
 const handleDelete = async (state: State, navigate: NavigateFunction) => {
     if (window.confirm(`Are you sure you want to delete recipe '${state.recipeData.title}'?`)) {
         await requestEndpoint(`/recipes/${state.recipeData._id}/`, "DELETE", null);
         navigate("/");
+    }
+}
+
+
+const handleSubmitError = (error: { [key: string]: { kind: string, path: string }}, state: State) => {
+    console.log(error)
+    for (const key of Object.keys(error)) {
+        const field = error[key].path.split(".")[0]
+        state.error = `${field.charAt(0).toUpperCase() + field.substring(1)} has at least one empty field.`;
+        break;
     }
 }
 
@@ -98,7 +114,8 @@ export const RecipeForm: React.FC<{
             instructions: [],
             tags: [],
             key: uuid()
-        }
+        },
+        error: ""
     });
     useEffect(() => {
         if (props._id) {
@@ -124,6 +141,13 @@ export const RecipeForm: React.FC<{
             <hr/>
             <Tags parentState={state} parentSetState={setState}/>
             <hr/>
+            {state.error ? (
+                <>
+                    <p className={"error"}>{state.error}</p>
+                    <hr/>
+                </>
+            ) : null}
+
             <div className={"wrapper buttons"}>
                 <input className={"submit-button"} type={"submit"} value={"Apply"} onClick={async e => {
                     e.preventDefault();

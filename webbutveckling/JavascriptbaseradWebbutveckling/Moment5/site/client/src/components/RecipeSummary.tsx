@@ -11,7 +11,7 @@ export const RecipeSummary = (props: { data: RecipeData }) => {
             <div className={"tags"}>
                 {
                     props.data.tags.map(tagData => (
-                        <div className={"tag"}>{tagData.tag.tag}</div>
+                        <div key={tagData.key ?? tagData._id} className={"tag"}>{tagData.tag.tag}</div>
                     ))
                 }
             </div>

@@ -34,14 +34,12 @@ const fetchContentS = async (state: State, setState: React.Dispatch<SetStateActi
     while (fetchMore && nextApiPage) {
         fetching = true;
         if (state.search) {
-            console.log("searching")
             const data = await requestEndpoint<{
                 relevantSearch: ApiResponse<RecipeData> | null,
                 titleSearch: ApiResponse<RecipeData> | null,
                 ingredientSearch: ApiResponse<RecipeData> | null
             }>(`/recipes/?page=${nextApiPage}&s=${encodeURIComponent(state.search)}`);
             if (data.relevantSearch) {
-                console.log("found relevant")
                 data.relevantSearch.docs.forEach(recipeData => {
                     if (!recipeIds.has(recipeData._id as string)) {
                         state.recipes.push(recipeData);
@@ -50,7 +48,6 @@ const fetchContentS = async (state: State, setState: React.Dispatch<SetStateActi
                 });
             }
             if (data.titleSearch) {
-                console.log("found title")
                 data.titleSearch.docs.forEach(recipeData => {
                     if (!recipeIds.has(recipeData._id as string)) {
                         state.recipes.push(recipeData);
@@ -59,7 +56,6 @@ const fetchContentS = async (state: State, setState: React.Dispatch<SetStateActi
                 });
             }
             if (data.ingredientSearch) {
-                console.log("found ingredients")
                 data.ingredientSearch.docs.forEach(recipeData => {
                     if (!recipeIds.has(recipeData._id as string)) {
                         state.recipes.push(recipeData);
@@ -75,7 +71,6 @@ const fetchContentS = async (state: State, setState: React.Dispatch<SetStateActi
             }
 
         } else {
-            console.log("not searching")
             const data = await requestEndpoint<ApiResponse<RecipeData>>(
                 `/recipes/?page=${nextApiPage}`
             );
@@ -134,10 +129,10 @@ export const Home: React.FC = () => {
                 <div>
                     {
                         state.recipes.map(recipeData => (
-                            <>
+                            <React.Fragment key={recipeData._id}>
                                 <hr/>
-                                <RecipeSummary key={recipeData._id} data={recipeData}/>
-                            </>
+                                <RecipeSummary data={recipeData}/>
+                            </React.Fragment>
                         ))
                     }
                 </div>

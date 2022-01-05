@@ -5,7 +5,8 @@ import {v4 as uuid} from "uuid";
 import {ReactComponent as TrashCan} from "../media/assests/delete.svg";
 
 interface ParentState {
-    recipeData: RecipeData
+    recipeData: RecipeData,
+    error: string
 }
 
 export const Tags: React.FC<{

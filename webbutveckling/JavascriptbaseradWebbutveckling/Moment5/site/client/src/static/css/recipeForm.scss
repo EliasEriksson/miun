@@ -22,6 +22,10 @@
     gap: 5px;
   }
 
+  .error {
+    color: #f03d47;
+  }
+
   button {
     &.delete, &.move-up, &.move-down {
       display: flex;

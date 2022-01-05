@@ -5,7 +5,8 @@ class Ingredients extends mongoose.model("Ingredients", new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        lowercase: true
+        lowercase: true,
+        validate: value => value
     }
 }, {strict: "throw", versionKey: false})) {
 }
@@ -15,7 +16,8 @@ class Tags extends mongoose.model("Tags", new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        lowercase: true
+        lowercase: true,
+        validate: value => value
     }
 }, {strict: "throw", versionKey: false})) {
 }
@@ -23,11 +25,13 @@ class Tags extends mongoose.model("Tags", new mongoose.Schema({
 class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        validate: value => value
     },
     description: {
         type: String,
-        required: true
+        required: true,
+        validate: value => value
     },
     ingredients: {
         type: [
@@ -40,7 +44,8 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
                     },
                     "amount": {
                         type: Number,
-                        required: true
+                        required: true,
+                        validate: value => value > 0
                     },
                     "unit": {
                         type: String,
@@ -55,17 +60,21 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
                 unique: true
             }
         ],
-        required: true
+        required: true,
     },
-    instructions: [{
-        type: {
-            "instruction": {
-                type: String,
-                required: true
+    instructions: [
+        {
+            type: {
+                "instruction": {
+                    type: String,
+                    required: true,
+                    validate: value => value
+                },
             },
-        },
-        required: true
-    }],
+            required: true,
+        }
+    ],
+
     tags: {
         type: [
             {
@@ -79,9 +88,29 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
                 unique: true
             }
         ],
-        options: {versionKey: false}
+        options: {versionKey: false},
+        required: true,
     }
 }, {strict: "throw", versionKey: false})) {
+
+    static format = (data) => {
+        if (data.title) {
+            data.title = Recipes.capitalize(data.title.toLowerCase());
+        }
+        if (data.description) {
+            data.description = Recipes.capitalize(data.description.toLowerCase());
+        }
+        if (data.instructions) {
+            data.instructions.forEach(
+                instructionObj => {
+                    instructionObj.instruction = Recipes.capitalize(
+                        instructionObj.instruction.toLowerCase()
+                    )
+                }
+            );
+        }
+    }
+
     static search = async (searchString, options) => {
         // noinspection JSCheckFunctionSignatures
         const tags = Array.from(searchString.matchAll(/(?<=#)([\w-]+)/gu)).map(match => match[1]);
@@ -147,20 +176,21 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
         });
     }
 
+    static findAndUpdate = async (id, data) => {
+        Recipes.format(data);
+        return await Recipes.findByIdAndUpdate(id, data, {runValidators: true})
+    }
+
+    validate = async (callback) => {
+        await super.validate();
+        Recipes.format(this);
+        if (callback) {
+            await callback()
+        }
+    }
+
     save = async (callback) => {
-        this.title.toLowerCase();
-        this.title = Recipes.capitalize(this.title.toLowerCase());
-        this.description = Recipes.capitalize(this.description.toLowerCase());
-
-        console.log(this)
-
-        this.instructions.forEach(
-            instructionObj => {
-                instructionObj.instruction = Recipes.capitalize(
-                    instructionObj.instruction.toLowerCase()
-                )
-            }
-        );
+        await this.validate()
         await super.save();
         if (callback) {
             await callback();
