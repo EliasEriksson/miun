@@ -58,7 +58,7 @@ export const ViewRecipe = () => {
                         <ul className={"ingredients"}>
                             {state.recipeData.ingredients.map(data => (
                                 <li key={data.key ?? data._id}>
-                                    {data.ingredient.ingredient} {data.amount} {data.unit}
+                                    <span>{data.ingredient.ingredient}</span> {data.amount} {data.unit}
                                 </li>
                             ))}
                         </ul>
