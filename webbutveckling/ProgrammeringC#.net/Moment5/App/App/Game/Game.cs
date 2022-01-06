@@ -11,7 +11,10 @@ namespace App.Game
         {
             this._players = players;
         }
-        
+
+        /**
+         * starts the game with given settings.
+         */
         private void Start(int x, int y, int win)
         {
             this.DrawScore();
@@ -61,6 +64,9 @@ namespace App.Game
             }
         }
 
+        /**
+         * draws the current score to the screen.
+         */
         private void DrawScore()
         {
             Console.WriteLine(
@@ -68,6 +74,9 @@ namespace App.Game
             );
         }
 
+        /**
+         * asks the user if the game should continue.
+         */
         private static bool Continue()
         {
             Console.WriteLine("Continue playing?");
@@ -79,12 +88,21 @@ namespace App.Game
             return Chose(actions);
         }
 
+        /**
+         * the games main menu.
+         *
+         * allows the user to select:
+         *  * player vs player, player vs Ai or Ai vs Ai.
+         *  * a specific Ais difficulty.
+         *  * the boards width, height and requirement to win.
+         */
         public static void MainMenu()
         {
             const string xMessage = "Board width: ";
             const string yMessage = "Board height: ";
             const string winMessage = "In a row to win: ";
 
+            // an array of choices. choices are described in the choice functions doc string.
             (string, Func<bool>)[] actions =
             {
                 ("Player Vs Player", () =>
@@ -131,10 +149,13 @@ namespace App.Game
             }
         }
 
+        /**
+         * allows the user to chose a difficulty of an Ai.
+         */
         private static Player.Ai ChoseAi(Marker marker)
         {
             Player.Ai ai = null;
-
+            // an array of choices. (described for the function chose)
             (string, Func<bool>)[] actions =
             {
                 ("Easy Ai", () =>
@@ -159,6 +180,19 @@ namespace App.Game
             return ai;
         }
 
+        /**
+         * allows the user to chose one of the given options.
+         *
+         * the function takes an array of tuples of a string and a function.
+         * the string is the text that the user will see in the console and should
+         * describe the option.
+         * the second value is a function that should execute if the user selects the option.
+         *
+         * the functions must return a boolean indicating of this chose function should continue running
+         * after the options function was executed.
+         *
+         * if the options function returns true this chose function will return.
+         */
         private static bool Chose((string, Func<bool>)[] actions)
         {
             var current = 0;

@@ -4,30 +4,46 @@ using App.Generics;
 
 namespace App.Game.Player
 {
+    /**
+     * implements base functionality for an Ai and shared functions.
+     */
     public abstract class Ai : Player
     {
         private readonly Random _random;
 
+        /**
+         * constructs an Ai with a random generator and the given marker.
+         */
         protected Ai(Marker marker) : base(marker)
         {
             this._random = new Random();
         }
 
+        /**
+         * generates a random integer.
+         *
+         * low is inclusive, high is exclusive.
+         */
         private int RandomInt(int low, int high)
         {
             return this._random.Next(low, high);
         }
-
+        /**
+         * generates a random integer.
+         *
+         * includes 0 up until but excluding high
+         */
         protected int RandomInt(int high)
         {
             return this.RandomInt(0, high);
         }
-
+        /**
+         * string representation of the Ai
+         */
         public override string ToString()
         {
             return $"Ai {(char) this.GetMarker()}";
         }
-
         private int CountMarker(Board board, Marker marker, Node<(int, int)> node)
         {
             if (node == null)
