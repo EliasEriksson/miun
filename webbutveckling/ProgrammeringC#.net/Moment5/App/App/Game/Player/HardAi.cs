@@ -4,12 +4,31 @@ using App.Generics;
 
 namespace App.Game.Player
 {
+    /**
+     * the hard AI that allows the Ai to make a very good move (at least on a 3x3 board)
+     */
     public class HardAi : Ai
     {
         public HardAi(Marker marker) : base(marker)
         {
         }
 
+        /**
+         * hard Ai play.
+         *
+         * the hard Ai first looks over the board for a place where it self can win.
+         * if a place where it can win is found it plays that move.
+         * 
+         * if there is no way for the Ai to win this round it will look for
+         * places where the enemy can win the next round.
+         * if one such move is found it plays there to block the enemy win.
+         *
+         * if there is no way for the opponent to win it will find moves with Ai.FindMoves.
+         * if moves are found it will find the most frequent move in the list.
+         * if multiple moves with the same frequency is found it picks one at random.
+         *
+         * if no moves that can result in a win is found it plays a random move to play for draw.
+         */
         public override void Play(Board board)
         {
             board.Draw(0, 0);

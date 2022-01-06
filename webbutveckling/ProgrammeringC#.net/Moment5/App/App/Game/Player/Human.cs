@@ -2,6 +2,9 @@ using System;
 
 namespace App.Game.Player
 {
+    /**
+     * the Human class that allows a human player to play its move.
+     */
     public class Human : Player
     {
         private int _selectX;
@@ -13,6 +16,12 @@ namespace App.Game.Player
             this._selectY = 0;
         }
 
+        /**
+         * allows the human to control the selector and select a move.
+         *
+         * The player can move > with key up / down and v with key left / right.
+         * if a move is already taken they will not be allowed to make that move.
+         */
         public override void Play(Board board)
         {
             while (true)

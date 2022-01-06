@@ -4,12 +4,30 @@ using App.Generics;
 
 namespace App.Game.Player
 {
+    /**
+     * the medium ai. the medium ai plays slightly better than fully random.
+     */
     public class MediumAi : Ai
     {
         public MediumAi(Marker marker) : base(marker)
         {
         }
 
+        /**
+         * medium ai play.
+         *
+         * if there is a move that allows it to win it will play that move.
+         *
+         * if no move to win is found it finds moves with the find moves method.
+         * if moves are found it will randomize one of the found moves.
+         * this will:
+         *  * guarantee that the move is not useless.
+         *  * since multiple positions can be found multiple times it will
+         *    have a higher chance to pick a slot with more potential ways of winning.
+         *
+         * if no move that can result in a win is found it picks a random move of the remaining
+         * to play for a draw.
+         */
         public override void Play(Board board)
         {
             board.Draw(0, 0);

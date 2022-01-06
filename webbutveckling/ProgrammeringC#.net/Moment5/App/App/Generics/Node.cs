@@ -85,6 +85,8 @@ namespace App.Generics
              *
              * the node is passed down the chain to the node that points to null which
              * will point to this node instead.
+             *
+             * returns the node that was added
              */
             public Node<T> Add(Node<T> node)
             {
