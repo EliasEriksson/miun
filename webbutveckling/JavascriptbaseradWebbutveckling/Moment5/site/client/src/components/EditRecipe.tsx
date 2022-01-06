@@ -5,9 +5,11 @@ import {RecipeForm} from "./RecipeForm";
 export const EditRecipe = () => {
     const params = useParams();
     return (
-        <div>
+        <div className={"content"}>
+            <div className={"wrapper"}>
+                <Link to={`/recipes/${params._id}`}>Go back</Link>
+            </div>
             <RecipeForm _id={`${params._id}`}/>
-            <Link to={`/recipes/${params._id}`}>Go back</Link>
         </div>
     );
 }

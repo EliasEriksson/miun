@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {ApiResponse, requestEndpoint} from "../modules/requests";
 import {TagData} from "../types";
+import {v4 as uuid} from "uuid";
 
 
 let mounted = false;
@@ -22,7 +23,7 @@ export const TagDataList = (props: { initial: TagData, event: (data: TagData) =>
         requestEndpoint<ApiResponse<TagData>>(`/tags/?s=${state.search}`).then(async (data) => {
             if (mounted) {
                 state.options = data.docs.map(tagData => {
-                    return (<option key={tagData._id} value={tagData.tag}/>);
+                    return (<option key={tagData.key ?? tagData._id} value={tagData.tag}/>);
                 });
                 await setState({...state});
             }
@@ -33,13 +34,15 @@ export const TagDataList = (props: { initial: TagData, event: (data: TagData) =>
         };
     }, [state.search]);
 
-    const htmlId = `${props.initial._id}-tags`;
+    const identifier = props.initial.key ?? props.initial._id
+    const htmlId = `${identifier}-tags`;
     return (
-        <label>
-            <input onChange={async (e) => {
-                setState({...state, search: e.target.value});
+        <>
+            <label htmlFor={`${identifier}-input`}>Tag:</label>
+            <input id={`${identifier}-input`} onChange={async (e) => {
+                await setState({...state, search: e.target.value.replace(/[^\w-]/gu, "")});
             }} onBlur={async e => {
-                setState({...state, search: e.target.value});
+                await setState({...state, search: e.target.value});
 
                 const data = await requestEndpoint<ApiResponse<TagData>>(`/tags/?s=${e.target.value}&exact=true`);
                 if (data.docs.length) {
@@ -47,13 +50,14 @@ export const TagDataList = (props: { initial: TagData, event: (data: TagData) =>
                 } else {
                     props.event({
                         _id: "",
-                        "tag": e.target.value
+                        "tag": e.target.value,
+                        key: uuid()
                     })
                 }
             }} list={htmlId} value={state.search}/>
             <datalist id={htmlId}>
                 {state.options}
             </datalist>
-        </label>
+        </>
     )
 }

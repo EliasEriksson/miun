@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:8083/",
+  "homepage": "https://eliaseriksson.io/jsweb/moment5/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -16,7 +17,9 @@
     "react-in-viewport": "^1.0.0-alpha.20",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "sass": "^1.45.2",
     "typescript": "^4.5.4",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
@@ -42,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.3.3"
   }
 }

@@ -3,66 +3,82 @@ import {Link, useParams} from "react-router-dom";
 import {Loader} from "./Loader";
 import {requestEndpoint} from "../modules/requests";
 import {RecipeData} from "../types";
+import {v4 as uuid} from "uuid";
+import "../static/css/viewRecipe.scss";
 
 let mounted = false;
 
 interface State {
-    page: JSX.Element | null
+    recipeData: RecipeData
 }
 
 export const ViewRecipe = () => {
     const params = useParams();
     const [state, setState] = useState<State>({
-        page: null
+        recipeData: {
+            _id: "",
+            title: "",
+            description: "",
+            ingredients: [],
+            instructions: [],
+            tags: [],
+            key: uuid()
+        }
     });
-    // const [page, setPage] = useState<null | JSX.Element>(null);
 
     useEffect(() => {
-        if (!mounted) {
-            mounted = true;
-            requestEndpoint<RecipeData>(`/recipes/${params._id}`, "GET", null, undefined).then(async (data) => {
-                if (mounted) {
-                    state.page = (
-                        <div>
-                            <Link to={`/recipes/edit/${data._id}`}>Edit</Link>
-                            <h2>{data.title}</h2>
-                            <p>{data.description}</p>
-                            <ol>
-                                {data.ingredients.map(recipeIngredient => (
-                                    <li key={recipeIngredient._id}>
-                                        {recipeIngredient.ingredient.ingredient} {recipeIngredient.amount} {recipeIngredient.unit}
-                                    </li>
-                                ))}
-                            </ol>
-                            <ol>
-                                {data.instructions.map((instruction, index) => (
-                                    <li key={`${data._id}-instruction-${index}`}>
-                                        {instruction}
-                                    </li>
-                                ))}
-                            </ol>
-                            <ul>
-                                {data.tags.map(tagData => (
-                                    <li key={tagData._id}>
-                                        {tagData.tag.tag}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    );
-                    await setState({...state});
-                }
-            })
-        }
-        return function () {
-            mounted = false
-        }
+        mounted = true;
+        requestEndpoint<RecipeData>(`/recipes/${params._id}`, "GET", null, undefined).then(async data => {
+            state.recipeData = data;
+            await setState({...state});
+        })
+
     }, []);
 
     return (
-        <main>
-            {state.page}
-            {!state.page ? <Loader/> : null}
-        </main>
+        <div className={"recipe"}>
+            <nav>
+                <Link to={"/"}>Go back</Link>
+                <Link to={`/recipes/edit/${state.recipeData._id}`}>Edit</Link>
+            </nav>
+
+            <h2>{state.recipeData.title}</h2>
+            <p>{state.recipeData.description}</p>
+            <ul className={"tags"}>
+                {state.recipeData.tags.map(data => (
+                    <li className={"tag"} key={data.key ?? data._id}>
+                        {data.tag.tag}
+                    </li>
+                ))}
+            </ul>
+            <div className={"columns"}>
+                {state.recipeData.ingredients.length ? (
+                    <div className={"ingredients-wrapper"}>
+                        <h3>Ingredients</h3>
+                        <ul className={"ingredients"}>
+                            {state.recipeData.ingredients.map(data => (
+                                <li key={data.key ?? data._id}>
+                                    <span>{data.ingredient.ingredient}</span> {data.amount} {data.unit}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ) : null}
+
+                {state.recipeData.instructions.length ? (
+                    <div className={"instructions-wrapper"}>
+                        <h3>Instructions</h3>
+                        <ol className={"instructions"}>
+                            {state.recipeData.instructions.map(data => (
+                                <li className={"instruction"} key={data.key ?? data._id}>
+                                    {data.instruction}
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                ) : null}
+            </div>
+            {!state.recipeData._id ? <Loader/> : null}
+        </div>
     );
 }

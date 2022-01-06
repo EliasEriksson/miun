@@ -1,0 +1,12 @@
+[Unit]
+Description=jsweb moment 5
+After=multi-user.target
+StartLimitIntervalSec=60
+
+[Service]
+Restart=on-failure
+WorkingDirectory=/var/www/miun-jsweb5/
+ExecStart=/var/www/miun-jsweb5/node_modules/.bin/nodemon /var/www/miun-jsweb5/index.js
+
+[Install]
+WantedBy=multi-user.target

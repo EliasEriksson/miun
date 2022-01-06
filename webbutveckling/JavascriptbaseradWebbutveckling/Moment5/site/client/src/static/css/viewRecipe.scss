@@ -1,0 +1,56 @@
+.recipe {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  nav {
+    display: flex;
+    gap: 2em;
+  }
+
+  p, li {
+    max-width: 65ch;
+  }
+
+  .columns {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+
+    .ingredients-wrapper {
+      flex-basis: 200px;
+    }
+
+    .instructions-wrapper {
+      flex-basis: 65ch;
+    }
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 0;
+
+    list-style-type: none;
+
+    .tag {
+      border-radius: 3px;
+      padding: 0.15em 0.5em;
+      background-color: #4a4d54;
+    }
+  }
+
+  .instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    flex-basis: 65ch;
+  }
+
+  .ingredients {
+    li span {
+      text-transform: capitalize;
+    }
+  }
+}

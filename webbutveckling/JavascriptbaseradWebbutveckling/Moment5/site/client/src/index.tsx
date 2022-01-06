@@ -1,15 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter} from "react-router-dom";
-import './index.css';
-import {App} from './App';
+import {HashRouter, Route, Routes} from "react-router-dom";
+import './static/css/index.scss';
 import reportWebVitals from './reportWebVitals';
+import {Footer, Header} from "./components/margins";
+import {Home} from "./components/Home";
+import {ViewRecipe} from "./components/ViewRecipe";
+import {EditRecipe} from "./components/EditRecipe";
+import {NewRecipe} from "./components/NewRecipe";
+
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <App/>
-        </BrowserRouter>
+        <HashRouter>
+            <div className={"wrapper top-content"}>
+                <Header/>
+                <main className={"content-wrapper"}>
+                    <Routes>
+                        <Route path={"/"} element={<Home/>}/>
+                        <Route path={"/recipes/:_id/"} element={<ViewRecipe/>}/>
+                        <Route path={"/recipes/edit/:_id/"} element={<EditRecipe/>}/>
+                        <Route path={"/recipes/new/"} element={<NewRecipe/>}/>
+                    </Routes>
+                </main>
+            </div>
+            <Footer/>
+        </HashRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );

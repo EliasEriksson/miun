@@ -1,0 +1,17 @@
+.footer-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  background-color: #4a4d54;
+  margin: 1em auto 0;
+}
+
+footer {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
