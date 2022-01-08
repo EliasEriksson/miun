@@ -34,7 +34,9 @@ export const Ingredients: React.FC<{
                                            const amount = parseFloat(e.target.value)
                                            ingredientData.amount = amount >= 0 ? amount : 0;
                                            props.parentSetState({...props.parentState});
-                                       }}/>
+                                       }} onKeyPress={e => {
+                                    if (e.key === "Enter") e.preventDefault()
+                                }}/>
 
 
                                 <UnitSelect ingredientData={ingredientData}
@@ -43,7 +45,7 @@ export const Ingredients: React.FC<{
                                                 props.parentSetState({...props.parentState});
                                             }}/>
                                 <button className={"delete"} onClick={async e => {
-                                    e.preventDefault();
+                                    console.log(e.target);
                                     props.parentState.recipeData.ingredients.splice(index, 1);
                                     await props.parentSetState({...props.parentState});
                                 }}>

@@ -63,6 +63,8 @@ export const IngredientDataList: React.FC<{
                     });
                 }
 
+            }} onKeyPress={e => {
+                if (e.key === "Enter") e.preventDefault()
             }} list={htmlId} value={state.search}/>
         </>
     )

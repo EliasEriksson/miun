@@ -92,7 +92,7 @@ const handleDelete = async (state: State, navigate: NavigateFunction) => {
 }
 
 
-const handleSubmitError = (error: { [key: string]: { kind: string, path: string }}, state: State) => {
+const handleSubmitError = (error: { [key: string]: { kind: string, path: string } }, state: State) => {
     console.log(error)
     for (const key of Object.keys(error)) {
         const field = error[key].path.split(".")[0]
@@ -153,10 +153,11 @@ export const RecipeForm: React.FC<{
                     e.preventDefault();
                     await handleSubmit(state, setState, navigate);
                 }}/>
-                <input className={"delete-button"} type={"submit"} value={"Delete"} onClick={async e => {
-                    e.preventDefault();
-                    await handleDelete(state, navigate)
-                }}/>
+                {state.recipeData._id ? (
+                    <input className={"delete-button"} type={"submit"} value={"Delete"} onClick={async e => {
+                        e.preventDefault();
+                        await handleDelete(state, navigate)
+                    }}/>) : null}
             </div>
         </form>
     );

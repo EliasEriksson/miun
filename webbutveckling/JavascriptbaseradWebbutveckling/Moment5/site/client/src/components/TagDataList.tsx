@@ -54,6 +54,8 @@ export const TagDataList = (props: { initial: TagData, event: (data: TagData) =>
                         key: uuid()
                     })
                 }
+            }} onKeyPress={e => {
+                if (e.key === "Enter") e.preventDefault()
             }} list={htmlId} value={state.search}/>
             <datalist id={htmlId}>
                 {state.options}
