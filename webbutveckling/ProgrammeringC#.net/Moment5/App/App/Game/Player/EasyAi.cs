@@ -2,12 +2,20 @@ using System.Threading;
 
 namespace App.Game.Player
 {
+    /**
+     * an easy ai. this ai really have no idea about what it is doing.
+     */
     public class EasyAi : Ai
     {
         public EasyAi(Marker marker) : base(marker)
         {
         }
 
+        /**
+         * Easy ai play.
+         *
+         * just pick a random empty slot.
+         */
         public override void Play(Board board)
         {
             board.Draw(0, 0);
