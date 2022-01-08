@@ -1,0 +1,35 @@
+- api
+    - models
+        - ingredients
+        - tags
+        - recipes
+    - CRUD
+        - get all
+        - get one
+        - new
+        - update
+        - delete
+    - unused
+        - tags
+            - delete
+            -put
+        - ingredients
+            - delete
+            - put
+- client
+    - pages
+        - home
+        - new
+        - view one
+        - edit
+    - home
+        - infinity scroll
+        - search
+            - tags
+            - title
+            - ingredients (works kinda ok)
+    - new / edit
+        - ingredient suggestion
+        - error
+    - view one
+        - headings visibility

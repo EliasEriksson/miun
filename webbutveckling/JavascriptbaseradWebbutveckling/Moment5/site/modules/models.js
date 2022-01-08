@@ -74,7 +74,6 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
             required: true,
         }
     ],
-
     tags: {
         type: [
             {
