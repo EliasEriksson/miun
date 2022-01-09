@@ -6,7 +6,9 @@ import {RecipeSummary} from "./RecipeSummary";
 import {Link} from "react-router-dom";
 import "../static/css/home.scss";
 
-
+/**
+ * these should be refs but cba to change them now
+ */
 let fetching = false;
 let fetchMore = true;
 let nextApiPage: number | null = 1;
@@ -19,6 +21,9 @@ interface State {
     fetchedAll: boolean
 }
 
+/**
+ * preforms a full reset on the state and global variables.
+ */
 const reset = async (state: State, setState: React.Dispatch<SetStateAction<State>>) => {
     fetching = false;
     fetchMore = true;
@@ -29,10 +34,19 @@ const reset = async (state: State, setState: React.Dispatch<SetStateAction<State
     await setState({...state});
 }
 
+/**
+ * fetches more content as long as its needed / possible.
+ *
+ * fetches content until fetch more is set to false
+ * elsewhere in the code or until there is no next api page
+ */
 const fetchContentS = async (state: State, setState: React.Dispatch<SetStateAction<State>>) => {
     fetchMore = true;
+
     while (fetchMore && nextApiPage) {
         fetching = true;
+
+        // if search is set preform a search
         if (state.search) {
             const data = await requestEndpoint<{
                 relevantSearch: ApiResponse<RecipeData> | null,
@@ -92,6 +106,9 @@ const fetchContentS = async (state: State, setState: React.Dispatch<SetStateActi
     }
 }
 
+/**
+ * the home page.
+ */
 export const Home: React.FC = () => {
     const [state, setState] = useState<State>({
         search: "",
@@ -99,6 +116,10 @@ export const Home: React.FC = () => {
         fetchedAll: false
     });
 
+
+    /**
+     * reset all variables if the pages is changed.
+     */
     useEffect(() => {
         return () => {
             reset(state, setState);

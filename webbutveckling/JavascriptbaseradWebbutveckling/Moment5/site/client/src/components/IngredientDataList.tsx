@@ -3,7 +3,9 @@ import {ApiResponse, requestEndpoint} from "../modules/requests";
 import {IngredientData} from "../types";
 import {v4 as uuid} from "uuid";
 
-
+/**
+ * should be a ref but cba to change it
+ */
 let mounted = false;
 
 interface State {
@@ -11,7 +13,9 @@ interface State {
     options: JSX.Element[]
 }
 
-
+/**
+ * component for the ingredient data list in the recipe form
+ */
 export const IngredientDataList: React.FC<{
     initial: IngredientData, event: (data: IngredientData) => void
 }> = props => {

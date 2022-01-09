@@ -9,7 +9,11 @@ import {ViewRecipe} from "./components/ViewRecipe";
 import {EditRecipe} from "./components/EditRecipe";
 import {NewRecipe} from "./components/NewRecipe";
 
-
+/**
+ * the root of the application.
+ *
+ * defines the paths for the sites pages.
+ */
 ReactDOM.render(
     <React.StrictMode>
         <HashRouter>

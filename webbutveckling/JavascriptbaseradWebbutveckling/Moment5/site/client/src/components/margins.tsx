@@ -4,6 +4,9 @@ import "../static/css/header.scss";
 import "../static/css/footer.scss";
 import {Link} from "react-router-dom";
 
+/**
+ * the sites header
+ */
 export class Header extends React.Component<any, any> {
     render = () => {
         return (
@@ -19,6 +22,9 @@ export class Header extends React.Component<any, any> {
     }
 }
 
+/**
+ * the sites footer
+ */
 export class Footer extends React.Component<any, any> {
     render = () => {
         return (

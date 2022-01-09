@@ -1,5 +1,10 @@
 const mongoose = require("mongoose");
 
+/**
+ * the ingredient model
+ *
+ * the model is extended in case more functionality needs to be added.
+ */
 class Ingredients extends mongoose.model("Ingredients", new mongoose.Schema({
     ingredient: {
         type: String,
@@ -11,6 +16,11 @@ class Ingredients extends mongoose.model("Ingredients", new mongoose.Schema({
 }, {strict: "throw", versionKey: false})) {
 }
 
+/**
+ * the tag model
+ *
+ * the model is extended in case more functionality needs to be added.
+ */
 class Tags extends mongoose.model("Tags", new mongoose.Schema({
     tag: {
         type: String,
@@ -22,6 +32,9 @@ class Tags extends mongoose.model("Tags", new mongoose.Schema({
 }, {strict: "throw", versionKey: false})) {
 }
 
+/**
+ * the recipe model
+ */
 class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
     title: {
         type: String,
@@ -92,6 +105,11 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
     }
 }, {strict: "throw", versionKey: false})) {
 
+    /**
+     * allows the model to reformat text to capitalized text automatically.
+     *
+     * data follows the same structure as the schema.
+     */
     static format = (data) => {
         if (data.title) {
             data.title = Recipes.capitalize(data.title.toLowerCase());
@@ -110,10 +128,15 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
         }
     }
 
+    /**
+     * searches the database of recipes with the search string.
+     *
+     * the options are applied to the mongoose query.
+     */
     static search = async (searchString, options) => {
-        // noinspection JSCheckFunctionSignatures
+        // finds all the tags in the search string
         const tags = Array.from(searchString.matchAll(/(?<=#)([\w-]+)/gu)).map(match => match[1]);
-        // noinspection JSCheckFunctionSignatures
+        // finds all the words that are not tags
         const words = Array.from(searchString.matchAll(/(?:^|\s)(\w+)/gu)).map(match => match[1]);
 
         let qTagsP;
@@ -135,10 +158,12 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
             });
         }
 
+        // awaiting the promises here to prevent waiting for as much IO.
         let [qTags, qIngredients] = await Promise.all([qTagsP, qIngredientsP]);
         qTags = qTags ?? [];
         qIngredients = qIngredients ?? [];
 
+        // search with tags, ingredients and title
         const relevantQuery = qTags.length || qIngredients.length || words.length ? await Recipes.paginate({
             $and: [
                 ...qTags.map(qTag => ({"tags.tag": qTag.id})),
@@ -147,6 +172,7 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
             ]
         }, options) : null;
 
+        // search with tags and ingredients
         const ingredientQuery = qTags.length || qIngredients.length ? await Recipes.paginate({
             $and: [
                 ...qTags.map(qTag => ({"tags.tag": qTag.id})),
@@ -154,6 +180,7 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
             ]
         }, options) : null;
 
+        // search with tags and title.
         const titleQuery = qTags.length || words.length ? await Recipes.paginate({
             $and: [
                 ...qTags.map(qTag => ({"tags.tag": qTag.id})),
@@ -166,6 +193,11 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
         };
     }
 
+    /**
+     * capitalizes a string.
+     *
+     * follows punctuation rules.
+     */
     static capitalize = (str) => {
         return str.replace(/^\w|[!?.]\s\w/gu, (txt, extra) => {
             if (!extra) {
@@ -175,11 +207,20 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
         });
     }
 
+    /**
+     * wrapper function for findByIdAndUpdate.
+     *
+     * sine findByIdAndUpdate is static it can not be overwritten.
+     * data has the same structure as the schema.
+     */
     static findAndUpdate = async (id, data) => {
         Recipes.format(data);
         return await Recipes.findByIdAndUpdate(id, data, {runValidators: true})
     }
 
+    /**
+     * formats the data after it is validated.
+     */
     validate = async (callback) => {
         await super.validate();
         Recipes.format(this);
@@ -188,6 +229,11 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
         }
     }
 
+    /**
+     * validates the data before its saved.
+     *
+     * validating the data causes it to be formatted.
+     */
     save = async (callback) => {
         await this.validate()
         await super.save();
@@ -197,6 +243,9 @@ class Recipes extends mongoose.model("Recipes", new mongoose.Schema({
     }
 }
 
+/**
+ * exporting the models.
+ */
 module.exports = {
     Ingredients: Ingredients,
     Tags: Tags,

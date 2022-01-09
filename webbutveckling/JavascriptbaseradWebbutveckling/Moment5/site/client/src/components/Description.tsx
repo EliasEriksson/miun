@@ -7,23 +7,29 @@ interface ParentState {
     error: string
 }
 
+/**
+ * renders a recipes description.
+ */
 export const Description: React.FC<{
     parentState: ParentState,
     parentSetState: Dispatch<SetStateAction<ParentState>>
 }> = props => {
     const textArea = useRef<HTMLTextAreaElement>(null)
+
+    /*
+     * if the text area rendered on the screen
+     * make the textarea responsive
+     */
     useEffect(() => {
         if (textArea.current) {
             autoGrow(textArea.current)
         }
     },[]);
+
     return (
         <label className={"description"}>
             Description:
-            <textarea ref={textArea} value={props.parentState.recipeData.description} onLoad={async e => {
-                console.log("hello")
-                console.log(e);
-            }} onChange={async e => {
+            <textarea ref={textArea} value={props.parentState.recipeData.description} onChange={async e => {
                 props.parentState.recipeData.description = e.target.value;
                 await props.parentSetState({...props.parentState});
             }}/>

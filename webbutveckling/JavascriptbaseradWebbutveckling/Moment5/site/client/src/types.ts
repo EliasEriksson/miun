@@ -1,3 +1,7 @@
+/**
+ * this files contains interfaces for data returned from the api
+ */
+
 export type Unit = "ml" | "cl" | "dl" | "l" | "g" | "kg" | "st";
 type _ID = string
 
