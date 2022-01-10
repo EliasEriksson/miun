@@ -1,0 +1,31 @@
+- generic data
+	- node
+		- länkad lista
+		- håller koll på längden till slutet + sig själv
+	- grid
+		- 2x2 array
+		
+- Program
+	- main
+- Game
+	- chose
+		- false vs true
+	- main menu
+	- Start
+- Board
+	- array of PLAYERS
+	- player abstract class
+		- sahred interface human and ai
+	
+	- extends grid
+	- draws
+	- Traverse
+		- false vs true
+	- isWinner
+- Ai
+	- find moves
+	- identify win
+	- easyAI
+	- mediumAI
+	- hardAi 
+	- human 
