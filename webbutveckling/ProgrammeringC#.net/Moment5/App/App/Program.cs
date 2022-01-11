@@ -23,9 +23,12 @@ namespace App
                 try
                 {
                     var result = Convert.ToInt32(Console.ReadLine());
-                    ClearN(2);
-                    Console.CursorVisible = false;
-                    return result;
+                    if (result > 0)
+                    {
+                        ClearN(2);
+                        Console.CursorVisible = false;
+                        return result;
+                    }
                 }
                 catch (OverflowException)
                 {
