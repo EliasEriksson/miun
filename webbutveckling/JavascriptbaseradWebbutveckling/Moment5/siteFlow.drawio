@@ -1,1 +1,133 @@
-<mxfile host="app.diagrams.net" modified="2022-01-13T12:47:10.309Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" version="16.2.6" etag="sZwSMh1_2tZ9t5AB-oBO" type="github"><diagram id="UWbFQpUYdBIqoMcerIUc">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-01-13T13:48:54.656Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="whGG8dM_7qciuAvUtqCe" version="16.2.6" type="github">
+  <diagram id="UWbFQpUYdBIqoMcerIUc" name="Page-1">
+    <mxGraphModel dx="1662" dy="799" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="2000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-1" target="N01Z7XA4SCIn-NLS_7Hn-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="459" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-1" target="N01Z7XA4SCIn-NLS_7Hn-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-1" value="user navigates to the page&lt;br&gt;/" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="79" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-7" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-3" target="N01Z7XA4SCIn-NLS_7Hn-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-3" value="loader&lt;br&gt;is in&lt;br&gt;viewport?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="79" y="200" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-4" target="N01Z7XA4SCIn-NLS_7Hn-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-4" value="request one more&lt;br&gt;page of recipes from&lt;br&gt;/api/recipes/" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="79" y="450" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-8" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-5" target="N01Z7XA4SCIn-NLS_7Hn-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-5" value="is it&lt;br&gt;requesting&lt;br&gt;already?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="79" y="320" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-9" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-11" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-10" target="N01Z7XA4SCIn-NLS_7Hn-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="39" y="600" />
+              <mxPoint x="39" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-13" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-10" target="N01Z7XA4SCIn-NLS_7Hn-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-10" value="is there more&lt;br&gt;pages in the&lt;br&gt;database?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="79" y="560" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-12" value="remove and stop&lt;br&gt;rendering&lt;br&gt;the loader" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="79" y="690" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-15" target="N01Z7XA4SCIn-NLS_7Hn-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-15" value="user clicks&lt;br&gt;a recipe" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="239" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="459" y="270" as="sourcePoint" />
+            <mxPoint x="459" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-16" value="user clicks&lt;br&gt;&quot;create new&amp;nbsp;&lt;br&gt;recipe&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=20;" vertex="1" parent="1">
+          <mxGeometry x="400" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-19" value="redirect to &lt;br&gt;/recipes/:id/" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="239" y="330" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-20" value="redirect to&lt;br&gt;/recipes/new/" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="330" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-23" target="N01Z7XA4SCIn-NLS_7Hn-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-23" value="user navigates&lt;br&gt;to a specific recipe&lt;br&gt;/recipes/:id/" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-25" target="N01Z7XA4SCIn-NLS_7Hn-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-25" value="request the specific&lt;br&gt;recipe from&lt;br&gt;/api/recipes/:id/" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-26" target="N01Z7XA4SCIn-NLS_7Hn-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-26" value="render title&lt;br&gt;and description" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="330" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-31" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-28" target="N01Z7XA4SCIn-NLS_7Hn-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-37" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-28" target="N01Z7XA4SCIn-NLS_7Hn-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-28" value="recipe have&amp;nbsp;&lt;br&gt;ingredients?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="440" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-33" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-29" target="N01Z7XA4SCIn-NLS_7Hn-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-29" value="recipe have instructions?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="560" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-38" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="N01Z7XA4SCIn-NLS_7Hn-30" target="N01Z7XA4SCIn-NLS_7Hn-29">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="550" />
+              <mxPoint x="660" y="550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-30" value="render ingredients&lt;br&gt;heading and the list&lt;br&gt;of ingredients" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="450" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-32" value="render instructions&lt;br&gt;heading and the list&lt;br&gt;of instructions" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="N01Z7XA4SCIn-NLS_7Hn-39" value="user navigates to&lt;br&gt;create new recipe&lt;br&gt;/recipes/new/" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
