@@ -93,7 +93,6 @@ const handleDelete = async (state: State, navigate: NavigateFunction) => {
 
 
 const handleSubmitError = (error: { [key: string]: { kind: string, path: string } }, state: State) => {
-    console.log(error)
     for (const key of Object.keys(error)) {
         const field = error[key].path.split(".")[0]
         state.error = `${field.charAt(0).toUpperCase() + field.substring(1)} has at least one empty field.`;

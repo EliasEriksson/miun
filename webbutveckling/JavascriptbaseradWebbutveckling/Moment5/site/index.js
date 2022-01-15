@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-mongoose.plugin(require("mongoose-aggregate-paginate-v2"));
 mongoose.plugin(require("mongoose-paginate-v2"));
 const express = require("express");
 const fs = require("fs").promises;
@@ -11,7 +10,6 @@ const apiRoot = `${rootURL}/api`;
 
 const app = express();
 app.use(express.json());
-app.use(rootURL, express.static(`${__dirname}/static`));
 
 /**
  * reads the query params limit and page from the request
