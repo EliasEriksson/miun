@@ -10,6 +10,12 @@ interface ParentState {
     error: string
 }
 
+/**
+ * component for ingredients in the recipe form
+ *
+ * @param props
+ * @constructor
+ */
 export const Ingredients: React.FC<{
     parentState: ParentState,
     parentSetState: Dispatch<SetStateAction<ParentState>>

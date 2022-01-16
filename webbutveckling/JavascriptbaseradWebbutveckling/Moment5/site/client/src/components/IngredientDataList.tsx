@@ -15,6 +15,10 @@ interface State {
 
 /**
  * component for the ingredient data list in the recipe form
+ *
+ * when the user starts typing in the text input a request is sent to
+ * /api/ingredients/ to preform a search. 5 search results comes back and is inserted
+ * in the input fields related datalist to provide the user with autocomplete.
  */
 export const IngredientDataList: React.FC<{
     initial: IngredientData, event: (data: IngredientData) => void

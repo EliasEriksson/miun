@@ -11,6 +11,13 @@ interface ParentState {
     error: string
 }
 
+/**
+ * helper method to apply auto grow on text areas
+ *
+ * @param element
+ * @param identifier
+ * @param refs
+ */
 const addAutoGrow = (element: HTMLTextAreaElement | null, identifier: string, refs: {
     addedTextAreas: [HTMLTextAreaElement, string][], processedTextAreas: Set<string>
 }) => {
@@ -20,6 +27,12 @@ const addAutoGrow = (element: HTMLTextAreaElement | null, identifier: string, re
     }
 }
 
+/**
+ * component for instructions in the recipe form
+ *
+ * @param props
+ * @constructor
+ */
 export const Instructions: React.FC<{
     parentState: ParentState,
     parentSetState: Dispatch<SetStateAction<ParentState>>

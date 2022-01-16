@@ -3,6 +3,12 @@ import {Link} from "react-router-dom";
 import React from "react";
 import "../static/css/recipeSummary.scss"
 
+/**
+ * renders the title, description and the tags of a recipe
+ *
+ * @param props
+ * @constructor
+ */
 export const RecipeSummary = (props: { data: RecipeData }) => {
     return (
         <div className={"summary"}>

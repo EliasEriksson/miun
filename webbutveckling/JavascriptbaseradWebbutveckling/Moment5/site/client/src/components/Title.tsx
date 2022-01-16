@@ -7,6 +7,9 @@ interface ParentState {
     error: string
 }
 
+/**
+ * renders a recipes title.
+ */
 export const Title: React.FC<{
     parentState: ParentState,
     parentSetState: Dispatch<SetStateAction<ParentState>>

@@ -2,6 +2,11 @@ import React, {ChangeEvent, useState} from "react";
 import "../static/css/unitSelect.scss";
 import {RecipeIngredientData, RecipeData, Unit} from "../types";
 
+/**
+ * a component for selecting units for the recipe form.
+ * @param props
+ * @constructor
+ */
 export const UnitSelect = (props: { ingredientData: RecipeIngredientData, event: (e: ChangeEvent<HTMLSelectElement>) => void }) => {
     const [state, setState] = useState<{
         ingredientData: RecipeIngredientData

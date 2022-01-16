@@ -9,6 +9,12 @@ interface ParentState {
     error: string
 }
 
+/**
+ * component for tags in the recipe form
+ *
+ * @param props
+ * @constructor
+ */
 export const Tags: React.FC<{
     parentState: ParentState,
     parentSetState: Dispatch<SetStateAction<ParentState>>

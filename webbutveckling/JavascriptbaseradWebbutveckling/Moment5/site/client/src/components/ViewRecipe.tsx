@@ -12,6 +12,11 @@ interface State {
     recipeData: RecipeData
 }
 
+/**
+ * renders a recipe with all related data
+ *
+ * @constructor
+ */
 export const ViewRecipe = () => {
     const params = useParams();
     const [state, setState] = useState<State>({

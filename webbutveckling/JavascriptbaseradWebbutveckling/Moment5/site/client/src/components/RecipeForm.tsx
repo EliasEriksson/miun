@@ -16,6 +16,16 @@ interface State {
     error: string
 }
 
+/**
+ * POST or PUT the form
+ *
+ * first all new ingredients and tags are created with POST requests.
+ * with the id coming back the data in state is restructured in a way that i can be
+ * sent as a PUT or POST request to the API.
+ * @param state
+ * @param setState
+ * @param navigate
+ */
 const handleSubmit = async (state: State, setState: React.Dispatch<SetStateAction<State>>, navigate: NavigateFunction) => {
     const requests: Promise<any>[] = [];
     state.recipeData.ingredients.forEach(ingredient => {
@@ -84,6 +94,12 @@ const handleSubmit = async (state: State, setState: React.Dispatch<SetStateActio
     await setState({...state});
 }
 
+/**
+ * deletes the current recipe.
+ *
+ * @param state
+ * @param navigate
+ */
 const handleDelete = async (state: State, navigate: NavigateFunction) => {
     if (window.confirm(`Are you sure you want to delete recipe '${state.recipeData.title}'?`)) {
         await requestEndpoint(`/recipes/${state.recipeData._id}/`, "DELETE", null);
@@ -91,7 +107,12 @@ const handleDelete = async (state: State, navigate: NavigateFunction) => {
     }
 }
 
-
+/**
+ * formats an error message for the user.
+ *
+ * @param error
+ * @param state
+ */
 const handleSubmitError = (error: { [key: string]: { kind: string, path: string } }, state: State) => {
     for (const key of Object.keys(error)) {
         const field = error[key].path.split(".")[0]
@@ -100,7 +121,18 @@ const handleSubmitError = (error: { [key: string]: { kind: string, path: string 
     }
 }
 
-
+/**
+ * A form to create or edit a recipe.
+ *
+ * the form will be a post form if no id is provided in the props.
+ * if an id is provided the form will load the recipe with the given id
+ * and send a PUT request instead of a POST request.
+ *
+ * if an id is specified a delete button will also render allowing the user to
+ * send a delete request on the recipe with the given id.
+ * @param props
+ * @constructor
+ */
 export const RecipeForm: React.FC<{
     _id?: string
 }> = props => {

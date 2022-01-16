@@ -3,7 +3,9 @@ import {ApiResponse, requestEndpoint} from "../modules/requests";
 import {TagData} from "../types";
 import {v4 as uuid} from "uuid";
 
-
+/**
+ * should be a ref but cba to change it
+ */
 let mounted = false;
 
 interface State {
@@ -11,7 +13,13 @@ interface State {
     options: JSX.Element[]
 }
 
-
+/**
+ * component for the tag data list in the recipe form
+ *
+ * when the user starts typing in the text input a request is sent to
+ * /api/tags/ to preform a search. 5 search results comes back and is inserted
+ * in the input fields related datalist to provide the user with autocomplete.
+ */
 export const TagDataList = (props: { initial: TagData, event: (data: TagData) => void }) => {
     const [state, setState] = useState<State>({
         search: props.initial.tag,
